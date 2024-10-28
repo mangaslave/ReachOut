@@ -1,4 +1,4 @@
-import NavBar from "@/components/NavBar";
+import HomePageNavBar from "@/components/HomePageNavBar";
 import Image from "next/image";
 import HomePageCarousel from "@/components/HomePageCarousel";
 import fbIcon from "../../public/fbIcon.svg";
@@ -13,7 +13,7 @@ import resourceDatabase from "../../public/reach-out-app-resource-database.jpg";
 export default function Home() {
   return (
     <>
-      <NavBar />
+      <HomePageNavBar />
       <div className="flex w-full h-max bg-caribbeanCurrant">
         <div className="flex flex-col ml-20 xl:ml-52 justify-evenly w-1/2 max-w-lg z-20 relative">
           <h1 className="text-white text-lg md:text-3xl font-bold py-4">
