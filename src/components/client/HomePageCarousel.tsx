@@ -1,6 +1,5 @@
 "use client";
 import Image, {StaticImageData} from "next/image";
-import {useState} from "react";
 import personOne from "../../../public/pexels-thgusstavo-2774292.jpg";
 import personTwo from "../../../public/pexels-ernest-flowers-174298074-29071817.jpg";
 import personThree from "../../../public/pexels-italo-melo-881954-2379004.jpg";
@@ -19,16 +18,22 @@ const carouselImages: CarouselImage[] = [
 
 export default function HomePageCarousel() {
   return (
-    <div className="flex justify-around items-center w-full">
+    <div className="flex flex-col md:flex-row justify-around items-center w-full">
       {carouselImages.map((image, index) => (
-        <div key={index} className="flex-shrink-0 flex justify-center items-center w-1/3 p-2">
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={300} // Set a fixed width
-            height={200} // Set a fixed height
-            className="object-cover rounded-full"
-          />
+        <div className="flex flex-col items-center justify-center">
+          <div key={index} className="relative w-64 h-64 overflow-hidden rounded-full">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              layout="fill"
+              objectFit="cover"
+              className="object-cover rounded-full"
+            />
+          </div>
+          <p className="mx-10 my-6 max-w-sm">
+            John was having a difficult time adjusting to life after being released from prison, he struggled to find a
+            job and did not have many friends or family that were able to assist him in his journey...
+          </p>
         </div>
       ))}
     </div>
