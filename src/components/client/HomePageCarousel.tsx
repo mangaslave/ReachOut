@@ -18,19 +18,8 @@ const carouselImages: CarouselImage[] = [
 ];
 
 export default function HomePageCarousel() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const shiftLeft = () => {};
-
-  const shiftRight = () => {};
-
   return (
     <div className="flex justify-around items-center w-full">
-      <button
-        onClick={shiftRight}
-        className="absolute left-0 z-10 p-2 bg-spaceCadet hover:bg-ylnMnBlue text-white rounded-lg"
-      >
-        &lt;
-      </button>
       {carouselImages.map((image, index) => (
         <div key={index} className="flex-shrink-0 flex justify-center items-center w-1/3 p-2">
           <Image
@@ -42,12 +31,6 @@ export default function HomePageCarousel() {
           />
         </div>
       ))}
-      <button
-        onClick={shiftLeft}
-        className="absolute right-0 z-10 p-2 bg-spaceCadet hover:bg-ylnMnBlue text-white rounded-lg"
-      >
-        &gt;
-      </button>
     </div>
   );
 }
