@@ -1,9 +1,9 @@
 "use client";
 import Image, {StaticImageData} from "next/image";
 import {useState} from "react";
-import personOne from "../../public/pexels-thgusstavo-2774292.jpg";
-import personTwo from "../../public/pexels-ernest-flowers-174298074-29071817.jpg";
-import personThree from "../../public/pexels-italo-melo-881954-2379004.jpg";
+import personOne from "../../../public/pexels-thgusstavo-2774292.jpg";
+import personTwo from "../../../public/pexels-ernest-flowers-174298074-29071817.jpg";
+import personThree from "../../../public/pexels-italo-melo-881954-2379004.jpg";
 
 interface CarouselImage {
   src: string | StaticImageData;
