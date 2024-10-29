@@ -13,7 +13,7 @@ export function JobListingContactInfo () {
       </div>
       
       <hr className="border-t border-black my-4" />
-      <h2 className="text-xl font-bold">Contact Information</h2>
+      <h2 className="text-xl font-bold text-spaceCadet">Contact Information</h2>
       
       <div className="grid w-full gap-1.5 mt-6">
         <Label htmlFor="message">First Name</Label>

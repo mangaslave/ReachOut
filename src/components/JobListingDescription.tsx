@@ -23,10 +23,10 @@ import { Button, buttonVariants } from "./ui/button";
           <hr className="border-t border-black my-4" />
         <Button variant="secondary" className="bg-spaceCadet text-white">Submit Application</Button>
         <div className="flex justify-between items-start mb-4 ">
-        <h2 className="font-bold text-xl mt-6">Job Description</h2>
+        <h2 className="font-bold text-xl mt-6 text-spaceCadet">Job Description</h2>
         </div>
         <p className="mt-4">{description}</p>
-        <h2 className="font-bold text-xl mt-4">Benefits</h2>
+        <h2 className="font-bold text-xl mt-4 text-spaceCadet">Benefits</h2>
         <ul className="list-disc pl-5 space-y-1">
             <li>Dental care</li>
             <li>Extended health care</li>
@@ -35,7 +35,7 @@ import { Button, buttonVariants } from "./ui/button";
             <li>Opportunities for growth and development</li>
             <li>Positive, team-oriented work environment</li>
         </ul>
-        <h2 className="font-bold text-xl mt-4">Qualifications</h2>
+        <h2 className="font-bold text-xl mt-4 text-spaceCadet">Qualifications</h2>
          <ul className="list-disc pl-5 space-y-1">
           <li>2-4 years of experience in general labor, construction, or related fields</li>
           <li>Ability to thrive in physically demanding and adverse weather conditions</li>
@@ -43,7 +43,7 @@ import { Button, buttonVariants } from "./ui/button";
           <li>Reliable transportation to the worksite</li>
          </ul>
 
-          <h2 className="font-bold text-xl mt-4">Work Enviornment</h2>
+          <h2 className="font-bold text-xl mt-4 text-spaceCadet">Work Enviornment</h2>
          <ul className="list-disc pl-5 space-y-1">
           <li>Outdoor work in varying weather conditions</li>
           <li>Physically demanding tasks requiring stamina and strength</li>

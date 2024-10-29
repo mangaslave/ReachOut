@@ -1,5 +1,6 @@
 import { JobListing } from "@/components/JobListingDescription";
 import { JobListingContactInfo } from "@/components/JobListingContactInfo";
+import { JobListingUploadResume } from "@/components/JobListingUploadResume";
 
 
 
@@ -12,7 +13,11 @@ export default function JobListingPage() {
       <div className="flex-none w-[600px]">
         <JobListingContactInfo />
       </div>
-     
+
+      <div className="flex-none w-[600px]">
+        <JobListingUploadResume />
+      </div>
+
     </div>
   );
 }
