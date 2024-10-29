@@ -1,6 +1,6 @@
 "use client";
 
-import {Suspense, useState} from "react";
+import { useState } from "react";
 import ClientProfile from "./ClientProfile";
 
 const data = [
@@ -60,11 +60,9 @@ export default function ClientListing() {
                   className="w-sm border rounded-lg border-black text-black"
                   name=""
                   id=""
-                  defaultValue={user.status}
+                  defaultValue={user.status} // Correct usage of defaultValue
                 >
-                  <option value="Unemployed" selected>
-                    Unemployed
-                  </option>
+                  <option value="Unemployed">Unemployed</option>
                   <option value="Employed">Employed</option>
                 </select>
               </td>
@@ -73,12 +71,10 @@ export default function ClientListing() {
                   className="w-sm border rounded-lg border-black text-black"
                   name=""
                   id=""
-                  defaultValue={user.company}
+                  defaultValue={user.company} // Correct usage of defaultValue
                 >
-                  <option value="Unemployed" selected>
-                    N/A
-                  </option>
-                  <option value="Employed">Gamma Inc.</option>
+                  <option value="N/A">N/A</option>
+                  <option value="Gamma Inc">Gamma Inc.</option>
                 </select>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">{user.lastOnline}</td>
@@ -99,3 +95,4 @@ export default function ClientListing() {
     </div>
   );
 }
+
