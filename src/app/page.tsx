@@ -9,11 +9,8 @@ import interviewIcon from "../../public/interview-1.svg";
 import aiPoweredResearch from "../../public/reach-out-app-AI-powered-job-search.jpg";
 import researchProgressTracking from "../../public/reach-out-app-progress-tracking.jpg";
 import resourceDatabase from "../../public/reach-out-app-resource-database.jpg";
-import ClientProfile from "@/components/client/ClientProfile";
-import ClientListing from "@/components/client/ClientListing";
 
 export default function Home() {
-  return <ClientListing />;
   return (
     <>
       <HomePageNavBar />

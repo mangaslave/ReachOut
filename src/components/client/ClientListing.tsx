@@ -24,11 +24,15 @@ const data = [
   },
 ];
 
-export default async function ClientListing() {
+export default function ClientListing() {
   const [profileModalOpen, setProfileModalOpen] = useState(false);
 
   const setModalOpen = () => {
     setProfileModalOpen(true);
+  };
+
+  const setModalClose = () => {
+    setProfileModalOpen(false);
   };
 
   return (
@@ -87,10 +91,9 @@ export default async function ClientListing() {
           ))}
         </tbody>
       </table>
-      //!!! why is this not working?
       {profileModalOpen && (
-        <div className="fixed inset-0 flex place-items-center bg-black bg-opacity-50">
-          <ClientProfile />
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <ClientProfile closeModal={setModalClose} />
         </div>
       )}
     </div>
