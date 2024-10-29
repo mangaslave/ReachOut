@@ -19,6 +19,7 @@ export default function ClientProfile() {
       <div className="w-11/12 h-3 border border-black rounded-full overflow-hidden ">
         <div className="h-full bg-caribbeanCurrant rounded-full w-1/3"></div>
       </div>
+      <p className="font-thin">31% completed</p>
       <div className="flex justify-between">
         <div className="flex flex-col items-center justify-center w-1/2">
           <div className="bg-spaceCadet text-white w-full my-2 mx-4 rounded-sm p-4">
