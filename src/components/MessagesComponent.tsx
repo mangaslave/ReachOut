@@ -28,10 +28,10 @@ export function MessageComponent() {
                       <div className="flex items-center justify-between mb-3 last:mb-0">
                     <div className="flex items-center gap-3 min-w-0">
                         <Avatar className="h-10 w-10 shrink-0">
-                            <AvatarImage src="/static/images/Ellipse25.svg" alt="Profile" />
+                            <AvatarImage src="/static/images/pexels-olly-733872.jpg" alt="Profile" />
                             <AvatarFallback>PL</AvatarFallback>
                         </Avatar>
-                        <p className="text-base truncate">Andy Johnson | Newnham Works Ltd.</p>
+                        <p className="text-base truncate">Sarah Newnham | Newnham Works Ltd.</p>
                     </div>
                     <Button 
                         className="bg-spaceCadet text-white text-white px-4 py-2 rounded-lg flex items-center gap-2 shrink-0"
@@ -45,7 +45,7 @@ export function MessageComponent() {
                       <div className="flex items-center justify-between mb-3 last:mb-0">
                     <div className="flex items-center gap-3 min-w-0">
                         <Avatar className="h-10 w-10 shrink-0">
-                            <AvatarImage src="/static/images/Ellipse25.svg" alt="Profile" />
+                            <AvatarImage src="/static/images/pexels-olly-3777948.jpg" alt="Profile" />
                             <AvatarFallback>PL</AvatarFallback>
                         </Avatar>
                         <p className="text-base truncate">Greg Smith | Newnham Works Ltd.</p>
