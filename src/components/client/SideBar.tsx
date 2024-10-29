@@ -2,17 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-	ChevronLeft,
-	LayoutDashboard,
-	Briefcase,
-	Users,
-	Inbox,
-	FileText,
-	Bell,
-	Settings,
-	User,
-} from "lucide-react";
+import { ChevronLeft, Settings, User } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -34,34 +25,34 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 interface SidebarItem {
 	title: string;
-	icon: React.ReactNode;
+	iconSrc: string;
 	href: string;
 }
 
 const sidebarItems: SidebarItem[] = [
 	{
 		title: "Dashboard",
-		icon: <LayoutDashboard className="h-5 w-5" />,
+		iconSrc: "/static/images/Dashboard_icon.svg",
 		href: "/dashboard",
 	},
 	{
 		title: "Job Listings",
-		icon: <Briefcase className="h-5 w-5" />,
+		iconSrc: "/static/images/JobListings_icon.svg",
 		href: "/jobs",
 	},
 	{
 		title: "Client Management",
-		icon: <Users className="h-5 w-5" />,
+		iconSrc: "/static/images/UseManagement_icon.svg",
 		href: "/clients",
 	},
 	{
 		title: "Inbox",
-		icon: <Inbox className="h-5 w-5" />,
+		iconSrc: "/static/images/Inbox_icon.svg",
 		href: "/inbox",
 	},
 	{
 		title: "Resume Builder",
-		icon: <FileText className="h-5 w-5" />,
+		iconSrc: "/static/images/Resume_icon.svg",
 		href: "/resume",
 	},
 ];
@@ -69,12 +60,12 @@ const sidebarItems: SidebarItem[] = [
 const bottomItems: SidebarItem[] = [
 	{
 		title: "Notifications",
-		icon: <Bell className="h-5 w-5" />,
+		iconSrc: "/static/images/Bell_Notification_icon.svg",
 		href: "/notifications",
 	},
 	{
 		title: "Settings",
-		icon: <Settings className="h-5 w-5" />,
+		iconSrc: "/static/images/Settings_icon.svg",
 		href: "/settings",
 	},
 ];
@@ -93,7 +84,14 @@ export function Sidebar({ className, user }: SidebarProps) {
 					collapsed && "justify-center"
 				)}
 			>
-				{item.icon}
+				<div className="relative w-5 h-5">
+					<Image
+						src={item.iconSrc}
+						alt={`${item.title} icon`}
+						fill
+						className="object-contain"
+					/>
+				</div>
 				{!collapsed && <span>{item.title}</span>}
 			</span>
 		</Link>
@@ -132,7 +130,6 @@ export function Sidebar({ className, user }: SidebarProps) {
 				</ul>
 			</nav>
 
-			{/* Bottom Section */}
 			<div className="border-t">
 				<ul className="space-y-2 px-2 py-2">
 					{bottomItems.map((item) => (
@@ -142,7 +139,6 @@ export function Sidebar({ className, user }: SidebarProps) {
 					))}
 				</ul>
 
-				{/* User Profile Section */}
 				<div className="p-2">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
