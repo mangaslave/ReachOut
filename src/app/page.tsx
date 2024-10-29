@@ -1,5 +1,5 @@
-import NavBar from "@/components/client/NavBar";
+import Header from "@/components/client/Header";
 
 export default function Home() {
-	return <NavBar headerMsg="Hello User!" subHeadingMsg="more testing!" />;
+	return <Header headerMsg="Hello User!" subHeadingMsg="more testing!" />;
 }
