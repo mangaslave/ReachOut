@@ -1,10 +1,11 @@
-import {Tabs, TabsList, TabsTrigger, TabsContent} from "./ui/tabs";
+"use client";
+import {Tabs, TabsList, TabsTrigger, TabsContent} from "../ui/tabs";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 
-export function JobListingUploadResume() {
+export function JobListingUploadResume({nextModal}: {nextModal: () => void}) {
   return (
-    <div className="max-w-2xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+    <div className="max-w-3xl w-full h-full mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
       <div>
         <h1 className="font-bold text-2xl mb-1">Job Listing</h1>
         <span className="text-gray-600">Company name</span>
@@ -49,11 +50,11 @@ export function JobListingUploadResume() {
           </TabsContent>
         </Tabs>
 
-        <Link href="/job-listing/interview-availability">
-          <Button variant="secondary" className="mt-6">
-            Next
-          </Button>
-        </Link>
+        {/* <Link href="/job-listing/interview-availability"> */}
+        <Button onClick={nextModal} variant="secondary" className="mt-6">
+          Next
+        </Button>
+        {/* </Link> */}
       </div>
     </div>
   );

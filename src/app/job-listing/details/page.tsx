@@ -1,12 +1,5 @@
-import { JobListing } from "@/components/JobListingDescription";
-
-
+import {JobListing} from "@/components/client/JobListingDescription";
 
 export default function JobListingPage() {
-    return (
-        
-    <JobListing />
-           
-
-    );
+  return <JobListing />;
 }

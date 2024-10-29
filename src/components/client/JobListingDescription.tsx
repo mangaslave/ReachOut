@@ -1,16 +1,18 @@
-import Reminders from "./client/Reminders";
-import {Button, buttonVariants} from "./ui/button";
+"use client";
+import Reminders from "./Reminders";
+import {Button, buttonVariants} from "../ui/button";
 import Link from "next/link";
 
-export const JobListing = ({
-  companyName = "Company Name",
-  salary = "$27 - $30 an hour",
-  type = "Part Time",
-  location = "Vancouver, BC",
-  description = "We're looking for a reliable and flexible person to join our team. You should be comfortable working in different environments, sometimes under tough conditions, and be able to work well with a small group. While you don't need a lot of specific technical skills, it's important that you're eager to learn, can adapt quickly, and can handle challenging situations. Having some previous experience is a plus, as it shows you're resilient and capable of taking on the job.",
-}) => {
+export const JobListing = ({nextModal}: {nextModal: () => void}) => {
+  const companyName = "Company Name";
+  const salary = "$27 - $30 an hour";
+  const type = "Part Time";
+  const location = "Vancouver, BC";
+  const description =
+    "We're looking for a reliable and flexible person to join our team. You should be comfortable working in different environments, sometimes under tough conditions, and be able to work well with a small group. While you don't need a lot of specific technical skills, it's important that you're eager to learn, can adapt quickly, and can handle challenging situations. Having some previous experience is a plus, as it shows you're resilient and capable of taking on the job.";
+
   return (
-    <div className="max-w-2xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+    <div className="max-w-3xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
       <div className="flex justify-between items-start mb-4">
         <div>
           <h1 className="font-bold text-2xl text-gray-900 mb-2">Job Listing</h1>
@@ -23,11 +25,11 @@ export const JobListing = ({
         </div>
       </div>
       <div className="border-b border-caribbeanCurrant my-4" />
-      <Link href="/job-listing/contact">
-        <Button variant="secondary" className="bg-spaceCadet text-white">
-          Start Application
-        </Button>
-      </Link>
+      {/* <Link href="/job-listing/contact"> */}
+      <Button onClick={nextModal} variant="secondary" className="bg-spaceCadet text-white">
+        Start Application
+      </Button>
+      {/* </Link> */}
       <div className="flex justify-between items-start mb-4 ">
         <h2 className="font-bold text-xl mt-6 text-spaceCadet">Job Description</h2>
       </div>
