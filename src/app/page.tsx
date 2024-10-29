@@ -41,7 +41,7 @@ export default function Home() {
         </p>
       </div>
       {/*/
-        //* OUR IMPACT 
+        //* OUR IMPACT
         */}
       <div className="flex items-center justify-evenly py-6 flex-col w-full h-96 bg-caribbeanCurrant bg-opacity-10">
         <h1 className="text-spaceCadet text-lg md:text-4xl font-bold">Our Impact</h1>
@@ -67,13 +67,13 @@ export default function Home() {
           </li>
         </ul>
         {/*/
-        //* OUR KEY FEATURES 
+        //* OUR KEY FEATURES
         */}
         <div className="flex items-center justify-center w-full bg-caribbeanCurrant">
           <h1 className="text-white text-lg md:text-4xl font-bold py-12">Our Key Features</h1>
         </div>
         {/*/
-        //* AI POWERED JOB SEARCH 
+        //* AI POWERED JOB SEARCH
         */}
         <div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
           <div className="flex">
@@ -101,7 +101,7 @@ export default function Home() {
           </div>
         </div>
         {/*/
-        //* PROGRESS TRACKING  
+        //* PROGRESS TRACKING
         */}
         <div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
           <div className="flex">
@@ -129,7 +129,7 @@ export default function Home() {
           </div>
         </div>
         {/*/
-        //* RESOURCE DATABASE 
+        //* RESOURCE DATABASE
         */}
         <div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
           <div className="flex">
@@ -160,8 +160,8 @@ export default function Home() {
           <h1 className="text-white text-lg md:text-4xl font-bold py-12">Success Stories</h1>
         </div>
         <div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
-          {/* 
-          //!Fix this Carousel 
+          {/*
+          //!Fix this Carousel
           */}
           <HomePageCarousel />
         </div>
