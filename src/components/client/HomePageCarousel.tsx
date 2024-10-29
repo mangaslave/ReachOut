@@ -31,9 +31,7 @@ export default function HomePageCarousel() {
 						<Image
 							src={image.src}
 							alt={image.alt}
-							layout="fill"
-							objectFit="cover"
-							className="object-cover rounded-full"
+							style={{ objectFit: "cover" }}
 						/>
 					</div>
 					<p className="mx-10 my-6 max-w-sm">
