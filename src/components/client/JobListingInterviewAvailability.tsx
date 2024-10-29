@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Calendar } from "../ui/calendar";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function JobListingInterviewAvailability() {
     const [date, setDate] = useState<Date | undefined>(new Date());
@@ -31,9 +32,8 @@ export function JobListingInterviewAvailability() {
                     head_cell: "text-gray-500 rounded-md w-8 font-normal text-[0.8rem]",
                     row: "flex w-full mt-2",
                     cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-transparent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                    day: "h-8 w-8 p-0 font-normal aria-selected:opacity-100",
-                    day_selected: "bg-black text-white hover:bg-black hover:text-white focus:bg-black focus:text-white",
-                    day_today: "bg-transparent text-black",
+                    day: "h-8 w-8 p-0 font-normal aria-selected:opacity-100 text-black",
+                    day_selected: "bg-black text-white hover:bg-black hover:text-white focus:bg-black focus:",
                     day_outside: "text-gray-300",
                     nav: "space-x-1 flex items-center",
                     nav_button: "hover:bg-transparent p-1",
@@ -43,7 +43,9 @@ export function JobListingInterviewAvailability() {
                     caption_label: "text-sm font-medium",
                 }}
             />
-           <Button variant="secondary" className="bg-spaceCadet text-white mt-6">Submit Application</Button>
+          <Link href="/">
+        <Button variant="secondary" className="bg-spaceCadet text-white">Submit Application</Button>
+          </Link> 
         </div>
     );
 }

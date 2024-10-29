@@ -1,4 +1,5 @@
 import { Button, buttonVariants } from "./ui/button";
+import Link from "next/link";
 
  export const JobListing = ({
   companyName = "Company Name",
@@ -21,7 +22,9 @@ import { Button, buttonVariants } from "./ui/button";
         </div>
       </div>
           <hr className="border-t border-black my-4" />
-        <Button variant="secondary" className="bg-spaceCadet text-white">Submit Application</Button>
+          <Link href="/job-listing/contact">
+        <Button variant="secondary" className="bg-spaceCadet text-white">Start Application</Button>
+          </Link>
         <div className="flex justify-between items-start mb-4 ">
         <h2 className="font-bold text-xl mt-6 text-spaceCadet">Job Description</h2>
         </div>

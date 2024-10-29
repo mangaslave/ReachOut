@@ -1,6 +1,7 @@
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export function JobListingContactInfo () {
   return (
@@ -35,7 +36,9 @@ export function JobListingContactInfo () {
         <Textarea placeholder="Phone" id="message" />
       </div>
 
-      <Button variant="secondary" className="bg-spaceCadet text-white mt-5">Next</Button>
+        <Link href="/job-listing/upload-resume">
+        <Button variant="secondary" className="bg-spaceCadet text-white mt-4">Next</Button>
+          </Link> 
     </div>
   );
 }

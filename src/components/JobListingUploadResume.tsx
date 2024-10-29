@@ -1,6 +1,7 @@
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function JobListingUploadResume() {
     return (
@@ -54,7 +55,10 @@ export function JobListingUploadResume() {
                         </div>
                     </TabsContent>
                 </Tabs>
-                <Button variant="secondary" className="bg-spaceCadet text-white mt-5">Next</Button>
+                
+                <Link href="/job-listing/interview-avaliablity">
+                <Button variant="secondary" className="bg-spaceCadet text-white mt-6">Next</Button>
+                </Link>
             </div>
         </div>
     );
