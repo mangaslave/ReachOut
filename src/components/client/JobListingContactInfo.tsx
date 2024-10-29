@@ -1,6 +1,7 @@
-import {Textarea} from "./ui/textarea";
-import {Label} from "./ui/label";
-import {Button} from "./ui/button";
+"use client";
+import {Textarea} from "../ui/textarea";
+import {Label} from "../ui/label";
+import {Button} from "../ui/button";
 import Link from "next/link";
 
 export function JobListingContactInfo({nextModal}: {nextModal: () => void}) {

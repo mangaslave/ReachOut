@@ -1,8 +1,5 @@
-import { JobListingContactInfo } from "@/components/JobListingContactInfo";
+import {JobListingContactInfo} from "@/components/client/JobListingContactInfo";
 
-
-export default function JobListingContactPage () {
-    return (
-        <JobListingContactInfo/>
-    )
+export default function JobListingContactPage() {
+  return <JobListingContactInfo />;
 }

@@ -4,10 +4,10 @@ import {Sidebar} from "@/components/client/SideBar";
 import Header from "@/components/client/Header";
 import {useState} from "react";
 import JobCard from "@/components/client/job_postcard";
-import {JobListingContactInfo} from "@/components/JobListingContactInfo";
-import {JobListing} from "@/components/JobListingDescription";
+import {JobListingContactInfo} from "@/components/client/JobListingContactInfo";
+import {JobListing} from "@/components/client/JobListingDescription";
 import {JobListingInterviewAvailability} from "@/components/client/JobListingInterviewAvailability";
-import {JobListingUploadResume} from "@/components/JobListingUploadResume";
+import {JobListingUploadResume} from "@/components/client/JobListingUploadResume";
 
 export default function JobListingPage() {
   const [applicationModalOpen, setApplicationModalOpen] = useState(false);

@@ -1,5 +1,6 @@
-import Reminders from "./client/Reminders";
-import {Button, buttonVariants} from "./ui/button";
+"use client";
+import Reminders from "./Reminders";
+import {Button, buttonVariants} from "../ui/button";
 import Link from "next/link";
 
 export const JobListing = ({nextModal}: {nextModal: () => void}) => {

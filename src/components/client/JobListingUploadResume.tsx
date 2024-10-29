@@ -1,4 +1,5 @@
-import {Tabs, TabsList, TabsTrigger, TabsContent} from "./ui/tabs";
+"use client";
+import {Tabs, TabsList, TabsTrigger, TabsContent} from "../ui/tabs";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 
