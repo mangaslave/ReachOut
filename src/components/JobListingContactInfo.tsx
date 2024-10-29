@@ -3,9 +3,9 @@ import {Label} from "./ui/label";
 import {Button} from "./ui/button";
 import Link from "next/link";
 
-export function JobListingContactInfo() {
+export function JobListingContactInfo({nextModal}: {nextModal: () => void}) {
   return (
-    <div className="max-w-2xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+    <div className="max-w-3xl w-full h-full mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
       <div className="flex justify-between items-start mb-4">
         <div>
           <h1 className="font-bold text-2xl text-gray-900 mb-2">Job Listing</h1>
@@ -36,11 +36,11 @@ export function JobListingContactInfo() {
         <Textarea className="resize-none" placeholder="Phone" id="message" />
       </div>
 
-      <Link href="/job-listing/upload-resume">
-        <Button variant="secondary" className="bg-spaceCadet text-white mt-4">
-          Next
-        </Button>
-      </Link>
+      {/* <Link href="/job-listing/upload-resume"> */}
+      <Button variant="secondary" className="bg-spaceCadet text-white mt-4" onClick={nextModal}>
+        Next
+      </Button>
+      {/* </Link> */}
     </div>
   );
 }
