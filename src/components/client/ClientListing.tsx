@@ -1,5 +1,8 @@
 "use client";
 
+import {Suspense, useState} from "react";
+import ClientProfile from "./ClientProfile";
+
 const data = [
   {
     name: "Gregory Wick",
@@ -22,6 +25,12 @@ const data = [
 ];
 
 export default async function ClientListing() {
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
+
+  const setModalOpen = () => {
+    setProfileModalOpen(true);
+  };
+
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
@@ -70,12 +79,20 @@ export default async function ClientListing() {
               </td>
               <td className="px-6 py-4 whitespace-nowrap">{user.lastOnline}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <a className="hover:underline">View Profile</a>
+                <button onClick={setModalOpen} className="hover:underline bg-none">
+                  View Profile
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      //!!! why is this not working?
+      {profileModalOpen && (
+        <div className="fixed inset-0 flex place-items-center bg-black bg-opacity-50">
+          <ClientProfile />
+        </div>
+      )}
     </div>
   );
 }
