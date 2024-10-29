@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import editIcon from "../../../public/editIcon.svg";
-import locationIcon from "../../../public/locationIcon.svg";
-import emailIcon from "../../../public/email.svg";
-import phoneIcon from "../../../public/phoneIcon.svg";
-import downloadIcon from "../../../public/downloadIcon.svg";
+import editIcon from "../../../public/static/images/editIcon.svg";
+import locationIcon from "../../../public/static/images/locationIcon.svg";
+import emailIcon from "../../../public/static/images/email.svg";
+import phoneIcon from "../../../public/static/images/phoneIcon.svg";
+import downloadIcon from "../../../public/static/images/downloadIcon.svg";
 
 export default function ClientProfile({closeModal}: {closeModal: () => void}) {
   return (

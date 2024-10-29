@@ -1,51 +1,58 @@
-"use client"
-import React, { useState } from "react";
-import { Calendar } from "../ui/calendar";
-import { Button } from "@/components/ui/button";
+"use client";
+import React, {useState} from "react";
+import {Calendar} from "../ui/calendar";
+import {Button} from "@/components/ui/button";
 import Link from "next/link";
 
 export function JobListingInterviewAvailability() {
-    const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(new Date());
 
-    return (
-        <div className="max-w-2xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
-            <div>
-                <h1 className="font-bold text-2xl mb-1">Job Listing</h1>
-                <span className="text-gray-600">Company Name</span> 
-            </div>
-            
-            <div className="border-b border-gray-300 my-4" />
-            
-            <h2 className="text-xl font-bold mb-1">Interview Availability</h2>
-            <p className="text-sm text-gray-600 mb-4">
-                Please select a range of days that you are available for an interview
-            </p>
-            
-            <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                className="p-0"
-                classNames={{
-                    months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
-                    head_row: "flex",
-                    head_cell: "text-gray-500 rounded-md w-8 font-normal text-[0.8rem]",
-                    row: "flex w-full mt-2",
-                    cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-transparent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                    day: "h-8 w-8 p-0 font-normal aria-selected:opacity-100 text-black",
-                    day_selected: "bg-black text-white hover:bg-black hover:text-white focus:bg-black focus:",
-                    day_outside: "text-gray-300",
-                    nav: "space-x-1 flex items-center",
-                    nav_button: "hover:bg-transparent p-1",
-                    nav_button_previous: "absolute left-1",
-                    nav_button_next: "absolute right-1",
-                    caption: "flex justify-center py-2 relative items-center",
-                    caption_label: "text-sm font-medium",
-                }}
-            />
-          <Link href="/">
-        <Button variant="secondary" className="bg-spaceCadet text-white">Submit Application</Button>
-          </Link> 
+  return (
+    <div className="max-w-3xl min-h-fit flex flex-col mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+      <div>
+        <h1 className="font-bold text-2xl mb-1">Job Listing</h1>
+        <span className="text-gray-600">Company Name</span>
+      </div>
+
+      <div className="border-b border-caribbeanCurrant my-4" />
+
+      <div className="flex flex-col">
+        <h2 className="text-xl font-bold mb-1">Interview Availability</h2>
+        <p className="text-sm text-gray-600 mb-4">Please select a day that you are available for an interview</p>
+      </div>
+
+      <div className="flex flex-col justify-center items-center">
+        <div className="w-auto flex justify-center">
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            className="relative w-full"
+            classNames={{
+              months: "flex flex-col",
+              head_row: "flex w-full",
+              head_cell: "flex text-gray-500 items-center justify-center rounded-md w-full font-normal text-[0.8rem]",
+              row: "flex w-full mt-2",
+              cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-transparent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+              day: "w-20 h-20 font-normal aria-selected:opacity-100 text-black",
+              day_selected:
+                "bg-black text-black hover:bg-spaceCadet hover:text-white focus:bg-spaceCadet focus:text-white",
+              day_outside: "text-gray-300 border-1",
+              nav: "space-x-1 flex items-center",
+              nav_button: "hover:bg-transparent p-1",
+              nav_button_previous: "absolute left-1",
+              nav_button_next: "absolute right-1",
+              caption: "flex justify-center py-2 relative items-center",
+              caption_label: "text-sm font-medium",
+            }}
+          />
         </div>
-    );
+        <Link href="/" className="mt-4">
+          <Button variant="secondary" className="py-2">
+            Submit Application
+          </Button>
+        </Link>
+      </div>
+    </div>
+  );
 }
