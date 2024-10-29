@@ -1,3 +1,4 @@
+import Reminders from "./client/Reminders";
 import { Button, buttonVariants } from "./ui/button";
 import Link from "next/link";
 
@@ -56,7 +57,6 @@ import Link from "next/link";
           </ul>
         </div>
         
-
     
   );
 }
