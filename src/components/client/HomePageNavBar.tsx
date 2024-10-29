@@ -2,8 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../../public/logo-new.svg";
+import { useState } from "react";
+import SignInModal from "./SignIn";
 
 export default function NavBar() {
+  const [showModal, setShowModal] = useState(false);
+
+
   return (
     <header className="bg-white flex justify-between w-full items-center flex-col max-h-40">
       <div className="flex justify-evenly w-full py-5 flex-col sm:flex-row">
@@ -52,9 +57,13 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-              <button className="font-bold rounded-lg w-32 h-10 bg-spaceCadet text-white hover:bg-ylnMnBlue">
+
+              <button className="font-bold rounded-lg w-32 h-10 bg-spaceCadet text-white hover:bg-ylnMnBlue"
+                onClick={() => setShowModal(true)}>
                 Sign In
               </button>
+
+              <SignInModal showModal={showModal} setShowModal={setShowModal} />
             </li>
           </ul>
         </nav>
