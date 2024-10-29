@@ -1,13 +1,12 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../public/logo-new.svg";
-import { useState } from "react";
+import logo from "../../../public/static/images/logo-new.svg";
+import {useState} from "react";
 import SignInModal from "./SignIn";
 
 export default function NavBar() {
   const [showModal, setShowModal] = useState(false);
-
 
   return (
     <header className="bg-white flex justify-between w-full items-center flex-col max-h-40">
@@ -57,9 +56,10 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-
-              <button className="font-bold rounded-lg w-32 h-10 bg-spaceCadet text-white hover:bg-ylnMnBlue"
-                onClick={() => setShowModal(true)}>
+              <button
+                className="font-bold rounded-lg w-32 h-10 bg-spaceCadet text-white hover:bg-ylnMnBlue"
+                onClick={() => setShowModal(true)}
+              >
                 Sign In
               </button>
 
