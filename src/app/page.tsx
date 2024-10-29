@@ -1,3 +1,4 @@
+
 import HomePageNavBar from "@/components/client/HomePageNavBar";
 import Image from "next/image";
 import HomePageCarousel from "@/components/client/HomePageCarousel";
