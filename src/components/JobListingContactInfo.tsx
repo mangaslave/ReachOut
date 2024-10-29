@@ -1,0 +1,42 @@
+import { Textarea } from "./ui/textarea";
+import { Label } from "./ui/label";
+import { Button } from "./ui/button";
+
+export function JobListingContactInfo () {
+  return (
+    <div className="max-w-2xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+      <div className="flex justify-between items-start mb-4">
+        <div>
+          <h1 className="font-bold text-2xl text-gray-900 mb-2">Job Listing</h1>
+          <span className="text-gray-600">Company name</span>
+        </div>
+      </div>
+      
+      <hr className="border-t border-black my-4" />
+      <h2 className="text-xl font-bold">Contact Information</h2>
+      
+      <div className="grid w-full gap-1.5 mt-6">
+        <Label htmlFor="message">First Name</Label>
+        <Textarea placeholder="First Name" id="message" />
+      </div>
+
+      <div className="grid w-full gap-1.5 mt-6">
+        <Label htmlFor="message">Last Name</Label>
+        <Textarea placeholder="Last Name" id="message" />
+      </div>
+      
+      <div className="grid w-full gap-1.5 mt-6">
+        <Label htmlFor="message">City</Label>
+        <Textarea placeholder="City" id="message" />
+      </div>
+      
+      <div className="grid w-full gap-1.5 mt-6">
+        <Label htmlFor="message">Phone</Label>
+        <Textarea placeholder="Phone" id="message" />
+      </div>
+
+      <Button variant="secondary" className="bg-spaceCadet text-white mt-5">Next</Button>
+    </div>
+  );
+}
+
