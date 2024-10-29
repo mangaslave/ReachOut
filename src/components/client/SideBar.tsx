@@ -78,9 +78,11 @@ export function Sidebar({ className, user }: SidebarProps) {
 		<Link href={item.href}>
 			<span
 				className={cn(
-					"flex items-center gap-3 rounded-lg px-3 py-2 transition-colors",
-					"hover:bg-accent hover:text-accent-foreground",
-					pathname === item.href ? "bg-accent" : "transparent",
+					"flex items-center gap-3 rounded-lg px-3 py-2 transition-all",
+					"hover:bg-accent hover:text-accent-foreground group",
+					pathname === item.href
+						? "bg-accent text-accent-foreground"
+						: "transparent",
 					collapsed && "justify-center"
 				)}
 			>
@@ -89,7 +91,12 @@ export function Sidebar({ className, user }: SidebarProps) {
 						src={item.iconSrc}
 						alt={`${item.title} icon`}
 						fill
-						className="object-contain"
+						className={cn(
+							"object-contain transition-all",
+							"brightness-0 invert",
+							"group-hover:brightness-0 group-hover:invert-0",
+							pathname === item.href ? "brightness-0 invert-0" : ""
+						)}
 					/>
 				</div>
 				{!collapsed && <span>{item.title}</span>}
