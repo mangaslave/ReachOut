@@ -3,6 +3,7 @@
 import { Sidebar } from "@/components/client/SideBar";
 import Header from "@/components/client/Header";
 import { useState } from "react";
+import Reminders from "@/components/client/Reminders";
 
 export default function DashboardPage() {
 	const [user] = useState({
@@ -29,6 +30,8 @@ export default function DashboardPage() {
 								<h3 className="text-lg font-medium">Sample Card</h3>
 								<p className="text-gray-600">Dashboard content goes here</p>
 							</div>
+
+							<Reminders />
 						</div>
 					</div>
 				</main>
