@@ -1,9 +1,14 @@
 import Image from "next/image";
 
-export default function JobCard() {
+interface JobCardProps {
+  baseColor: string,
+}
+
+export default function JobCard({baseColor = "bg-orchidPink"}: JobCardProps) {
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <div className="bg-orchidPink shadow-lg rounded-lg p-1 w-80 mt-24 pb-1">
+      <div className={`${baseColor} shadow-lg rounded-lg p-1 w-80 mt-24 pb-1`}>
 
         <div className="flex items-center justify-between pt-3">
           <div className="text-black px-4">
