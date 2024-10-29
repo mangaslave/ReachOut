@@ -10,9 +10,11 @@ import aiPoweredResearch from "../../public/reach-out-app-AI-powered-job-search.
 import researchProgressTracking from "../../public/reach-out-app-progress-tracking.jpg";
 import resourceDatabase from "../../public/reach-out-app-resource-database.jpg";
 import ClientListing from "@/components/client/ClientListing";
+import ClientProfile from "@/components/client/ClientProfile";
 
 export default function Home() {
-  return <ClientListing />;
+  return <ClientProfile />;
+  // return <ClientListing />;
   // return (
   //   <>
   //     <HomePageNavBar />

@@ -1,21 +1,23 @@
+"use client";
+
 const data = [
   {
-    name: "John Doe",
-    status: "Active",
-    company: "Acme Corp",
-    lastOnline: "2024-10-20",
+    name: "Gregory Wick",
+    status: "Unemployed",
+    company: "N/A",
+    lastOnline: "10/20/2024",
   },
   {
-    name: "Jane Smith",
-    status: "Inactive",
-    company: "Beta LLC",
-    lastOnline: "2024-10-18",
+    name: "Leon Howard",
+    status: "Unemployed",
+    company: "N/A",
+    lastOnline: "10/18/2024",
   },
   {
     name: "Alice Johnson",
-    status: "Active",
+    status: "Employed",
     company: "Gamma Inc",
-    lastOnline: "2024-10-19",
+    lastOnline: "10/19/2024",
   },
 ];
 
@@ -25,28 +27,50 @@ export default async function ClientListing() {
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-caribbeanCurrant text-white">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"></th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Status</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Company</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Last Online</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"></th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider"></th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">Name</th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">Status</th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">Company</th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">Last Online</th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider"></th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-white divide-y divide-caribbeanCurrant">
           {data.map((user, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap">
-                <input type="checkbox" />
+                <input type="checkbox" className="rounded-xl" />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">{user.name}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{user.status}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{user.company}</td>
+              <td className="px-6 py-4 whitespace-nowrap ">
+                <select
+                  className="w-sm border rounded-lg border-black text-black"
+                  name=""
+                  id=""
+                  defaultValue={user.status}
+                >
+                  <option value="Unemployed" selected>
+                    Unemployed
+                  </option>
+                  <option value="Employed">Employed</option>
+                </select>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <select
+                  className="w-sm border rounded-lg border-black text-black"
+                  name=""
+                  id=""
+                  defaultValue={user.company}
+                >
+                  <option value="Unemployed" selected>
+                    N/A
+                  </option>
+                  <option value="Employed">Gamma Inc.</option>
+                </select>
+              </td>
               <td className="px-6 py-4 whitespace-nowrap">{user.lastOnline}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <a href="#" className="text-blue-600 hover:underline">
-                  View Profile
-                </a>
+                <a className="hover:underline">View Profile</a>
               </td>
             </tr>
           ))}
