@@ -21,7 +21,7 @@ const Reminders = () => {
 				statusColor="bg-red-500"
 			/>
 
-			<button className="flex items-center justify-center w-full mt-4 p-3 text-sm border border-black rounded-lg hover:bg-gray-100">
+			<button className="flex items-center justify-center w-full mt-4 p-3  text-sm border border-black rounded-lg hover:bg-gray-100">
 				<Image
 					src="/static/images/plus-icon.svg"
 					alt="Add"
