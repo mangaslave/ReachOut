@@ -25,7 +25,6 @@ export default function DashboardPage() {
 					{/* dashboard content here */}
 					<div className="max-w-7xl mx-auto">
 						<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-							{/* Dashboard cards/widgets go here */}
 							<div className="bg-white p-6 rounded-lg shadow">
 								<h3 className="text-lg font-medium">Sample Card</h3>
 								<p className="text-gray-600">Dashboard content goes here</p>
