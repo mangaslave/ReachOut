@@ -100,12 +100,12 @@ export function Sidebar({ className, user }: SidebarProps) {
 	return (
 		<div
 			className={cn(
-				"relative flex flex-col h-screen bg-background border-r transition-all duration-300",
+				"relative flex flex-col h-screen bg-caribbeanCurrant border-r transition-all duration-300 text-white",
 				collapsed ? "w-16" : "w-64",
 				className
 			)}
 		>
-			<div className="p-4 flex justify-end">
+			<div className="p-4 flex justify-end ">
 				<Button
 					variant="ghost"
 					size="icon"
