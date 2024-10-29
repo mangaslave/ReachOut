@@ -11,10 +11,10 @@ const Header = ({ headerMsg, subHeadingMsg }: HeaderProps) => {
 			<div className="max-w-7xl mx-1 px-4 sm:px-4 lg:px-6">
 				<div className="flex justify-start items-center h-20">
 					<div className="flex flex-col w-full md:w-2/3 lg:w-1/2">
-						<h1 className="text-3xl font-semibold text-gray-900">
+						<h1 className="text-2xl font-semibold text-gray-900">
 							{headerMsg}
 						</h1>
-						<p className="text-base text-gray-600">{subHeadingMsg}</p>
+						<p className="text-sm text-gray-600">{subHeadingMsg}</p>
 					</div>
 				</div>
 			</div>
