@@ -28,13 +28,13 @@ const SignInModal: React.FC<SignInModalProps> = ({ showModal, setShowModal }) =>
         <div className="text-center mb-6">
               <div className="flex justify-center space-x-4 mt-4">
                 <button className=" p-2 rounded-full">
-                  <Image src="/google-icon.svg" alt="Google" className="w-10 h-10" />
+                  <Image src="/google-icon.svg" alt="Google" width={40} height={40} />
                 </button>
                 <button className=" p-2 rounded-full">
-                  <Image src="/windows-icon.svg" alt="Windows" className="w-10 h-10" />
+                  <Image src="/windows-icon.svg" alt="Windows" width={40} height={40} />
                 </button>
                 <button className=" p-2 rounded-full">
-                  <Image src="/apple-icon.svg" alt="Apple" className="w-10 h-10" />
+                  <Image src="/apple-icon.svg" alt="Apple" width={40} height={40} />
                 </button>
               </div>
             </div>
