@@ -4,7 +4,7 @@ import {Calendar} from "../ui/calendar";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 
-export function JobListingInterviewAvailability() {
+export function JobListingInterviewAvailability({nextModal}: {nextModal: () => void}) {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   return (
@@ -47,11 +47,11 @@ export function JobListingInterviewAvailability() {
             }}
           />
         </div>
-        <Link href="/" className="mt-4">
-          <Button variant="secondary" className="py-2">
-            Submit Application
-          </Button>
-        </Link>
+        {/* <Link href="/" className="mt-4"> */}
+        <Button onClick={nextModal} variant="secondary" className="py-2">
+          Submit Application
+        </Button>
+        {/* </Link> */}
       </div>
     </div>
   );
