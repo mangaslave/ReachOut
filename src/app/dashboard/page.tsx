@@ -9,8 +9,8 @@ import {NewJobListingsBox} from "@/components/client/NewJobListingsBox";
 
 export default function DashboardPage() {
   const [user] = useState({
-    name: "John Doe",
-    email: "john@example.com",
+    name: "Giselle Andrews",
+    email: "gandrews@email.com",
     image: "/path-to-avatar.jpg",
   });
 

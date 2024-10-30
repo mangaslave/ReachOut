@@ -135,7 +135,7 @@ export default function JobListingPage() {
                   openDetailsModal({
                     companyName: "Atelier Inns",
                     jobTitle: "Hotel Maintenance",
-                    salary: "$20-30/h",
+                    salary: "$20-26/h",
                     location: "Toronto, ON",
                     jobType: "Part-Time",
                     description:
@@ -210,8 +210,8 @@ export default function JobListingPage() {
                 companyName="Halton Region"
                 companyLogo="/static/images/halton-logo.jpeg"
                 location="Halton, ON"
-                hourlyPay="$50/h"
-                jobTitle="Construction Ambassador"
+                hourlyPay="$32/h"
+                jobTitle="Construction Foreman"
                 matchStatus="Okay"
                 jobType="Full-Time"
                 dateOfPosting="4 day ago"
@@ -239,8 +239,8 @@ export default function JobListingPage() {
                 bordercolor="border-white"
                 companyName="Halton Region"
                 companyLogo="/static/images/halton-logo.jpeg"
-                location="Haltom, ON"
-                hourlyPay="$50-60/h"
+                location="Halton, ON"
+                hourlyPay="$26/h"
                 jobTitle="Maintenance Coordinator"
                 matchStatus="Bad"
                 jobType="Part-Time/Full-Time"
@@ -270,8 +270,8 @@ export default function JobListingPage() {
                 companyName="Outlier AI"
                 companyLogo="/static/images/outlier-logo.jpeg"
                 location="Oakville, ON"
-                hourlyPay="$30-50/h"
-                jobTitle="AI Math Educator"
+                hourlyPay="$18/h"
+                jobTitle="Math Tutor"
                 matchStatus="Okay"
                 jobType="Part-Time"
                 dateOfPosting="7 day ago"
