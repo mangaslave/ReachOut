@@ -4,6 +4,8 @@ import { Sidebar } from "@/components/client/SideBar";
 import Header from "@/components/client/Header";
 import { useState } from "react";
 import Reminders from "@/components/client/Reminders";
+import { NewMessagesBox } from "@/components/client/NewMessagesBox";
+import { NewJobListingsBox } from "@/components/client/NewJobListingsBox";
 
 export default function DashboardPage() {
 	const [user] = useState({
@@ -27,16 +29,8 @@ export default function DashboardPage() {
 						<div className="mb-8">
 							<h2 className="text-2xl font-bold mb-4">Today's Overview</h2>
 							<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-								<div className="bg-white p-6 rounded-lg shadow">
-									{/* Content for first section */}
-									<h3 className="text-lg font-semibold">Section 1</h3>
-									{/* Add your content here */}
-								</div>
-								<div className="bg-white p-6 rounded-lg shadow">
-									{/* Content for second section */}
-									<h3 className="text-lg font-semibold">Section 2</h3>
-									{/* Add your content here */}
-								</div>
+								<NewJobListingsBox />
+								<NewMessagesBox />
 							</div>
 						</div>
 
