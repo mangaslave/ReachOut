@@ -166,52 +166,52 @@ export default function Home() {
           */}
           <HomePageCarousel />
         </div>
-        <div className="flex items-center justify-center w-full bg-caribbeanCurrant">
-          <ul className="flex items-center justify-between my-8">
-            <li className="flex flex-col mx-10">
-              <h1 className="text-xl font-bold my-2 text-white">Case Managers</h1>
-              <ul>
-                <li className="text-white text-sm my-2">Find Employment</li>
-                <li className="text-white text-sm my-2">Find Resources</li>
-                <li className="text-white text-sm my-2">View Live Demo</li>
-              </ul>
-            </li>
-            <li className="flex flex-col mx-10">
-              <h1 className="text-xl font-bold my-2 text-white">Job Seekers</h1>
-              <ul>
-                <li className="text-white text-sm my-2">Find Employment</li>
-                <li className="text-white text-sm my-2">Find Resources</li>
-                <li className="text-white text-sm my-2">View Live Demo</li>
-              </ul>
-            </li>
-            <li className="flex flex-col mx-10">
-              <h1 className="text-xl font-bold my-2 text-white">Employers</h1>
-              <ul>
-                <li className="text-white text-sm my-2">Find Employment</li>
-                <li className="text-white text-sm my-2">Find Resources</li>
-                <li className="text-white text-sm my-2">View Live Demo</li>
-              </ul>
-            </li>
-            <li className="flex flex-col mx-10">
-              <h1 className="text-xl font-bold my-2 text-white">About Us</h1>
-              <ul>
-                <li className="text-white text-sm my-2">Find Employment</li>
-                <li className="text-white text-sm my-2">Find Resources</li>
-                <li className="text-white text-sm my-2">View Live Demo</li>
-              </ul>
-            </li>
-            <li className="flex flex-col mx-10">
-              <div className="flex my-5">
-                <Image src={fbIcon} height={25} width={25} alt="facebook icon" className="mx-2"></Image>
-                <Image src={igIcon} height={25} width={25} alt="instagram icon" className="mx-2"></Image>
-              </div>
-              <ul>
-                <li className="text-white text-sm my-2">Privacy Policy</li>
-                <li className="text-white text-sm my-2">Terms of Service</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+       <div className="flex items-center justify-center w-full bg-caribbeanCurrant">
+  <ul className="flex items-center justify-between my-8">
+    <li className="flex flex-col mx-10">
+      <h1 className="text-xl font-bold my-2 text-white">Case Managers</h1>
+      <ul>
+        <li className="text-white text-sm my-2">Manage Clients</li>
+        <li className="text-white text-sm my-2">Resource Directory</li>
+        <li className="text-white text-sm my-2">Training Portal</li>
+      </ul>
+    </li>
+    <li className="flex flex-col mx-10">
+      <h1 className="text-xl font-bold my-2 text-white">Job Seekers</h1>
+      <ul>
+        <li className="text-white text-sm my-2">Search Jobs</li>
+        <li className="text-white text-sm my-2">Career Support</li>
+        <li className="text-white text-sm my-2">Success Stories</li>
+      </ul>
+    </li>
+    <li className="flex flex-col mx-10">
+      <h1 className="text-xl font-bold my-2 text-white">Employers</h1>
+      <ul>
+        <li className="text-white text-sm my-2">Post Positions</li>
+        <li className="text-white text-sm my-2">Partner Programs</li>
+        <li className="text-white text-sm my-2">Hiring Guide</li>
+      </ul>
+    </li>
+    <li className="flex flex-col mx-10">
+      <h1 className="text-xl font-bold my-2 text-white">About Us</h1>
+      <ul>
+        <li className="text-white text-sm my-2">Our Mission</li>
+        <li className="text-white text-sm my-2">Contact Us</li>
+        <li className="text-white text-sm my-2">Impact Report</li>
+      </ul>
+    </li>
+    <li className="flex flex-col mx-10">
+      <div className="flex my-5">
+        <Image src={fbIcon} height={25} width={25} alt="facebook icon" className="mx-2"></Image>
+        <Image src={igIcon} height={25} width={25} alt="instagram icon" className="mx-2"></Image>
+      </div>
+      <ul>
+        <li className="text-white text-sm my-2">Privacy Policy</li>
+        <li className="text-white text-sm my-2">Terms of Service</li>
+      </ul>
+        </li>
+      </ul>
+    </div> 
       </div>
     </>
   );
