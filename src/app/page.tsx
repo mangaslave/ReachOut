@@ -83,8 +83,7 @@ export default function Home() {
               <h1 className="text-spaceCadet text-lg md:text-4xl font-bold">AI-Powered Job Search</h1>
               <ul className="max-w-md px-8 list-disc">
                 <li>
-                  <span className="font-semibold">Over 100,000 Potential Offers:</span> View a list of jobs featuring
-                  more than 1,200 companies open to hiring people with criminal records.
+                  <span className="font-semibold">Real Jobs, Real Chances: </span> Our AI instantly connects you with 1000+ jobs from 1,200+ employers who specifically welcome and hire people returning from incarceration.
                 </li>
                 <li>
                   <span className="font-semibold">Compatibility:</span> View which jobs are most suited for your skill
@@ -107,19 +106,16 @@ export default function Home() {
         <div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
           <div className="flex">
             <div className="flex flex-col justify-evenly items-center mx-10">
-              <h1 className="text-spaceCadet text-lg md:text-4xl font-bold">Progress Tracking</h1>
+              <h1 className="text-spaceCadet text-lg md:text-4xl font-bold p-6">Progress Tracking</h1>
               <ul className="max-w-md px-8 list-disc">
                 <li>
-                  <span className="font-semibold">Over 100,000 Potential Offers:</span> View a list of jobs featuring
-                  more than 1,200 companies open to hiring people with criminal records.
+                  <span className="font-semibold">Track Application Progress: </span> Monitor your job applications across more than 1,200 companies and track your success rates.
                 </li>
                 <li>
-                  <span className="font-semibold">Compatibility:</span> View which jobs are most suited for your skill
-                  set, preferences, and criminal background.
+                  <span className="font-semibold">Progress Analytics: </span> View detailed metrics about your application journey, interview success rates, and career growth over time.
                 </li>
                 <li>
-                  <span className="font-semibold">Skill Development Insights:</span> View and access a list of gaps in
-                  your skills needed for different jobs.
+                  <span className="font-semibold">Milestone Tracking: </span> Set career goals and track your progress towards achieving them with our milestone tracking system.
                 </li>
               </ul>
               <button className="font-bold mr-60 text-white rounded-lg my-6 w-44 h-10 bg-spaceCadet hover:bg-ylnMnBlue">
@@ -166,52 +162,52 @@ export default function Home() {
           */}
           <HomePageCarousel />
         </div>
-        <div className="flex items-center justify-center w-full bg-caribbeanCurrant">
-          <ul className="flex items-center justify-between my-8">
-            <li className="flex flex-col mx-10">
-              <h1 className="text-xl font-bold my-2 text-white">Case Managers</h1>
-              <ul>
-                <li className="text-white text-sm my-2">Find Employment</li>
-                <li className="text-white text-sm my-2">Find Resources</li>
-                <li className="text-white text-sm my-2">View Live Demo</li>
-              </ul>
-            </li>
-            <li className="flex flex-col mx-10">
-              <h1 className="text-xl font-bold my-2 text-white">Job Seekers</h1>
-              <ul>
-                <li className="text-white text-sm my-2">Find Employment</li>
-                <li className="text-white text-sm my-2">Find Resources</li>
-                <li className="text-white text-sm my-2">View Live Demo</li>
-              </ul>
-            </li>
-            <li className="flex flex-col mx-10">
-              <h1 className="text-xl font-bold my-2 text-white">Employers</h1>
-              <ul>
-                <li className="text-white text-sm my-2">Find Employment</li>
-                <li className="text-white text-sm my-2">Find Resources</li>
-                <li className="text-white text-sm my-2">View Live Demo</li>
-              </ul>
-            </li>
-            <li className="flex flex-col mx-10">
-              <h1 className="text-xl font-bold my-2 text-white">About Us</h1>
-              <ul>
-                <li className="text-white text-sm my-2">Find Employment</li>
-                <li className="text-white text-sm my-2">Find Resources</li>
-                <li className="text-white text-sm my-2">View Live Demo</li>
-              </ul>
-            </li>
-            <li className="flex flex-col mx-10">
-              <div className="flex my-5">
-                <Image src={fbIcon} height={25} width={25} alt="facebook icon" className="mx-2"></Image>
-                <Image src={igIcon} height={25} width={25} alt="instagram icon" className="mx-2"></Image>
-              </div>
-              <ul>
-                <li className="text-white text-sm my-2">Privacy Policy</li>
-                <li className="text-white text-sm my-2">Terms of Service</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+       <div className="flex items-center justify-center w-full bg-caribbeanCurrant">
+  <ul className="flex items-center justify-between my-8">
+    <li className="flex flex-col mx-10">
+      <h1 className="text-xl font-bold my-2 text-white">Case Managers</h1>
+      <ul>
+        <li className="text-white text-sm my-2">Manage Clients</li>
+        <li className="text-white text-sm my-2">Resource Directory</li>
+        <li className="text-white text-sm my-2">Training Portal</li>
+      </ul>
+    </li>
+    <li className="flex flex-col mx-10">
+      <h1 className="text-xl font-bold my-2 text-white">Job Seekers</h1>
+      <ul>
+        <li className="text-white text-sm my-2">Search Jobs</li>
+        <li className="text-white text-sm my-2">Career Support</li>
+        <li className="text-white text-sm my-2">Success Stories</li>
+      </ul>
+    </li>
+    <li className="flex flex-col mx-10">
+      <h1 className="text-xl font-bold my-2 text-white">Employers</h1>
+      <ul>
+        <li className="text-white text-sm my-2">Post Positions</li>
+        <li className="text-white text-sm my-2">Partner Programs</li>
+        <li className="text-white text-sm my-2">Hiring Guide</li>
+      </ul>
+    </li>
+    <li className="flex flex-col mx-10">
+      <h1 className="text-xl font-bold my-2 text-white">About Us</h1>
+      <ul>
+        <li className="text-white text-sm my-2">Our Mission</li>
+        <li className="text-white text-sm my-2">Contact Us</li>
+        <li className="text-white text-sm my-2">Impact Report</li>
+      </ul>
+    </li>
+    <li className="flex flex-col mx-10">
+      <div className="flex my-5">
+        <Image src={fbIcon} height={25} width={25} alt="facebook icon" className="mx-2"></Image>
+        <Image src={igIcon} height={25} width={25} alt="instagram icon" className="mx-2"></Image>
+      </div>
+      <ul>
+        <li className="text-white text-sm my-2">Privacy Policy</li>
+        <li className="text-white text-sm my-2">Terms of Service</li>
+      </ul>
+        </li>
+      </ul>
+    </div> 
       </div>
     </>
   );
