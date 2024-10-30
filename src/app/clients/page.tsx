@@ -3,7 +3,7 @@
 import {Sidebar} from "@/components/client/SideBar";
 import {useState} from "react";
 import ClientListing from "@/components/client/ClientListing";
-import ClientFilters from "@/components/client/ClientFilters";
+import ClientsFilters from "@/components/client/ClientFilters";
 
 export default function ClientsPage() {
   const [user] = useState({
@@ -21,32 +21,9 @@ export default function ClientsPage() {
           <div className="max-w-7xl mx-1">
             <div className="flex justify-between items-center mb-4">
               <div className="flex">
-                <div>
-                  <select
-                    id="displayItems"
-                    className="block w-full h-8 border border-gray-300 bg-white text-gray-700 rounded-md shadow-sm"
-                  >
-                    <option value="default">Display 10 items</option>
-                    <option value="5">5 items</option>
-                    <option value="10">10 items</option>
-                    <option value="15">15 items</option>
-                    <option value="20">20 items</option>
-                  </select>
-                </div>
-
-                <div>
-                  <select
-                    id="selectColumn"
-                    className="block w-full h-8 border border-gray-300 bg-white text-gray-700 rounded-md shadow-sm"
-                  >
-                    <option value="default">Select column</option>
-                    <option value="name">Name</option>
-                    <option value="status">Status</option>
-                    <option value="company">Company</option>
-                    <option value="lastOnline">Last Online</option>
-                  </select>
-                </div>
+                <ClientsFilters />
               </div>
+            </div>
 
               <div className="ml-auto">
                 <button className="bg-spaceCadet text-white hover:bg-ylnMnBlue text-xs px-4 py-2 rounded-md h-8">
