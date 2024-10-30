@@ -3,6 +3,7 @@
 import {Sidebar} from "@/components/client/SideBar";
 import {useState} from "react";
 import ClientListing from "@/components/client/ClientListing";
+import ClientFilters from "@/components/client/ClientFilters";
 
 export default function ClientsPage() {
   const [user] = useState({
