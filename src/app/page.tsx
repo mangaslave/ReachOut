@@ -6,8 +6,8 @@ import igIcon from "../../public/static/images/igIcon.svg";
 import peopleIcon from "../../public/static/images/people-1.svg";
 import recruitmentIcon from "../../public/static/images/recruitment-1.svg";
 import interviewIcon from "../../public/static/images/interview-1.svg";
-import aiPoweredResearch from "../../public/static/images/reach-out-app-AI-powered-job-search.jpg";
-import researchProgressTracking from "../../public/static/images/reach-out-app-progress-tracking.jpg";
+import aiPoweredResearch from "../../public/static/images/screenshot_job_listings.png";
+import researchProgressTracking from "../../public/static/images/screenshot_dashboard.png";
 import resourceDatabase from "../../public/static/images/reach-out-app-resource-database.jpg";
 import heroImage from "../../public/static/images/Hero-Image.jpg";
 
@@ -133,7 +133,7 @@ export default function Home() {
         {/*/
         //* RESOURCE DATABASE
         */}
-        <div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
+        {/* <div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
           <div className="flex">
             <Image src={resourceDatabase} height={500} width={500} alt="resource database"></Image>
             <div className="flex flex-col justify-evenly items-center mx-10">
@@ -157,7 +157,7 @@ export default function Home() {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="flex items-center justify-center w-full bg-caribbeanCurrant">
           <h1 className="text-white text-lg md:text-4xl font-bold py-12">Success Stories</h1>
         </div>
