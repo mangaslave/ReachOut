@@ -29,9 +29,9 @@ export default function JobListingPage() {
   const [selectedJobDetails, setSelectedJobDetails] = useState<JobDetails | null>(null);
 
   const [user] = useState({
-    name: "John Doe",
-    email: "john@example.com",
-    image: "/path-to-avatar.jpg",
+    name: "Giselle Andrews",
+    email: "gandrews@email.com ",
+    image: "/static/images/giselleAndrews.jpg",
   });
 
   const openDetailsModal = (jobDetails: JobDetails) => {

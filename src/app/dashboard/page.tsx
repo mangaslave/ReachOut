@@ -11,7 +11,7 @@ export default function DashboardPage() {
   const [user] = useState({
     name: "Giselle Andrews",
     email: "gandrews@email.com",
-    image: "/path-to-avatar.jpg",
+    image: "/static/images/giselleAndrews.jpg",
   });
 
   const [currentDate, setCurrentDate] = useState(new Date());
