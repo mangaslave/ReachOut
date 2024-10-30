@@ -3,7 +3,7 @@
 import { Sidebar } from "@/components/client/SideBar";
 import { useState } from "react";
 import ClientListing from "@/components/client/ClientListing";
-import ClientFilters from "@/components/client/ClientFilters";
+import ClientsFilters from "@/components/client/ClientFilters";
 
 export default function ClientsPage() {
 	const [user] = useState({
@@ -22,7 +22,7 @@ export default function ClientsPage() {
 					<div className="flex justify-between items-center mb-4">
 					<div className="flex justify-between items-center mb-4">
               <div className="flex">
-                <ClientFilters />
+                <ClientsFilters />
               </div>
             </div>
 
