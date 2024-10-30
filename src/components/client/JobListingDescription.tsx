@@ -3,13 +3,26 @@ import Reminders from "./Reminders";
 import {Button, buttonVariants} from "../ui/button";
 import Link from "next/link";
 
-export const JobListing = ({nextModal}: {nextModal: () => void}) => {
-  const companyName = "Company Name";
-  const salary = "$27 - $30 an hour";
-  const type = "Part Time";
-  const location = "Vancouver, BC";
-  const description =
-    "We're looking for a reliable and flexible person to join our team. You should be comfortable working in different environments, sometimes under tough conditions, and be able to work well with a small group. While you don't need a lot of specific technical skills, it's important that you're eager to learn, can adapt quickly, and can handle challenging situations. Having some previous experience is a plus, as it shows you're resilient and capable of taking on the job.";
+interface JobDetails {
+  companyName: string;
+  jobTitle: string;
+  salary: string;
+  location: string;
+  jobType: string;
+  description: string;
+}
+
+interface JobListingProps {
+  jobDetails: JobDetails;  
+  nextModal: () => void;
+}
+
+export const JobListing = ({ jobDetails, nextModal }: JobListingProps) => {
+  const companyName = jobDetails.companyName;
+  const salary = jobDetails.salary;
+  const type = jobDetails.jobType;
+  const location = jobDetails.location;
+  const description =jobDetails.description;
 
   return (
     <div className="max-w-3xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
