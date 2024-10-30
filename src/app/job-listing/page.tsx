@@ -24,6 +24,7 @@ export default function JobListingPage() {
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [availabilityModalOpen, setAvailabilityModalOpen] = useState(false);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
 
   const [selectedJobDetails, setSelectedJobDetails] = useState<JobDetails | null>(null);
 
@@ -40,6 +41,12 @@ export default function JobListingPage() {
 
   const closeAvailabilityModal = () => {
     setAvailabilityModalOpen(false);
+  };
+
+  const handleClickOutside = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (e.target === e.currentTarget) {
+      closeAll();
+    }
   };
 
   const moveToApplication = () => {
@@ -64,6 +71,17 @@ export default function JobListingPage() {
     setResumeModalOpen(false);
   };
 
+  const closeAllShowSuccess = () => {
+    setApplicationModalOpen(false);
+    setDetailsModalOpen(false);
+    setAvailabilityModalOpen(false);
+    setResumeModalOpen(false);
+    setSuccessModalOpen(true);
+    setTimeout(() => {
+      setSuccessModalOpen(false);
+    }, 2500);
+  };
+
   return (
     <div className="flex h-screen bg-gray-100">
       <Sidebar user={user} />
@@ -74,13 +92,12 @@ export default function JobListingPage() {
         <main className="flex-1 overflow-y-auto lg:px-8 mt-4">
           {/* joblistings content here */}
           <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-4">
-						<div className="flex">
-              <JobListingFilters />
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex">
+                <JobListingFilters />
+              </div>
             </div>
-          </div>
 
-            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               <JobCard
                 openModal={() =>
@@ -90,7 +107,8 @@ export default function JobListingPage() {
                     salary: "$20-30/h",
                     location: "Toronto, ON",
                     jobType: "Part-Time",
-                    description: "We're looking for a reliable and flexible person to join our team. You should be comfortable working in different environments, sometimes under tough conditions, and be able to work well with a small group. While you don't need a lot of specific technical skills, it's important that you're eager to learn, can adapt quickly, and can handle challenging situations. Having some previous experience is a plus, as it shows you're resilient and capable of taking on the job.",
+                    description:
+                      "We're looking for a reliable and flexible person to join our team. You should be comfortable working in different environments, sometimes under tough conditions, and be able to work well with a small group. While you don't need a lot of specific technical skills, it's important that you're eager to learn, can adapt quickly, and can handle challenging situations. Having some previous experience is a plus, as it shows you're resilient and capable of taking on the job.",
                   })
                 }
                 baseColor="bg-orchidPink"
@@ -120,7 +138,8 @@ export default function JobListingPage() {
                     salary: "$20-30/h",
                     location: "Toronto, ON",
                     jobType: "Part-Time",
-                    description: "The Guest Service Representative position is generally responsible for representing the hotel to the guest throughout all stages of the guest’s stay, determining the guest’s reservation status and identifying their duration of stay. He or she will also process the guest’s method of payment, be customer-service oriented, and work closely with housekeeping and maintenance to ensure room status reports are current and up to date.",
+                    description:
+                      "The Guest Service Representative position is generally responsible for representing the hotel to the guest throughout all stages of the guest’s stay, determining the guest’s reservation status and identifying their duration of stay. He or she will also process the guest’s method of payment, be customer-service oriented, and work closely with housekeeping and maintenance to ensure room status reports are current and up to date.",
                   })
                 }
                 baseColor="bg-caribbeanCurrant"
@@ -150,7 +169,8 @@ export default function JobListingPage() {
                     salary: "$32-35/h",
                     location: "Markham, ON",
                     jobType: "Part-Time",
-                    description: "Our client, a global provider of engineering and geoscience software solutions, is looking for a Part Time Office Manager in their busy Vancouver office for a 3 month contract with the possibility to go permanent after 3 months. The Office Manager is essential to team cohesion, serving as the go-to person for daily operations. You’ll proactively handle office administration, travel arrangements, and facility management, ensuring staff feel supported and the office runs smoothly. We are looking for an energetic professional who thrives in a dynamic environment and is capable of managing various administrative tasks independently. With strong organizational skills and a customer-focused attitude, you’ll excel in supporting a busy and diverse office..",
+                    description:
+                      "Our client, a global provider of engineering and geoscience software solutions, is looking for a Part Time Office Manager in their busy Vancouver office for a 3 month contract with the possibility to go permanent after 3 months. The Office Manager is essential to team cohesion, serving as the go-to person for daily operations. You’ll proactively handle office administration, travel arrangements, and facility management, ensuring staff feel supported and the office runs smoothly. We are looking for an energetic professional who thrives in a dynamic environment and is capable of managing various administrative tasks independently. With strong organizational skills and a customer-focused attitude, you’ll excel in supporting a busy and diverse office..",
                   })
                 }
                 baseColor="bg-ylnMnBlue"
@@ -180,7 +200,8 @@ export default function JobListingPage() {
                     salary: "$20-30/h",
                     location: "Toronto, ON",
                     jobType: "Part-Time",
-                    description: "The Guest Service Representative position is generally responsible for representing the hotel to the guest throughout all stages of the guest’s stay, determining the guest’s reservation status and identifying their duration of stay. He or she will also process the guest’s method of payment, be customer-service oriented, and work closely with housekeeping and maintenance to ensure room status reports are current and up to date.",
+                    description:
+                      "The Guest Service Representative position is generally responsible for representing the hotel to the guest throughout all stages of the guest’s stay, determining the guest’s reservation status and identifying their duration of stay. He or she will also process the guest’s method of payment, be customer-service oriented, and work closely with housekeeping and maintenance to ensure room status reports are current and up to date.",
                   })
                 }
                 baseColor="bg-caribbeanCurrant"
@@ -209,7 +230,8 @@ export default function JobListingPage() {
                     salary: "$20-30/h",
                     location: "Toronto, ON",
                     jobType: "Part-Time",
-                    description: "The Guest Service Representative position is generally responsible for representing the hotel to the guest throughout all stages of the guest’s stay, determining the guest’s reservation status and identifying their duration of stay. He or she will also process the guest’s method of payment, be customer-service oriented, and work closely with housekeeping and maintenance to ensure room status reports are current and up to date.",
+                    description:
+                      "The Guest Service Representative position is generally responsible for representing the hotel to the guest throughout all stages of the guest’s stay, determining the guest’s reservation status and identifying their duration of stay. He or she will also process the guest’s method of payment, be customer-service oriented, and work closely with housekeeping and maintenance to ensure room status reports are current and up to date.",
                   })
                 }
                 baseColor="bg-ylnMnBlue"
@@ -238,7 +260,8 @@ export default function JobListingPage() {
                     salary: "$20-30/h",
                     location: "Toronto, ON",
                     jobType: "Part-Time",
-                    description: "The Guest Service Representative position is generally responsible for representing the hotel to the guest throughout all stages of the guest’s stay, determining the guest’s reservation status and identifying their duration of stay. He or she will also process the guest’s method of payment, be customer-service oriented, and work closely with housekeeping and maintenance to ensure room status reports are current and up to date.",
+                    description:
+                      "The Guest Service Representative position is generally responsible for representing the hotel to the guest throughout all stages of the guest’s stay, determining the guest’s reservation status and identifying their duration of stay. He or she will also process the guest’s method of payment, be customer-service oriented, and work closely with housekeeping and maintenance to ensure room status reports are current and up to date.",
                   })
                 }
                 baseColor="bg-orchidPink"
@@ -265,25 +288,29 @@ export default function JobListingPage() {
       </div>
       {applicationModalOpen && (
         <div className="fixed z-50 py-4 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListingContactInfo nextModal={moveToResume} />
+          <JobListingContactInfo closeModal={handleClickOutside} nextModal={moveToResume} />
         </div>
       )}
       {detailsModalOpen && selectedJobDetails && (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListing
-            jobDetails={selectedJobDetails}
-            nextModal={moveToApplication}
-          />
+          <JobListing jobDetails={selectedJobDetails} closeModal={handleClickOutside} nextModal={moveToApplication} />
         </div>
       )}
       {resumeModalOpen && (
         <div className="fixed z-50 py-4 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListingUploadResume nextModal={moveToAvailability} />
+          <JobListingUploadResume closeModal={handleClickOutside} nextModal={moveToAvailability} />
         </div>
       )}
       {availabilityModalOpen && (
         <div className="fixed z-50 py-4  inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListingInterviewAvailability nextModal={closeAll} />
+          <JobListingInterviewAvailability closeModal={handleClickOutside} nextModal={closeAllShowSuccess} />
+        </div>
+      )}
+      {successModalOpen && (
+        <div className="fixed z-50 py-4 inset-0 flex pt-56 items-start justify-center bg-black bg-opacity-50">
+          <div className="bg-white shadow-md shadow-black rounded-lg text-spaceCadet w-96 flex items-center justify-center h-24">
+            <h3 className="py-8 text-lg">Application submitted successfully! ✅</h3>
+          </div>
         </div>
       )}
     </div>

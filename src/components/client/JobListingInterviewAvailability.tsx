@@ -4,11 +4,20 @@ import {Calendar} from "../ui/calendar";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 
-export function JobListingInterviewAvailability({nextModal}: {nextModal: () => void}) {
+export function JobListingInterviewAvailability({
+  nextModal,
+  closeModal,
+}: {
+  nextModal: () => void;
+  closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}) {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   return (
-    <div className="max-w-3xl min-h-fit flex flex-col mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+    <div
+      onClick={closeModal}
+      className="max-w-3xl min-h-fit flex flex-col mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white"
+    >
       <div>
         <h1 className="font-bold text-2xl mb-1">Job Listing</h1>
         <span className="text-gray-600">Company Name</span>
