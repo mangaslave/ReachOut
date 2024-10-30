@@ -96,6 +96,12 @@ export default function JobListingPage() {
               <div className="flex">
                 <JobListingFilters />
               </div>
+
+              <div className="ml-auto">
+                <button className="bg-spaceCadet text-white hover:bg-ylnMnBlue text-xs px-4 rounded-md h-8">
+                  + Add New
+                </button>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
