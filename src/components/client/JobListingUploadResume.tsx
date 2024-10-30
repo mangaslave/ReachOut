@@ -45,7 +45,7 @@ export function JobListingUploadResume({
           <TabsContent value="new" className="mt-4">
             <div className="border-2 border-dashed border-gray-200 rounded-lg">
               <div className="flex flex-col items-center justify-center h-[160px]">
-                <FileUploader className="w-96" minSize={0.1} maxSize={10} types={[".pdf"]} />
+                <FileUploader className="w-96" minSize={0.1} maxSize={10} types={["PDF"]} />
                 <p className="text-sm text-gray-500">Drag and drop your files</p>
               </div>
             </div>
