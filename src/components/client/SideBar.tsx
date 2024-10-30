@@ -48,12 +48,12 @@ const sidebarItems: SidebarItem[] = [
 	{
 		title: "Inbox",
 		iconSrc: "/static/images/Inbox_icon.svg",
-		href: "/dashboard",
+		href: "/inbox",
 	},
 	{
 		title: "Resume Builder",
 		iconSrc: "/static/images/Resume_icon.svg",
-		href: "/dashboard",
+		href: "/resume",
 	},
 ];
 
