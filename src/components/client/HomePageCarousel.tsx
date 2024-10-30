@@ -8,12 +8,14 @@ interface CarouselImage {
   src: string | StaticImageData;
   alt: string;
   id: number;
+  story: string
 }
 
 const carouselImages: CarouselImage[] = [
-  {src: personOne, alt: "Success story image 1", id: 1},
-  {src: personTwo, alt: "Success story image 2", id: 2},
-  {src: personThree, alt: "Success story image 3", id: 3},
+  {src: personOne, alt: "Success story image 1", id: 1, story: "After serving 12 years, Robert found his calling in the prison's culinary program. Upon release, a local restaurant gave him a chance as a line cook. Today, he owns two successful food trucks and actively hires others recently released, believing everyone deserves a fresh start..."},
+  {src: personTwo, alt: "Success story image 2", id: 2, story: "Starting with a job at a local moving company after release, James worked hard to learn the business from the ground up. His reliability and work ethic earned him a promotion to team lead within a year. Now he owns his own moving company, specializing in residential moves, and takes pride in offering opportunities to others seeking a fresh start..." },
+  {src: personThree, alt: "Success story image 3", id: 3, story: "Michael discovered his talent for business planning while taking classes during his sentence. After release, he started small with a pressure washing service. Five years later, his maintenance company employs 15 people and provides job training for those recently released, proving change is possible..."
+},
 ];
 
 export default function HomePageCarousel() {
@@ -25,8 +27,7 @@ export default function HomePageCarousel() {
             <Image src={image.src} alt={image.alt} style={{objectFit: "cover"}} />
           </div>
           <p className="mx-10 my-6 max-w-sm">
-            John was having a difficult time adjusting to life after being released from prison, he struggled to find a
-            job and did not have many friends or family that were able to assist him in his journey...
+            {image.story}
           </p>
         </div>
       ))}
