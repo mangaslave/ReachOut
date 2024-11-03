@@ -3,21 +3,21 @@ import ReminderItem from "./ReminderItem";
 
 const Reminders = () => {
 	return (
-		<div className="p-5 w-full max-w-md">
+		<div className="p-5 w-full max-w-md bg-white shadow-md rounded-xl">
 			<div className="mb-4">
-				<h3 className="text-lg font-semibold text-black">Reminders</h3>
+				<h3 className="text-lg font-semibold  text-black">Reminders</h3>
 			</div>
 
 			<ReminderItem
 				title="Meeting w/ Andrew Norman"
-				date="Oct 12"
+				date="Nov 12"
 				time="10:30am"
 				statusColor="bg-red-500"
 			/>
 			<ReminderItem
-				title="Meeting w/ Andrew Norman"
-				date="Oct 12"
-				time="10:30am"
+				title="Meeting w/ Jack Brown"
+				date="Nov 14"
+				time="12:30pm"
 				statusColor="bg-red-500"
 			/>
 

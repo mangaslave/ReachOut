@@ -1,11 +1,23 @@
 "use client";
 import {Tabs, TabsList, TabsTrigger, TabsContent} from "../ui/tabs";
 import {Button} from "@/components/ui/button";
+import {FileUploader} from "react-drag-drop-files";
 import Link from "next/link";
 
-export function JobListingUploadResume({nextModal}: {nextModal: () => void}) {
+const fileTypes = ["PDF", "DOCX"];
+
+export function JobListingUploadResume({
+  nextModal,
+  closeModal,
+}: {
+  nextModal: () => void;
+  closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}) {
   return (
-    <div className="max-w-3xl w-full h-full mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+    <div
+      onClick={closeModal}
+      className="max-w-3xl w-full h-full mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white"
+    >
       <div>
         <h1 className="font-bold text-2xl mb-1">Job Listing</h1>
         <span className="text-gray-600">Company name</span>
@@ -35,8 +47,8 @@ export function JobListingUploadResume({nextModal}: {nextModal: () => void}) {
           <TabsContent value="new" className="mt-4">
             <div className="border-2 border-dashed border-gray-200 rounded-lg">
               <div className="flex flex-col items-center justify-center h-[160px]">
-                <p className="text-sm text-gray-500">Click to browse or</p>
-                <p className="text-sm text-gray-500">drag and drop your files</p>
+                <FileUploader className="w-96" maxSize={10} types={fileTypes} />
+                <p className="text-sm text-gray-500">Drag and drop your files</p>
               </div>
             </div>
           </TabsContent>

@@ -4,9 +4,18 @@ import {Label} from "../ui/label";
 import {Button} from "../ui/button";
 import Link from "next/link";
 
-export function JobListingContactInfo({nextModal}: {nextModal: () => void}) {
+export function JobListingContactInfo({
+  nextModal,
+  closeModal,
+}: {
+  nextModal: () => void;
+  closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}) {
   return (
-    <div className="max-w-3xl w-full h-full mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+    <div
+      onClick={closeModal}
+      className="max-w-3xl w-full h-full mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white"
+    >
       <div className="flex justify-between items-start mb-4">
         <div>
           <h1 className="font-bold text-2xl text-gray-900 mb-2">Job Listing</h1>
