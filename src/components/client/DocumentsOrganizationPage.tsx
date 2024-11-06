@@ -231,17 +231,17 @@ export function DocumentOrganizationComponent() {
         <table className="min-w-full">
           <thead className="bg-caribbeanCurrant text-white">
             <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium tracking-wide">Name</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium tracking-wide">File Type</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium tracking-wide">Status</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium tracking-wide">Last Edited</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium tracking-wide"></th>
+              <th scope="col" className="px-6 py-3 text-left text-xs text-white font-large tracking-wide">Name</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs  text-white font-large tracking-wide">File Type</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs  text-white font-large tracking-wide">Status</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs  text-white font-large tracking-wide">Last Edited</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs text-white font-large tracking-wide"></th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {data.map((item, index) => (
               <tr key={index}>
-                <td className="px-6 py-4 text-sm font-medium">{item.name}</td>
+                <td className="px-6 py-4 text-sm text-black font-large">{item.name}</td>
                 <td className="px-6 py-4 text-sm">{item.fileType}</td>
                 <td className="px-6 py-4">
                   <div className="relative inline-block">
