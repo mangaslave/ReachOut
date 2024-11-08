@@ -3,6 +3,7 @@ import {Tabs, TabsList, TabsTrigger, TabsContent} from "../ui/tabs";
 import {Button} from "@/components/ui/button";
 import {FileUploader} from "react-drag-drop-files";
 import Link from "next/link";
+import Dropzone from "./DropZone";
 
 const fileTypes = ["PDF", "DOCX"];
 
@@ -45,10 +46,9 @@ export function JobListingUploadResume({
           </TabsList>
 
           <TabsContent value="new" className="mt-4">
-            <div className="border-2 border-dashed border-gray-200 rounded-lg">
+            <div className="">
               <div className="flex flex-col items-center justify-center h-[160px]">
-                <FileUploader className="w-96" maxSize={10} types={fileTypes} />
-                <p className="text-sm text-gray-500">Drag and drop your files</p>
+                <Dropzone />
               </div>
             </div>
           </TabsContent>
