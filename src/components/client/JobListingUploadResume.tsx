@@ -1,7 +1,6 @@
 "use client";
 import {Tabs, TabsList, TabsTrigger, TabsContent} from "../ui/tabs";
 import {Button} from "@/components/ui/button";
-import {FileUploader} from "react-drag-drop-files";
 import Link from "next/link";
 import Dropzone from "./DropZone";
 
