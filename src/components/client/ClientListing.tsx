@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import {useState} from "react";
 import ClientProfile from "./ClientProfile";
 
 const data = [
@@ -95,4 +95,3 @@ export default function ClientListing() {
     </div>
   );
 }
-
