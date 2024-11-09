@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <HomePageNavBar />
       <div className="flex w-full h-max bg-caribbeanCurrant">
-        <div className="flex flex-col ml-20 xl:ml-52 justify-evenly w-1/2 max-w-lg z-20 relative">
+        <div className="flex flex-col ml-2 md:ml-20 xl:ml-52 justify-evenly w-1/2 max-w-lg z-20 relative">
           <h1 className="text-white text-lg md:text-3xl font-bold py-4">
             Connecting You to Jobs and the Support You Deserve.
           </h1>
@@ -44,9 +44,9 @@ export default function Home() {
       {/*/
         //* OUR IMPACT
         */}
-      <div className="flex items-center justify-evenly py-6 flex-col w-full h-96 bg-caribbeanCurrant bg-opacity-10">
+      <div className="flex items-center justify-evenly py-6 flex-col w-full h-fit bg-caribbeanCurrant bg-opacity-10">
         <h1 className="text-spaceCadet text-lg md:text-4xl font-bold">Our Impact</h1>
-        <ul className="flex justify-evenly items-center">
+        <ul className="flex md:flex-row flex-col justify-evenly items-center">
           <li className="h-full w-auto flex flex-col items-center justify-center mx-24 my-6">
             <Image src={peopleIcon} height={141} width={141} alt="people icon"></Image>
             <p className="text-sm md:text-lg my-6 text-spaceCadet">
@@ -77,8 +77,16 @@ export default function Home() {
         //* AI POWERED JOB SEARCH
         */}
         <div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
-          <div className="flex">
-            <Image src={aiPoweredResearch} height={500} width={500} alt="ai powered research"></Image>
+          <div className="flex md:flex-row flex-col">
+            <div className="flex">
+              <Image
+                src={aiPoweredResearch}
+                height={500}
+                width={500}
+                alt="ai powered research"
+                className="scale-75 md:scale-90 lg:scale-100"
+              />
+            </div>
             <div className="flex flex-col justify-evenly items-center mx-10">
               <h1 className="text-spaceCadet text-lg md:text-4xl font-bold">AI-Powered Job Search</h1>
               <ul className="max-w-md px-8 list-disc">
@@ -106,7 +114,7 @@ export default function Home() {
         //* PROGRESS TRACKING
         */}
         <div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
-          <div className="flex">
+          <div className="flex md:flex-row flex-col-reverse">
             <div className="flex flex-col justify-evenly items-center mx-10">
               <h1 className="text-spaceCadet text-lg md:text-4xl font-bold p-6">Progress Tracking</h1>
               <ul className="max-w-md px-8 list-disc">
@@ -127,7 +135,13 @@ export default function Home() {
                 View Jobs
               </button>
             </div>
-            <Image src={researchProgressTracking} height={500} width={500} alt="research progress tracking"></Image>
+            <Image
+              src={researchProgressTracking}
+              height={500}
+              width={500}
+              alt="research progress tracking"
+              className="scale-75 md:scale-90 lg:scale-100"
+            />
           </div>
         </div>
         {/*/
@@ -168,7 +182,7 @@ export default function Home() {
           <HomePageCarousel />
         </div>
         <div className="flex items-center justify-center w-full bg-caribbeanCurrant">
-          <ul className="flex items-center justify-between my-8">
+          <ul className="flex flex-wrap items-center justify-between my-8">
             <li className="flex flex-col mx-10">
               <h1 className="text-xl font-bold my-2 text-white">Case Managers</h1>
               <ul>
