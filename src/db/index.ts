@@ -3,7 +3,7 @@ import { drizzle } from 'drizzle-orm/libsql';
 import { config } from 'dotenv';
 
 
-config({ path: '.env.local' });
+config({ path: '.env.example' });
 
 if (!process.env.DATABASE_URL || !process.env.DATABASE_AUTH_TOKEN) {
   throw new Error('Database configuration missing');
