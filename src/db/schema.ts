@@ -66,8 +66,8 @@ export const skillClient = sqliteTable("skill_client", {
   clientProfileId: integer("client_profile_id").references(() => clientProfiles.clientProfileId),
 });
 
-export const applicationHistory = sqliteTable("application_history", {
-  applicationHistoryId: integer("application_history_id").primaryKey(),
+export const clientApplications = sqliteTable("client_applications", {
+  clientApplicationId: integer("client_application_id").primaryKey(),
   applicationStatusId: integer("application_status_id").references(() => applicationStatus.applicationStatusId),
   date: text("date").default(sql`CURRENT_TIMESTAMP`),
   jobPostingId: integer("job_posting_id").references(() => jobPostings.jobPostingId),
