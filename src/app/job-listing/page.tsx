@@ -9,6 +9,7 @@ import {JobListing} from "@/components/client/JobListingDescription";
 import {JobListingInterviewAvailability} from "@/components/client/JobListingInterviewAvailability";
 import {JobListingUploadResume} from "@/components/client/JobListingUploadResume";
 import JobListingFilters from "@/components/client/JobListingFilters";
+import {JobListingApplicationSummary} from "@/components/client/JobListingSummary";
 
 interface JobDetails {
   companyName: string;
@@ -19,20 +20,53 @@ interface JobDetails {
   description: string;
 }
 
+export interface JobApplication {
+  companyId: number;
+  clientId: number;
+  contactFirstName: string;
+  contactLastName: string;
+  contactCity: string;
+  contactEmail: string;
+  contactPhone: string;
+  resumeLink: string;
+  availability: Date;
+}
+
 export default function JobListingPage() {
   const [applicationModalOpen, setApplicationModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [availabilityModalOpen, setAvailabilityModalOpen] = useState(false);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [successModalOpen, setSuccessModalOpen] = useState(false);
-
   const [selectedJobDetails, setSelectedJobDetails] = useState<JobDetails | null>(null);
+  const [contactFirstName, setContactFirstName] = useState("");
+  const [contactLastName, setContactLastName] = useState("");
+  const [contactCity, setContactCity] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
+  const [resumeLink, setResumeLink] = useState("");
+  const [availability, setAvailability] = useState(new Date(Date.now()));
 
   const [user] = useState({
     name: "Giselle Andrews",
     email: "gandrews@email.com ",
     image: "/static/images/giselleAndrews.jpg",
   });
+
+  const applicationInfo = (): JobApplication => {
+    return {
+      companyId: 1,
+      clientId: 1,
+      contactFirstName,
+      contactLastName,
+      contactCity,
+      contactEmail,
+      contactPhone,
+      resumeLink,
+      availability,
+    };
+  };
 
   const openDetailsModal = (jobDetails: JobDetails) => {
     setSelectedJobDetails(jobDetails);
@@ -59,6 +93,11 @@ export default function JobListingPage() {
     setAvailabilityModalOpen(true);
   };
 
+  const moveToConfirm = () => {
+    closeAll();
+    setConfirmModalOpen(true);
+  };
+
   const moveToResume = () => {
     closeAll();
     setResumeModalOpen(true);
@@ -76,6 +115,19 @@ export default function JobListingPage() {
     setDetailsModalOpen(false);
     setAvailabilityModalOpen(false);
     setResumeModalOpen(false);
+    setConfirmModalOpen(false);
+    // TODO: Server action here
+    // SubmitApplicationAction({
+    //   companyId: 1,
+    //   clientId: 1,
+    //   contactFirstName,
+    //   contactLastName,
+    //   contactCity,
+    //   contactEmail,
+    //   contactPhone,
+    //   resumeLink,
+    //   availability
+    // });
     setSuccessModalOpen(true);
     setTimeout(() => {
       setSuccessModalOpen(false);
@@ -294,7 +346,15 @@ export default function JobListingPage() {
       </div>
       {applicationModalOpen && (
         <div className="fixed z-50 py-4 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListingContactInfo closeModal={handleClickOutside} nextModal={moveToResume} />
+          <JobListingContactInfo
+            closeModal={handleClickOutside}
+            nextModal={moveToResume}
+            setContactFirstName={setContactFirstName}
+            setContactLastName={setContactLastName}
+            setContactCity={setContactCity}
+            setContactEmail={setContactEmail}
+            setContactPhone={setContactPhone}
+          />
         </div>
       )}
       {detailsModalOpen && selectedJobDetails && (
@@ -304,12 +364,29 @@ export default function JobListingPage() {
       )}
       {resumeModalOpen && (
         <div className="fixed z-50 py-4 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListingUploadResume closeModal={handleClickOutside} nextModal={moveToAvailability} />
+          <JobListingUploadResume
+            closeModal={handleClickOutside}
+            nextModal={moveToAvailability}
+            setResumeLink={setResumeLink}
+          />
         </div>
       )}
       {availabilityModalOpen && (
         <div className="fixed z-50 py-4  inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListingInterviewAvailability closeModal={handleClickOutside} nextModal={closeAllShowSuccess} />
+          <JobListingInterviewAvailability
+            closeModal={handleClickOutside}
+            nextModal={moveToConfirm}
+            setAvailability={setAvailability}
+          />
+        </div>
+      )}
+      {confirmModalOpen && (
+        <div className="fixed z-50 py-4  inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <JobListingApplicationSummary
+            closeModal={handleClickOutside}
+            nextModal={closeAllShowSuccess}
+            applicationInfo={applicationInfo}
+          />
         </div>
       )}
       {successModalOpen && (

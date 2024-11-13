@@ -3,16 +3,37 @@ import {Tabs, TabsList, TabsTrigger, TabsContent} from "../ui/tabs";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Dropzone from "./DropZone";
+import {JobApplication} from "@/app/job-listing/page";
+import UploadResumeAction from "@/actions/UploadResumeAction";
+import {Dispatch, SetStateAction, useState} from "react";
 
 const fileTypes = ["PDF", "DOCX"];
 
 export function JobListingUploadResume({
   nextModal,
   closeModal,
+  setResumeLink,
 }: {
   nextModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  setResumeLink: Dispatch<SetStateAction<string>>;
 }) {
+  const [fileData, setFileData] = useState<File>();
+
+  const moveToNext = async () => {
+    if (fileData) {
+      const resumeUrl = await UploadResumeAction({name: "", file: fileData, clientId: 1});
+      if (resumeUrl.url) {
+        setResumeLink(resumeUrl.url);
+      } else {
+        setResumeLink("no-url-yet");
+      }
+      nextModal();
+    } else {
+      alert("Please add a pdf resume.");
+    }
+  };
+
   return (
     <div
       onClick={closeModal}
@@ -47,7 +68,7 @@ export function JobListingUploadResume({
           <TabsContent value="new" className="mt-4">
             <div className="">
               <div className="flex flex-col items-center justify-center h-[160px]">
-                <Dropzone />
+                <Dropzone setFileData={setFileData} />
               </div>
             </div>
           </TabsContent>
@@ -61,11 +82,9 @@ export function JobListingUploadResume({
           </TabsContent>
         </Tabs>
 
-        {/* <Link href="/job-listing/interview-availability"> */}
-        <Button onClick={nextModal} variant="secondary" className="mt-6">
+        <Button onClick={moveToNext} variant="secondary" className="mt-6">
           Next
         </Button>
-        {/* </Link> */}
       </div>
     </div>
   );

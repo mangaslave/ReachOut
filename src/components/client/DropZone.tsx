@@ -1,8 +1,8 @@
-import React, {useCallback, useState} from "react";
+import React, {Dispatch, SetStateAction, useCallback, useState} from "react";
 import {useDropzone} from "react-dropzone";
 import {twMerge} from "tailwind-merge";
 
-export default function Dropzone() {
+export default function Dropzone({setFileData}: {setFileData: Dispatch<SetStateAction<File | undefined>>}) {
   const [dragOver, setDragOver] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,14 +15,7 @@ export default function Dropzone() {
         setIsLoading(false);
         return;
       }
-      const reader = new FileReader();
-      reader.onabort = () => console.log("file reading was aborted");
-      reader.onerror = () => console.log("file reading has failed");
-      reader.onload = () => {
-        // TODO: Do we want to store this as binary string or just the whole pdf?
-        const binaryStr = reader.result;
-      };
-      reader.readAsArrayBuffer(file);
+      setFileData(file);
     });
     setIsLoading(false);
   }, []);

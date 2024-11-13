@@ -1,17 +1,29 @@
 "use client";
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import {Calendar} from "../ui/calendar";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import {JobApplication} from "@/app/job-listing/page";
 
 export function JobListingInterviewAvailability({
   nextModal,
   closeModal,
+  setAvailability,
 }: {
   nextModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  setAvailability: Dispatch<SetStateAction<Date>>;
 }) {
   const [date, setDate] = useState<Date | undefined>(new Date());
+
+  const moveToNext = () => {
+    if (date) {
+      setAvailability(date);
+      nextModal();
+    } else {
+      alert("Please select a date on the calendar");
+    }
+  };
 
   return (
     <div
