@@ -81,8 +81,12 @@ export const clients = sqliteTable("clients", {
     .notNull()
     .default(sql`(current_timestamp)`),
   phoneNumber: text("phone_number"),
-  address: text("address"),
+  email: text("email"),
+  city: text("city"),
+  postal_code: text("postal_code"),
   resumeUrl: text("resume_url"),
+  first_name: text("first_name"),
+  last_name: text("last_name"),
   userId: integer("user_id").references(() => users.userId),
   clientProfileId: integer("client_profile_id").references(() => clientProfiles.clientProfileId),
 });

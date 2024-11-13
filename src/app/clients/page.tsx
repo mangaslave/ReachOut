@@ -4,6 +4,7 @@ import {Sidebar} from "@/components/client/SideBar";
 import {useState} from "react";
 import ClientListing from "@/components/client/ClientListing";
 import ClientsFilters from "@/components/client/ClientFilters";
+import Link from "next/link";
 
 export default function ClientsPage() {
   const [user] = useState({
@@ -11,6 +12,7 @@ export default function ClientsPage() {
     email: "gandrews@email.com ",
     image: "/static/images/giselleAndrews.jpg",
   });
+
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -23,6 +25,14 @@ export default function ClientsPage() {
             <div className="flex justify-between items-center mb-4">
               <div className="flex">
                 <ClientsFilters />
+              </div>
+
+              <div className="ml-auto">
+                <Link href="/clients/newclient" passHref>
+                  <button className="bg-spaceCadet text-white hover:bg-ylnMnBlue text-xs px-4 rounded-md h-8">
+                    + Add New
+                  </button>
+                </Link>
               </div>
             </div>
 
