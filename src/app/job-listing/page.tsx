@@ -70,6 +70,7 @@ export default function JobListingPage() {
   };
 
   const openDetailsModal = (jobDetails: JobDetails) => {
+    closeAll();
     setSelectedJobDetails(jobDetails);
     setDetailsModalOpen(true);
   };
@@ -354,6 +355,7 @@ export default function JobListingPage() {
           <JobListingContactInfo
             closeModal={handleClickOutside}
             nextModal={moveToResume}
+            previousModal={closeAll}
             setContactFirstName={setContactFirstName}
             setContactLastName={setContactLastName}
             setContactCity={setContactCity}

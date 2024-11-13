@@ -8,6 +8,7 @@ import {Dispatch, SetStateAction, useState} from "react";
 
 export function JobListingContactInfo({
   nextModal,
+  previousModal,
   closeModal,
   setContactFirstName,
   setContactLastName,
@@ -17,6 +18,7 @@ export function JobListingContactInfo({
   contactInfo,
 }: {
   nextModal: () => void;
+  previousModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   setContactFirstName: Dispatch<SetStateAction<string>>;
   setContactLastName: Dispatch<SetStateAction<string>>;
@@ -109,6 +111,9 @@ export function JobListingContactInfo({
         />
       </div>
 
+      <Button onClick={previousModal} variant="outline" className="py-2 mx-1">
+        Go Back
+      </Button>
       <Button variant="secondary" className="bg-spaceCadet text-white mt-4" onClick={moveToNext}>
         Next
       </Button>
