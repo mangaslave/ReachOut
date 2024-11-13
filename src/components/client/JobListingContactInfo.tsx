@@ -14,6 +14,7 @@ export function JobListingContactInfo({
   setContactCity,
   setContactEmail,
   setContactPhone,
+  contactInfo,
 }: {
   nextModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
@@ -22,11 +23,12 @@ export function JobListingContactInfo({
   setContactCity: Dispatch<SetStateAction<string>>;
   setContactEmail: Dispatch<SetStateAction<string>>;
   setContactPhone: Dispatch<SetStateAction<string>>;
+  contactInfo: {contactFirstName: string; contactLastName: string; contactCity: string; contactPhone: string};
 }) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [cityName, setCityName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstName, setFirstName] = useState(contactInfo.contactFirstName);
+  const [lastName, setLastName] = useState(contactInfo.contactLastName);
+  const [cityName, setCityName] = useState(contactInfo.contactCity);
+  const [phoneNumber, setPhoneNumber] = useState(contactInfo.contactPhone);
 
   const moveToNext = () => {
     setContactFirstName(firstName);
@@ -34,8 +36,19 @@ export function JobListingContactInfo({
     setContactCity(cityName);
     setContactPhone(phoneNumber);
     // TODO: setContactEmail
-    nextModal();
+    const validData = validateForm();
+    if (validData) {
+      nextModal();
+    } else {
+      // TODO: Actually validate this data, notifiy nicely
+      alert("Missing information in form");
+    }
   };
+
+  function validateForm() {
+    if (firstName === "" || lastName === "" || cityName === "" || phoneNumber === "") return false;
+    return true;
+  }
 
   return (
     <div
@@ -57,6 +70,7 @@ export function JobListingContactInfo({
         <Textarea
           className="resize-none"
           placeholder="First Name"
+          defaultValue={contactInfo.contactFirstName.length > 0 ? contactInfo.contactFirstName : ""}
           id="firstName"
           onChange={(e) => setFirstName(e.target.value)}
         />
@@ -67,6 +81,7 @@ export function JobListingContactInfo({
         <Textarea
           className="resize-none"
           placeholder="Last Name"
+          defaultValue={contactInfo.contactLastName.length > 0 ? contactInfo.contactLastName : ""}
           id="lastName"
           onChange={(e) => setLastName(e.target.value)}
         />
@@ -77,6 +92,7 @@ export function JobListingContactInfo({
         <Textarea
           className="resize-none"
           placeholder="City"
+          defaultValue={contactInfo.contactCity.length > 0 ? contactInfo.contactCity : ""}
           id="cityName"
           onChange={(e) => setCityName(e.target.value)}
         />
@@ -87,6 +103,7 @@ export function JobListingContactInfo({
         <Textarea
           className="resize-none"
           placeholder="Phone"
+          defaultValue={contactInfo.contactPhone.length > 0 ? contactInfo.contactPhone : ""}
           id="phoneNumber"
           onChange={(e) => setPhoneNumber(e.target.value)}
         />

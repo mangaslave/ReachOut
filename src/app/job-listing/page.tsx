@@ -46,6 +46,7 @@ export default function JobListingPage() {
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [resumeLink, setResumeLink] = useState("");
+  const [resumeName, setResumeName] = useState("");
   const [availability, setAvailability] = useState(new Date(Date.now()));
 
   const [user] = useState({
@@ -71,10 +72,6 @@ export default function JobListingPage() {
   const openDetailsModal = (jobDetails: JobDetails) => {
     setSelectedJobDetails(jobDetails);
     setDetailsModalOpen(true);
-  };
-
-  const closeAvailabilityModal = () => {
-    setAvailabilityModalOpen(false);
   };
 
   const handleClickOutside = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -108,6 +105,7 @@ export default function JobListingPage() {
     setDetailsModalOpen(false);
     setAvailabilityModalOpen(false);
     setResumeModalOpen(false);
+    setConfirmModalOpen(false);
   };
 
   const closeAllShowSuccess = () => {
@@ -129,6 +127,8 @@ export default function JobListingPage() {
     //   availability
     // });
     setSuccessModalOpen(true);
+    //TODO: Reset state upon successful submit
+    //resetState();
     setTimeout(() => {
       setSuccessModalOpen(false);
     }, 2500);
@@ -344,6 +344,11 @@ export default function JobListingPage() {
           </div>
         </main>
       </div>
+      {detailsModalOpen && selectedJobDetails && (
+        <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <JobListing jobDetails={selectedJobDetails} closeModal={handleClickOutside} nextModal={moveToApplication} />
+        </div>
+      )}
       {applicationModalOpen && (
         <div className="fixed z-50 py-4 inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <JobListingContactInfo
@@ -354,12 +359,8 @@ export default function JobListingPage() {
             setContactCity={setContactCity}
             setContactEmail={setContactEmail}
             setContactPhone={setContactPhone}
+            contactInfo={{contactFirstName, contactLastName, contactCity, contactPhone}}
           />
-        </div>
-      )}
-      {detailsModalOpen && selectedJobDetails && (
-        <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListing jobDetails={selectedJobDetails} closeModal={handleClickOutside} nextModal={moveToApplication} />
         </div>
       )}
       {resumeModalOpen && (
@@ -367,7 +368,10 @@ export default function JobListingPage() {
           <JobListingUploadResume
             closeModal={handleClickOutside}
             nextModal={moveToAvailability}
+            previousModal={moveToApplication}
             setResumeLink={setResumeLink}
+            resumeName={resumeName}
+            setResumeName={setResumeName}
           />
         </div>
       )}
@@ -376,7 +380,9 @@ export default function JobListingPage() {
           <JobListingInterviewAvailability
             closeModal={handleClickOutside}
             nextModal={moveToConfirm}
+            previousModal={moveToResume}
             setAvailability={setAvailability}
+            selectedDate={availability}
           />
         </div>
       )}
@@ -385,6 +391,7 @@ export default function JobListingPage() {
           <JobListingApplicationSummary
             closeModal={handleClickOutside}
             nextModal={closeAllShowSuccess}
+            previousModal={moveToAvailability}
             applicationInfo={applicationInfo}
           />
         </div>

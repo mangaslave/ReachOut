@@ -7,14 +7,18 @@ import {JobApplication} from "@/app/job-listing/page";
 
 export function JobListingInterviewAvailability({
   nextModal,
+  previousModal,
   closeModal,
   setAvailability,
+  selectedDate,
 }: {
   nextModal: () => void;
+  previousModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   setAvailability: Dispatch<SetStateAction<Date>>;
+  selectedDate: Date;
 }) {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(selectedDate);
 
   const moveToNext = () => {
     if (date) {
@@ -57,7 +61,7 @@ export function JobListingInterviewAvailability({
               cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-transparent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
               day: "w-20 h-20 font-normal aria-selected:opacity-100 text-black",
               day_selected:
-                "bg-black text-black hover:bg-spaceCadet hover:text-white focus:bg-spaceCadet focus:text-white",
+                "bg-spaceCadet text-white hover:bg-spaceCadet hover:text-white focus:bg-spaceCadet focus:text-white",
               day_outside: "text-gray-300 border-1",
               nav: "space-x-1 flex items-center",
               nav_button: "hover:bg-transparent p-1",
@@ -68,11 +72,14 @@ export function JobListingInterviewAvailability({
             }}
           />
         </div>
-        {/* <Link href="/" className="mt-4"> */}
-        <Button onClick={nextModal} variant="secondary" className="py-2">
-          Submit Application
-        </Button>
-        {/* </Link> */}
+        <div className="flex-col">
+          <Button onClick={previousModal} variant="outline" className="py-2 mx-1">
+            Go Back
+          </Button>
+          <Button onClick={moveToNext} variant="secondary" className="py-2">
+            Submit Application
+          </Button>
+        </div>
       </div>
     </div>
   );

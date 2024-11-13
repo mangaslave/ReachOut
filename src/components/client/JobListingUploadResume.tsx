@@ -1,28 +1,31 @@
 "use client";
 import {Tabs, TabsList, TabsTrigger, TabsContent} from "../ui/tabs";
 import {Button} from "@/components/ui/button";
-import Link from "next/link";
 import Dropzone from "./DropZone";
-import {JobApplication} from "@/app/job-listing/page";
 import UploadResumeAction from "@/actions/UploadResumeAction";
 import {Dispatch, SetStateAction, useState} from "react";
 
-const fileTypes = ["PDF", "DOCX"];
-
 export function JobListingUploadResume({
   nextModal,
+  previousModal,
   closeModal,
   setResumeLink,
+  setResumeName,
+  resumeName,
 }: {
   nextModal: () => void;
+  previousModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   setResumeLink: Dispatch<SetStateAction<string>>;
+  setResumeName: Dispatch<SetStateAction<string>>;
+  resumeName: string;
 }) {
   const [fileData, setFileData] = useState<File>();
 
   const moveToNext = async () => {
+    // TODO: Cannot move to next if you navigate back to this modal window
     if (fileData) {
-      const resumeUrl = await UploadResumeAction({name: "", file: fileData, clientId: 1});
+      const resumeUrl = await UploadResumeAction({name: fileData.name, file: fileData, clientId: 1});
       if (resumeUrl.url) {
         setResumeLink(resumeUrl.url);
       } else {
@@ -68,7 +71,7 @@ export function JobListingUploadResume({
           <TabsContent value="new" className="mt-4">
             <div className="">
               <div className="flex flex-col items-center justify-center h-[160px]">
-                <Dropzone setFileData={setFileData} />
+                <Dropzone setFileData={setFileData} setResumeName={setResumeName} resumeName={resumeName} />
               </div>
             </div>
           </TabsContent>
@@ -82,6 +85,9 @@ export function JobListingUploadResume({
           </TabsContent>
         </Tabs>
 
+        <Button onClick={previousModal} variant="outline" className="py-2 mx-1">
+          Go Back
+        </Button>
         <Button onClick={moveToNext} variant="secondary" className="mt-6">
           Next
         </Button>
