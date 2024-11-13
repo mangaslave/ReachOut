@@ -1,7 +1,7 @@
+"use client";
 import Image from "next/image";
 import React, { useState } from "react";
 import MatchesModal from "./WhichMatches";
-import Link from "next/link";
 
 interface SignInModalProps {
 	showModal: boolean;
@@ -46,22 +46,6 @@ const SignInModal: React.FC<SignInModalProps> = ({
 									height={40}
 								/>
 							</button>
-							<button className="p-2 rounded-full">
-								<Image
-									src="/static/images/windows-icon.svg"
-									alt="Windows"
-									width={40}
-									height={40}
-								/>
-							</button>
-							<button className="p-2 rounded-full">
-								<Image
-									src="/static/images/apple-icon.svg"
-									alt="Apple"
-									width={40}
-									height={40}
-								/>
-							</button>
 						</div>
 					</div>
 
@@ -101,7 +85,7 @@ const SignInModal: React.FC<SignInModalProps> = ({
 
 					<div className="mt-6 flex justify-center">
 						<button className="font-bold w-40 py-2 rounded-md bg-spaceCadet text-white hover:bg-ylnMnBlue">
-							<Link href="/dashboard">Sign In</Link>
+							Sign In
 						</button>
 					</div>
 
