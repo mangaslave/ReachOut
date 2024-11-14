@@ -2,8 +2,6 @@
 import {Textarea} from "../ui/textarea";
 import {Label} from "../ui/label";
 import {Button} from "../ui/button";
-import Link from "next/link";
-import {JobApplication} from "@/app/job-listing/page";
 import {Dispatch, SetStateAction, useState} from "react";
 
 export function JobListingContactInfo({
@@ -68,7 +66,7 @@ export function JobListingContactInfo({
       <h2 className="text-xl font-bold text-spaceCadet">Contact Information</h2>
 
       <div className="grid w-full gap-1.5 mt-6">
-        <Label htmlFor="message">First Name</Label>
+        <Label htmlFor="firstName">First Name</Label>
         <Textarea
           className="resize-none"
           placeholder="First Name"
@@ -79,7 +77,7 @@ export function JobListingContactInfo({
       </div>
 
       <div className="grid w-full gap-1.5 mt-6">
-        <Label htmlFor="message">Last Name</Label>
+        <Label htmlFor="lastName">Last Name</Label>
         <Textarea
           className="resize-none"
           placeholder="Last Name"
@@ -90,7 +88,7 @@ export function JobListingContactInfo({
       </div>
 
       <div className="grid w-full gap-1.5 mt-6">
-        <Label htmlFor="message">City</Label>
+        <Label htmlFor="cityName">City</Label>
         <Textarea
           className="resize-none"
           placeholder="City"
@@ -101,7 +99,7 @@ export function JobListingContactInfo({
       </div>
 
       <div className="grid w-full gap-1.5 mt-6">
-        <Label htmlFor="message">Phone</Label>
+        <Label htmlFor="phoneNumber">Phone</Label>
         <Textarea
           className="resize-none"
           placeholder="Phone"
