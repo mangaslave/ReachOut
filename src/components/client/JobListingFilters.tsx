@@ -6,7 +6,19 @@ import { ChevronDownIcon } from "lucide-react";
 
 import { useState } from "react";
 
-export default function JobListingFilters() {
+export interface FilterState {
+	location: string;
+	jobType: string;
+	client: string;
+}
+
+interface JobListingFiltersProps {
+	onFilterChange: (type: keyof FilterState, value: string) => void;
+}
+
+export default function JobListingFilters({
+	onFilterChange,
+}: JobListingFiltersProps) {
 	const [location, setLocation] = useState("");
 	const [jobType, setJobType] = useState("");
 	const [client, setClient] = useState("");
@@ -15,20 +27,27 @@ export default function JobListingFilters() {
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
 		setLocation(event.target.value);
+		onFilterChange("location", event.target.value);
 	};
 
 	const handleJobTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setJobType(event.target.value);
+		onFilterChange("jobType", event.target.value);
 	};
 
 	const handleClientSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setClient(event.target.value);
+		onFilterChange("client", event.target.value);
 	};
 
 	const clearFilters = () => {
 		setLocation("");
 		setJobType("");
 		setClient("");
+
+		onFilterChange("location", "");
+		onFilterChange("jobType", "");
+		onFilterChange("client", "");
 	};
 
 	const isAnyFilterActive = location || jobType || client;
@@ -88,8 +107,8 @@ export default function JobListingFilters() {
 					>
 						<option value="">Select Client</option>
 						<option value="Gregory Wick">Gregory Wick</option>
-						<option value="Part-Time">Alice Johnson</option>
-						<option value="Full-Time">Andrew Green</option>
+						<option value="Alice Johnson">Alice Johnson</option>
+						<option value="Andrew Green">Andrew Green</option>
 					</select>
 					<ChevronDownIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
 
