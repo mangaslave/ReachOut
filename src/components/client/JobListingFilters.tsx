@@ -9,6 +9,7 @@ import { useState } from "react";
 export default function JobListingFilters() {
 	const [location, setLocation] = useState("");
 	const [jobType, setJobType] = useState("");
+	const [client, setClient] = useState("");
 
 	const handleLocationChange = (
 		event: React.ChangeEvent<HTMLSelectElement>
@@ -20,6 +21,18 @@ export default function JobListingFilters() {
 		setJobType(event.target.value);
 	};
 
+	const handleClientSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		setClient(event.target.value);
+	};
+
+	const clearFilters = () => {
+		setLocation("");
+		setJobType("");
+		setClient("");
+	};
+
+	const isAnyFilterActive = location || jobType || client;
+
 	return (
 		<div className="flex space-x-4 mt-4">
 			{/* Location Filter with Pin Icon */}
@@ -30,7 +43,7 @@ export default function JobListingFilters() {
 						onChange={handleLocationChange}
 						className="block w-full h-8 pl-10 pr-3 bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 appearance-none"
 					>
-						<option value="">Location</option>
+						<option value="">Select Location</option>
 						<option value="Toronto">Toronto</option>
 						<option value="Vancouver">Vancouver</option>
 						<option value="Markham">Markham</option>
@@ -53,7 +66,7 @@ export default function JobListingFilters() {
 						onChange={handleJobTypeChange}
 						className="block w-full h-8 pl-10 pr-3 bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 appearance-none"
 					>
-						<option value="">Select Type</option>
+						<option value="">Select Job Type</option>
 						<option value="Part-Time">Part-Time</option>
 						<option value="Full-Time">Full-Time</option>
 					</select>
@@ -69,11 +82,12 @@ export default function JobListingFilters() {
 			<div className="w-48">
 				<div className="relative">
 					<select
-						value={jobType}
-						onChange={handleJobTypeChange}
+						value={client}
+						onChange={handleClientSelect}
 						className="block w-full h-8 pl-10 pr-3 bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 appearance-none"
 					>
-						<option value="">Gregory Wick</option>
+						<option value="">Select Client</option>
+						<option value="Gregory Wick">Gregory Wick</option>
 						<option value="Part-Time">Alice Johnson</option>
 						<option value="Full-Time">Andrew Green</option>
 					</select>
@@ -91,6 +105,14 @@ export default function JobListingFilters() {
 					</div>
 				</div>
 			</div>
+			{isAnyFilterActive && (
+				<button
+					onClick={clearFilters}
+					className="px-3 py-1 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+				>
+					Clear Filters
+				</button>
+			)}
 		</div>
 	);
 }
