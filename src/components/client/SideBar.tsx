@@ -9,6 +9,8 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs";
+import {LogOut} from "lucide-react";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   user?: {
@@ -163,6 +165,12 @@ export function Sidebar({className, user}: SidebarProps) {
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
               </DropdownMenuItem>
+              <LogoutLink className="w-full">
+                <DropdownMenuItem>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Log out
+                </DropdownMenuItem>
+              </LogoutLink>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
