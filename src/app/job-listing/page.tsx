@@ -32,6 +32,10 @@ export interface JobApplication {
   availability: Date;
 }
 
+/*
+  INSERT INTO companies (company_name, account_types) VALUES ('Aecon Group', 3);
+*/
+
 export default function JobListingPage() {
   const [applicationModalOpen, setApplicationModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);

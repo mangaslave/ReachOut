@@ -4,6 +4,7 @@ import {Button} from "@/components/ui/button";
 import Dropzone from "./DropZone";
 import UploadResumeAction from "@/actions/UploadResumeAction";
 import {Dispatch, SetStateAction, useState} from "react";
+import {uploadFile} from "@/actions/s3-actions";
 
 export function JobListingUploadResume({
   nextModal,
@@ -27,9 +28,10 @@ export function JobListingUploadResume({
     if (fileData) {
       const resumeUrl = await UploadResumeAction({name: fileData.name, file: fileData, clientId: 1});
       if (resumeUrl.url) {
-        setResumeLink(resumeUrl.url);
+        setResumeLink(resumeUrl.name);
       } else {
-        setResumeLink("no-url-yet");
+        console.log(resumeUrl.message);
+        setResumeLink("Error loading file; please try again.");
       }
       nextModal();
     } else {
