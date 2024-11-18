@@ -12,14 +12,12 @@ export function JobListingUploadResume({
   closeModal,
   setResumeLink,
   setResumeName,
-  resumeName,
 }: {
   nextModal: () => void;
   previousModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   setResumeLink: Dispatch<SetStateAction<string>>;
   setResumeName: Dispatch<SetStateAction<string>>;
-  resumeName: string;
 }) {
   const [fileData, setFileData] = useState<File>();
 
