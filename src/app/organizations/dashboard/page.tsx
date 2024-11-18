@@ -1,42 +1,34 @@
-"use client";
+"use server";
 
 import {Sidebar} from "@/components/client/SideBar";
 import Header from "@/components/client/Header";
-import {useEffect, useState} from "react";
 import Reminders from "@/components/client/Reminders";
 import {NewMessagesBox} from "@/components/client/NewMessagesBox";
 import {NewJobListingsBox} from "@/components/client/NewJobListingsBox";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import {redirect} from "next/navigation";
+import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 
-export default function DashboardPage() {
-  const [user] = useState({
-    name: "Giselle Andrews",
-    email: "gandrews@email.com",
-    image: "/static/images/giselleAndrews.jpg",
-  });
+export default async function DashboardPage() {
+  const {getUser} = getKindeServerSession();
+  const user = await getUser();
+  if (!user) {
+    redirect("/");
+  }
+  await AddKindeUserToDb();
 
-  const [currentDate, setCurrentDate] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const formattedDate = currentDate.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const activeUser = {
+    name: `${user.given_name} ${user.family_name}`,
+    email: `${user.email}`,
+    image: `${user.picture}`,
+  };
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar user={user} />
+      <Sidebar user={activeUser} />
 
       <div className="flex-1 flex flex-col">
-        <Header headerMsg={`Welcome back, ${user.name}`} subHeadingMsg={`${formattedDate}`} />
+        <Header headerMsg={`Welcome back, ${activeUser.name}`} />
 
         <main className="flex-1 overflow-y-auto pt-4 px-2 sm:px-2 lg:px-4">
           <div className="max-w-7xl mx-1">

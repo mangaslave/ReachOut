@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import {AddClientAction} from "@/actions/AddClientAction";
+import React, {useState} from "react";
 
 export default function AddNewClientForm() {
   const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ export default function AddNewClientForm() {
     phoneNumber: "",
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -21,42 +22,27 @@ export default function AddNewClientForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Submit logic
-    // console.log(formData);
     const data = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        city: formData.city,
-        postalCode: formData.postalCode,
-        email: formData.email,
-        phoneNumber: formData.phoneNumber,
-      };
-    
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      city: formData.city,
+      postalCode: formData.postalCode,
+      email: formData.email,
+      phoneNumber: formData.phoneNumber,
+    };
 
-    console.log("data", data)
+    console.log("data", data);
 
     try {
-        const response = await fetch("/api/clients", {
-          method: "POST",
-          body: JSON.stringify(data),
-        });
-  
-        if (response.ok) {
-          alert("Client added successfully!");
-          setFormData({
-            firstName: "",
-            lastName: "",
-            city: "",
-            postalCode: "",
-            email: "",
-            phoneNumber: "",
-          });
-        } else {
-          console.log("Failed to submit form.");
-        }
-      } catch (error) {
-        console.error("An error occurred:", error);
+      const response = await AddClientAction(data);
+      if (response.success) {
+        alert(response.message);
+        return;
       }
+      alert(response.message);
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   };
 
   return (
@@ -134,22 +120,21 @@ export default function AddNewClientForm() {
       <div className="flex justify-end mt-6">
         <button
           type="button"
-          onClick={() => setFormData({
-            firstName: "",
-            lastName: "",
-            city: "",
-            postalCode: "",
-            email: "",
-            phoneNumber: "",
-          })}
+          onClick={() =>
+            setFormData({
+              firstName: "",
+              lastName: "",
+              city: "",
+              postalCode: "",
+              email: "",
+              phoneNumber: "",
+            })
+          }
           className="mr-4 bg-gray-300 text-black py-2 px-4 rounded"
         >
           Cancel
         </button>
-        <button
-          type="submit"
-          className="bg-blue-600 text-white py-2 px-4 rounded"
-        >
+        <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded">
           {"Add Client"}
         </button>
       </div>

@@ -23,7 +23,13 @@ export function JobListingContactInfo({
   setContactCity: Dispatch<SetStateAction<string>>;
   setContactEmail: Dispatch<SetStateAction<string>>;
   setContactPhone: Dispatch<SetStateAction<string>>;
-  contactInfo: {contactFirstName: string; contactLastName: string; contactCity: string; contactPhone: string};
+  contactInfo: {
+    contactFirstName: string;
+    contactLastName: string;
+    contactCity: string;
+    contactPhone: string;
+    contactEmail: string;
+  };
 }) {
   const [firstName, setFirstName] = useState(contactInfo.contactFirstName);
   const [lastName, setLastName] = useState(contactInfo.contactLastName);
@@ -106,6 +112,17 @@ export function JobListingContactInfo({
           defaultValue={contactInfo.contactPhone.length > 0 ? contactInfo.contactPhone : ""}
           id="phoneNumber"
           onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+      </div>
+
+      <div className="grid w-full gap-1.5 mt-6">
+        <Label htmlFor="email">E-mail</Label>
+        <Textarea
+          className="resize-none"
+          placeholder="E-mail"
+          defaultValue={contactInfo.contactEmail.length > 0 ? contactInfo.contactEmail : ""}
+          id="phoneNumber"
+          onChange={(e) => setContactEmail(e.target.value)}
         />
       </div>
 
