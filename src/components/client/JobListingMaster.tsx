@@ -194,9 +194,7 @@ export default function JobListingMaster({
   };
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar
-      //TODO: what is this?   user={activeUser}
-      />
+      <Sidebar user={activeUser} />
 
       <div className="flex-1 flex flex-col">
         <Header headerMsg="Job Listing" subHeadingMsg="Browse the latest job listing posts." />
