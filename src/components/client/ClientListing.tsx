@@ -20,10 +20,7 @@ export default function ClientListing({
       }[]
     | null;
 }) {
-  if (!clients) {
-    return;
-  }
-  const [selectedClient, setSelectedClient] = useState(clients[0]);
+  const [selectedClient, setSelectedClient] = useState(clients ? clients[0] : null);
   const [profileModalOpen, setProfileModalOpen] = useState(false);
 
   const setModalOpen = () => {
@@ -33,6 +30,10 @@ export default function ClientListing({
   const setModalClose = () => {
     setProfileModalOpen(false);
   };
+
+  if (!clients) {
+    return null;
+  }
 
   return (
     <div className="overflow-x-auto">
@@ -48,7 +49,7 @@ export default function ClientListing({
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-caribbeanCurrant">
-          {clients?.map((client, index) => (
+          {clients.map((client, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <input type="checkbox" className="rounded-xl" />
@@ -93,7 +94,7 @@ export default function ClientListing({
           ))}
         </tbody>
       </table>
-      {profileModalOpen && (
+      {profileModalOpen && selectedClient && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <ClientProfile closeModal={setModalClose} client={selectedClient} />
         </div>
@@ -101,3 +102,4 @@ export default function ClientListing({
     </div>
   );
 }
+

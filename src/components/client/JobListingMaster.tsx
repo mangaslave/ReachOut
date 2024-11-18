@@ -85,7 +85,8 @@ export default function JobListingMaster({
   const [resumeName, setResumeName] = useState("");
   const [availability, setAvailability] = useState(new Date(Date.now()));
   const [companyId, setCompanyId] = useState(0);
-  const [clientId, setClientId] = useState(clients[0].id ? clients[0].id : 0);
+  // const [clientId, setClientId] = useState(clients[0].id ? clients[0].id : 0);
+  const [clientId, setClientId] = useState(clients?.[0]?.id ?? 0); 
 
   const applicationInfo = (): JobApplication => {
     return {
@@ -197,7 +198,8 @@ export default function JobListingMaster({
       <Sidebar user={activeUser} />
 
       <div className="flex-1 flex flex-col">
-        <Header headerMsg="Job Listing" subHeadingMsg="Browse the latest job listing posts." />
+
+      <Header headerMsg="Job Listing" subHeadingMsg="Browse the latest job listing posts." />
 
         <main className="flex-1 overflow-y-auto lg:px-8 mt-4">
           <div className="max-w-7xl mx-auto">
