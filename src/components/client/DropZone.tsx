@@ -14,9 +14,7 @@ export default function Dropzone({
   const [dragOver, setDragOver] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [fileDropped, setFileDropped] = useState(false);
-  if (resumeName.length > 0) {
-    setResumeName(resumeName);
-  }
+  const [fileName, setFileName] = useState("");
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setDragOver(false);
@@ -30,12 +28,14 @@ export default function Dropzone({
         setIsLoading(false);
         return;
       }
+      setFileName(file.name);
       setResumeName(file.name);
       setFileDropped(true);
       setFileData(file);
     });
     setIsLoading(false);
   }, []);
+
   const {getRootProps, getInputProps} = useDropzone({onDrop});
 
   return (
@@ -51,9 +51,7 @@ export default function Dropzone({
     >
       <input {...getInputProps()} />
       <p>
-        {resumeName.length > 0
-          ? `Resume attached: ${resumeName}`
-          : "Drag 'n' drop resume here, or click to select files"}
+        {fileName.length > 0 ? `Resume attached: ${fileName}` : "Drag 'n' drop resume here, or click to select files"}
       </p>
     </div>
   );
