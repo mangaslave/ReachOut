@@ -40,6 +40,7 @@ export interface JobApplication {
   contactPhone: string;
   resumeLink: string;
   availability: Date;
+  userId: string;
 }
 
 export type JobListing =
@@ -99,6 +100,7 @@ export default function JobListingMaster({
       contactPhone,
       resumeLink,
       availability,
+      userId: user.id,
     };
   };
 
