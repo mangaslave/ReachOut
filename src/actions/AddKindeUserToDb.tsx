@@ -3,14 +3,14 @@ import {db} from "@/db";
 import {users} from "@/db/schema";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {eq} from "drizzle-orm";
-import {redirect} from "next/navigation";
+// import {redirect} from "next/navigation";
 
 export default async function AddKindeUserToDb() {
   const {getUser} = getKindeServerSession();
   const user = await getUser();
-  if (!user) {
-    redirect("/");
-  }
+  // if (!user) {
+  //   redirect("/");
+  // }
   try {
     const userExists = await db.select({id: users.userId}).from(users).where(eq(users.userId, user.id));
     if (userExists[0]?.id) {
