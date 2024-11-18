@@ -1,5 +1,5 @@
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-// import {redirect} from "next/navigation";
+import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import DashboardClient from "@/components/client/DashboardComponent";
 
@@ -7,9 +7,9 @@ export default async function DashboardPage() {
   const {getUser} = getKindeServerSession();
   const user = await getUser();
   console.log(user);
-  // if (!user) {
-  //   redirect("/");
-  // }
+  if (!user) {
+    redirect("/");
+  }
 
   await AddKindeUserToDb();
 
