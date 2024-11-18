@@ -6,7 +6,7 @@ import DashboardClient from "@/components/client/DashboardComponent";
 export default async function DashboardPage() {
   const {getUser} = await getKindeServerSession();
   const user = await getUser();
-
+  console.log(user);
   if (!user) {
     redirect("/");
   }
@@ -21,4 +21,3 @@ export default async function DashboardPage() {
 
   return <DashboardClient user={activeUser} />;
 }
-
