@@ -1,5 +1,6 @@
 "use server";
 
+import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import GetClientAction from "@/actions/GetClientAction";
 import {GetJobListingsAction} from "@/actions/GetJobListingAction";
 import JobListingMaster, {ClientInfo, JobListing} from "@/components/client/JobListingMaster";
@@ -12,6 +13,7 @@ export default async function JobListingPage() {
   if (!user) {
     redirect("/");
   }
+  await AddKindeUserToDb();
 
   const jobs = await GetJobListingsAction();
   let listings = jobs.listings as JobListing;

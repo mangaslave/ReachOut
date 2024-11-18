@@ -4,6 +4,7 @@ import {DocumentOrganizationComponent} from "@/components/client/DocumentsOrgani
 import {Sidebar} from "@/components/client/SideBar";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
+import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 
 export default async function DocumentOrganizationPage() {
   const {getUser} = getKindeServerSession();
@@ -11,6 +12,7 @@ export default async function DocumentOrganizationPage() {
   if (!user) {
     redirect("/");
   }
+  await AddKindeUserToDb();
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,

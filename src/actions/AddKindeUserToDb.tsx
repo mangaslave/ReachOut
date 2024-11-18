@@ -13,7 +13,7 @@ export default async function AddKindeUserToDb() {
   }
   try {
     const userExists = await db.select({id: users.userId}).from(users).where(eq(users.userId, user.id));
-    if (userExists[0].id) {
+    if (userExists[0]?.id) {
       return;
     }
 

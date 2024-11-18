@@ -7,6 +7,7 @@ import {NewMessagesBox} from "@/components/client/NewMessagesBox";
 import {NewJobListingsBox} from "@/components/client/NewJobListingsBox";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
+import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 
 export default async function DashboardPage() {
   const {getUser} = getKindeServerSession();
@@ -14,6 +15,7 @@ export default async function DashboardPage() {
   if (!user) {
     redirect("/");
   }
+  await AddKindeUserToDb();
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,

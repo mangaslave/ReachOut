@@ -1,5 +1,6 @@
 "use server";
 
+import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import Header from "@/components/client/Header";
 import AddNewClientForm from "@/components/client/NewClientForm";
 import {Sidebar} from "@/components/client/SideBar";
@@ -12,6 +13,7 @@ export default async function ClientsPage() {
   if (!user) {
     redirect("/");
   }
+  await AddKindeUserToDb();
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,
