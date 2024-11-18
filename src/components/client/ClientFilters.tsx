@@ -1,6 +1,7 @@
-import { FaAngleDown } from "react-icons/fa";
-import { MdViewColumn } from "react-icons/md"; 
-import { useState } from "react";
+"use client";
+import {FaAngleDown} from "react-icons/fa";
+import {MdViewColumn} from "react-icons/md";
+import {useState} from "react";
 
 export default function ClientsFilters() {
   const [itemsToDisplay, setItemsToDisplay] = useState("");

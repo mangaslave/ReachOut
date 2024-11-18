@@ -3,8 +3,16 @@
 import GetClientAction from "@/actions/GetClientAction";
 import {GetJobListingsAction} from "@/actions/GetJobListingAction";
 import JobListingMaster, {ClientInfo, JobListing} from "@/components/client/JobListingMaster";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import {redirect} from "next/navigation";
 
 export default async function JobListingPage() {
+  const {getUser} = await getKindeServerSession();
+  const user = await getUser();
+  if (!user) {
+    redirect("/");
+  }
+
   const jobs = await GetJobListingsAction();
   let listings = jobs.listings as JobListing;
   if (!jobs.success) {
@@ -17,5 +25,5 @@ export default async function JobListingPage() {
     allClients = [];
   }
 
-  return <JobListingMaster listings={listings} clients={allClients} />;
+  return <JobListingMaster user={user} listings={listings} clients={allClients} />;
 }
