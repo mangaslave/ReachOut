@@ -13,7 +13,7 @@ export default async function SubmitApplicationAction(applicationInfo: {
   contactPhone: string;
   resumeLink: string;
   availability: Date;
-  userId: number;
+  userId: string;
 }) {
   console.log(applicationInfo);
   try {

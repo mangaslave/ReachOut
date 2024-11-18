@@ -173,7 +173,7 @@ export default function JobListingMaster({
       contactPhone,
       resumeLink,
       availability,
-      userId: 1, // TODO: set this to actual user id once sessions work?!?
+      userId: user.id,
     });
     if (apply.success) {
       setSuccessModalOpen(true);
@@ -218,7 +218,11 @@ export default function JobListingMaster({
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {listings?.map((listing) => {
-                i < 2 ? i++ : (i = 0);
+                if (i < 2) {
+                  i++;
+                } else {
+                  i = 0;
+                }
                 return (
                   <JobCard
                     openModal={() =>

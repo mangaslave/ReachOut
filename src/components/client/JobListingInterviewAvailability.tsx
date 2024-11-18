@@ -2,7 +2,6 @@
 import React, {Dispatch, SetStateAction, useState} from "react";
 import {Calendar} from "../ui/calendar";
 import {Button} from "@/components/ui/button";
-// import Link from "next/link";
 
 export function JobListingInterviewAvailability({
   nextModal,
