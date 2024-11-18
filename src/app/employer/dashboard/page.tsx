@@ -1,10 +1,10 @@
 "use client";
-import { Sidebar } from "@/components/client/SideBar";
 import Header from "@/components/client/Header";
 import { NewMessagesBox } from "@/components/client/NewMessagesBox";
 import Reminders from "@/components/client/Reminders"
 import { useState, useEffect } from "react";
 import { EmployerNewJobListingBox } from "@/components/client/EmployerNewJobListingsBox";
+import { EmployerSidebar } from "@/components/client/EmployerSidebar";
 
 export default function EmployerDashboardPage () {
     const [user] = useState({
@@ -32,7 +32,7 @@ const [currentDate, setCurrentDate] = useState(new Date());
 
    return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar user={user} />
+      <EmployerSidebar/>
 
       <div className="flex-1 flex flex-col">
         <Header headerMsg={`Welcome back, ${user.name}`} subHeadingMsg={`${formattedDate}`} />
