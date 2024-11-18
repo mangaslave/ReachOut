@@ -3,9 +3,16 @@ import {MdWorkOutline} from "react-icons/md";
 import userIcon from "../../../public/static/images/userIcon.svg";
 import Image from "next/image";
 
-import {useState} from "react";
+import {Dispatch, SetStateAction, useState} from "react";
+import {ClientInfo} from "./JobListingMaster";
 
-export default function JobListingFilters() {
+export default function JobListingFilters({
+  clients,
+  setClientId,
+}: {
+  clients: ClientInfo[];
+  setClientId: Dispatch<SetStateAction<number>>;
+}) {
   const [location, setLocation] = useState("");
   const [jobType, setJobType] = useState("");
 
@@ -15,6 +22,10 @@ export default function JobListingFilters() {
 
   const handleJobTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setJobType(event.target.value);
+  };
+
+  const handleClientChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setClientId(Number(event.target.value));
   };
 
   return (
@@ -64,13 +75,17 @@ export default function JobListingFilters() {
       <div className="w-48">
         <div className="relative">
           <select
-            value={jobType}
-            onChange={handleJobTypeChange}
+            onChange={handleClientChange}
             className="block w-full h-8 pl-10 pr-3 bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 appearance-none"
           >
-            <option value="">Gregory Wick</option>
-            <option value="Part-Time">Alice Johnson</option>
-            <option value="Full-Time">Andrew Green</option>
+            {clients.map((client) => {
+              return (
+                <option
+                  key={client.id}
+                  value={client.id ? client.id : 0}
+                >{`${client.firstName} ${client.lastName}`}</option>
+              );
+            })}
           </select>
 
           {/* User Icon */}

@@ -11,7 +11,6 @@ export const companies = sqliteTable("companies", {
 export const accountTypes = sqliteTable("account_types", {
   accountTypeId: integer("account_type_id").primaryKey(),
   accountType: text("account_type").notNull(),
-  // companyId: integer("company_id").references(() => companies.companyId),
 });
 
 export const users = sqliteTable("users", {
@@ -88,9 +87,11 @@ export const benefit = sqliteTable("benefit", {
 export const clientApplications = sqliteTable("client_applications", {
   clientApplicationId: integer("client_application_id").primaryKey(),
   applicationStatusId: integer("application_status_id").references(() => applicationStatus.applicationStatusId),
-  date: text("date").default(sql`CURRENT_TIMESTAMP`),
+  interviewDate: text("date"),
+  date: text("date"),
   jobPostingId: integer("job_posting_id").references(() => jobPostings.jobPostingId),
   userId: integer("user_id").references(() => users.userId),
+  clientId: integer("client_id").references(() => clients.clientId),
   resumeUrl: text("resume_url").notNull(),
 });
 

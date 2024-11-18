@@ -28,10 +28,11 @@ export function JobListingUploadResume({
     if (fileData) {
       const resumeUrl = await UploadResumeAction({name: fileData.name, file: fileData, clientId: 1});
       if (resumeUrl.url) {
-        setResumeLink(resumeUrl.name);
+        setResumeName(resumeUrl.name);
+        setResumeLink(resumeUrl.url);
       } else {
         console.log(resumeUrl.message);
-        setResumeLink("Error loading file; please try again.");
+        setResumeName("Error loading file; please try again.");
       }
       nextModal();
     } else {
