@@ -3,28 +3,27 @@
 import {useState} from "react";
 import ClientProfile from "./ClientProfile";
 
-const data = [
-  {
-    name: "Gregory Wick",
-    status: "Unemployed",
-    company: "N/A",
-    lastOnline: "10/20/2024",
-  },
-  {
-    name: "Leon Howard",
-    status: "Unemployed",
-    company: "N/A",
-    lastOnline: "10/18/2024",
-  },
-  {
-    name: "Alice Johnson",
-    status: "Employed",
-    company: "Gamma Inc",
-    lastOnline: "10/19/2024",
-  },
-];
-
-export default function ClientListing() {
+export default function ClientListing({
+  clients,
+}: {
+  clients:
+    | {
+        id: number;
+        firstName: string | null;
+        lastName: string | null;
+        lastOnline: string;
+        email: string | null;
+        phoneNumber: string | null;
+        city: string | null;
+        postalCode: string | null;
+        resumeUrl: string | null;
+      }[]
+    | null;
+}) {
+  if (!clients) {
+    return;
+  }
+  const [selectedClient, setSelectedClient] = useState(clients[0]);
   const [profileModalOpen, setProfileModalOpen] = useState(false);
 
   const setModalOpen = () => {
@@ -49,18 +48,18 @@ export default function ClientListing() {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-caribbeanCurrant">
-          {data.map((user, index) => (
+          {clients?.map((client, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <input type="checkbox" className="rounded-xl" />
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">{user.name}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{`${client.firstName} ${client.lastName}`}</td>
               <td className="px-6 py-4 whitespace-nowrap ">
                 <select
                   className="w-sm border rounded-lg border-black text-black"
                   name=""
                   id=""
-                  defaultValue={user.status} // Correct usage of defaultValue
+                  defaultValue="Unemployed" //TODO: Save user status in db
                 >
                   <option value="Unemployed">Unemployed</option>
                   <option value="Employed">Employed</option>
@@ -71,15 +70,22 @@ export default function ClientListing() {
                   className="w-sm border rounded-lg border-black text-black"
                   name=""
                   id=""
-                  defaultValue={user.company} // Correct usage of defaultValue
+                  defaultValue="N/A" // TODO: Save client company in db if they get hired
                 >
                   <option value="N/A">N/A</option>
                   <option value="Gamma Inc">Gamma Inc.</option>
                 </select>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">{user.lastOnline}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{client.lastOnline}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <button onClick={setModalOpen} className="hover:underline bg-none">
+                <button
+                  onClick={() => {
+                    setSelectedClient(client);
+                    setModalOpen();
+                  }}
+                  key={index}
+                  className="hover:underline bg-none"
+                >
                   View Profile
                 </button>
               </td>
@@ -89,7 +95,7 @@ export default function ClientListing() {
       </table>
       {profileModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <ClientProfile closeModal={setModalClose} />
+          <ClientProfile closeModal={setModalClose} client={selectedClient} />
         </div>
       )}
     </div>

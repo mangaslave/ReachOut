@@ -89,7 +89,11 @@ export const getPresignedUrl = actionClient
     const user = await getUser();
 
     if (!user) {
-      throw new Error("Unauthorized: Please log in");
+      return {
+        url: null,
+        error: "Unauthorized: Please log in",
+      };
+      // throw new Error("Unauthorized: Please log in");
     }
 
     try {
@@ -105,6 +109,10 @@ export const getPresignedUrl = actionClient
       return {url};
     } catch (error) {
       console.error("Presigned URL Error:", error);
-      throw new Error("Failed to generate presigned URL");
+      return {
+        url: null,
+        error: "Unauthorized: Please log in",
+      };
+      // throw new Error("Failed to generate presigned URL");
     }
   });

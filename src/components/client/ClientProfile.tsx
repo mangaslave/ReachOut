@@ -5,8 +5,35 @@ import locationIcon from "../../../public/static/images/locationIcon.svg";
 import emailIcon from "../../../public/static/images/email.svg";
 import phoneIcon from "../../../public/static/images/phoneIcon.svg";
 import downloadIcon from "../../../public/static/images/downloadIcon.svg";
+import {Document} from "react-pdf";
+import {useState} from "react";
+import {pdfjs} from "react-pdf";
+import {getPresignedUrl} from "@/actions/s3-actions";
 
-export default function ClientProfile({closeModal}: {closeModal: () => void}) {
+pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
+
+export default function ClientProfile({
+  closeModal,
+  client,
+}: {
+  closeModal: () => void;
+  client: {
+    id: number;
+    firstName: string | null;
+    lastName: string | null;
+    lastOnline: string;
+    email: string | null;
+    phoneNumber: string | null;
+    city: string | null;
+    postalCode: string | null;
+    resumeUrl: string | null;
+  };
+}) {
+  const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const openResumeModal = () => {
+    setResumeModalOpen(true);
+  };
+
   return (
     <div className="m-2 bg-white p-4 flex flex-col items-center justify-center max-w-2xl drop-shadow-sm border border-black rounded-lg">
       <div className="flex items-center justify-between w-full mb-4 px-8 py-2">
@@ -25,19 +52,19 @@ export default function ClientProfile({closeModal}: {closeModal: () => void}) {
           <div className="bg-spaceCadet text-white w-full my-2 mx-4 rounded-sm p-4">
             <ul>
               <li className="flex items-center">
-                <h1 className="text-xl">Gregory Wick</h1>
+                <h1 className="text-xl">{`${client.firstName} ${client.lastName}`}</h1>
               </li>
               <li className="flex items-center">
                 <Image src={locationIcon} width={15} height={15} alt="" />
-                <p className="font-thin p-1 mx-2">Burnaby, BC</p>
+                <p className="font-thin p-1 mx-2">{client.city}</p>
               </li>
               <li className="flex items-center">
                 <Image src={emailIcon} width={15} height={15} alt="" />
-                <p className="font-thin p-1 mx-2">gregorywick@gmail.com</p>
+                <p className="font-thin p-1 mx-2">{client.email}</p>
               </li>
               <li className="flex items-center">
                 <Image src={phoneIcon} width={15} height={15} alt="" />
-                <p className="font-thin p-1 mx-2">(604) 783-8879</p>
+                <p className="font-thin p-1 mx-2">{client.phoneNumber}</p>
               </li>
             </ul>
           </div>
@@ -67,7 +94,9 @@ export default function ClientProfile({closeModal}: {closeModal: () => void}) {
           <li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
             <h1 className="text-xl">Resume</h1>
             <div className="flex items-center py-4">
-              <button className="bg-white text-spaceCadet px-4 rounded-md font-thin">View Resume</button>
+              <button onClick={openResumeModal} className="bg-white text-spaceCadet px-4 rounded-md font-thin">
+                View Resume
+              </button>
               <Image src={downloadIcon} width={15} height={15} alt="" className="ml-4" />
             </div>
           </li>
@@ -91,6 +120,11 @@ export default function ClientProfile({closeModal}: {closeModal: () => void}) {
       <button onClick={closeModal} className="bg-caribbeanCurrant w-20 rounded-md mx-8 my-2 self-end text-white">
         Close
       </button>
+      {resumeModalOpen && (
+        <div>
+          <Document file={client.resumeUrl} />
+        </div>
+      )}
     </div>
   );
 }

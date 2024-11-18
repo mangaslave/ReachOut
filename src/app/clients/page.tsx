@@ -7,6 +7,7 @@ import Link from "next/link";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
+import GetClientAction from "@/actions/GetClientAction";
 
 export default async function ClientsPage() {
   const {getUser} = getKindeServerSession();
@@ -15,6 +16,8 @@ export default async function ClientsPage() {
     redirect("/");
   }
   await AddKindeUserToDb();
+
+  let clients = await GetClientAction();
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,
@@ -44,7 +47,7 @@ export default async function ClientsPage() {
             </div>
 
             <div>
-              <ClientListing />
+              <ClientListing clients={clients.clients} />
             </div>
           </div>
         </main>
