@@ -14,11 +14,13 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
+import { LogoutLink, useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 
 export function Sidebar() {
 	const [collapsed, setCollapsed] = useState(false);
 	const pathname = usePathname();
+
+	const { user } = useKindeAuth();
 
 	return (
 		<div
@@ -272,14 +274,15 @@ export function Sidebar() {
 								)}
 							>
 								<Avatar className="h-8 w-8">
-									<AvatarFallback>JD</AvatarFallback>
+									<AvatarFallback>
+										{user?.given_name?.[0]?.toUpperCase()}
+										{user?.family_name?.[0]?.toUpperCase()}
+									</AvatarFallback>
 								</Avatar>
 								{!collapsed && (
 									<div className="flex flex-col items-start text-sm">
-										<span className="font-medium">John Doe</span>
-										<span className="text-xs text-muted-foreground">
-											john@example.com
-										</span>
+										<span className="font-medium">{user?.given_name} {user?.family_name}</span>
+										<span className="text-xs text-muted-foreground">{user?.email}</span>
 									</div>
 								)}
 							</Button>

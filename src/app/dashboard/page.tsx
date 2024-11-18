@@ -6,15 +6,18 @@ import {useEffect, useState} from "react";
 import Reminders from "@/components/client/Reminders";
 import {NewMessagesBox} from "@/components/client/NewMessagesBox";
 import {NewJobListingsBox} from "@/components/client/NewJobListingsBox";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 
 export default function DashboardPage() {
-  const [user] = useState({
-    name: "Giselle Andrews",
-    email: "gandrews@email.com",
-    image: "/static/images/giselleAndrews.jpg",
-  });
+  const { user, isAuthenticated } = useKindeAuth();
 
   const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    console.log("User details:", user);
+    console.log("Is authenticated:", isAuthenticated);
+    
+  }, [user, isAuthenticated]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -33,10 +36,10 @@ export default function DashboardPage() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar user={user} />
+      <Sidebar />
 
       <div className="flex-1 flex flex-col">
-        <Header headerMsg={`Welcome back, ${user.name}`} subHeadingMsg={`${formattedDate}`} />
+        <Header headerMsg={`Welcome back, ${user?.given_name}`} subHeadingMsg={`${formattedDate}`} />
 
         <main className="flex-1 overflow-y-auto pt-4 px-2 sm:px-2 lg:px-4">
           <div className="max-w-7xl mx-1">

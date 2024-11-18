@@ -18,7 +18,7 @@ export const users = sqliteTable("users", {
   firstName: text("first_name").notNull(),
   lastName: text("last_name").notNull(),
   email: text("email").notNull().unique(),
-  password: text("password").notNull(),
+  password: text("password"),
   accountTypeId: integer("account_type_id").references(() => accountTypes.accountTypeId),
 });
 

@@ -42,15 +42,15 @@ export default function AddNewClientForm() {
         });
   
         if (response.ok) {
-          alert("Client added successfully!");
-          setFormData({
-            firstName: "",
-            lastName: "",
-            city: "",
-            postalCode: "",
-            email: "",
-            phoneNumber: "",
-          });
+        //   alert("Client added successfully!");
+        //   setFormData({
+        //     firstName: "",
+        //     lastName: "",
+        //     city: "",
+        //     postalCode: "",
+        //     email: "",
+        //     phoneNumber: "",
+        //   });
         } else {
           console.log("Failed to submit form.");
         }
