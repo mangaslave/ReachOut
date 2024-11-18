@@ -4,12 +4,12 @@ import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import DashboardClient from "@/components/client/DashboardComponent";
 
 export default async function DashboardPage() {
-  const {getUser} = await getKindeServerSession();
+  const {getUser} = getKindeServerSession();
   const user = await getUser();
   console.log(user);
-  if (!user) {
-    redirect("/");
-  }
+  // if (!user) {
+  //   redirect("/");
+  // }
 
   await AddKindeUserToDb();
 
