@@ -11,6 +11,7 @@ import {JobListingUploadResume} from "@/components/client/JobListingUploadResume
 import JobListingFilters from "@/components/client/JobListingFilters";
 import {JobListingApplicationSummary} from "@/components/client/JobListingSummary";
 import SubmitApplicationAction from "@/actions/SubmitApplicationAction";
+import {KindeUser} from "@kinde-oss/kinde-auth-nextjs/types";
 
 export interface JobDetails {
   companyName: string;
@@ -58,7 +59,15 @@ export type JobListing =
     }[]
   | null;
 
-export default function JobListingMaster({listings, clients}: {listings: JobListing; clients: ClientInfo[]}) {
+export default function JobListingMaster({
+  listings,
+  clients,
+  user,
+}: {
+  listings: JobListing;
+  clients: ClientInfo[];
+  user: KindeUser<Record<string, any>>;
+}) {
   const [applicationModalOpen, setApplicationModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [availabilityModalOpen, setAvailabilityModalOpen] = useState(false);
@@ -77,12 +86,6 @@ export default function JobListingMaster({listings, clients}: {listings: JobList
   const [availability, setAvailability] = useState(new Date(Date.now()));
   const [companyId, setCompanyId] = useState(0);
   const [clientId, setClientId] = useState(clients[0].id ? clients[0].id : 0);
-
-  const [user] = useState({
-    name: "Giselle Andrews",
-    email: "gandrews@email.com ",
-    image: "/static/images/giselleAndrews.jpg",
-  });
 
   const applicationInfo = (): JobApplication => {
     return {
@@ -157,7 +160,6 @@ export default function JobListingMaster({listings, clients}: {listings: JobList
     setAvailabilityModalOpen(false);
     setResumeModalOpen(false);
     setConfirmModalOpen(false);
-    // TODO: Server action here
     const apply = await SubmitApplicationAction({
       companyId,
       clientId,
@@ -185,10 +187,15 @@ export default function JobListingMaster({listings, clients}: {listings: JobList
   const borderTextColors = ["black", "white", "white"];
   let i = -1;
 
+  const activeUser = {
+    name: `${user.given_name} ${user.family_name}`,
+    email: `${user.email}`,
+    image: `${user.picture}`,
+  };
   return (
     <div className="flex h-screen bg-gray-100">
       <Sidebar
-      //TODO: what is this?   user={user}
+      //TODO: what is this?   user={activeUser}
       />
 
       <div className="flex-1 flex flex-col">
