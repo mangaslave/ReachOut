@@ -151,7 +151,7 @@ export function Sidebar({className, user}: SidebarProps) {
                 {!collapsed && (
                   <div className="flex flex-col items-start text-sm">
                     <span className="font-medium">{user?.name}</span>
-                    <span className="text-xs text-muted-foreground">{user?.email}</span>
+                    <span className="text-xs text-slate-400">{user?.email}</span>
                   </div>
                 )}
               </Button>
