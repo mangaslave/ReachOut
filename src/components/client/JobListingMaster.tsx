@@ -9,7 +9,7 @@ import {JobListingContactInfo} from "@/components/client/JobListingContactInfo";
 import {JobListing} from "@/components/client/JobListingDescription";
 import {JobListingInterviewAvailability} from "@/components/client/JobListingInterviewAvailability";
 import {JobListingUploadResume} from "@/components/client/JobListingUploadResume";
-import JobListingFilters from "@/components/client/JobListingFilters";
+import JobListingFilters, {FilterState} from "@/components/client/JobListingFilters";
 import {JobListingApplicationSummary} from "@/components/client/JobListingSummary";
 import SubmitApplicationAction from "@/actions/SubmitApplicationAction";
 import {KindeUser} from "@kinde-oss/kinde-auth-nextjs/types";
@@ -90,6 +90,18 @@ export default function JobListingMaster({
   const [availability, setAvailability] = useState(new Date(Date.now()));
   const [companyId, setCompanyId] = useState(0);
   const [clientId, setClientId] = useState(clients[0].id ? clients[0].id : 0);
+  const [activeFilters, setActiveFilters] = useState<FilterState>({
+    location: "",
+    jobType: "",
+    client: "",
+  });
+
+  const handleFilterChange = (type: keyof FilterState, value: string) => {
+    setActiveFilters((prev) => ({
+      ...prev,
+      [type]: value,
+    }));
+  };
 
   const applicationInfo = (): JobApplication => {
     return {
@@ -128,7 +140,7 @@ export default function JobListingMaster({
 
   const moveToApplication = () => {
     closeAll();
-    setApplicationModalOpen(false);
+    setApplicationModalOpen(true);
   };
 
   const moveToAvailability = () => {
@@ -215,7 +227,7 @@ export default function JobListingMaster({
           <div className="max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-4">
               <div className="flex">
-                <JobListingFilters clients={clients} setClientId={setClientId} />
+                <JobListingFilters clients={clients} setClientId={setClientId} onFilterChange={handleFilterChange} />
               </div>
 
               <div className="ml-auto">
