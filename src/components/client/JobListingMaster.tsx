@@ -170,7 +170,7 @@ export default function JobListingMaster({
       contactPhone,
       resumeLink,
       availability,
-      userId: 1, // TODO: set this to actual user id once sessions work?!?
+      userId: user.id,
     });
     if (apply.success) {
       setSuccessModalOpen(true);
@@ -274,6 +274,7 @@ export default function JobListingMaster({
             setContactCity={setContactCity}
             setContactEmail={setContactEmail}
             setContactPhone={setContactPhone}
+            jobDetails={selectedJobDetails}
             contactInfo={{contactFirstName, contactLastName, contactCity, contactPhone, contactEmail}}
           />
         </div>
