@@ -2,6 +2,7 @@
 
 import {Sidebar} from "@/components/client/SideBar";
 import Header from "@/components/client/Header";
+import userIcon from "../../../public/static/images/userIcon.svg";
 import {useState} from "react";
 import JobCard from "@/components/client/job_postcard";
 import {JobListingContactInfo} from "@/components/client/JobListingContactInfo";
@@ -12,6 +13,7 @@ import JobListingFilters from "@/components/client/JobListingFilters";
 import {JobListingApplicationSummary} from "@/components/client/JobListingSummary";
 import SubmitApplicationAction from "@/actions/SubmitApplicationAction";
 import {KindeUser} from "@kinde-oss/kinde-auth-nextjs/types";
+import Image from "next/image";
 
 export interface JobDetails {
   companyName: string;
@@ -76,6 +78,7 @@ export default function JobListingMaster({
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const [selectClientModalOpen, setSelectClientModalOpen] = useState(false);
   const [selectedJobDetails, setSelectedJobDetails] = useState<JobDetails | null>(null);
   const [contactFirstName, setContactFirstName] = useState("");
   const [contactLastName, setContactLastName] = useState("");
@@ -87,7 +90,6 @@ export default function JobListingMaster({
   const [availability, setAvailability] = useState(new Date(Date.now()));
   const [companyId, setCompanyId] = useState(0);
   const [clientId, setClientId] = useState(clients[0].id ? clients[0].id : 0);
-  // const [clientId, setClientId] = useState(clients?.[0]?.id ?? 0);
 
   const applicationInfo = (): JobApplication => {
     return {
@@ -109,6 +111,13 @@ export default function JobListingMaster({
     closeAll();
     setSelectedJobDetails(jobDetails);
     setDetailsModalOpen(true);
+  };
+
+  const handleClientSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setClientId(Number(event.target.value));
+    const client = clients[Number(event.target.value)];
+    setContactFirstName(client.firstName as string);
+    setContactLastName(client.lastName as string);
   };
 
   const handleClickOutside = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -331,6 +340,30 @@ export default function JobListingMaster({
             <h3 className="py-8 text-lg">
               Application could not be submitted due to a server error. Please try again. ⛔
             </h3>
+          </div>
+        </div>
+      )}
+      {selectClientModalOpen && (
+        <div className="fixed z-50 py-4 inset-0 flex pt-56 items-start justify-center bg-black bg-opacity-50">
+          <div className="w-48">
+            <div className="relative">
+              <select
+                onChange={handleClientSelection}
+                className="block w-full h-8 pl-10 pr-3 bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 appearance-none"
+              >
+                {clients.map((client) => {
+                  return (
+                    <option
+                      key={client.id}
+                      value={client.id ? client.id : 0}
+                    >{`${client.firstName} ${client.lastName}`}</option>
+                  );
+                })}
+              </select>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Image src={userIcon} width={10} height={10} alt="userIcon" className="text-gray-500 h-4 w-4" />
+              </div>
+            </div>
           </div>
         </div>
       )}
