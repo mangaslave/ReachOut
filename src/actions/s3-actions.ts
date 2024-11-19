@@ -1,3 +1,4 @@
+"use server";
 import {actionClient} from "@/lib/safe-action";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {s3Service} from "@/utils/s3";
