@@ -39,6 +39,7 @@ export default function JobListingFilters({
 
   const handleClientSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setClient(event.target.value);
+    setClientId(Number(event.target.value));
     onFilterChange("client", event.target.value);
   };
 
