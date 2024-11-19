@@ -4,6 +4,7 @@ import {Button} from "@/components/ui/button";
 import Dropzone from "./DropZone";
 import UploadResumeAction from "@/actions/UploadResumeAction";
 import {Dispatch, SetStateAction, useState} from "react";
+// import {uploadFile} from "@/actions/s3-actions";
 
 export function JobListingUploadResume({
   nextModal,
@@ -11,25 +12,25 @@ export function JobListingUploadResume({
   closeModal,
   setResumeLink,
   setResumeName,
-  resumeName,
 }: {
   nextModal: () => void;
   previousModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   setResumeLink: Dispatch<SetStateAction<string>>;
   setResumeName: Dispatch<SetStateAction<string>>;
-  resumeName: string;
 }) {
   const [fileData, setFileData] = useState<File>();
 
   const moveToNext = async () => {
     // TODO: Cannot move to next if you navigate back to this modal window
     if (fileData) {
-      const resumeUrl = await UploadResumeAction({name: fileData.name, file: fileData, clientId: 1});
+      const resumeUrl = await UploadResumeAction({ file: fileData, clientId: 1});
       if (resumeUrl.url) {
+        setResumeName(resumeUrl.name);
         setResumeLink(resumeUrl.url);
       } else {
-        setResumeLink("no-url-yet");
+        console.log(resumeUrl.message);
+        setResumeName("Error loading file; please try again.");
       }
       nextModal();
     } else {
@@ -71,7 +72,7 @@ export function JobListingUploadResume({
           <TabsContent value="new" className="mt-4">
             <div className="">
               <div className="flex flex-col items-center justify-center h-[160px]">
-                <Dropzone setFileData={setFileData} setResumeName={setResumeName} resumeName={resumeName} />
+                <Dropzone setFileData={setFileData} setResumeName={setResumeName} />
               </div>
             </div>
           </TabsContent>
