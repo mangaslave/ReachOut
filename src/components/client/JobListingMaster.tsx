@@ -130,7 +130,7 @@ export default function JobListingMaster({
 
   const moveToApplication = () => {
     closeAll();
-    setApplicationModalOpen(false);
+    setApplicationModalOpen(true);
   };
 
   const moveToAvailability = () => {
