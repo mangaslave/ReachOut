@@ -8,7 +8,6 @@ import downloadIcon from "../../../public/static/images/downloadIcon.svg";
 import {Document, Page} from "react-pdf";
 import {useState} from "react";
 import {pdfjs} from "react-pdf";
-import {Button} from "../ui/button";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 
@@ -32,13 +31,17 @@ export default function ClientProfile({
   };
 }) {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const [noClientResume, setNoClientResume] = useState(client.resumeUrl ? false : true);
   const openResumeModal = () => {
+    if (noClientResume) {
+      setNoClientResume(true);
+      return;
+    }
     setResumeModalOpen(true);
   };
   const closeResumeModal = () => {
     setResumeModalOpen(false);
   };
-  console.log(client.resumeUrl);
   return (
     <div className="m-2 bg-white p-4 flex flex-col items-center justify-center max-w-2xl drop-shadow-sm border border-black rounded-lg">
       <div className="flex items-center justify-between w-full mb-4 px-8 py-2">
@@ -99,8 +102,8 @@ export default function ClientProfile({
           <li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
             <h1 className="text-xl">Resume</h1>
             <div className="flex items-center py-4">
-              <button onClick={openResumeModal} className="bg-white text-spaceCadet px-4 rounded-md font-thin">
-                View Resume
+              <button onClick={openResumeModal} className="bg-white w-56 text-spaceCadet px-4 rounded-md font-thin">
+                {noClientResume ? <p className="text-red-600">No resume available</p> : <p>View Resume</p>}
               </button>
               <Image src={downloadIcon} width={15} height={15} alt="" className="ml-4" />
             </div>
@@ -126,15 +129,18 @@ export default function ClientProfile({
         Close
       </button>
       {resumeModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 rounded-md flex items-center justify-center bg-black bg-opacity-50">
           <Document
-            className="fixed inset-0 rounded-md flex h-auto items-center justify-center bg-black bg-opacity-50"
+            className="fixed inset-0 rounded-md flex-col h-auto items-center justify-center"
             file={client.resumeUrl}
           >
-            <Page className="flex" pageNumber={1}>
-              <Button className="self-end m-4" onClick={closeResumeModal}>
+            <Page className="flex rounded-md scale-95 overflow-hidden" pageNumber={1}>
+              <button
+                onClick={closeResumeModal}
+                className="bg-caribbeanCurrant w-20 rounded-md mx-8 my-2 self-end text-white"
+              >
                 Close
-              </Button>
+              </button>
             </Page>
           </Document>
         </div>

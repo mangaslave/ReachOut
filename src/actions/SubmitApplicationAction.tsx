@@ -15,7 +15,6 @@ export default async function SubmitApplicationAction(applicationInfo: {
   availability: Date;
   userId: string;
 }) {
-  console.log(applicationInfo);
   try {
     const application = await db
       .insert(clientApplications)

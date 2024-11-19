@@ -126,6 +126,7 @@ export default function JobListingMaster({
   };
 
   const handleClientSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(Number(event.target.value));
     setClientId(Number(event.target.value));
     const client = clients[Number(event.target.value)];
     setContactFirstName(client.firstName as string);
