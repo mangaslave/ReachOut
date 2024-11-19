@@ -12,7 +12,7 @@ export default async function DashboardPage() {
     // redirect("/");
     console.log("No user found in dashboard (server)");
   }
-  let defaultUser = {
+  const defaultUser = {
     id: "kp_07e97ee93e1946b49176f01d02949c38",
     email: "kyleeeles@gmail.com",
     family_name: "Eeles",
