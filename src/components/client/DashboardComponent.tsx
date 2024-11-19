@@ -8,7 +8,7 @@ import {NewJobListingsBox} from "@/components/client/NewJobListingsBox";
 import {useEffect, useState} from "react";
 
 export default function DashboardClient({user}: {user: {name: string; email: string; image: string}}) {
-  console.log(user);
+  console.log("Dashboard Client", user);
   const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
