@@ -8,7 +8,7 @@ import downloadIcon from "../../../public/static/images/downloadIcon.svg";
 import {Document} from "react-pdf";
 import {useState} from "react";
 import {pdfjs} from "react-pdf";
-import {getPresignedUrl} from "@/actions/s3-actions";
+// import {getPresignedUrl} from "@/actions/s3-actions";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
@@ -85,7 +85,7 @@ export default function ClientProfile({
             </div>
             <div className="rounded-sm border m-2 my-4 p-2">
               <h3 className="text-sm">Welder Full-Time</h3>
-              <p className="my-1 text-xs">Gary's Welding - Kelowna, BC</p>
+              <p className="my-1 text-xs">Gary&#39;s Welding - Kelowna, BC</p>
               <p className="mt-4 text-xs italic">Date Applied: 10/01/2024</p>
             </div>
           </div>

@@ -1,5 +1,5 @@
 "use client";
-import {Avatar, AvatarFallback, AvatarImage} from "../ui/avatar";
+import {Avatar, AvatarFallback} from "../ui/avatar";
 import {Button} from "../ui/button";
 
 export function NewJobListingsBox() {

@@ -2,13 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../../public/static/images/logo-new.svg";
-// import { useState } from "react";
-// import SignInModal from "./SignIn";
 import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
 export default function NavBar() {
-  // const [showModal, setShowModal] = useState(false);
-
   return (
     <header className="bg-white flex justify-between w-full items-center flex-col max-h-40">
       <div className="flex justify-evenly w-full py-5 flex-col sm:flex-row">

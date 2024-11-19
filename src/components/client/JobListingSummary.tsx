@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import {Button} from "@/components/ui/button";
-import {JobApplication} from "@/app/job-listing/page";
+import {JobApplication} from "./JobListingMaster";
 
 export function JobListingApplicationSummary({
   nextModal,

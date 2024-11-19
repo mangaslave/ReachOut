@@ -17,7 +17,7 @@ export default async function ClientsPage() {
   }
   await AddKindeUserToDb();
 
-  let clients = await GetClientAction();
+  const clients = await GetClientAction();
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,

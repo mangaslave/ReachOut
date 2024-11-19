@@ -64,7 +64,7 @@ export default function InfoPopup({ status: { status1, status2, status3 } }: Sta
             </div>
             <div className="flex items-center">
               <Image src={status2} alt="Status Icon 2" width={20} height={20} />
-              <span className="ml-2">Valid Driver's License</span>
+              <span className="ml-2">Valid Driver&#39;s License</span>
             </div>
             <div className="flex items-center">
               <Image src={status3} alt="Status Icon 3" width={20} height={20} />

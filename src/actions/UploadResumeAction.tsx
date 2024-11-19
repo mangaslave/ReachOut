@@ -8,11 +8,9 @@ import {uploadFile} from "./s3-actions";
 dotenv.config();
 
 export default async function UploadResumeAction({
-  name,
   file,
   clientId,
 }: {
-  name: string;
   file: File | undefined;
   clientId: number;
 }) {

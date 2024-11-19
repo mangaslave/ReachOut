@@ -40,6 +40,7 @@ export interface JobApplication {
   contactPhone: string;
   resumeLink: string;
   availability: Date;
+  userId: string;
 }
 
 export type JobListing =
@@ -66,7 +67,7 @@ export default function JobListingMaster({
 }: {
   listings: JobListing;
   clients: ClientInfo[];
-  user: KindeUser<Record<string, any>>;
+  user: KindeUser<Record<string, unknown>>;
 }) {
   const [applicationModalOpen, setApplicationModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
@@ -82,15 +83,16 @@ export default function JobListingMaster({
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [resumeLink, setResumeLink] = useState("");
-  const [resumeName, setResumeName] = useState("");
+  const [, setResumeName] = useState("");
   const [availability, setAvailability] = useState(new Date(Date.now()));
   const [companyId, setCompanyId] = useState(0);
   const [clientId, setClientId] = useState(clients[0].id ? clients[0].id : 0);
+  // const [clientId, setClientId] = useState(clients?.[0]?.id ?? 0);
 
   const applicationInfo = (): JobApplication => {
     return {
       companyId,
-      clientId: 1,
+      clientId,
       contactFirstName,
       contactLastName,
       contactCity,
@@ -98,6 +100,7 @@ export default function JobListingMaster({
       contactPhone,
       resumeLink,
       availability,
+      userId: user.id,
     };
   };
 
@@ -116,7 +119,7 @@ export default function JobListingMaster({
 
   const moveToApplication = () => {
     closeAll();
-    setApplicationModalOpen(true);
+    setApplicationModalOpen(false);
   };
 
   const moveToAvailability = () => {
@@ -215,7 +218,11 @@ export default function JobListingMaster({
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {listings?.map((listing) => {
-                i < 2 ? i++ : (i = 0);
+                if (i < 2) {
+                  i++;
+                } else {
+                  i = 0;
+                }
                 return (
                   <JobCard
                     openModal={() =>
@@ -286,7 +293,6 @@ export default function JobListingMaster({
             nextModal={moveToAvailability}
             previousModal={moveToApplication}
             setResumeLink={setResumeLink}
-            resumeName={resumeName}
             setResumeName={setResumeName}
           />
         </div>

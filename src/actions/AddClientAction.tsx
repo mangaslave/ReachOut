@@ -1,6 +1,6 @@
-"use server";
-import {NextRequest, NextResponse} from "next/server";
-import {newClient} from "@/db/queries/client";
+// "use server";
+// import {NextRequest, NextResponse} from "next/server";
+// import {newClient} from "@/db/queries/client";
 import {clients as clientTable} from "@/db/schema";
 import {db} from "@/db";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";

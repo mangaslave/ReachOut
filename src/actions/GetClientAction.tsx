@@ -2,8 +2,9 @@
 import {db} from "@/db";
 import {clients} from "@/db/schema";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+// import { error } from "console";
 import {eq} from "drizzle-orm";
-import {redirect} from "next/navigation";
+// import {redirect} from "next/navigation";
 
 export default async function GetClientAction() {
   const {getUser} = getKindeServerSession();
@@ -28,6 +29,6 @@ export default async function GetClientAction() {
       .where(eq(clients.userId, user.id));
     return {success: true, clients: allClients};
   } catch (err) {
-    return {success: false, clients: null};
+    return {success: false, clients: null, error: err};
   }
 }
