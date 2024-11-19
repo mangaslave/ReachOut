@@ -89,7 +89,7 @@ export default function JobListingMaster({
   const [, setResumeName] = useState("");
   const [availability, setAvailability] = useState(new Date(Date.now()));
   const [companyId, setCompanyId] = useState(0);
-  const [clientId, setClientId] = useState(clients[0].id ? clients[0].id : 0);
+  const [clientId, setClientId] = useState(clients[0]?.id ? clients[0]?.id : 0);
   const [activeFilters, setActiveFilters] = useState<FilterState>({
     location: "",
     jobType: "",

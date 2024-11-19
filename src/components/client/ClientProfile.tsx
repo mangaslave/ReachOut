@@ -5,10 +5,12 @@ import locationIcon from "../../../public/static/images/locationIcon.svg";
 import emailIcon from "../../../public/static/images/email.svg";
 import phoneIcon from "../../../public/static/images/phoneIcon.svg";
 import downloadIcon from "../../../public/static/images/downloadIcon.svg";
-import {Document} from "react-pdf";
+import {Document, Page} from "react-pdf";
 import {useState} from "react";
 import {pdfjs} from "react-pdf";
-// import {getPresignedUrl} from "@/actions/s3-actions";
+import {Button} from "../ui/button";
+import "react-pdf/dist/Page/TextLayer.css";
+import "react-pdf/dist/Page/AnnotationLayer.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
@@ -33,7 +35,10 @@ export default function ClientProfile({
   const openResumeModal = () => {
     setResumeModalOpen(true);
   };
-
+  const closeResumeModal = () => {
+    setResumeModalOpen(false);
+  };
+  console.log(client.resumeUrl);
   return (
     <div className="m-2 bg-white p-4 flex flex-col items-center justify-center max-w-2xl drop-shadow-sm border border-black rounded-lg">
       <div className="flex items-center justify-between w-full mb-4 px-8 py-2">
@@ -121,8 +126,17 @@ export default function ClientProfile({
         Close
       </button>
       {resumeModalOpen && (
-        <div>
-          <Document file={client.resumeUrl} />
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <Document
+            className="fixed inset-0 rounded-md flex h-auto items-center justify-center bg-black bg-opacity-50"
+            file={client.resumeUrl}
+          >
+            <Page className="flex" pageNumber={1}>
+              <Button className="self-end m-4" onClick={closeResumeModal}>
+                Close
+              </Button>
+            </Page>
+          </Document>
         </div>
       )}
     </div>
