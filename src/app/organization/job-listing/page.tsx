@@ -16,7 +16,7 @@ export default async function JobListingPage() {
   await AddKindeUserToDb();
 
   const jobs = await GetJobListingsAction();
-  let listings = jobs.listings as JobListing;
+  let listings = jobs.listings as JobListing[];
   if (!jobs.success) {
     listings = [];
   }
