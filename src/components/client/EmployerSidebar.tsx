@@ -36,7 +36,7 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Dashboard",
     iconSrc: "/static/images/Dashboard_icon.svg",
-    href: "/dashboard",
+    href: "/employer/dashboard",
   },
   {
     title: "Applications",
