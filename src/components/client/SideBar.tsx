@@ -30,27 +30,27 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Dashboard",
     iconSrc: "/static/images/Dashboard_icon.svg",
-    href: "/dashboard",
+    href: "/organization/dashboard",
   },
   {
     title: "Job Listings",
     iconSrc: "/static/images/JobListings_icon.svg",
-    href: "/job-listing",
+    href: "/organization/job-listing",
   },
   {
     title: "Client Management",
     iconSrc: "/static/images/UseManagement_icon.svg",
-    href: "/clients",
+    href: "/organization/clients",
   },
   {
     title: "Inbox",
     iconSrc: "/static/images/Inbox_icon.svg",
-    href: "/inbox",
+    href: "/organization/inbox",
   },
   {
     title: "Resume Builder",
     iconSrc: "/static/images/Resume_icon.svg",
-    href: "/resume",
+    href: "/organization/resume",
   },
 ];
 
@@ -58,12 +58,12 @@ const bottomItems: SidebarItem[] = [
   {
     title: "Notifications",
     iconSrc: "/static/images/Bell_Notification_icon.svg",
-    href: "/notifications",
+    href: "/organization/notifications",
   },
   {
     title: "Settings",
     iconSrc: "/static/images/Settings_icon.svg",
-    href: "/settings",
+    href: "/organization/settings",
   },
 ];
 

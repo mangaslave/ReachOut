@@ -1,22 +1,15 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, Settings, User, LogOut } from "lucide-react";
+import {cn} from "@/lib/utils";
+import {Button} from "@/components/ui/button";
+import {ChevronLeft, Settings, User, LogOut} from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import {useState} from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
-
-
+import {usePathname} from "next/navigation";
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   user?: {
@@ -36,7 +29,7 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Dashboard",
     iconSrc: "/static/images/Dashboard_icon.svg",
-    href: "/dashboard",
+    href: "/employer/dashboard",
   },
   {
     title: "Applications",
@@ -51,7 +44,7 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Inbox",
     iconSrc: "/static/images/Inbox_icon.svg",
-    href: "/inbox",
+    href: "/employer/inbox",
   },
   {
     title: "Resources",
@@ -64,20 +57,20 @@ const bottomItems: SidebarItem[] = [
   {
     title: "Notifications",
     iconSrc: "/static/images/Bell_Notification_icon.svg",
-    href: "/notifications",
+    href: "/employer/notifications",
   },
   {
     title: "Settings",
     iconSrc: "/static/images/Settings_icon.svg",
-    href: "/settings",
+    href: "/employer/settings",
   },
 ];
 
 export function EmployerSidebar({className, user}: SidebarProps) {
-	const [collapsed, setCollapsed] = useState(false);
-	const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
+  const pathname = usePathname();
 
-	  const NavItem = ({item}: {item: SidebarItem}) => (
+  const NavItem = ({item}: {item: SidebarItem}) => (
     <Link href={item.href}>
       <span
         className={cn(
@@ -103,9 +96,9 @@ export function EmployerSidebar({className, user}: SidebarProps) {
         {!collapsed && <span>{item.title}</span>}
       </span>
     </Link>
-  )
+  );
 
-	return (
+  return (
     <div
       className={cn(
         "relative flex flex-col h-screen bg-caribbeanCurrant border-r transition-all duration-300 text-white",
