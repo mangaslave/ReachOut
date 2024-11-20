@@ -8,8 +8,9 @@ import downloadIcon from "../../../public/static/images/downloadIcon.svg";
 import { Document } from "react-pdf";
 import { useState } from "react";
 import { pdfjs } from "react-pdf";
-// import {getPresignedUrl} from "@/actions/s3-actions";
 import { Progress } from "../ui/progress";
+import checkmark from "../../../public/static/images/complete-checkmark-icon.svg";
+import exclamation from "../../../public/static/images/incomplete-exclamation-icon.svg";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 	"pdfjs-dist/build/pdf.worker.min.mjs",
@@ -26,21 +27,39 @@ const profileProgressCalculation = (client: {
 	city: string | null;
 	postalCode: string | null;
 	resumeUrl: string | null;
+	skills: string[] | null;
 }) => {
-	const fields = [
-		client.firstName,
-		client.lastName,
-		client.email,
-		client.phoneNumber,
-		client.city,
-		client.postalCode,
-		client.resumeUrl,
-	];
+	const sections = {
+		personalInfo: Boolean(
+			client.firstName &&
+				client.lastName &&
+				client.email &&
+				client.city &&
+				client.postalCode
+		),
+		resume: Boolean(client.resumeUrl),
+		skills: Boolean(client.skills && client.skills.length > 0),
+	};
 
-	const completedFields = fields.filter((field) => field !== null).length;
-	const totalFields = fields.length;
+	const completedSections = Object.values(sections).filter(Boolean).length;
+	console.log("completed: ", completedSections);
+	return Math.round((completedSections / Object.keys(sections).length) * 100);
+};
 
-	return Math.round((completedFields / totalFields) * 100); // percentage
+const SectionStatus = ({ isComplete }: { isComplete: boolean }) => {
+	return (
+		<div className="flex items-center gap-2">
+			{isComplete ? (
+				<Image src={checkmark} alt="green checkmark" className="w-5 h-5" />
+			) : (
+				<Image
+					src={exclamation}
+					alt="red exclamation mark"
+					className="w-5 h-5"
+				/>
+			)}
+		</div>
+	);
 };
 
 export default function ClientProfile({
@@ -58,6 +77,7 @@ export default function ClientProfile({
 		city: string | null;
 		postalCode: string | null;
 		resumeUrl: string | null;
+		skills: string[] | null;
 	};
 }) {
 	const [resumeModalOpen, setResumeModalOpen] = useState(false);
@@ -67,26 +87,39 @@ export default function ClientProfile({
 
 	const clientProgress: number = profileProgressCalculation(client);
 
+	const sections = {
+		personalInfo: Boolean(
+			client.firstName &&
+				client.lastName &&
+				client.email &&
+				client.city &&
+				client.postalCode
+		),
+		resume: Boolean(client.resumeUrl),
+		skills: Boolean(client.skills && client.skills.length > 0),
+	};
+
 	return (
 		<div className="m-2 bg-white p-4 flex flex-col items-center justify-center max-w-2xl drop-shadow-sm border border-black rounded-lg">
-			<div className="flex items-center justify-between w-full mb-4 px-8 py-2">
-				<h1 className="font-semibold">Profile Details</h1>
+			<div className="flex items-center justify-between w-full mb-4 px-2 py-2">
+				<h1 className="font-semibold text-2xl">Profile Details</h1>
 				<button className="flex items-center">
 					<Image src={editIcon} width={15} height={15} alt="" />
 					<p className="mx-2">Edit</p>
 				</button>
 			</div>
-			<div className="w-11/12 h-3 border border-black rounded-full overflow-hidden ">
-				<div className="h-full bg-caribbeanCurrant rounded-full w-1/3"></div>
-			</div>
-			<Progress value={clientProgress} className="w-11/12" />
+			<Progress
+				value={clientProgress}
+				className="w-11/12  [&>div]:bg-caribbeanCurrant"
+			/>
 			<p className="">{clientProgress}% completed</p>
 			<div className="flex justify-between">
 				<div className="flex flex-col items-center justify-center w-1/2">
 					<div className="bg-spaceCadet text-white w-full my-2 mx-4 rounded-sm p-4">
 						<ul>
-							<li className="flex items-center">
+							<li className="flex items-center justify-between">
 								<h1 className="text-xl">{`${client.firstName} ${client.lastName}`}</h1>
+								<SectionStatus isComplete={sections.personalInfo} />
 							</li>
 							<li className="flex items-center">
 								<Image src={locationIcon} width={15} height={15} alt="" />
@@ -103,7 +136,7 @@ export default function ClientProfile({
 						</ul>
 					</div>
 					<div className="bg-spaceCadet text-white w-full my-2 mx-4 rounded-sm p-4">
-						<div className="flex items-center">
+						<div className="flex items-center justify-between">
 							<h1 className="text-xl mx-2">Application History</h1>
 							<Image src={downloadIcon} width={15} height={15} alt="" />
 						</div>
@@ -128,7 +161,11 @@ export default function ClientProfile({
 				</div>
 				<ul className="flex flex-col w-1/2 h-auto">
 					<li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
-						<h1 className="text-xl">Resume</h1>
+						<div className="flex items-center justify-between">
+							<h1 className="text-xl">Resume</h1>
+							<SectionStatus isComplete={sections.resume} />
+						</div>
+
 						<div className="flex items-center py-4">
 							<button
 								onClick={openResumeModal}
@@ -146,6 +183,14 @@ export default function ClientProfile({
 						</div>
 					</li>
 					<li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
+						<div className="flex items-center justify-between">
+							<h1 className="text-xl">Skills & Qualifications</h1>
+							<SectionStatus isComplete={sections.skills} />
+						</div>
+						<p>some skills here idk</p>
+					</li>
+					{/* Removed b/c it's not info we're going to store in the db, it was just listed in figma */}
+					{/* <li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
 						<h1 className="text-xl">Record</h1>
 					</li>
 					<li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
@@ -154,12 +199,10 @@ export default function ClientProfile({
 					<li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
 						<h1 className="text-xl">Work Experience</h1>
 					</li>
-					<li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
-						<h1 className="text-xl">Skills/Qualifications</h1>
-					</li>
+
 					<li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
 						<h1 className="text-xl">Referral History</h1>
-					</li>
+					</li> */}
 				</ul>
 			</div>
 			<button
