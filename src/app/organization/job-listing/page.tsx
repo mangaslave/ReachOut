@@ -13,7 +13,7 @@ export default async function JobListingPage() {
   if (!user) {
     redirect("/");
   }
-  await AddKindeUserToDb();
+  await AddKindeUserToDb(2);
 
   const jobs = await GetJobListingsAction();
   let listings = jobs.listings as JobListing;

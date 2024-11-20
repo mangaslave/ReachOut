@@ -12,7 +12,7 @@ export default async function DocumentOrganizationPage() {
   if (!user) {
     redirect("/");
   }
-  await AddKindeUserToDb();
+  await AddKindeUserToDb(1);
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,

@@ -15,7 +15,7 @@ export default async function ClientsPage() {
   if (!user) {
     redirect("/");
   }
-  await AddKindeUserToDb();
+  await AddKindeUserToDb(1);
 
   let clients = await GetClientAction();
 

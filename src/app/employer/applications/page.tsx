@@ -14,7 +14,7 @@ export default async function PotentialEmployees() {
   if (!user) {
     redirect("/");
   }
-  await AddKindeUserToDb();
+  await AddKindeUserToDb(2);
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,
