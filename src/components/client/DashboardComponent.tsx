@@ -7,7 +7,27 @@ import {NewMessagesBox} from "@/components/client/NewMessagesBox";
 import {NewJobListingsBox} from "@/components/client/NewJobListingsBox";
 import {useEffect, useState} from "react";
 
-export default function DashboardClient({user}: {user: {name: string; email: string; image: string}}) {
+export default function DashboardClient({
+  user,
+  jobListings,
+}: {
+  user: {name: string; email: string; image: string};
+  jobListings:
+    | {
+        title: string;
+        companyName: string | null;
+        logoUrl: string | null;
+        datePosted: string | null;
+        jobType: string | null;
+        salary: number;
+        location: string | null;
+        description: string | null;
+        jobPostingId: number;
+        skills: (string | null)[];
+        benefit: (string | null)[];
+      }[]
+    | null;
+}) {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
@@ -37,7 +57,7 @@ export default function DashboardClient({user}: {user: {name: string; email: str
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-4">Today&#39;s Overview</h2>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <NewJobListingsBox />
+                <NewJobListingsBox jobListings={jobListings} />
                 <NewMessagesBox />
               </div>
             </div>

@@ -2,7 +2,25 @@
 import {Avatar, AvatarFallback} from "../ui/avatar";
 import {Button} from "../ui/button";
 
-export function NewJobListingsBox() {
+export function NewJobListingsBox({
+  jobListings,
+}: {
+  jobListings:
+    | {
+        title: string;
+        companyName: string | null;
+        logoUrl: string | null;
+        datePosted: string | null;
+        jobType: string | null;
+        salary: number;
+        location: string | null;
+        description: string | null;
+        jobPostingId: number;
+        skills: (string | null)[];
+        benefit: (string | null)[];
+      }[]
+    | null;
+}) {
   return (
     <div className="p-6 rounded-xl bg-white shadow-md max-w-xl">
       <div className="flex justify-between items-center mb-6">
