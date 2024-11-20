@@ -3,6 +3,8 @@
 import {Sidebar} from "@/components/client/SideBar";
 import Header from "@/components/client/Header";
 import userIcon from "../../../public/static/images/userIcon.svg";
+import closeIcon from "../../../public/static/images/CloseIcon.svg";
+import downMenuIcon from "../../../public/static/images/DownMenu_icon.svg";
 import {useState} from "react";
 import JobCard from "@/components/client/job_postcard";
 import {JobListingContactInfo} from "@/components/client/JobListingContactInfo";
@@ -14,6 +16,7 @@ import {JobListingApplicationSummary} from "@/components/client/JobListingSummar
 import SubmitApplicationAction from "@/actions/SubmitApplicationAction";
 import {KindeUser} from "@kinde-oss/kinde-auth-nextjs/types";
 import Image from "next/image";
+import {Button} from "../ui/button";
 
 export interface JobDetails {
   companyName: string;
@@ -30,6 +33,11 @@ export interface ClientInfo {
   firstName: string | null;
   lastName: string | null;
   id: number | null;
+  city: string | null;
+  phoneNumber: string | null;
+  postalCode: string | null;
+  email: string | null;
+  resumeUrl: string | null;
 }
 
 export interface JobApplication {
@@ -80,13 +88,13 @@ export default function JobListingMaster({
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [selectClientModalOpen, setSelectClientModalOpen] = useState(false);
   const [selectedJobDetails, setSelectedJobDetails] = useState<JobDetails | null>(null);
-  const [contactFirstName, setContactFirstName] = useState("");
-  const [contactLastName, setContactLastName] = useState("");
-  const [contactCity, setContactCity] = useState("");
-  const [contactEmail, setContactEmail] = useState("");
-  const [contactPhone, setContactPhone] = useState("");
-  const [resumeLink, setResumeLink] = useState("");
-  const [, setResumeName] = useState("");
+  const [contactFirstName, setContactFirstName] = useState(clients[0]?.firstName ? clients[0]?.firstName : "");
+  const [contactLastName, setContactLastName] = useState(clients[0]?.lastName ? clients[0]?.lastName : "");
+  const [contactCity, setContactCity] = useState(clients[0]?.city ? clients[0]?.city : "");
+  const [contactEmail, setContactEmail] = useState(clients[0]?.email ? clients[0]?.email : "");
+  const [contactPhone, setContactPhone] = useState(clients[0]?.phoneNumber ? clients[0]?.phoneNumber : "");
+  const [resumeLink, setResumeLink] = useState(clients[0]?.resumeUrl ? clients[0]?.resumeUrl : "");
+  const [resumeName, setResumeName] = useState("");
   const [availability, setAvailability] = useState(new Date(Date.now()));
   const [companyId, setCompanyId] = useState(0);
   const [clientId, setClientId] = useState(clients[0]?.id ? clients[0]?.id : 0);
@@ -126,17 +134,29 @@ export default function JobListingMaster({
   };
 
   const handleClientSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(Number(event.target.value));
     setClientId(Number(event.target.value));
-    const client = clients[Number(event.target.value)];
-    setContactFirstName(client.firstName as string);
-    setContactLastName(client.lastName as string);
+    const clientSelection = event.target.options[event.target.selectedIndex].innerText;
+    const clientSelectionFirstName = clientSelection.split(" ")[0];
+    const clientSelectionLastName = clientSelection.split(" ")[1];
+    const selectedClient = clients.filter(
+      (client) => client.firstName === clientSelectionFirstName && client.lastName === clientSelectionLastName
+    )[0];
+    setContactFirstName(selectedClient.firstName as string);
+    setContactLastName(selectedClient.lastName as string);
+    setContactPhone(selectedClient.phoneNumber as string);
+    setContactEmail(selectedClient.email as string);
+    setContactCity(selectedClient.city as string);
+    setResumeLink(selectedClient.resumeUrl as string);
   };
 
   const handleClickOutside = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
       closeAll();
     }
+  };
+
+  const moveToSelectClient = () => {
+    setSelectClientModalOpen(true);
   };
 
   const moveToApplication = () => {
@@ -160,6 +180,7 @@ export default function JobListingMaster({
   };
 
   const closeAll = () => {
+    setSelectClientModalOpen(false);
     setApplicationModalOpen(false);
     setDetailsModalOpen(false);
     setAvailabilityModalOpen(false);
@@ -289,7 +310,49 @@ export default function JobListingMaster({
       </div>
       {detailsModalOpen && selectedJobDetails && (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListing jobDetails={selectedJobDetails} closeModal={handleClickOutside} nextModal={moveToApplication} />
+          <JobListing jobDetails={selectedJobDetails} closeModal={handleClickOutside} nextModal={moveToSelectClient} />
+        </div>
+      )}
+      {selectClientModalOpen && (
+        <div className="fixed z-50 py-4 inset-0 flex pt-56 items-start justify-center bg-black bg-opacity-50">
+          <div className="w-60 h-48 rounded-md bg-white flex flex-col justify-evenly items-center">
+            <div className="flex">
+              <h2 className="text-spaceCadet ml-2 text-xl font-bold">Application For: </h2>
+              <Button variant="ghost" className="text-3xl m-0 p-0 hover:bg-none dark:hover:bg-none" onClick={closeAll}>
+                <Image
+                  src={closeIcon}
+                  width={50}
+                  height={50}
+                  alt=""
+                  className="ml-6 mb-6 hover:bg-none dark:hover:bg-none"
+                ></Image>
+              </Button>
+            </div>
+            <div className="relative">
+              <select
+                onChange={handleClientSelection}
+                className="block h-8 pl-10 pr-3 w-52 bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 appearance-none"
+              >
+                {clients.map((client) => {
+                  return (
+                    <option
+                      key={client.id}
+                      value={client.id ? client.id : 0}
+                    >{`${client.firstName} ${client.lastName}`}</option>
+                  );
+                })}
+              </select>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Image src={userIcon} width={10} height={10} alt="" className="text-gray-500 h-4 w-4" />
+              </div>
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                <Image src={downMenuIcon} width={10} height={10} alt="" className="text-gray-500 h-4 w-4" />
+              </div>
+            </div>
+            <Button className="self-end mx-10" onClick={moveToApplication}>
+              Next
+            </Button>
+          </div>
         </div>
       )}
       {applicationModalOpen && (
@@ -337,6 +400,7 @@ export default function JobListingMaster({
             nextModal={closeAllShowSuccess}
             previousModal={moveToAvailability}
             applicationInfo={applicationInfo}
+            resumeName={resumeName}
           />
         </div>
       )}
@@ -353,30 +417,6 @@ export default function JobListingMaster({
             <h3 className="py-8 text-lg">
               Application could not be submitted due to a server error. Please try again. ⛔
             </h3>
-          </div>
-        </div>
-      )}
-      {selectClientModalOpen && (
-        <div className="fixed z-50 py-4 inset-0 flex pt-56 items-start justify-center bg-black bg-opacity-50">
-          <div className="w-48">
-            <div className="relative">
-              <select
-                onChange={handleClientSelection}
-                className="block w-full h-8 pl-10 pr-3 bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 appearance-none"
-              >
-                {clients.map((client) => {
-                  return (
-                    <option
-                      key={client.id}
-                      value={client.id ? client.id : 0}
-                    >{`${client.firstName} ${client.lastName}`}</option>
-                  );
-                })}
-              </select>
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Image src={userIcon} width={10} height={10} alt="userIcon" className="text-gray-500 h-4 w-4" />
-              </div>
-            </div>
           </div>
         </div>
       )}
