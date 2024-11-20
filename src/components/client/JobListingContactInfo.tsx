@@ -3,7 +3,7 @@ import {Textarea} from "../ui/textarea";
 import {Label} from "../ui/label";
 import {Button} from "../ui/button";
 import {Dispatch, SetStateAction, useState} from "react";
-import {JobDetails} from "./JobListingMaster";
+import {JobListing} from "./JobListingMaster";
 import {validEmail, validPhoneNumber} from "@/lib/validations";
 import {twMerge} from "tailwind-merge";
 
@@ -34,7 +34,7 @@ export function JobListingContactInfo({
     contactPhone: string;
     contactEmail: string;
   };
-  jobDetails: JobDetails | null;
+  jobDetails: JobListing | null;
 }) {
   const [firstName, setFirstName] = useState(contactInfo.contactFirstName);
   const [lastName, setLastName] = useState(contactInfo.contactLastName);
@@ -113,7 +113,7 @@ export function JobListingContactInfo({
     >
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h1 className="font-bold text-2xl text-gray-900 mb-2">{jobDetails?.jobTitle}</h1>
+          <h1 className="font-bold text-2xl text-gray-900 mb-2">{jobDetails?.title}</h1>
           <span className="text-gray-600">{jobDetails?.companyName}</span>
         </div>
       </div>

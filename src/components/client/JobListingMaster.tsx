@@ -53,29 +53,26 @@ export interface JobApplication {
   userId: string;
 }
 
-export type JobListing =
-  | {
-      title: string;
-      companyName: string | null;
-      datePosted: string | null;
-      logoUrl: string | null;
-      salary: number;
-      location: string | null;
-      date: string | null;
-      jobType: string | null;
-      description: string | null;
-      jobPostingId: number;
-      skills: (string | null)[];
-      benefit: (string | null)[];
-    }[]
-  | null;
+export type JobListing = {
+  title: string;
+  companyName: string | null;
+  logoUrl: string | null;
+  salary: number;
+  location: string | null;
+  date: string | null;
+  jobType: string | null;
+  description: string | null;
+  jobPostingId: number;
+  skills: (string | null)[];
+  benefit: (string | null)[];
+};
 
 export default function JobListingMaster({
   listings,
   clients,
   user,
 }: {
-  listings: JobListing;
+  listings: JobListing[];
   clients: ClientInfo[];
   user: KindeUser<Record<string, unknown>>;
 }) {
@@ -87,7 +84,7 @@ export default function JobListingMaster({
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [selectClientModalOpen, setSelectClientModalOpen] = useState(false);
-  const [selectedJobDetails, setSelectedJobDetails] = useState<JobDetails | null>(null);
+  const [selectedJobDetails, setSelectedJobDetails] = useState<JobListing | null>(null);
   const [contactFirstName, setContactFirstName] = useState(clients[0]?.firstName ? clients[0]?.firstName : "");
   const [contactLastName, setContactLastName] = useState(clients[0]?.lastName ? clients[0]?.lastName : "");
   const [contactCity, setContactCity] = useState(clients[0]?.city ? clients[0]?.city : "");
@@ -126,7 +123,7 @@ export default function JobListingMaster({
     };
   };
 
-  const openDetailsModal = (jobDetails: JobDetails, jobId: number) => {
+  const openDetailsModal = (jobDetails: JobListing, jobId: number) => {
     setCompanyId(jobId);
     closeAll();
     setSelectedJobDetails(jobDetails);
@@ -272,13 +269,16 @@ export default function JobListingMaster({
                       openDetailsModal(
                         {
                           companyName: listing.companyName as string,
-                          jobTitle: listing.title as string,
-                          salary: `${listing.salary}`,
+                          title: listing.title as string,
+                          salary: listing.salary,
                           location: `${listing.location}`,
                           jobType: `${listing.jobType}`,
                           description: `${listing.description}`,
                           skills: listing.skills as string[],
-                          benefits: listing.benefit as string[],
+                          benefit: listing.benefit as string[],
+                          date: listing.date,
+                          logoUrl: listing.logoUrl,
+                          jobPostingId: listing.jobPostingId,
                         },
                         listing.jobPostingId
                       )
@@ -294,7 +294,7 @@ export default function JobListingMaster({
                     jobTitle={`${listing.title}`}
                     matchStatus="Excellent"
                     jobType={`${listing.jobType}`}
-                    dateOfPosting={`${listing.datePosted}`}
+                    dateOfPosting={`${listing.date}`}
                     statusColor="bg-green-600"
                     status={{
                       status1: "/static/images/match-green.svg",

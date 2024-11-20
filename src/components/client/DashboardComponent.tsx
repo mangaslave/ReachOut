@@ -6,27 +6,14 @@ import Reminders from "@/components/client/Reminders";
 import {NewMessagesBox} from "@/components/client/NewMessagesBox";
 import {NewJobListingsBox} from "@/components/client/NewJobListingsBox";
 import {useEffect, useState} from "react";
+import {JobListing as Listing} from "./JobListingMaster";
 
 export default function DashboardClient({
   user,
   jobListings,
 }: {
   user: {name: string; email: string; image: string};
-  jobListings:
-    | {
-        title: string;
-        companyName: string | null;
-        logoUrl: string | null;
-        datePosted: string | null;
-        jobType: string | null;
-        salary: number;
-        location: string | null;
-        description: string | null;
-        jobPostingId: number;
-        skills: (string | null)[];
-        benefit: (string | null)[];
-      }[]
-    | null;
+  jobListings: Listing[] | null;
 }) {
   const [currentDate, setCurrentDate] = useState(new Date());
 

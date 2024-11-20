@@ -1,10 +1,10 @@
 "use client";
 import {Button} from "../ui/button";
-import {JobDetails} from "./JobListingMaster";
+import {JobListing as Listing} from "./JobListingMaster";
 
 interface JobListingProps {
-  jobDetails: JobDetails;
-  nextModal: () => void;
+  jobDetails: Listing;
+  nextModal?: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
@@ -14,7 +14,7 @@ export const JobListing = ({jobDetails, nextModal, closeModal}: JobListingProps)
   const type = jobDetails.jobType;
   const location = jobDetails.location;
   const description = jobDetails.description;
-  const benefits = jobDetails.benefits;
+  const benefits = jobDetails.benefit;
   const skills = jobDetails.skills;
 
   return (
@@ -31,9 +31,13 @@ export const JobListing = ({jobDetails, nextModal, closeModal}: JobListingProps)
         </div>
       </div>
       <div className="border-b border-caribbeanCurrant my-4" />
-      <Button onClick={nextModal} variant="secondary" className="bg-spaceCadet text-white">
-        Start Application
-      </Button>
+      {nextModal ? (
+        <Button onClick={nextModal} variant="secondary" className="bg-spaceCadet text-white">
+          Start Application
+        </Button>
+      ) : (
+        ""
+      )}
       <div className="flex justify-between items-start mb-4 ">
         <h2 className="font-bold text-xl mt-6 text-spaceCadet">Job Description</h2>
       </div>
