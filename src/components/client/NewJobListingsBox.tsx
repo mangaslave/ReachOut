@@ -4,6 +4,7 @@ import {Avatar, AvatarFallback, AvatarImage} from "../ui/avatar";
 import {Button} from "../ui/button";
 import {JobListing} from "./JobListingDescription";
 import {JobListing as listing} from "./JobListingMaster";
+import Link from "next/link";
 
 export function NewJobListingsBox({jobListings}: {jobListings: listing[] | null}) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,9 +26,9 @@ export function NewJobListingsBox({jobListings}: {jobListings: listing[] | null}
       <div className="p-6 rounded-xl bg-white shadow-md max-w-xl">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold">New Job Listings</h2>
-          <a href="#" className="text-lg underline">
+          <Link href="/job-listing" className="text-lg underline">
             View All
-          </a>
+          </Link>
         </div>
         <h2 className="text-lg font-bold">No new job listings</h2>
       </div>
@@ -37,9 +38,9 @@ export function NewJobListingsBox({jobListings}: {jobListings: listing[] | null}
     <div className="p-6 rounded-xl bg-white shadow-md max-w-xl">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold">New Job Listings</h2>
-        <a href="/job-listings" className="text-lg underline">
+        <Link href="/job-listing" className="text-lg underline">
           View All
-        </a>
+        </Link>
       </div>
 
       {jobListings.slice(0, 3).map((listing, index) => (
