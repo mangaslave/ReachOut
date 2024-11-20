@@ -22,7 +22,14 @@ export async function AddClientAction({
     const {getUser} = getKindeServerSession();
     const user = await getUser();
 
-    console.log("Inserting client:", {firstName, lastName, phoneNumber, email, postalCode, city});
+    console.log("Inserting client:", {
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      postalCode,
+      city,
+    });
 
     const insertedClient = await db.insert(clientTable).values({
       userId: user.id as string,
