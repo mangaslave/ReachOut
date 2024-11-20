@@ -63,7 +63,7 @@ export const clientProfiles = sqliteTable("client_profiles", {
 export const skillClient = sqliteTable("skill_client", {
   skillClientId: integer("skill_client_id").primaryKey(),
   skillId: integer("skill_id").references(() => skills.skillId),
-  clientProfileId: integer("client_profile_id").references(() => clientProfiles.clientProfileId),
+  clientId: integer("client_id").references(() => clients.clientId),
 });
 
 export const skillJob = sqliteTable("skill_job", {

@@ -11,6 +11,8 @@ import {pdfjs} from "react-pdf";
 import {Progress} from "../ui/progress";
 import checkmark from "../../../public/static/images/complete-checkmark-icon.svg";
 import exclamation from "../../../public/static/images/incomplete-exclamation-icon.svg";
+import "react-pdf/dist/Page/TextLayer.css";
+import "react-pdf/dist/Page/AnnotationLayer.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
@@ -33,7 +35,6 @@ const profileProgressCalculation = (client: {
   };
 
   const completedSections = Object.values(sections).filter(Boolean).length;
-  console.log("completed: ", completedSections);
   return Math.round((completedSections / Object.keys(sections).length) * 100);
 };
 
@@ -98,9 +99,6 @@ export default function ClientProfile({
           <Image src={editIcon} width={15} height={15} alt="" />
           <p className="mx-2">Edit</p>
         </button>
-      </div>
-      <div className="w-11/12 h-3 border border-black rounded-full overflow-hidden ">
-        <div className="h-full bg-caribbeanCurrant rounded-full w-1/3"></div>
       </div>
       <Progress value={clientProgress} className="w-11/12  [&>div]:bg-caribbeanCurrant" />
       <p className="">{clientProgress}% completed</p>
@@ -167,7 +165,17 @@ export default function ClientProfile({
               <h1 className="text-xl">Skills & Qualifications</h1>
               <SectionStatus isComplete={sections.skills} />
             </div>
-            <p>some skills here idk</p>
+            <div className="rounded-sm border m-2 my-4 p-2">
+              <ul className="">
+                {client.skills?.map((skill) => {
+                  return (
+                    <li className="font-thin p-1 mx-2" key={skill}>
+                      {skill}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
