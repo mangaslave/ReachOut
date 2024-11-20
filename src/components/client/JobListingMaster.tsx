@@ -379,6 +379,7 @@ export default function JobListingMaster({
             previousModal={moveToApplication}
             setResumeLink={setResumeLink}
             setResumeName={setResumeName}
+            clientId={clientId}
           />
         </div>
       )}
