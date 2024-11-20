@@ -239,6 +239,35 @@ export default function JobListingMaster({
 							</div>
 						</div>
 
+						{Object.values(activeFilters).some((filter) => filter !== "") && (
+							<div className="mb-4">
+								<h3 className="text-xl font-semibold text-spaceCadet">
+									Showing results for
+								</h3>
+								<h4 className="text-lg font-normal mt-1">
+									{activeFilters.location && (
+										<span className="px-1">
+											<span className="font-bold">Location: </span>
+											{activeFilters.location}
+										</span>
+									)}
+									{activeFilters.jobType && (
+										<span className="px-1">
+											<span className="font-bold">Job Type: </span>
+											{activeFilters.jobType}
+										</span>
+									)}
+									{activeFilters.client && (
+										<span className="px-1">
+											{" "}
+											<span className="font-bold">Client: </span>
+											{activeFilters.client}
+										</span>
+									)}
+								</h4>
+							</div>
+						)}
+
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 							{listings?.map((listing) => {
 								if (i < 2) {
