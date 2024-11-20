@@ -5,7 +5,7 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {eq} from "drizzle-orm";
 import {redirect} from "next/navigation";
 
-export default async function AddKindeUserToDb() {
+export default async function AddKindeUserToDb(accountType: number) {
   const {getUser} = getKindeServerSession();
   const user = await getUser();
   if (!user) {
@@ -22,7 +22,7 @@ export default async function AddKindeUserToDb() {
       firstName: user.given_name as string,
       lastName: user.family_name as string,
       email: user.email as string,
-      accountTypeId: 1,
+      accountTypeId: accountType,
     });
   } catch (err) {
     console.log(err);

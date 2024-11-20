@@ -1,3 +1,4 @@
+"use server";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
@@ -12,7 +13,7 @@ export default async function DashboardPage() {
     redirect("/");
   }
 
-  await AddKindeUserToDb();
+  await AddKindeUserToDb(1);
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,
