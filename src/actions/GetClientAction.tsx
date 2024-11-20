@@ -2,9 +2,7 @@
 import {db} from "@/db";
 import {clients} from "@/db/schema";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-// import { error } from "console";
 import {eq} from "drizzle-orm";
-// import {redirect} from "next/navigation";
 
 export default async function GetClientAction() {
   const {getUser} = getKindeServerSession();
