@@ -10,7 +10,7 @@ export const uploadFile = actionClient.schema(fileUploadSchema).action(async ({p
   const user = await getUser();
 
   if (!user) {
-    // throw new Error("Unauthorized: Please log in");
+    console.log("Unauthorized: Please log in");
     return {
       url: null,
       error: "Unauthorized: Please log in",
@@ -51,7 +51,6 @@ export const uploadFile = actionClient.schema(fileUploadSchema).action(async ({p
       url: null,
       error: "Failed to upload file to S3",
     };
-    // throw new Error("Failed to upload file to S3");
   }
 });
 
