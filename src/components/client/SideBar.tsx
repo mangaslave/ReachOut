@@ -29,13 +29,14 @@ const NavItem = ({
 	title,
 	iconSrc,
 	href,
+	collapsed,
 }: {
 	title: string;
 	iconSrc: string;
 	href: string;
+	collapsed?: boolean;
 }) => {
 	const pathname = usePathname();
-	const collapsed = false;
 
 	return (
 		<Link href={href}>
@@ -62,7 +63,7 @@ const NavItem = ({
 						)}
 					/>
 				</div>
-				{!collapsed && <span>{title}</span>}
+				{!collapsed && <span className="ml-3">{title}</span>}
 			</span>
 		</Link>
 	);
@@ -101,6 +102,7 @@ export function Sidebar({ className, user }: SidebarProps) {
 							title="Dashboard"
 							iconSrc="/static/images/Dashboard_icon.svg"
 							href="/dashboard"
+							collapsed={collapsed}
 						/>
 					</li>
 					<li>
@@ -108,6 +110,7 @@ export function Sidebar({ className, user }: SidebarProps) {
 							title="Job Listings"
 							iconSrc="/static/images/JobListings_icon.svg"
 							href="/job-listing"
+							collapsed={collapsed}
 						/>
 					</li>
 					<li>
@@ -115,6 +118,7 @@ export function Sidebar({ className, user }: SidebarProps) {
 							title="Client Management"
 							iconSrc="/static/images/UseManagement_icon.svg"
 							href="/clients"
+							collapsed={collapsed}
 						/>
 					</li>
 					<li>
@@ -122,6 +126,7 @@ export function Sidebar({ className, user }: SidebarProps) {
 							title="Inbox"
 							iconSrc="/static/images/Inbox_icon.svg"
 							href="/inbox"
+							collapsed={collapsed}
 						/>
 					</li>
 					<li>
@@ -129,6 +134,7 @@ export function Sidebar({ className, user }: SidebarProps) {
 							title="Resume Builder"
 							iconSrc="/static/images/Resume_icon.svg"
 							href="/resume"
+							collapsed={collapsed}
 						/>
 					</li>
 				</ul>
@@ -141,6 +147,7 @@ export function Sidebar({ className, user }: SidebarProps) {
 							title="Notifications"
 							iconSrc="/static/images/Bell_Notification_icon.svg"
 							href="/notifications"
+							collapsed={collapsed}
 						/>
 					</li>
 					<li>
@@ -148,6 +155,7 @@ export function Sidebar({ className, user }: SidebarProps) {
 							title="Settings"
 							iconSrc="/static/images/Settings_icon.svg"
 							href="/settings"
+							collapsed={collapsed}
 						/>
 					</li>
 				</ul>
