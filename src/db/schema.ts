@@ -19,6 +19,7 @@ export const users = sqliteTable("users", {
   lastName: text("last_name").notNull(),
   email: text("email").notNull().unique(),
   accountTypeId: integer("account_type_id").references(() => accountTypes.accountTypeId),
+  companyId: integer("company_id").references(() => companies.companyId),
 });
 
 export const status = sqliteTable("status", {

@@ -1,59 +1,26 @@
-"use client";
-import Header from "@/components/client/Header";
-import { NewMessagesBox } from "@/components/client/NewMessagesBox";
-import Reminders from "@/components/client/Reminders"
-import { useState, useEffect } from "react";
-import { EmployerNewJobListingBox } from "@/components/client/EmployerNewJobListingsBox";
-import { EmployerSidebar } from "@/components/client/EmployerSidebar";
+"use server";
 
-export default function EmployerDashboardPage () {
-    const [user] = useState({
-        name: "Greg Johnson",
-        email: "gjohnson@gmail.com",
-        image: "/static/images/giselleAndrews.jpg"
-    })
+import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
+import GetApplicationsAction from "@/actions/GetApplicationsAction";
+import EmployerDashboard from "@/components/client/EmployerDashboard";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import {redirect} from "next/navigation";
 
-const [currentDate, setCurrentDate] = useState(new Date());
+export default async function EmployerDashboardPage() {
+  const {getUser} = getKindeServerSession();
+  const user = await getUser();
+  if (!user) {
+    redirect("/");
+  }
+  await AddKindeUserToDb(1);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
+  const applications = await GetApplicationsAction(user.id);
 
-    return () => clearInterval(timer);
-  }, []);
+  const activeUser = {
+    name: `${user.given_name} ${user.family_name}`,
+    email: `${user.email}`,
+    image: `${user.picture}`,
+  };
 
-  const formattedDate = currentDate.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-   return (
-    <div className="flex h-screen bg-gray-100">
-      <EmployerSidebar/>
-
-      <div className="flex-1 flex flex-col">
-        <Header headerMsg={`Welcome back, ${user.name}`} subHeadingMsg={`${formattedDate}`} />
-
-        <main className="flex-1 overflow-y-auto pt-4 px-2 sm:px-2 lg:px-4">
-          <div className="max-w-7xl mx-1">
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">Today's Overview</h2>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <EmployerNewJobListingBox />
-                <NewMessagesBox />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <Reminders />
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
-  );
-
+  return <EmployerDashboard user={activeUser} applications={applications.applications} />;
 }
