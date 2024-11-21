@@ -11,7 +11,6 @@ export const uploadFile = actionClient.schema(fileUploadSchema).action(async ({p
   const user = await getUser();
 
   if (!user) {
-    // throw new Error("Unauthorized: Please log in");
     return {
       url: null,
       error: "Unauthorized: Please log in",
@@ -52,7 +51,6 @@ export const uploadFile = actionClient.schema(fileUploadSchema).action(async ({p
       url: null,
       error: "Failed to upload file to S3",
     };
-    // throw new Error("Failed to upload file to S3");
   }
 });
 
@@ -94,7 +92,6 @@ export const getPresignedUrl = actionClient
         url: null,
         error: "Unauthorized: Please log in",
       };
-      // throw new Error("Unauthorized: Please log in");
     }
 
     try {
@@ -114,6 +111,5 @@ export const getPresignedUrl = actionClient
         url: null,
         error: "Unauthorized: Please log in",
       };
-      // throw new Error("Failed to generate presigned URL");
     }
   });

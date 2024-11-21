@@ -5,18 +5,19 @@ import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import DashboardClient from "@/components/client/DashboardComponent";
 
 export default async function DashboardPage() {
-  const {getUser} = getKindeServerSession();
-  const user = await getUser();
-  if (!user) {
+  const {getUser, isAuthenticated} = getKindeServerSession();
+  const authenticated = await isAuthenticated();
+  if (!authenticated) {
     redirect("/");
   }
+  const user = await getUser();
 
-  await AddKindeUserToDb();
+  await AddKindeUserToDb(user);
 
   const activeUser = {
-    name: `${user.given_name} ${user.family_name}`,
-    email: `${user.email}`,
-    image: `${user.picture}`,
+    name: `${user?.given_name} ${user?.family_name}`,
+    email: `${user?.email}`,
+    image: `${user?.picture}`,
   };
 
   return <DashboardClient user={activeUser} />;

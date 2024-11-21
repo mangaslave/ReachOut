@@ -10,12 +10,13 @@ import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import GetClientAction from "@/actions/GetClientAction";
 
 export default async function ClientsPage() {
-  const {getUser} = getKindeServerSession();
-  const user = await getUser();
-  if (!user) {
+  const {getUser, isAuthenticated} = getKindeServerSession();
+  const authenticated = await isAuthenticated();
+  if (!authenticated) {
     redirect("/");
   }
-  await AddKindeUserToDb();
+  const user = await getUser();
+  await AddKindeUserToDb(user);
 
   const clients = await GetClientAction();
 
