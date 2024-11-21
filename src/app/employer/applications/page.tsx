@@ -60,7 +60,18 @@ export default async function PotentialEmployees() {
                       <option value="Hired">🟢 Hired</option>
                     </select>
                   </td>
-                  <td className="px-4 py-4 underline">View full application</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <button
+                      // onClick={() => {
+                      //   setSelectedClient(client);
+                      //   setModalOpen();
+                      // }}
+                      // key={index}
+                      className="hover:underline bg-none"
+                    >
+                      View Full Application
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-4 py-4 text-gray-900">John Wick</td>
@@ -78,7 +89,17 @@ export default async function PotentialEmployees() {
                       <option value="Hired">🟢 Hired</option>
                     </select>
                   </td>
-                  <td className="px-4 py-4 underline">View full application</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <button
+                      // onClick={() => {
+                      //   setSelectedClient(client);
+                      //   setModalOpen();
+                      // }}
+                      className="hover:underline bg-none"
+                    >
+                      View Full Application
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td className="px-4 py-4 text-gray-900">John Wick</td>
@@ -96,7 +117,17 @@ export default async function PotentialEmployees() {
                       <option value="Hired">🟢 Hired</option>
                     </select>
                   </td>
-                  <td className="px-4 py-4 underline">View full application</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <button
+                      // onClick={() => {
+                      //   setSelectedClient(client);
+                      //   setModalOpen();
+                      // }}
+                      className="hover:underline bg-none"
+                    >
+                      View Full Application
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>

@@ -26,7 +26,7 @@ const profileProgressCalculation = (client: {
   city: string | null;
   postalCode: string | null;
   resumeUrl: string | null;
-  skills: string[] | null;
+  skills: (string | null)[];
 }) => {
   const sections = {
     personalInfo: Boolean(client.firstName && client.lastName && client.email && client.city && client.postalCode),
@@ -65,7 +65,7 @@ export default function ClientProfile({
     city: string | null;
     postalCode: string | null;
     resumeUrl: string | null;
-    skills: string[] | null;
+    skills: (string | null)[];
   };
 }) {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
