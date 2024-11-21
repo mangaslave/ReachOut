@@ -7,6 +7,8 @@ import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 
 import {EmployerSidebar} from "@/components/client/EmployerSidebar";
 import Header from "@/components/client/Header";
+import GetApplicationsAction from "@/actions/GetApplicationsAction";
+import EmployerApplicationTable from "@/components/client/EmployerApplicationTable";
 
 export default async function PotentialEmployees() {
   const {getUser} = getKindeServerSession();
@@ -15,6 +17,8 @@ export default async function PotentialEmployees() {
     redirect("/");
   }
   await AddKindeUserToDb(2);
+
+  const applications = await GetApplicationsAction(user.id);
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,
@@ -36,102 +40,7 @@ export default async function PotentialEmployees() {
             <h2 className="text-2xl font-semibold text-gray-900">Employee Matches</h2>
             <p className="text-lg">List of best candidates matched to your job openings</p>
           </div>
-
-          <div>
-            <table className="min-w-full divide-y divide-gray-200 bg-white">
-              <thead className="bg-teal-700">
-                <tr>
-                  <th className="px-4 py-3 text-left font-medium text-white">Name</th>
-                  <th className="px-4 py-3 text-left font-medium text-white">Position</th>
-                  <th className="px-4 py-3 text-left font-medium text-white">Type</th>
-                  <th className="px-4 py-3 text-left font-medium text-white">Status</th>
-                  <th className="px-4 py-3 text-left font-medium text-white"></th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
-                <tr>
-                  <td className="px-4 py-4 text-gray-900">John Wick</td>
-                  <td className="px-4 py-4 text-gray-900">Assistant Manager</td>
-                  <td className="px-4 py-4 text-gray-900">Full-Time</td>
-                  <td className="px-4 py-4">
-                    <select className="w-36 border rounded-lg border-black text-black" name="" id="" defaultValue="New">
-                      <option value="New">🔴 NEW!</option>
-                      <option value="Interviewing">🟡 Interviewing</option>
-                      <option value="Hired">🟢 Hired</option>
-                    </select>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <button
-                      // onClick={() => {
-                      //   setSelectedClient(client);
-                      //   setModalOpen();
-                      // }}
-                      // key={index}
-                      className="hover:underline bg-none"
-                    >
-                      View Full Application
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-4 text-gray-900">John Wick</td>
-                  <td className="px-4 py-4 text-gray-900">Assistant Manager</td>
-                  <td className="px-4 py-4 text-gray-900">Part-Time</td>
-                  <td className="px-4 py-4">
-                    <select
-                      className="w-36 border rounded-lg border-black text-black"
-                      name=""
-                      id=""
-                      defaultValue="Interviewing"
-                    >
-                      <option value="New">🔴 NEW!</option>
-                      <option value="Interviewing">🟡 Interviewing</option>
-                      <option value="Hired">🟢 Hired</option>
-                    </select>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <button
-                      // onClick={() => {
-                      //   setSelectedClient(client);
-                      //   setModalOpen();
-                      // }}
-                      className="hover:underline bg-none"
-                    >
-                      View Full Application
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-4 text-gray-900">John Wick</td>
-                  <td className="px-4 py-4 text-gray-900">Assistant Manager</td>
-                  <td className="px-4 py-4 text-gray-900">Part-Time</td>
-                  <td className="px-4 py-4">
-                    <select
-                      className="w-36 border rounded-lg border-black text-black"
-                      name=""
-                      id=""
-                      defaultValue="Hired"
-                    >
-                      <option value="New">🔴 NEW!</option>
-                      <option value="Interviewing">🟡 Interviewing</option>
-                      <option value="Hired">🟢 Hired</option>
-                    </select>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <button
-                      // onClick={() => {
-                      //   setSelectedClient(client);
-                      //   setModalOpen();
-                      // }}
-                      className="hover:underline bg-none"
-                    >
-                      View Full Application
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <EmployerApplicationTable applications={applications.applications} />
         </div>
       </div>
     </div>
