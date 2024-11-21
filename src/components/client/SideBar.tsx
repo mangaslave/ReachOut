@@ -49,7 +49,7 @@ const sidebarItems: SidebarItem[] = [
   },
   {
     title: "Resume Builder",
-    iconSrc: "/static/images/Resume_icon.svg",
+    iconSrc: "/static/images/Resume_Icon.svg",
     href: "/resume",
   },
 ];
