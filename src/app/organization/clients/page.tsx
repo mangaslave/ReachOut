@@ -38,7 +38,7 @@ export default async function ClientsPage() {
               </div>
 
               <div className="ml-auto">
-                <Link href="/clients/newclient" passHref>
+                <Link href="/organization/clients/newclient" passHref>
                   <button className="bg-spaceCadet text-white hover:bg-ylnMnBlue text-xs px-4 rounded-md h-8">
                     + Add New
                   </button>
