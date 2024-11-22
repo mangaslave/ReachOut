@@ -1,5 +1,4 @@
 "use server";
-import {useState} from "react";
 import {DocumentOrganizationComponent} from "@/components/client/DocumentsOrganizationPage";
 import {Sidebar} from "@/components/client/SideBar";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
@@ -7,12 +6,13 @@ import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 
 export default async function DocumentOrganizationPage() {
-  const {getUser} = getKindeServerSession();
-  const user = await getUser();
-  if (!user) {
+  const {getUser, isAuthenticated} = getKindeServerSession();
+  const authenticated = await isAuthenticated();
+  if (!authenticated) {
     redirect("/");
   }
-  await AddKindeUserToDb();
+  const user = await getUser();
+  await AddKindeUserToDb(user, 1);
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,

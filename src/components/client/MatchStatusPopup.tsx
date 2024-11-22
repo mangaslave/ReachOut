@@ -1,5 +1,7 @@
-import { useState } from "react";
-import Image from "next/image"; // Make sure Image is imported
+"use client";
+import {useState} from "react";
+import Image from "next/image";
+import {Tooltip, TooltipContent, TooltipTrigger} from "../ui/tooltip";
 
 interface Status {
   status: {
@@ -9,7 +11,7 @@ interface Status {
   };
 }
 
-export default function InfoPopup({ status: { status1, status2, status3 } }: Status) {
+export default function InfoPopup({status: {status1, status2, status3}}: Status) {
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePopup = () => {
@@ -19,20 +21,27 @@ export default function InfoPopup({ status: { status1, status2, status3 } }: Sta
   return (
     <div className="relative inline-block mt-1">
       {/* Info Button */}
-      <button onClick={togglePopup} className="focus:outline-none">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 text-gray-500 hover:text-gray-700"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm-.75-8.25a.75.75 0 101.5 0v-3.5a.75.75 0 00-1.5 0v3.5zM9.75 12a.75.75 0 100 1.5h.5a.75.75 0 100-1.5h-.5z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </button>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button onClick={togglePopup} className="focus:outline-none">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 text-gray-500 hover:text-gray-700"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm-.75-8.25a.75.75 0 101.5 0v-3.5a.75.75 0 00-1.5 0v3.5zM9.75 12a.75.75 0 100 1.5h.5a.75.75 0 100-1.5h-.5z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </TooltipTrigger>
+        <TooltipContent className="bg-white text-black border-2 border-black">
+          <p>Click to see what requirements have been met by your client.</p>
+        </TooltipContent>
+      </Tooltip>
 
       {/* Popup */}
       {isOpen && (
@@ -64,7 +73,7 @@ export default function InfoPopup({ status: { status1, status2, status3 } }: Sta
             </div>
             <div className="flex items-center">
               <Image src={status2} alt="Status Icon 2" width={20} height={20} />
-              <span className="ml-2">Valid Driver's License</span>
+              <span className="ml-2">Valid Driver&apos;s License</span>
             </div>
             <div className="flex items-center">
               <Image src={status3} alt="Status Icon 3" width={20} height={20} />
@@ -76,5 +85,3 @@ export default function InfoPopup({ status: { status1, status2, status3 } }: Sta
     </div>
   );
 }
-
-
