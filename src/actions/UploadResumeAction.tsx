@@ -7,23 +7,13 @@ import {uploadFile} from "./s3-actions";
 
 dotenv.config();
 
-export default async function UploadResumeAction({
-  name,
-  file,
-  clientId,
-}: {
-  name: string;
-  file: File | undefined;
-  clientId: number;
-}) {
-  console.log(file?.type);
+export default async function UploadResumeAction({file, clientId}: {file: File | undefined; clientId: number}) {
   if (file?.type !== "application/pdf") {
     return {success: false, message: "File must be a pdf"};
   }
 
   try {
     const resume = await uploadFile({file: file});
-
     if (resume?.data) {
       const resumeLinkToDB = await db
         .update(clientsTable)

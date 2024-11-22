@@ -10,12 +10,13 @@ import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import GetClientAction from "@/actions/GetClientAction";
 
 export default async function ClientsPage() {
-  const {getUser} = getKindeServerSession();
-  const user = await getUser();
-  if (!user) {
+  const {getUser, isAuthenticated} = getKindeServerSession();
+  const authenticated = await isAuthenticated();
+  if (!authenticated) {
     redirect("/");
   }
-  await AddKindeUserToDb();
+  const user = await getUser();
+  await AddKindeUserToDb(user, 1);
 
   let clients = await GetClientAction();
 
@@ -38,7 +39,7 @@ export default async function ClientsPage() {
               </div>
 
               <div className="ml-auto">
-                <Link href="/clients/newclient" passHref>
+                <Link href="/organization/clients/newclient" passHref>
                   <button className="bg-spaceCadet text-white hover:bg-ylnMnBlue text-xs px-4 rounded-md h-8">
                     + Add New
                   </button>

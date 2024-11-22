@@ -1,22 +1,23 @@
 "use client";
 import React from "react";
 import {Button} from "@/components/ui/button";
-import {JobApplication} from "@/app/job-listing/page";
+import {JobApplication} from "./JobListingMaster";
 
 export function JobListingApplicationSummary({
   nextModal,
   previousModal,
   closeModal,
   applicationInfo,
+  resumeName,
 }: {
   nextModal: () => void;
   previousModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   applicationInfo: () => JobApplication;
+  resumeName: string;
 }) {
   const info = applicationInfo();
   const moveToNext = () => {
-    console.log(applicationInfo);
     nextModal();
   };
 
@@ -50,7 +51,7 @@ export function JobListingApplicationSummary({
         {/* 
           //TODO: Change this to resume viewer or something?
            */}
-        <p className="text-sm text-gray-600 mb-4">{`${info.resumeLink}`}</p>
+        <p className="text-sm text-gray-600 mb-4">{`${resumeName}`}</p>
         <h2 className="text-xl font-bold mb-1">Availability</h2>
         <p className="text-sm text-gray-600 mb-4">{`${info.availability.toLocaleDateString()}`}</p>
       </div>

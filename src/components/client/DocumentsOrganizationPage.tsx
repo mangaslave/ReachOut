@@ -208,7 +208,7 @@ export function DocumentOrganizationComponent() {
       <div className="flex justify-between items-center mb-6">
         <div>
           <h2 className="text-2xl font-semibold">Resume</h2>
-          <p className="text-gray-600 text-sm leading-tight">View and edit your clients' resume.</p>
+          <p className="text-gray-600 text-sm leading-tight">View and edit your clients&#39; resume.</p>
         </div>
 
         <div className="flex items-center gap-2">

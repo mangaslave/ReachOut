@@ -1,5 +1,5 @@
 import {sql} from "drizzle-orm";
-import {sqliteTable, text, integer, real, sqliteTableCreator} from "drizzle-orm/sqlite-core";
+import {sqliteTable, text, integer, real} from "drizzle-orm/sqlite-core";
 
 export const companies = sqliteTable("companies", {
   companyId: integer("company_id").primaryKey(),
@@ -19,6 +19,7 @@ export const users = sqliteTable("users", {
   lastName: text("last_name").notNull(),
   email: text("email").notNull().unique(),
   accountTypeId: integer("account_type_id").references(() => accountTypes.accountTypeId),
+  companyId: integer("company_id").references(() => companies.companyId),
 });
 
 export const status = sqliteTable("status", {
@@ -63,7 +64,7 @@ export const clientProfiles = sqliteTable("client_profiles", {
 export const skillClient = sqliteTable("skill_client", {
   skillClientId: integer("skill_client_id").primaryKey(),
   skillId: integer("skill_id").references(() => skills.skillId),
-  clientProfileId: integer("client_profile_id").references(() => clientProfiles.clientProfileId),
+  clientId: integer("client_id").references(() => clients.clientId),
 });
 
 export const skillJob = sqliteTable("skill_job", {
