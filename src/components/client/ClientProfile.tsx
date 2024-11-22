@@ -8,7 +8,6 @@ import downloadIcon from "../../../public/static/images/downloadIcon.svg";
 import {Document} from "react-pdf";
 import {useState} from "react";
 import {pdfjs} from "react-pdf";
-// import {getPresignedUrl} from "@/actions/s3-actions";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 

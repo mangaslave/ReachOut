@@ -90,20 +90,6 @@ const SignUpModal: React.FC<SignUpModalProps> = ({showModal, setShowModal}) => {
             <Link href="/dashboard">Sign Up</Link>
           </button>
         </div>
-
-        {/* <div className="text-center mt-4">
-          <p className="text-white text-sm">
-            Don’t have an account?{" "}
-            <Link href="/dashboard" className="text-white underline">
-              Sign Up
-            </Link>
-          </p>
-          <p className="mt-2">
-            <Link href="/forgot-password" className="text-white underline">
-              Forgot your password?
-            </Link>
-          </p>
-        </div> */}
       </div>
     </div>
   );
