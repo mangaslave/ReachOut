@@ -6,12 +6,13 @@ import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 
 export default async function DocumentOrganizationPage() {
-  const {getUser} = getKindeServerSession();
-  const user = await getUser();
-  if (!user) {
+  const {getUser, isAuthenticated} = getKindeServerSession();
+  const authenticated = await isAuthenticated();
+  if (!authenticated) {
     redirect("/");
   }
-  await AddKindeUserToDb(1);
+  const user = await getUser();
+  await AddKindeUserToDb(user, 1);
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,

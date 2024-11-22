@@ -6,14 +6,13 @@ import DashboardClient from "@/components/client/DashboardComponent";
 import {GetJobListingsAction} from "@/actions/GetJobListingAction";
 
 export default async function DashboardPage() {
-  const {getUser} = await getKindeServerSession();
-  const user = await getUser();
-
-  if (!user) {
+  const {getUser, isAuthenticated} = getKindeServerSession();
+  const authenticated = await isAuthenticated();
+  if (!authenticated) {
     redirect("/");
   }
-
-  await AddKindeUserToDb(1);
+  const user = await getUser();
+  await AddKindeUserToDb(user, 1);
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,

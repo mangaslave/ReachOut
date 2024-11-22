@@ -10,7 +10,6 @@ export const uploadFile = actionClient.schema(fileUploadSchema).action(async ({p
   const user = await getUser();
 
   if (!user) {
-    console.log("Unauthorized: Please log in");
     return {
       url: null,
       error: "Unauthorized: Please log in",

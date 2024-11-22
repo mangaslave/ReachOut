@@ -11,12 +11,13 @@ import GetApplicationsAction from "@/actions/GetApplicationsAction";
 import EmployerApplicationTable from "@/components/client/EmployerApplicationTable";
 
 export default async function PotentialEmployees() {
-  const {getUser} = getKindeServerSession();
-  const user = await getUser();
-  if (!user) {
+  const {getUser, isAuthenticated} = getKindeServerSession();
+  const authenticated = await isAuthenticated();
+  if (!authenticated) {
     redirect("/");
   }
-  await AddKindeUserToDb(2);
+  const user = await getUser();
+  await AddKindeUserToDb(user, 2);
 
   const applications = await GetApplicationsAction(user.id);
 
