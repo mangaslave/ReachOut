@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   webpack: (config) => {
     // Disable cache temporarily
     config.cache = false;
-
     // Add alias for `canvas`
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
@@ -13,6 +12,7 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+
   crossOrigin: "use-credentials",
 };
 

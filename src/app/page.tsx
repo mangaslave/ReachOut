@@ -13,9 +13,6 @@ import heroImage from "../../public/static/images/Hero-Image.jpg";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function Home() {
-  const {getUser} = getKindeServerSession();
-  const user = await getUser();
-  console.log(user);
   return (
     <>
       <HomePageNavBar />
@@ -26,8 +23,8 @@ export default async function Home() {
           </h1>
           <p className="md:py-4 text-sm text-white md:text-lg">
             At ReachOut, we introduce people with criminal records to fair-chance employers who believe in their
-            potential. With personalized job matches and an extensive resource database, we&#39;re here to help people
-            build a new future, one connection at a time.
+            potential. With personalized job matches and an extensive resource database, we're here to help people build
+            a new future, one connection at a time.
           </p>
           <button className="font-bold text-white rounded-lg my-6 w-44 h-10 bg-spaceCadet hover:bg-ylnMnBlue">
             Get Started Now!

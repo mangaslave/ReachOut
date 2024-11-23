@@ -12,19 +12,21 @@ export function JobListingUploadResume({
   closeModal,
   setResumeLink,
   setResumeName,
+  clientId,
 }: {
   nextModal: () => void;
   previousModal: () => void;
   closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   setResumeLink: Dispatch<SetStateAction<string>>;
   setResumeName: Dispatch<SetStateAction<string>>;
+  clientId: number;
 }) {
   const [fileData, setFileData] = useState<File>();
 
   const moveToNext = async () => {
     // TODO: Cannot move to next if you navigate back to this modal window
     if (fileData) {
-      const resumeUrl = await UploadResumeAction({ file: fileData, clientId: 1});
+      const resumeUrl = await UploadResumeAction({file: fileData, clientId});
       if (resumeUrl.url) {
         setResumeName(resumeUrl.name);
         setResumeLink(resumeUrl.url);

@@ -1,6 +1,4 @@
-// "use server";
-// import {NextRequest, NextResponse} from "next/server";
-// import {newClient} from "@/db/queries/client";
+"use server";
 import {clients as clientTable} from "@/db/schema";
 import {db} from "@/db";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
@@ -23,8 +21,18 @@ export async function AddClientAction({
   try {
     const {getUser} = getKindeServerSession();
     const user = await getUser();
+    if (!user) {
+      return;
+    }
 
-    console.log("Inserting client:", {firstName, lastName, phoneNumber, email, postalCode, city});
+    console.log("Inserting client:", {
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      postalCode,
+      city,
+    });
 
     const insertedClient = await db.insert(clientTable).values({
       userId: user.id as string,

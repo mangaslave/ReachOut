@@ -3,16 +3,16 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import DashboardClient from "@/components/client/DashboardComponent";
+import {GetJobListingsAction} from "@/actions/GetJobListingAction";
 
 export default async function DashboardPage() {
-  const {getUser} = getKindeServerSession();
-  const user = await getUser();
-  console.log(user);
-  if (!user) {
+  const {getUser, isAuthenticated} = getKindeServerSession();
+  const authenticated = await isAuthenticated();
+  if (!authenticated) {
     redirect("/");
   }
-
-  await AddKindeUserToDb();
+  const user = await getUser();
+  await AddKindeUserToDb(user, 1);
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,
@@ -20,5 +20,7 @@ export default async function DashboardPage() {
     image: `${user.picture}`,
   };
 
-  return <DashboardClient user={activeUser} />;
+  const jobs = await GetJobListingsAction();
+
+  return <DashboardClient user={activeUser} jobListings={jobs.listings} />;
 }
