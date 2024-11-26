@@ -10,7 +10,6 @@ import interviewIcon from "../../public/static/images/interview-1.svg";
 import aiPoweredResearch from "../../public/static/images/screenshot_job_listings.png";
 import researchProgressTracking from "../../public/static/images/screenshot_dashboard.png";
 import heroImage from "../../public/static/images/Hero-Image.jpg";
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function Home() {
   return (

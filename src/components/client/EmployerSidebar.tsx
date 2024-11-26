@@ -10,90 +10,45 @@ import {usePathname} from "next/navigation";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs";
+import {SidebarProps} from "./SideBar";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  user?: {
-    name: string;
-    email: string;
-    image?: string;
-  };
-}
-
-interface SidebarItem {
-  title: string;
-  iconSrc: string;
-  href: string;
-}
-
-const sidebarItems: SidebarItem[] = [
-  {
-    title: "Dashboard",
-    iconSrc: "/static/images/Dashboard_icon.svg",
-    href: "/employer/dashboard",
-  },
-  {
-    title: "Applications",
-    iconSrc: "/static/images/JobListings_icon.svg",
-    href: "/employer/applications",
-  },
-  {
-    title: "Your Listings",
-    iconSrc: "/static/images/UseManagement_icon.svg",
-    href: "/employer/job-listings",
-  },
-  {
-    title: "Inbox",
-    iconSrc: "/static/images/Inbox_icon.svg",
-    href: "/employer/inbox",
-  },
-  {
-    title: "Resources",
-    iconSrc: "/static/images/Resume_Icon.svg",
-    href: "/employer/resources",
-  },
-];
-
-const bottomItems: SidebarItem[] = [
-  {
-    title: "Notifications",
-    iconSrc: "/static/images/Bell_Notification_icon.svg",
-    href: "/employer/notifications",
-  },
-  {
-    title: "Settings",
-    iconSrc: "/static/images/Settings_icon.svg",
-    href: "/employer/settings",
-  },
-];
-
-export function EmployerSidebar({className, user}: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(false);
+export function EmployerSidebar({className, user, collapsed, setCollapsed}: SidebarProps) {
   const pathname = usePathname();
 
-  const NavItem = ({item}: {item: SidebarItem}) => (
-    <Link href={item.href}>
+  const NavItem = ({
+    title,
+    iconSrc,
+    href,
+    collapsed,
+  }: {
+    title: string;
+    iconSrc: string;
+    href: string;
+    collapsed?: boolean;
+  }) => (
+    <Link href={href}>
       <span
         className={cn(
           "flex items-center gap-3 rounded-lg px-3 py-2 transition-all",
           "hover:bg-accent hover:text-accent-foreground group",
-          pathname === item.href ? "bg-accent text-accent-foreground" : "transparent",
+          pathname === href ? "bg-accent text-accent-foreground" : "transparent",
           collapsed && "justify-center"
         )}
       >
         <div className="relative w-5 h-5">
           <Image
-            src={item.iconSrc}
-            alt={`${item.title} icon`}
+            src={iconSrc}
+            alt={`${title} icon`}
             fill
             className={cn(
               "object-contain transition-all",
               "brightness-0 invert",
               "group-hover:brightness-0 group-hover:invert-0",
-              pathname === item.href ? "brightness-0 invert-0" : ""
+              pathname === href ? "brightness-0 invert-0" : ""
             )}
           />
         </div>
-        {!collapsed && <span>{item.title}</span>}
+        {!collapsed && <span>{title}</span>}
       </span>
     </Link>
   );
@@ -101,7 +56,7 @@ export function EmployerSidebar({className, user}: SidebarProps) {
   return (
     <div
       className={cn(
-        "relative flex flex-col h-screen bg-caribbeanCurrant border-r transition-all duration-300 text-white",
+        " fixed flex flex-col h-screen bg-spaceCadet border-r transition-all duration-300 text-white",
         collapsed ? "w-16" : "w-64",
         className
       )}
@@ -114,21 +69,67 @@ export function EmployerSidebar({className, user}: SidebarProps) {
 
       <nav className="flex-1">
         <ul className="space-y-2 px-2">
-          {sidebarItems.map((item) => (
-            <li key={item.href}>
-              <NavItem item={item} />
-            </li>
-          ))}
+          <li>
+            <NavItem
+              title="Dashboard"
+              iconSrc="/static/images/Dashboard_icon.svg"
+              href="/employer/dashboard"
+              collapsed={collapsed}
+            />
+          </li>
+          <li>
+            <NavItem
+              title="Applications"
+              iconSrc="/static/images/JobListings_icon.svg"
+              href="/employer/applications"
+              collapsed={collapsed}
+            />
+          </li>
+          <li>
+            <NavItem
+              title="Your Listings"
+              iconSrc="/static/images/UseManagement_icon.svg"
+              href="/employer/job-listings"
+              collapsed={collapsed}
+            />
+          </li>
+          <li>
+            <NavItem
+              title="Inbox"
+              iconSrc="/static/images/Inbox_icon.svg"
+              href="/employer/inbox"
+              collapsed={collapsed}
+            />
+          </li>
+          <li>
+            <NavItem
+              title="Resources"
+              iconSrc="/static/images/Resume_icon.svg"
+              href="/employer/resources"
+              collapsed={collapsed}
+            />
+          </li>
         </ul>
       </nav>
 
       <div className="border-t">
         <ul className="space-y-2 px-2 py-2">
-          {bottomItems.map((item) => (
-            <li key={item.href}>
-              <NavItem item={item} />
-            </li>
-          ))}
+          <li>
+            <NavItem
+              title="Notifications"
+              iconSrc="/static/images/Bell_Notification_icon.svg"
+              href="/employer/notifications"
+              collapsed={collapsed}
+            />
+          </li>
+          <li>
+            <NavItem
+              title="Settings"
+              iconSrc="/static/images/Settings_icon.svg"
+              href="/employer/settings"
+              collapsed={collapsed}
+            />
+          </li>
         </ul>
 
         <div className="p-2">
