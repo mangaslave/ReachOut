@@ -12,6 +12,7 @@
     "@aws-sdk/client-s3": "^3.689.0",
     "@aws-sdk/s3-request-presigner": "^3.689.0",
     "@azure/ai-form-recognizer": "^4.0.0",
+    "@azure/ai-text-analytics": "^5.1.0",
     "@azure/identity": "^4.5.0",
     "@kinde-oss/kinde-auth-nextjs": "^2.4.6",
     "@libsql/client": "^0.14.0",

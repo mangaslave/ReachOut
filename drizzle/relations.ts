@@ -1,20 +1,69 @@
 import { relations } from "drizzle-orm/relations";
-import { companies, accountTypes, clientProfiles, clients, users, status, jobPostings, jobTypes, skillClient, skills, clientApplications, applicationStatus } from "./schema";
+import { accountTypes, companies, jobPostings, jobTypes, jobBenefit, benefit, skillJob, skills, clientProfiles, clients, users, status, clientApplications, applicationStatus, skillClient } from "./schema";
 
-export const accountTypesRelations = relations(accountTypes, ({one, many}) => ({
-	company: one(companies, {
-		fields: [accountTypes.companyId],
-		references: [companies.companyId]
+export const companiesRelations = relations(companies, ({one, many}) => ({
+	accountType: one(accountTypes, {
+		fields: [companies.accountType],
+		references: [accountTypes.accountTypeId]
 	}),
-	users: many(users),
-}));
-
-export const companiesRelations = relations(companies, ({many}) => ({
-	accountTypes: many(accountTypes),
 	jobPostings: many(jobPostings),
 }));
 
-export const clientsRelations = relations(clients, ({one}) => ({
+export const accountTypesRelations = relations(accountTypes, ({many}) => ({
+	companies: many(companies),
+	users: many(users),
+}));
+
+export const jobPostingsRelations = relations(jobPostings, ({one, many}) => ({
+	company: one(companies, {
+		fields: [jobPostings.companyId],
+		references: [companies.companyId]
+	}),
+	jobType: one(jobTypes, {
+		fields: [jobPostings.jobTypeId],
+		references: [jobTypes.jobTypeId]
+	}),
+	jobBenefits: many(jobBenefit),
+	skillJobs: many(skillJob),
+	clientApplications: many(clientApplications),
+}));
+
+export const jobTypesRelations = relations(jobTypes, ({many}) => ({
+	jobPostings: many(jobPostings),
+}));
+
+export const jobBenefitRelations = relations(jobBenefit, ({one}) => ({
+	jobPosting: one(jobPostings, {
+		fields: [jobBenefit.jobPostingId],
+		references: [jobPostings.jobPostingId]
+	}),
+	benefit: one(benefit, {
+		fields: [jobBenefit.benefitId],
+		references: [benefit.benefitId]
+	}),
+}));
+
+export const benefitRelations = relations(benefit, ({many}) => ({
+	jobBenefits: many(jobBenefit),
+}));
+
+export const skillJobRelations = relations(skillJob, ({one}) => ({
+	jobPosting: one(jobPostings, {
+		fields: [skillJob.jobPostingId],
+		references: [jobPostings.jobPostingId]
+	}),
+	skill: one(skills, {
+		fields: [skillJob.skillId],
+		references: [skills.skillId]
+	}),
+}));
+
+export const skillsRelations = relations(skills, ({many}) => ({
+	skillJobs: many(skillJob),
+	skillClients: many(skillClient),
+}));
+
+export const clientsRelations = relations(clients, ({one, many}) => ({
 	clientProfile: one(clientProfiles, {
 		fields: [clients.clientProfileId],
 		references: [clientProfiles.clientProfileId]
@@ -27,11 +76,12 @@ export const clientsRelations = relations(clients, ({one}) => ({
 		fields: [clients.statusId],
 		references: [status.statusId]
 	}),
+	clientApplications: many(clientApplications),
+	skillClients: many(skillClient),
 }));
 
 export const clientProfilesRelations = relations(clientProfiles, ({many}) => ({
 	clients: many(clients),
-	skillClients: many(skillClient),
 }));
 
 export const usersRelations = relations(users, ({one, many}) => ({
@@ -47,38 +97,11 @@ export const statusRelations = relations(status, ({many}) => ({
 	clients: many(clients),
 }));
 
-export const jobPostingsRelations = relations(jobPostings, ({one, many}) => ({
-	company: one(companies, {
-		fields: [jobPostings.companyId],
-		references: [companies.companyId]
-	}),
-	jobType: one(jobTypes, {
-		fields: [jobPostings.jobTypeId],
-		references: [jobTypes.jobTypeId]
-	}),
-	clientApplications: many(clientApplications),
-}));
-
-export const jobTypesRelations = relations(jobTypes, ({many}) => ({
-	jobPostings: many(jobPostings),
-}));
-
-export const skillClientRelations = relations(skillClient, ({one}) => ({
-	clientProfile: one(clientProfiles, {
-		fields: [skillClient.clientProfileId],
-		references: [clientProfiles.clientProfileId]
-	}),
-	skill: one(skills, {
-		fields: [skillClient.skillId],
-		references: [skills.skillId]
-	}),
-}));
-
-export const skillsRelations = relations(skills, ({many}) => ({
-	skillClients: many(skillClient),
-}));
-
 export const clientApplicationsRelations = relations(clientApplications, ({one}) => ({
+	client: one(clients, {
+		fields: [clientApplications.clientId],
+		references: [clients.clientId]
+	}),
 	user: one(users, {
 		fields: [clientApplications.userId],
 		references: [users.userId]
@@ -95,4 +118,15 @@ export const clientApplicationsRelations = relations(clientApplications, ({one})
 
 export const applicationStatusRelations = relations(applicationStatus, ({many}) => ({
 	clientApplications: many(clientApplications),
+}));
+
+export const skillClientRelations = relations(skillClient, ({one}) => ({
+	client: one(clients, {
+		fields: [skillClient.clientId],
+		references: [clients.clientId]
+	}),
+	skill: one(skills, {
+		fields: [skillClient.skillId],
+		references: [skills.skillId]
+	}),
 }));

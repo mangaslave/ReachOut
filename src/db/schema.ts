@@ -111,3 +111,11 @@ export const clients = sqliteTable("clients", {
   userId: text("user_id").references(() => users.userId),
   clientProfileId: integer("client_profile_id").references(() => clientProfiles.clientProfileId),
 });
+
+export const summaries = sqliteTable("summaries", {
+  summaryId: integer("summary_id").primaryKey(),
+  clientId: integer("client_id").references(() => clients.clientId),
+  jobPostingId: integer("job_posting_id").references(() => jobPostings.jobPostingId),
+  summary: text("summary"),
+  score: real("score"),
+});
