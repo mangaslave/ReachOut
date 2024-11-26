@@ -4,7 +4,7 @@ import {cn} from "@/lib/utils";
 import {Button} from "@/components/ui/button";
 import {ChevronLeft, Settings, User} from "lucide-react";
 import Image from "next/image";
-import {useState} from "react";
+import {Dispatch, SetStateAction, useState} from "react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
@@ -18,6 +18,8 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
     email: string;
     image?: string;
   };
+  collapsed: boolean;
+  setCollapsed: Dispatch<SetStateAction<boolean>>;
 }
 
 const NavItem = ({
@@ -62,13 +64,13 @@ const NavItem = ({
   );
 };
 
-export function Sidebar({className, user}: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(false);
+export function Sidebar({className, user, setCollapsed, collapsed}: SidebarProps) {
+  // const [collapsed, setCollapsed] = useState(false);
 
   return (
     <div
       className={cn(
-        "relative flex flex-col h-screen bg-caribbeanCurrant border-r transition-all duration-300 text-white",
+        "fixed flex flex-col h-screen bg-caribbeanCurrant border-r transition-all duration-300 text-white",
         collapsed ? "w-16" : "w-64",
         className
       )}

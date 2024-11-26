@@ -36,7 +36,7 @@ export default function DashboardClient({
     <div className="flex h-screen bg-gray-100">
       <Sidebar user={user} />
 
-      <div className="flex-1 flex flex-col">
+      <div className="ml-64 flex-1 flex flex-col">
         <Header headerMsg={`Welcome back, ${user.name}`} subHeadingMsg={formattedDate} />
 
         <main className="flex-1 overflow-y-auto pt-4 px-2 sm:px-2 lg:px-4">

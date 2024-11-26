@@ -30,7 +30,7 @@ export default async function PotentialEmployees() {
   return (
     <div className="flex h-screen bg-gray-100">
       <EmployerSidebar user={activeUser} />
-      <div className="flex-1 flex flex-col">
+      <div className="ml-64 flex-1 flex flex-col">
         <Header
           headerMsg="Applications"
           subHeadingMsg="View a curated list of potential candidates for your open positions."

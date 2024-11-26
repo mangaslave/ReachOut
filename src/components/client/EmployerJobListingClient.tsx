@@ -1,30 +1,20 @@
-'use client'
-import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { JobListing as JobListingComponent } from "./JobListingDescription";
-import { CreateJobListingClient } from './CreateJobListingClient';
-import { type JobListing } from "@/components/client/JobListingMaster"
+"use client";
+import React, {useState} from "react";
+import {Button} from "@/components/ui/button";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import {JobListing as JobListingComponent} from "./JobListingDescription";
+import {CreateJobListingClient} from "./CreateJobListingClient";
+import {type JobListing} from "@/components/client/JobListingMaster";
 
-type Status = 'Active' | 'Archived' | 'Pending';
+type Status = "Active" | "Archived" | "Pending";
 
 const statusStyles = {
-  Active: 'bg-green-500',
-  Archived: 'bg-red-500',
-  Pending: 'bg-yellow-500'
+  Active: "bg-green-500",
+  Archived: "bg-red-500",
+  Pending: "bg-yellow-500",
 } as const;
 
-export function EmployerJobListingClient({
-  initialListings
-}: {
-  initialListings: JobListing[]
-}) {
+export function EmployerJobListingClient({initialListings}: {initialListings: JobListing[]}) {
   const [listings, setListings] = useState<JobListing[]>(initialListings);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedListing, setSelectedListing] = useState<JobListing | null>(null);
@@ -67,7 +57,7 @@ export function EmployerJobListingClient({
                 <SelectValue placeholder="Job Position" />
               </SelectTrigger>
               <SelectContent>
-                {Array.from(new Set(listings.map(l => l.title))).map((title) => (
+                {Array.from(new Set(listings.map((l) => l.title))).map((title) => (
                   <SelectItem key={title} value={title}>
                     {title}
                   </SelectItem>
@@ -80,7 +70,7 @@ export function EmployerJobListingClient({
                 <SelectValue placeholder="Job Type" />
               </SelectTrigger>
               <SelectContent>
-                {Array.from(new Set(listings.map(l => l.jobType).filter(Boolean))).map((type) => (
+                {Array.from(new Set(listings.map((l) => l.jobType).filter(Boolean))).map((type) => (
                   <SelectItem key={type!} value={type!}>
                     {type}
                   </SelectItem>
@@ -89,7 +79,7 @@ export function EmployerJobListingClient({
             </Select>
           </div>
 
-          <Button 
+          <Button
             className="bg-spaceCadet hover:bg-indigo-800 text-white"
             onClick={() => setIsAddListingModalOpen(true)}
           >
@@ -100,7 +90,7 @@ export function EmployerJobListingClient({
         <div className="rounded-md overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="bg-caribbeanCurrant text-white">
+              <tr className="bg-spaceCadet text-white">
                 <th className="text-left p-4 font-medium">Position</th>
                 <th className="text-left p-4 font-medium">Type</th>
                 <th className="text-left p-4 font-medium">Location</th>
@@ -114,8 +104,8 @@ export function EmployerJobListingClient({
                   <td className="p-4">{listing.jobType}</td>
                   <td className="p-4">{listing.location}</td>
                   <td className="p-4 text-right">
-                    <Button 
-                      variant="link" 
+                    <Button
+                      variant="link"
                       className="text-gray-600 hover:text-gray-900"
                       onClick={() => handleViewDetails(listing, index)}
                     >
@@ -131,22 +121,14 @@ export function EmployerJobListingClient({
 
       {modalOpen && selectedListing && (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListingComponent 
-            jobDetails={selectedListing}
-            nextModal={nextModal}
-            closeModal={closeModal}
-          />
+          <JobListingComponent jobDetails={selectedListing} nextModal={nextModal} closeModal={closeModal} />
         </div>
       )}
 
       {isAddListingModalOpen && (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
           <div className="relative w-full max-w-3xl mx-auto my-8">
-            <Button
-              className="absolute top-4 right-4 z-50"
-              variant="ghost"
-              onClick={closeAddListingModal}
-            >
+            <Button className="absolute top-4 right-4 z-50" variant="ghost" onClick={closeAddListingModal}>
               ×
             </Button>
             <CreateJobListingClient />

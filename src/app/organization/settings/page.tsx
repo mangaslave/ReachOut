@@ -23,7 +23,7 @@ export default async function SettingsPage() {
   return (
     <div className="flex h-screen bg-gray-50">
       <Sidebar user={activeUser} />
-      <div className="flex-1 flex flex-col">
+      <div className="ml-64 flex-1 flex flex-col">
         <header className="px-4 py-6 border-b border-gray-300 bg-white">
           <h1 className="text-2xl font-semibold">Settings</h1>
           <p className="text-sm text-gray-600">Customize Your Preferences and Account Settings</p>

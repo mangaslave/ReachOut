@@ -5,12 +5,11 @@ import GetApplicationsAction from "@/actions/GetApplicationsAction";
 import EmployerDashboard from "@/components/client/EmployerDashboard";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
-import { EmployerNewJobListingBox } from "@/components/client/EmployerNewJobListingsBox";
-import { NewMessagesBox } from "@/components/client/NewMessagesBox";
+import {EmployerNewJobListingBox} from "@/components/client/EmployerNewJobListingsBox";
+import {NewMessagesBox} from "@/components/client/NewMessagesBox";
 import Reminders from "@/components/client/Reminders";
 import Header from "@/components/client/Header";
-import { EmployerSidebar } from "@/components/client/EmployerSidebar";
-
+import {EmployerSidebar} from "@/components/client/EmployerSidebar";
 
 export default async function EmployerDashboardPage() {
   const {getUser, isAuthenticated} = getKindeServerSession();
@@ -30,10 +29,10 @@ export default async function EmployerDashboardPage() {
   };
 
   return (
-     <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-gray-100">
       <EmployerSidebar user={activeUser} />
-      <div className="flex-1 flex flex-col">
-        <Header headerMsg={`Welcome back, ${activeUser.name}`}/>
+      <div className="ml-64 flex-1 flex flex-col">
+        <Header headerMsg={`Welcome back, ${activeUser.name}`} />
 
         <main className="flex-1 overflow-y-auto pt-4 px-2 sm:px-2 lg:px-4">
           <div className="max-w-7xl mx-1">
@@ -51,6 +50,6 @@ export default async function EmployerDashboardPage() {
           </div>
         </main>
       </div>
-      </div>
-  ) 
+    </div>
+  );
 }
