@@ -24,11 +24,9 @@ export default function AccessibilitySettings() {
         {["Text-to-Speech", "Speech Recognition", "Keyboard Navigation"].map((tool, index) => (
           <div key={index} className="flex items-center justify-between">
             <span className="text-sm text-gray-700">{tool}</span>
-            <label className="flex items-center cursor-pointer">
-              <input type="checkbox" className="sr-only peer" />
-              <div className="w-14 h-8 bg-gray-300 rounded-full peer-checked:bg-green-500 transition-colors">
-                <div className="absolute w-6 h-6 bg-white rounded-full shadow-md left-1 top-1 transition-transform peer-checked:translate-x-6"></div>
-              </div>
+            <label className="inline-flex items-center cursor-pointer">
+              <input type="checkbox" value="" className="sr-only peer"></input>
+              <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-caribbeanCurrant rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-caribbeanCurrant"></div>
             </label>
           </div>
         ))}
@@ -59,22 +57,12 @@ export default function AccessibilitySettings() {
         {["Dark Mode", "High-Contrast"].map((theme, index) => (
           <div key={index} className="flex items-center justify-between">
             <span className="text-sm text-gray-700">{theme}</span>
-            <label className="flex items-center cursor-pointer">
-              <input type="checkbox" className="sr-only peer" />
-              <div className="w-14 h-8 bg-gray-300 rounded-full peer-checked:bg-green-500 transition-colors">
-                <div className="absolute w-6 h-6 bg-white rounded-full shadow-md left-1 top-1 transition-transform peer-checked:translate-x-6"></div>
-              </div>
+            <label className="inline-flex items-center cursor-pointer">
+              <input type="checkbox" value="" className="sr-only peer"></input>
+              <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-caribbeanCurrant rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-caribbeanCurrant"></div>
             </label>
           </div>
         ))}
-      </section>
-
-      {/* Footer Buttons */}
-      <section className="p-4 flex justify-end items-center gap-4">
-        <Button className="w-40">Save and Continue</Button>
-        <Button variant="ghost" className="w-40 border border-gray-300">
-          Go Back
-        </Button>
       </section>
     </div>
   );
