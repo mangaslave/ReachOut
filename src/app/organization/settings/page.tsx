@@ -123,69 +123,76 @@ export default async function SettingsPage() {
                 description: "Track your progress and milestones with updates.",
             },
             ].map((item, index) => (
-            <div key={index} className="flex flex-col">
-                <div className="flex items-center">
+            <div
+                key={index}
+                className="flex justify-between items-center gap-4"
+            >
+                {/* Label and Description */}
+                <div className="flex flex-col">
+                <p className="text-sm font-medium text-gray-700">{item.label}</p>
+                <p className="text-sm text-gray-500">{item.description}</p>
+                </div>
+
+                {/* Toggle Switch */}
                 <label
-                    htmlFor={`notification-${index}`}
-                    className="flex items-center cursor-pointer">
-                    <input
+                htmlFor={`notification-${index}`}
+                className="flex items-center cursor-pointer">
+                <input
                     type="checkbox"
                     id={`notification-${index}`}
                     className="sr-only peer"
-                    />
-                    <div className="relative w-14 h-8 bg-gray-300 rounded-full peer-checked:bg-green-500 transition-colors">
+                />
+                <div className="relative w-14 h-8 bg-gray-300 rounded-full peer-checked:bg-green-500 transition-colors">
                     <div className="absolute w-6 h-6 bg-white rounded-full shadow-md left-1 top-1 transition-transform peer-checked:translate-x-6"></div>
-                    </div>
-                    <span className="ml-3 text-sm font-medium text-gray-700">
-                    {item.label}
-                    </span>
-                </label>
                 </div>
-                <p className="ml-10 text-sm text-gray-500">{item.description}</p>
+                </label>
             </div>
             ))}
         </div>
         </section>
 
     {/* Two-Factor Authentication Section */}
-            <section className="flex-2 min-w-[300px] p-4 rounded flex flex-col gap-4">
-            <h2 className="text-lg font-medium text-gray-900">
-                Two-Factor Authentication
-            </h2>
-            <div className="flex flex-col gap-4">
-                {[
-                { label: "Cellphone Number", status: "Enable" },
-                { label: "Secondary Email", status: "N/A" },
-                { label: "Authenticator App", status: "Not Set" },
-                ].map((item, index) => (
-                <div
-                    key={index}
-                    className="flex justify-between items-center"
-                >
-                    <p className="text-sm font-medium text-gray-700">
-                    {item.label}
-                    </p>
-                    <Button
-                    variant="ghost"
-                    className="border border-spaceCadet mx-2"
-                    >
-                    {item.status}
-                    </Button>
-                </div>
-                ))}
+        <section className="flex-2 min-w-[300px] p-4 rounded flex flex-col gap-4">
+        <h2 className="text-lg font-medium text-gray-900">
+        Two-Factor Authentication
+        </h2>
+        <div className="flex flex-col gap-4">
+        {[
+            { label: "Cellphone Number", status: "Enable" },
+            { label: "Secondary Email", status: "N/A" },
+            { label: "Authenticator App", status: "Not Set" },
+        ].map((item, index) => (
+            <div
+            key={index}
+            className="flex justify-between items-center"
+            >
+            <p className="text-sm font-medium text-gray-700">
+                {item.label}
+            </p>
+            <Button
+                variant="ghost"
+                className="border border-gray-300 w-32"
+            >
+                {item.status}
+            </Button>
             </div>
-            </section>
+        ))}
+        </div>
+        </section>
         </div>
 
     {/* Footer Buttons */}
             <div className="flex gap-3 justify-end">
-                <Link href="/organization/dashboard"
-                className="pb-2 font-medium border-b-2 transition-all duration-200">
+              <Link href="/organization/dashboard"
+              className="pb-2 font-medium transition-all duration-200">
               <Button>Save & Continue</Button>
               </Link>
+              <Link href="/organization/dashboard"
+                className="pb-2 font-medium transition-all duration-200">
               <Button variant="ghost" className="border border-spaceCadet mx-2">
                 Go Back
               </Button>
+              </Link>
             </div>
           </div>
         </main>
