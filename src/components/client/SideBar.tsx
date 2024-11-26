@@ -12,7 +12,7 @@ import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
 import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs";
 import {LogOut} from "lucide-react";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   user?: {
     name: string;
     email: string;
@@ -65,8 +65,6 @@ const NavItem = ({
 };
 
 export function Sidebar({className, user, setCollapsed, collapsed}: SidebarProps) {
-  // const [collapsed, setCollapsed] = useState(false);
-
   return (
     <div
       className={cn(

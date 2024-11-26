@@ -19,7 +19,7 @@ export default function NavBar() {
             <li>
               <Link
                 aria-label="case managers"
-                href="/"
+                href="/case-managers"
                 className="text-black font-bold text-sm sm:text-base hover:text-caribbeanCurrant"
               >
                 Case Managers
@@ -28,7 +28,7 @@ export default function NavBar() {
             <li>
               <Link
                 aria-label="Job Seekers"
-                href="/"
+                href="/job-seekers"
                 className="text-black font-bold text-sm sm:text-base hover:text-caribbeanCurrant"
               >
                 Job Seekers
@@ -37,7 +37,7 @@ export default function NavBar() {
             <li>
               <Link
                 aria-label="Employers"
-                href="/"
+                href="/employers"
                 className="text-black font-bold text-sm sm:text-base hover:text-caribbeanCurrant"
               >
                 Employers
@@ -46,7 +46,7 @@ export default function NavBar() {
             <li>
               <Link
                 aria-label="About"
-                href="/"
+                href="/about"
                 className="text-black text-sm sm:text-base font-bold hover:text-caribbeanCurrant"
               >
                 About

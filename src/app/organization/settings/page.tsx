@@ -1,9 +1,8 @@
 "use server";
-import {Sidebar} from "@/components/client/SideBar";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
-import SettingsClient from "@/components/client/SettingsClient";
+import SettingsPageClient from "@/components/client/SettingsPageClient";
 
 export default async function SettingsPage() {
   const {getUser, isAuthenticated} = getKindeServerSession();
@@ -20,18 +19,5 @@ export default async function SettingsPage() {
     image: `${user.picture}`,
   };
 
-  return (
-    <div className="flex h-screen bg-gray-50">
-      <Sidebar user={activeUser} />
-      <div className="ml-64 flex-1 flex flex-col">
-        <header className="px-4 py-6 border-b border-gray-300 bg-white">
-          <h1 className="text-2xl font-semibold">Settings</h1>
-          <p className="text-sm text-gray-600">Customize Your Preferences and Account Settings</p>
-        </header>
-        <main className="flex-1 overflow-y-auto px-8 py-6">
-          <SettingsClient />
-        </main>
-      </div>
-    </div>
-  );
+  return <SettingsPageClient activeUser={activeUser} employer={false} />;
 }

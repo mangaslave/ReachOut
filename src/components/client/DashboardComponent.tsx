@@ -7,6 +7,7 @@ import {NewMessagesBox} from "@/components/client/NewMessagesBox";
 import {NewJobListingsBox} from "@/components/client/NewJobListingsBox";
 import {useEffect, useState} from "react";
 import {JobListing as Listing} from "./JobListingMaster";
+import {cn} from "@/lib/utils";
 
 export default function DashboardClient({
   user,
@@ -16,6 +17,7 @@ export default function DashboardClient({
   jobListings: Listing[] | null;
 }) {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -34,9 +36,9 @@ export default function DashboardClient({
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar user={user} />
+      <Sidebar user={user} setCollapsed={setCollapsed} collapsed={collapsed} />
 
-      <div className="ml-64 flex-1 flex flex-col">
+      <div className={cn("flex-1 flex flex-col ml-16 transition-all duration-300", collapsed ? "ml-16" : "ml-64")}>
         <Header headerMsg={`Welcome back, ${user.name}`} subHeadingMsg={formattedDate} />
 
         <main className="flex-1 overflow-y-auto pt-4 px-2 sm:px-2 lg:px-4">

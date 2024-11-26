@@ -1,11 +1,10 @@
 "use server";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
-import {EmployerJobListingClient} from "@/components/client/EmployerJobListingClient";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
-import {EmployerSidebar} from "@/components/client/EmployerSidebar";
 import {JobListing} from "@/components/client/JobListingMaster";
 import {GetJobListingsAction} from "@/actions/GetJobListingAction";
+import EmployerJobListingClientComponent from "@/components/client/EmployerJobListinglClientComponent";
 
 export default async function EmployerJobListingPage() {
   const {getUser, isAuthenticated} = getKindeServerSession();
@@ -29,12 +28,5 @@ export default async function EmployerJobListingPage() {
     listings = [];
   }
 
-  return (
-    <div className="flex h-screen bg-gray-100">
-      <EmployerSidebar user={activeUser} />
-      <main className="ml-64 flex-1">
-        <EmployerJobListingClient initialListings={listings} />
-      </main>
-    </div>
-  );
+  return <EmployerJobListingClientComponent activeUser={activeUser} listings={listings} />;
 }

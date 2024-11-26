@@ -10,17 +10,9 @@ import {usePathname} from "next/navigation";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs";
+import {SidebarProps} from "./SideBar";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  user?: {
-    name: string;
-    email: string;
-    image?: string;
-  };
-}
-
-export function EmployerSidebar({className, user}: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(false);
+export function EmployerSidebar({className, user, collapsed, setCollapsed}: SidebarProps) {
   const pathname = usePathname();
 
   const NavItem = ({
