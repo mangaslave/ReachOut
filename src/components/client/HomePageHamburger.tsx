@@ -24,7 +24,7 @@ const HamburgerModal: React.FC<HamburgerModalProps> = ({showModal, setShowModal}
             <li className="flex justify-center items-center border-b border-spaceCadet">
               <Link
                 aria-label="case managers"
-                href="/case-managers"
+                href="/"
                 className="text-spaceCadet font-bold text-base md:hidden inline-block hover:text-caribbeanCurrant"
               >
                 Case Managers
@@ -33,7 +33,7 @@ const HamburgerModal: React.FC<HamburgerModalProps> = ({showModal, setShowModal}
             <li className="flex justify-center items-center border-b border-spaceCadet">
               <Link
                 aria-label="Job Seekers"
-                href="/job-seekers"
+                href="/"
                 className="text-spaceCadet font-bold text-base md:hidden inline-block hover:text-caribbeanCurrant"
               >
                 Job Seekers
@@ -42,7 +42,7 @@ const HamburgerModal: React.FC<HamburgerModalProps> = ({showModal, setShowModal}
             <li className="flex justify-center items-center border-b border-spaceCadet">
               <Link
                 aria-label="Employers"
-                href="/employers"
+                href="/"
                 className="text-spaceCadet font-bold text-base md:hidden inline-block hover:text-caribbeanCurrant"
               >
                 Employers

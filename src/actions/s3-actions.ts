@@ -24,7 +24,7 @@ export const uploadFile = actionClient.schema(fileUploadSchema).action(async ({p
 
     await s3Service.getClient().send(
       new PutObjectCommand({
-        Bucket: process.env.AWS_LOCAL_BUCKET_NAME!,
+        Bucket: process.env.AWS_PROD_BUCKET_NAME!,
         Key: key,
         Body: buffer,
         ContentType: file.type,
@@ -37,7 +37,7 @@ export const uploadFile = actionClient.schema(fileUploadSchema).action(async ({p
     );
 
     return {
-      url: `https://${process.env.AWS_LOCAL_BUCKET_NAME}.s3.${process.env.AWS_LOCAL_BUCKET_REGION}.amazonaws.com/${key}`,
+      url: `https://${process.env.AWS_PROD_BUCKET_NAME}.s3.${process.env.AWS_PROD_BUCKET_REGION}.amazonaws.com/${key}`,
       key,
       filename: sanitizedFilename,
       size: file.size,
