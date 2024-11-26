@@ -1,7 +1,5 @@
 "use client";
 
-import {Button} from "../ui/button";
-
 export default function AccessibilitySettings() {
   return (
     <div className="grid grid-cols-2 grid-rows-3">

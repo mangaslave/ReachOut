@@ -39,19 +39,18 @@ export default function SettingsClient() {
             </li>
           </button>
         </ul>
+        <div className="flex gap-3 justify-end">
+          <Link href="/organization/dashboard" className="pb-2 font-medium transition-all duration-200">
+            <Button>Save & Continue</Button>
+          </Link>
+          <Link href="/organization/dashboard" className="pb-2 font-medium transition-all duration-200">
+            <Button variant="ghost" className="border border-spaceCadet mx-2">
+              Go Back
+            </Button>
+          </Link>
+        </div>
       </div>
       {accessibility ? <AccessibilitySettings /> : <GeneralSettings />}
-      {/* Footer Buttons */}
-      <div className="flex gap-3 justify-end">
-        <Link href="/organization/dashboard" className="pb-2 font-medium transition-all duration-200">
-          <Button>Save & Continue</Button>
-        </Link>
-        <Link href="/organization/dashboard" className="pb-2 font-medium transition-all duration-200">
-          <Button variant="ghost" className="border border-spaceCadet mx-2">
-            Go Back
-          </Button>
-        </Link>
-      </div>
     </div>
   );
 }
