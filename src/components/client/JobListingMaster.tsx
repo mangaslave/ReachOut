@@ -101,6 +101,8 @@ export default function JobListingMaster({
     client: "",
   });
 
+  console.log(clients);
+
   const handleFilterChange = (type: keyof FilterState, value: string) => {
     setActiveFilters((prev) => ({
       ...prev,
