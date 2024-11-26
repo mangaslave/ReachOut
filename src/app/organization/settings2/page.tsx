@@ -60,7 +60,7 @@ export default async function AccessibilityPage() {
             {/* Accessibility Settings Grid */}
             <div className="grid grid-cols-2 gap-6">
               {/* Language Section */}
-              <section className="p-4 bg-white rounded shadow flex flex-col gap-4">
+              <section className="p-4 flex flex-col gap-4">
                 <h2 className="text-lg font-medium text-gray-900">Language</h2>
                 <p className="text-sm text-gray-600">
                   Select your preferred displayed language.

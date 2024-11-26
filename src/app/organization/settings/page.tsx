@@ -179,7 +179,10 @@ export default async function SettingsPage() {
 
     {/* Footer Buttons */}
             <div className="flex gap-3 justify-end">
+                <Link href="/organization/dashboard"
+                className="pb-2 font-medium border-b-2 transition-all duration-200">
               <Button>Save & Continue</Button>
+              </Link>
               <Button variant="ghost" className="border border-spaceCadet mx-2">
                 Go Back
               </Button>
