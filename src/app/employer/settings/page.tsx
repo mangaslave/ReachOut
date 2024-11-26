@@ -3,9 +3,9 @@ import {Sidebar} from "@/components/client/SideBar";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
-import { Button } from "@/components/ui/button";
+import SettingsClient from "@/components/client/SettingsClient";
 
-export default async function DocumentOrganizationPage() {
+export default async function SettingsPage() {
   const {getUser, isAuthenticated} = getKindeServerSession();
   const authenticated = await isAuthenticated();
   if (!authenticated) {
@@ -21,17 +21,15 @@ export default async function DocumentOrganizationPage() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-gray-50">
       <Sidebar user={activeUser} />
       <div className="flex-1 flex flex-col">
-        <main className="flex-1 overflow-y-auto pt-20 px-2 sm:px-2 lg:px-4">
-          <div className="max-w-7xl mx-1">
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex w-full">
-                <Button>Save & Continue</Button> <Button variant="ghost" className="border border-spaceCadet mx-2" >Go Back</Button>
-              </div>
-            </div>
-          </div>
+        <header className="px-4 py-6 border-b border-gray-300 bg-white">
+          <h1 className="text-2xl font-semibold">Settings</h1>
+          <p className="text-sm text-gray-600">Customize Your Preferences and Account Settings</p>
+        </header>
+        <main className="flex-1 overflow-y-auto px-8 py-6">
+          <SettingsClient />
         </main>
       </div>
     </div>

@@ -4,8 +4,6 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import SettingsClient from "@/components/client/SettingsClient";
-import {Button} from "@/components/ui/button";
-import Link from "next/link";
 
 export default async function SettingsPage() {
   const {getUser, isAuthenticated} = getKindeServerSession();
