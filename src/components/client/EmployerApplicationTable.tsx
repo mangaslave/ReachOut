@@ -27,7 +27,7 @@ export default function EmployerApplicationTable({applications}: {applications: 
   return (
     <div>
       <table className="min-w-full divide-y divide-gray-200 bg-white">
-        <thead className="bg-teal-700">
+        <thead className="bg-spaceCadet">
           <tr>
             <th className="px-4 py-3 text-left font-medium text-white">Name</th>
             <th className="px-4 py-3 text-left font-medium text-white">Position</th>

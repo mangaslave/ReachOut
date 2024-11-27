@@ -1,9 +1,8 @@
 "use server";
-import {DocumentOrganizationComponent} from "@/components/client/DocumentsOrganizationPage";
-import {Sidebar} from "@/components/client/SideBar";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
+import OrganizationResumePageClientComponent from "@/components/client/OrganizationResumePageClient";
 
 export default async function DocumentOrganizationPage() {
   const {getUser, isAuthenticated} = getKindeServerSession();
@@ -20,20 +19,5 @@ export default async function DocumentOrganizationPage() {
     image: `${user.picture}`,
   };
 
-  return (
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar user={activeUser} />
-      <div className="flex-1 flex flex-col">
-        <main className="flex-1 overflow-y-auto pt-20 px-2 sm:px-2 lg:px-4">
-          <div className="max-w-7xl mx-1">
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex w-full">
-                <DocumentOrganizationComponent />
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
-  );
+  return <OrganizationResumePageClientComponent activeUser={activeUser} />;
 }

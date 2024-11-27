@@ -1,16 +1,11 @@
-'use client'
-import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { JobListing as JobListingComponent } from "./JobListingDescription";
-import { CreateJobListingClient } from './CreateJobListingClient';
-import { type JobListing } from "@/components/client/JobListingMaster"
+"use client";
+import React, {useState} from "react";
+import {Button} from "@/components/ui/button";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import {JobListing as JobListingComponent} from "./JobListingDescription";
+import {CreateJobListingClient} from "./CreateJobListingClient";
+import {type JobListing} from "@/components/client/JobListingMaster";
+
 
 export function EmployerJobListingClient({
   initialListings
@@ -39,9 +34,9 @@ export function EmployerJobListingClient({
   };
 
   const nextModal = () => {
-    const nextIndex = (currentListingIndex + 1) % listings.length;
+    const nextIndex = (currentListingIndex + 1) % initialListings.length;
     setCurrentListingIndex(nextIndex);
-    setSelectedListing(listings[nextIndex]);
+    setSelectedListing(initialListings[nextIndex]);
   };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -65,7 +60,7 @@ export function EmployerJobListingClient({
                 <SelectValue placeholder="Job Position" />
               </SelectTrigger>
               <SelectContent>
-                {Array.from(new Set(listings.map(l => l.title))).map((title) => (
+                {Array.from(new Set(initialListings.map((l) => l.title))).map((title) => (
                   <SelectItem key={title} value={title}>
                     {title}
                   </SelectItem>
@@ -78,7 +73,7 @@ export function EmployerJobListingClient({
                 <SelectValue placeholder="Job Type" />
               </SelectTrigger>
               <SelectContent>
-                {Array.from(new Set(listings.map(l => l.jobType).filter(Boolean))).map((type) => (
+                {Array.from(new Set(initialListings.map((l) => l.jobType).filter(Boolean))).map((type) => (
                   <SelectItem key={type!} value={type!}>
                     {type}
                   </SelectItem>
@@ -98,7 +93,7 @@ export function EmployerJobListingClient({
         <div className="rounded-md overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="bg-caribbeanCurrant text-white">
+              <tr className="bg-spaceCadet text-white">
                 <th className="text-left p-4 font-medium">Position</th>
                 <th className="text-left p-4 font-medium">Type</th>
                 <th className="text-left p-4 font-medium">Location</th>
@@ -106,7 +101,7 @@ export function EmployerJobListingClient({
               </tr>
             </thead>
             <tbody>
-              {listings.map((listing, index) => (
+              {initialListings.map((listing, index) => (
                 <tr key={listing.jobPostingId} className="border-b">
                   <td className="p-4">{listing.title}</td>
                   <td className="p-4">{listing.jobType}</td>
@@ -155,11 +150,7 @@ export function EmployerJobListingClient({
           onClick={(e) => e.target === e.currentTarget && closeAddListingModal()}
         >
           <div className="relative w-full max-w-3xl mx-auto my-8">
-            <Button
-              className="absolute top-4 right-4 z-50"
-              variant="ghost"
-              onClick={closeAddListingModal}
-            >
+            <Button className="absolute top-4 right-4 z-50" variant="ghost" onClick={closeAddListingModal}>
               ×
             </Button>
             <CreateJobListingClient />
