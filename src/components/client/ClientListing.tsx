@@ -17,6 +17,7 @@ export default function ClientListing({
         city: string | null;
         postalCode: string | null;
         resumeUrl: string | null;
+        skills: (string | null)[];
       }[]
     | null;
 }) {
@@ -102,4 +103,3 @@ export default function ClientListing({
     </div>
   );
 }
-

@@ -1,4 +1,5 @@
 "use server";
+import {JobListing} from "@/components/client/JobListingMaster";
 import {db} from "@/db";
 import {
   jobPostings as jobPostingsTable,
@@ -24,16 +25,10 @@ export async function GetJobListingsAction() {
         description: jobPostingsTable.description,
         jobPostingId: jobPostingsTable.jobPostingId,
         jobType: jobTypes.jobType,
-        // skills: [],
-        // benefits: [],
       })
       .from(jobPostingsTable)
       .leftJoin(companies, eq(companies.companyId, jobPostingsTable.companyId))
       .leftJoin(jobTypes, eq(jobTypes.jobTypeId, jobPostingsTable.jobTypeId));
-    //   .leftJoin(jobBenefit, eq(jobPostingsTable.jobPostingId, jobBenefit.jobPostingId))
-    //   .leftJoin(skillJob, eq(skillJob.jobPostingId, jobPostingsTable.jobPostingId))
-    //   .leftJoin(benefit, eq(benefit.benefitId, jobBenefit.benefitId))
-    //   .leftJoin(skills, eq(skills.skillId, skillJob.skillId));
 
     const jobPostingIds = listings.map((posting) => posting.jobPostingId);
 
@@ -78,7 +73,7 @@ export async function GetJobListingsAction() {
         benefit: postingBenefits,
       };
     });
-    return {success: true, listings: jobPosts};
+    return {success: true, listings: jobPosts as JobListing[]};
   } catch (err) {
     console.log(err);
     return {success: false, listings: null};

@@ -17,6 +17,7 @@ import SubmitApplicationAction from "@/actions/SubmitApplicationAction";
 import {KindeUser} from "@kinde-oss/kinde-auth-nextjs/types";
 import Image from "next/image";
 import {Button} from "../ui/button";
+import {cn} from "@/lib/utils";
 
 export interface JobDetails {
   companyName: string;
@@ -100,6 +101,7 @@ export default function JobListingMaster({
     jobType: "",
     client: "",
   });
+  const [collapsed, setCollapsed] = useState(false);
 
   const handleFilterChange = (type: keyof FilterState, value: string) => {
     setActiveFilters((prev) => ({
@@ -237,9 +239,9 @@ export default function JobListingMaster({
   };
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar user={activeUser} />
+      <Sidebar user={activeUser} setCollapsed={setCollapsed} collapsed={collapsed} />
 
-      <div className="flex-1 flex flex-col">
+      <div className={cn("flex-1 flex flex-col ml-16 transition-all duration-300", collapsed ? "ml-16" : "ml-64")}>
         <Header headerMsg="Job Listing" subHeadingMsg="Browse the latest job listing posts." />
 
         <main className="flex-1 overflow-y-auto lg:px-8 mt-4">

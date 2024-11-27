@@ -1,3 +1,4 @@
+"use client";
 import {FaMapMarkerAlt} from "react-icons/fa";
 import {MdWorkOutline} from "react-icons/md";
 import userIcon from "../../../public/static/images/userIcon.svg";

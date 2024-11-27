@@ -1,15 +1,12 @@
 "use server";
 import {db} from "@/db";
 import {users} from "@/db/schema";
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import {KindeUser} from "@kinde-oss/kinde-auth-nextjs/types";
 import {eq} from "drizzle-orm";
-import {redirect} from "next/navigation";
 
-export default async function AddKindeUserToDb() {
-  const {getUser} = getKindeServerSession();
-  const user = await getUser();
+export default async function AddKindeUserToDb(user: KindeUser<Record<string, any>>, accountType: number) {
   if (!user) {
-    redirect("/");
+    return;
   }
   try {
     const userExists = await db.select({id: users.userId}).from(users).where(eq(users.userId, user.id));
@@ -22,7 +19,7 @@ export default async function AddKindeUserToDb() {
       firstName: user.given_name as string,
       lastName: user.family_name as string,
       email: user.email as string,
-      accountTypeId: 1,
+      accountTypeId: accountType,
     });
   } catch (err) {
     console.log(err);

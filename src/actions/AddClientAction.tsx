@@ -21,6 +21,9 @@ export async function AddClientAction({
   try {
     const {getUser} = getKindeServerSession();
     const user = await getUser();
+    if (!user) {
+      return;
+    }
 
     console.log("Inserting client:", {
       firstName,

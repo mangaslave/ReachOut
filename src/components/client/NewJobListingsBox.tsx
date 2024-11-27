@@ -26,7 +26,7 @@ export function NewJobListingsBox({jobListings}: {jobListings: listing[] | null}
       <div className="p-6 rounded-xl bg-white shadow-md max-w-xl">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold">New Job Listings</h2>
-          <Link href="/job-listing" className="text-lg underline">
+          <Link href="/organization/job-listing" className="text-lg underline">
             View All
           </Link>
         </div>
@@ -38,7 +38,7 @@ export function NewJobListingsBox({jobListings}: {jobListings: listing[] | null}
     <div className="p-6 rounded-xl bg-white shadow-md max-w-xl">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold">New Job Listings</h2>
-        <Link href="/job-listing" className="text-lg underline">
+        <Link href="/organization/job-listing" className="text-lg underline">
           View All
         </Link>
       </div>
