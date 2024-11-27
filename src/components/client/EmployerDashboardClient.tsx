@@ -45,7 +45,7 @@ export default function EmployerDashboardClientComponent({
         <main className="flex-1 overflow-y-auto pt-4 px-2 sm:px-2 lg:px-4">
           <div className="max-w-7xl mx-1">
             <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">Today&aposs Overview</h2>
+              <h2 className="text-2xl font-bold mb-4">Today&apos;s Overview</h2>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <EmployerNewJobListingBox applications={applications.applications} />
                 <NewMessagesBox />

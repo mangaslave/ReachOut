@@ -21,8 +21,8 @@ export default function CaseManagers() {
           </h1>
           <p className="md:py-4 text-sm text-white md:text-lg">
             ReachOut believes nonprofit organizations are the first step to helping previously incarcerated individuals
-            begin their new lives. That&aposs why we&aposve built a platform that allows you to empower these
-            individuals by providing them with all the tools and resources you&aposll need.
+            begin their new lives. That&apos;s why we&apos;ve built a platform that allows you to empower these
+            individuals by providing them with all the tools and resources you&apos;ll need.
           </p>
           <button className="font-bold text-darkCarribbeanCurrant rounded-lg my-6 w-44 h-12 pt-3 pb-3 bg-white hover:bg-ylnMnBlue hover:bg-opacity-40 hover:text-white mb-20">
             Get Started Now!
@@ -65,8 +65,8 @@ export default function CaseManagers() {
                 based on their skill set, preferences, and criminal background.
               </li>
               <li>
-                <span className="font-semibold">Automated Applications:</span> Simply choose which client you&aposre
-                applying for and we&aposll do all the hefty work.
+                <span className="font-semibold">Automated Applications:</span> Simply choose which client you&apos;re
+                applying for and we&apos;ll do all the hefty work.
               </li>
             </ul>
             <button className="font-bold mr-60 text-white rounded-lg mb-6 mt-0 w-44 h-12 pt-3 pb-3 bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant">
@@ -93,7 +93,7 @@ export default function CaseManagers() {
               </li>
               <li>
                 <span className="font-semibold">Progress Tracking: </span> Review and receive real-time updates on the
-                progress of your client&aposs applications.
+                progress of your client&apos;s applications.
               </li>
             </ul>
             <button className="font-bold mr-60 text-white rounded-lg mb-6 w-44 h-12 pt-3 pb-3 bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant">
@@ -136,7 +136,7 @@ export default function CaseManagers() {
       <div className="flex flex-col items-center justify-center w-full bg-caribbeanCurrant">
         <h1 className="text-white text-lg md:text-4xl font-bold pt-8">Frequently Asked Questions</h1>
         <p className="text-white pt-1 pb-8">
-          Can&apost find what you&aposre looking for? Contact us{" "}
+          Can&apos;t find what you&apos;re looking for? Contact us{" "}
           <Link href="/" className="underline hover:text-darkCarribbeanCurrant">
             here
           </Link>
@@ -152,7 +152,7 @@ export default function CaseManagers() {
             <p className="text-base leading-5 mt-4 mb-10">
               Yes! ReachOut is designed to help individuals with any amount of experience. We provide a database of
               educational materials and skill-building workshops to prepare your clients for the workforce.
-              ReachOut&aposs job dashboard also allows you to curate a list of specifically entry-level jobs.
+              ReachOut&apos;s job dashboard also allows you to curate a list of specifically entry-level jobs.
             </p>
           </li>
           <li>
@@ -161,7 +161,7 @@ export default function CaseManagers() {
             </h4>
             <p className="text-base leading-5 mt-4 mb-10">
               Yes! Clients are able to make their own accounts at ReachOut where they can apply to job listings
-              themselves. If you&aposd like, you can link your accounts so that you can review their applications and
+              themselves. If you&apos;d like, you can link your accounts so that you can review their applications and
               provide feedback.
             </p>
           </li>

@@ -134,7 +134,7 @@ export default function Employers() {
       <div className="flex flex-col items-center justify-center w-full bg-spaceCadet">
         <h1 className="text-white text-lg md:text-4xl font-bold pt-8">Frequently Asked Questions</h1>
         <p className="text-white pt-1 pb-8">
-          Can&apost find what you&aposre looking for? Contact us{" "}
+          Can&apos;t find what you&apos;re looking for? Contact us{" "}
           <Link href="/" className="underline hover:text-spaceCadet">
             here
           </Link>
@@ -147,7 +147,7 @@ export default function Employers() {
             <h4 className="font-bold text-lg/5 mb-5 mt-14">Why should I consider second-chance hiring?</h4>
             <p className="text-base leading-5 mt-4 mb-10">
               Second-chance hiring allows you to access a motivated talent pool, reduce turnover rates, and contribute
-              to your community&aposs growth. Studies show that second-chance employees often outperform their peers in
+              to your community&apos;s growth. Studies show that second-chance employees often outperform their peers in
               terms of loyalty and productivity.
             </p>
           </li>
@@ -159,7 +159,7 @@ export default function Employers() {
             </p>
           </li>
           <li>
-            <h4 className="font-bold text-lg/5 mt-5">Is my company&aposs information secure on ReachOut?</h4>
+            <h4 className="font-bold text-lg/5 mt-5">Is my company&apos;s information secure on ReachOut?</h4>
             <p className="text-base leading-5 mt-4 mb-14">
               Absolutely. We use advanced security measures to ensure your data and candidate information remain private
               and protected.
