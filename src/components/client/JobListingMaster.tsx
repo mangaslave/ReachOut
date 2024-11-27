@@ -380,6 +380,7 @@ export default function JobListingMaster({
             previousModal={moveToApplication}
             setResumeLink={setResumeLink}
             setResumeName={setResumeName}
+            resumeUrl={resumeLink}
             clientId={clientId}
           />
         </div>

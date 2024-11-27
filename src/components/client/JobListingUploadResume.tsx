@@ -3,7 +3,7 @@ import {Tabs, TabsList, TabsTrigger, TabsContent} from "../ui/tabs";
 import {Button} from "@/components/ui/button";
 import Dropzone from "./DropZone";
 import UploadResumeAction from "@/actions/UploadResumeAction";
-import {Dispatch, SetStateAction, useState} from "react";
+import {ChangeEvent, Dispatch, SetStateAction, useState} from "react";
 
 export function JobListingUploadResume({
   nextModal,
@@ -12,6 +12,7 @@ export function JobListingUploadResume({
   setResumeLink,
   setResumeName,
   clientId,
+  resumeUrl,
 }: {
   nextModal: () => void;
   previousModal: () => void;
@@ -19,25 +20,59 @@ export function JobListingUploadResume({
   setResumeLink: Dispatch<SetStateAction<string>>;
   setResumeName: Dispatch<SetStateAction<string>>;
   clientId: number;
+  resumeUrl: string;
 }) {
   const [fileData, setFileData] = useState<File>();
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const [boxChecked, setBoxChecked] = useState(true);
+
+  const closeErrorModal = () => {
+    setErrorModalOpen(false);
+  };
+
+  const setChangeEvent = (e: ChangeEvent<HTMLInputElement>) => {
+    setBoxChecked(e.target.checked);
+    if (e.target.checked) {
+      setResumeLink(resumeUrl);
+    }
+  };
 
   const moveToNext = async () => {
-    // TODO: Cannot move to next if you navigate back to this modal window
+    console.log(boxChecked);
+    if (!fileData && !resumeUrl) {
+      setErrorModalOpen(true);
+      setTimeout(() => {
+        setErrorModalOpen(false);
+      }, 4000);
+      return;
+    }
+    if (!boxChecked && !fileData) {
+      setErrorModalOpen(true);
+      setTimeout(() => {
+        setErrorModalOpen(false);
+      }, 4000);
+      return;
+    }
     if (fileData) {
-      const resumeUrl = await UploadResumeAction({file: fileData, clientId});
-      if (resumeUrl.url) {
-        setResumeName(resumeUrl.name);
-        setResumeLink(resumeUrl.url);
+      const newResume = await UploadResumeAction({file: fileData, clientId});
+      if (newResume.url) {
+        setResumeName(newResume.name);
+        setResumeLink(newResume.url);
       } else {
-        console.log(resumeUrl.message);
+        console.log(newResume.message);
         setResumeName("Error loading file; please try again.");
       }
       nextModal();
     } else {
-      alert("Please add a pdf resume.");
+      setResumeLink(resumeUrl);
+      setResumeName(`${name}`);
+      nextModal();
     }
   };
+
+  const dateTimeAndName = resumeUrl.split("/")[5];
+  const date = dateTimeAndName.split("T")[0];
+  const name = dateTimeAndName.split("Z-")[1].replaceAll("_", " ");
 
   return (
     <div
@@ -81,7 +116,17 @@ export function JobListingUploadResume({
           <TabsContent value="recent" className="mt-4">
             <div className="border-2 border-dashed border-gray-200 rounded-lg">
               <div className="flex flex-col items-center justify-center h-[160px]">
-                <p className="text-sm text-gray-500">Recent uploads will appear here</p>
+                {resumeUrl ? (
+                  <div className="flex">
+                    <input type="checkbox" className="" defaultChecked={true} onChange={(e) => setChangeEvent(e)} />
+                    <p className="mx-5">
+                      {name}
+                      <span className="mx-5">Last Edited: {date}</span>
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-500">Recent uploads will appear here</p>
+                )}
               </div>
             </div>
           </TabsContent>
@@ -94,6 +139,19 @@ export function JobListingUploadResume({
           Next
         </Button>
       </div>
+      {errorModalOpen && (
+        <div className="fixed z-50 py-4 inset-0 flex pt-56 items-start justify-center bg-black bg-opacity-50">
+          <div className="bg-white shadow-md shadow-black rounded-lg text-spaceCadet w-96 flex flex-col p-2 items-center justify-center h-auto">
+            <h3 className="py-8 text-lg">Please fix the following errors:</h3>
+            <p>
+              Please select a resume from the recents list, <br /> or upload a new one.
+            </p>
+            <Button variant="secondary" className="bg-spaceCadet text-white mt-4" onClick={closeErrorModal}>
+              Close
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
