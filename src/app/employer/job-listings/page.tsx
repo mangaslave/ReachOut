@@ -14,7 +14,11 @@ export default async function EmployerJobListingPage() {
   }
 
   const user = await getUser();
-  await AddKindeUserToDb(user, 2);
+  const isEmployer = await AddKindeUserToDb(user, 2);
+
+  if (!isEmployer?.companyId) {
+    redirect("/");
+  }
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,
@@ -22,7 +26,7 @@ export default async function EmployerJobListingPage() {
     image: `${user.picture}`,
   };
 
-  const jobs = await GetJobListingsAction();
+  const jobs = await GetJobListingsAction(isEmployer.companyId);
   let listings = jobs.listings as JobListing[];
   if (!jobs.success) {
     listings = [];

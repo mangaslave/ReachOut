@@ -11,7 +11,11 @@ export default async function SettingsPage() {
     redirect("/");
   }
   const user = await getUser();
-  await AddKindeUserToDb(user, 1);
+  const isEmployer = await AddKindeUserToDb(user, 2);
+
+  if (!isEmployer?.companyId) {
+    redirect("/");
+  }
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,

@@ -12,9 +12,9 @@ import {
 } from "@/db/schema";
 import {eq, inArray} from "drizzle-orm";
 
-export async function GetJobListingsAction() {
+export async function GetJobListingsAction(companyId?: number) {
   try {
-    const listings = await db
+    const listingsQuery = db
       .select({
         title: jobPostingsTable.jobTitle,
         companyName: companies.companyName,
@@ -29,6 +29,12 @@ export async function GetJobListingsAction() {
       .from(jobPostingsTable)
       .leftJoin(companies, eq(companies.companyId, jobPostingsTable.companyId))
       .leftJoin(jobTypes, eq(jobTypes.jobTypeId, jobPostingsTable.jobTypeId));
+
+    if (companyId) {
+      listingsQuery.where(eq(companies.companyId, companyId));
+    }
+
+    const listings = await listingsQuery;
 
     const jobPostingIds = listings.map((posting) => posting.jobPostingId);
 
