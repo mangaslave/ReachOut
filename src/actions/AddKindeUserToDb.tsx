@@ -9,8 +9,14 @@ export default async function AddKindeUserToDb(user: KindeUser<Record<string, an
     return;
   }
   try {
-    const userExists = await db.select({id: users.userId}).from(users).where(eq(users.userId, user.id));
+    const userExists = await db
+      .select({id: users.userId, companyId: users.companyId})
+      .from(users)
+      .where(eq(users.userId, user.id));
     if (userExists[0]?.id) {
+      if (userExists[0]?.companyId) {
+        return {companyId: userExists[0].companyId};
+      }
       return;
     }
 

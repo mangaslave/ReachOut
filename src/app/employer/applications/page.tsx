@@ -14,7 +14,11 @@ export default async function PotentialEmployees() {
     redirect("/");
   }
   const user = await getUser();
-  await AddKindeUserToDb(user, 2);
+  const isEmployer = await AddKindeUserToDb(user, 2);
+
+  if (!isEmployer?.companyId) {
+    redirect("/");
+  }
 
   const applications = await GetApplicationsAction(user.id);
 
