@@ -2,7 +2,6 @@
 import {Application} from "@/actions/GetApplicationsAction";
 import {Avatar, AvatarFallback, AvatarImage} from "../ui/avatar";
 import {Button} from "../ui/button";
-import userIcon from "../../../public/static/images/userIcon.svg";
 
 export function EmployerNewJobListingBox({applications}: {applications: Application[]}) {
   return (
@@ -17,9 +16,9 @@ export function EmployerNewJobListingBox({applications}: {applications: Applicat
       {applications.slice(0, 3).map((application, index) => (
         <div key={index} className="flex items-center justify-between mb-4 last:mb-0">
           <div className="flex items-center gap-4 min-w-0">
-            <Avatar className="h-14 w-14 shrink-0">
-              <AvatarImage src={userIcon} alt="" />
-              <AvatarFallback></AvatarFallback>
+            <Avatar className="h-14 w-14 shrink-0 border-2 border-gray-200">
+              <AvatarImage src="/static/images/userIcon.svg" alt="" />
+              <AvatarFallback>User</AvatarFallback>
             </Avatar>
             <div>
               <h3 className="text-xl font-medium">{`${application.applicantFirstName} ${application.applicantLastName}`}</h3>

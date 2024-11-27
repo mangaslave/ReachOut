@@ -92,9 +92,9 @@ export default function JobCard({
 
   const calculateStatusColor = (score: number | null | undefined) => {
     if (!score) return "bg-gray-400";
+    if (score < 2 && score >= 0) return "bg-red-500";
     if (score >= 5) return "bg-green-600";
     if (score >= 2 && score < 5) return "bg-yellow-500";
-    if (score < 2) return "bg-red-500";
   };
 
   const matchRating = calculateMatch(score);

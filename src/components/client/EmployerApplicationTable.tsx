@@ -5,6 +5,8 @@ import {pdfjs} from "react-pdf";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import {useState} from "react";
+import emailIcon from "../../../public/static/images/email-icon.svg";
+import Image from "next/image";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
@@ -34,6 +36,7 @@ export default function EmployerApplicationTable({applications}: {applications: 
             <th className="px-4 py-3 text-left font-medium text-white">Type</th>
             <th className="px-4 py-3 text-left font-medium text-white">Status</th>
             <th className="px-4 py-3 text-left font-medium text-white"></th>
+            <th className="px-4 py-3 text-left font-medium text-white"></th> //!delete
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200 bg-white">
@@ -58,6 +61,11 @@ export default function EmployerApplicationTable({applications}: {applications: 
                 >
                   View Full Application
                 </button>
+              </td>
+              <td>
+                <a>
+                  <Image src={emailIcon} height={20} width={20} alt=""></Image>
+                </a>
               </td>
             </tr>
           ))}
