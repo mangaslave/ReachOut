@@ -248,13 +248,12 @@ export default function JobListingMaster({
           <div className="max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-4">
               <div className="flex">
-                <JobListingFilters clients={clients} setClientId={setClientId} onFilterChange={handleFilterChange} />
-              </div>
-
-              <div className="ml-auto">
-                <button className="bg-spaceCadet text-white hover:bg-ylnMnBlue text-xs px-4 rounded-md h-8">
-                  + Add New
-                </button>
+                <JobListingFilters
+                  clients={clients}
+                  listings={listings}
+                  setClientId={setClientId}
+                  onFilterChange={handleFilterChange}
+                />
               </div>
             </div>
 
@@ -381,6 +380,7 @@ export default function JobListingMaster({
             previousModal={moveToApplication}
             setResumeLink={setResumeLink}
             setResumeName={setResumeName}
+            resumeUrl={resumeLink}
             clientId={clientId}
           />
         </div>

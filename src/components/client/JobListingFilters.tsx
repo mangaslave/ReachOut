@@ -5,7 +5,7 @@ import userIcon from "../../../public/static/images/userIcon.svg";
 import Image from "next/image";
 import {ChevronDownIcon} from "lucide-react";
 import {Dispatch, SetStateAction, useState} from "react";
-import {ClientInfo} from "./JobListingMaster";
+import {ClientInfo, JobListing} from "./JobListingMaster";
 
 export interface FilterState {
   location: string;
@@ -19,10 +19,12 @@ export default function JobListingFilters({
   onFilterChange,
   clients,
   setClientId,
+  listings,
 }: {
   onFilterChange: JobListingFilter;
   clients: ClientInfo[];
   setClientId: Dispatch<SetStateAction<number>>;
+  listings: JobListing[];
 }) {
   const [location, setLocation] = useState("");
   const [jobType, setJobType] = useState("");
@@ -55,6 +57,12 @@ export default function JobListingFilters({
   };
 
   const isAnyFilterActive = location || jobType || client;
+  const filterCities: string[] = [];
+  listings.map((listing) => {
+    if (listing.location && !filterCities.includes(listing.location)) {
+      filterCities.push(listing.location);
+    }
+  });
 
   return (
     <div className="flex space-x-4 mt-4">
@@ -66,11 +74,9 @@ export default function JobListingFilters({
             onChange={handleLocationChange}
             className="block w-full h-8 pl-10 pr-3 bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 appearance-none"
           >
-            <option value="">Select Location</option>
-            <option value="Toronto">Toronto</option>
-            <option value="Vancouver">Vancouver</option>
-            <option value="Markham">Markham</option>
-            <option value="Oakville">Oakville</option>
+            {filterCities.map((city, index) => {
+              return <option key={index}>{city}</option>;
+            })}
           </select>
           <ChevronDownIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
 
