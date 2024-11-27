@@ -45,11 +45,11 @@ export default function NavBar() {
             </li>
             <li>
               <Link
-                aria-label="About"
-                href="/about"
+                aria-label="Cpntact"
+                href="/contact"
                 className="text-black text-sm sm:text-base font-bold hover:text-caribbeanCurrant"
               >
-                About
+                Contact
               </Link>
             </li>
             <li className="flex space-x-5 items-center">
