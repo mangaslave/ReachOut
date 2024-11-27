@@ -166,5 +166,9 @@ function matchKeyPhrasesWithScore(
 
   const matchScore = (matched.length / jobKeyPhrases.length) * 100;
 
+  if (matchScore == 0){
+    return {matched, missing, matchScore: 1};
+  }
+
   return {matched, missing, matchScore: parseFloat(matchScore.toFixed(2))};
 }
