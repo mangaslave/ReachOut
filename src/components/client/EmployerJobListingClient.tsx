@@ -2,17 +2,11 @@
 import React, {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
-import {JobListing as JobListingComponent} from "./JobListingDescription";
 import {CreateJobListingClient} from "./CreateJobListingClient";
 import {type JobListing} from "@/components/client/JobListingMaster";
+import {EmployerViewJobListing} from "./EmployerViewJobListingComponent";
 
-
-export function EmployerJobListingClient({
-  initialListings
-}: {
-  initialListings: JobListing[]
-}) {
-  const [listings, setListings] = useState<JobListing[]>(initialListings);
+export function EmployerJobListingClient({initialListings}: {initialListings: JobListing[]}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedListing, setSelectedListing] = useState<JobListing | null>(null);
   const [currentListingIndex, setCurrentListingIndex] = useState<number>(0);
@@ -128,18 +122,7 @@ export function EmployerJobListingClient({
           onClick={handleBackdropClick}
         >
           <div className="relative bg-white rounded-lg max-w-3xl w-full mx-4">
-            <Button
-              className="absolute top-4 right-4 z-50"
-              variant="ghost"
-              onClick={closeModal}
-            >
-              ×
-            </Button>
-            <JobListingComponent
-              jobDetails={selectedListing}
-              nextModal={nextModal}
-              closeModal={closeModal}
-            />
+            <EmployerViewJobListing jobDetails={selectedListing} closeModal={closeModal} />
           </div>
         </div>
       )}
