@@ -5,7 +5,7 @@ import Header from "@/components/client/Header";
 import userIcon from "../../../public/static/images/userIcon.svg";
 import closeIcon from "../../../public/static/images/CloseIcon.svg";
 import downMenuIcon from "../../../public/static/images/DownMenu_icon.svg";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import JobCard from "@/components/client/job_postcard";
 import {JobListingContactInfo} from "@/components/client/JobListingContactInfo";
 import {JobListing} from "@/components/client/JobListingDescription";
@@ -18,6 +18,7 @@ import {KindeUser} from "@kinde-oss/kinde-auth-nextjs/types";
 import Image from "next/image";
 import {Button} from "../ui/button";
 import {cn} from "@/lib/utils";
+import {ClientList, ClientSummaries} from "@/actions/GetClientAction";
 
 export interface JobDetails {
   companyName: string;
@@ -74,7 +75,7 @@ export default function JobListingMaster({
   user,
 }: {
   listings: JobListing[];
-  clients: ClientInfo[];
+  clients: ClientList;
   user: KindeUser<Record<string, unknown>>;
 }) {
   const [applicationModalOpen, setApplicationModalOpen] = useState(false);
@@ -109,6 +110,31 @@ export default function JobListingMaster({
       [type]: value,
     }));
   };
+
+  const filteredListings = useMemo(() => {
+    const filteredList: JobListing[] = listings.filter((listing) => {
+      let matches = true;
+
+      if (activeFilters.location && !listing.location?.includes(activeFilters.location)) {
+        matches = false;
+      }
+      if (activeFilters.jobType && listing.jobType !== activeFilters.jobType) {
+        matches = false;
+      }
+      return matches;
+    });
+    return filteredList.map((listing) => {
+      const clientName = clients.find((client) => client.id === Number(activeFilters.client));
+      const clientSummaries = clientName ? clientName.summaries : [];
+      const summary = clientSummaries.find((summary) => summary.jobPostingId === listing.jobPostingId);
+
+      return {
+        ...listing,
+        summary: summary ? summary.summary : null,
+        score: summary ? summary.score : null,
+      };
+    });
+  }, [activeFilters, listings, clients]);
 
   const applicationInfo = (): JobApplication => {
     return {
@@ -228,8 +254,8 @@ export default function JobListingMaster({
       setErrorModalOpen(false);
     }, 2500);
   };
-  const bgColors = ["bg-orchidPink", "bg-caribbeanCurrant", "bg-ylnMnBlue"];
-  const borderTextColors = ["black", "white", "white"];
+  const bgColors = ["bg-spaceCadet", "bg-spaceCadet", "bg-spaceCadet"];
+  const borderTextColors = ["white", "white", "white"];
   let i = -1;
 
   const activeUser = {
@@ -258,7 +284,7 @@ export default function JobListingMaster({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {listings?.map((listing) => {
+              {filteredListings?.map((listing) => {
                 if (i < 2) {
                   i++;
                 } else {
@@ -284,7 +310,7 @@ export default function JobListingMaster({
                         listing.jobPostingId
                       )
                     }
-                    key={listings.indexOf(listing)}
+                    key={listing.jobPostingId}
                     baseColor={bgColors[i]}
                     textcolor={`text-${borderTextColors[i]}`}
                     bordercolor={`border-${borderTextColors[i]}`}
@@ -296,6 +322,8 @@ export default function JobListingMaster({
                     matchStatus="Excellent"
                     jobType={`${listing.jobType}`}
                     dateOfPosting={`${listing.date}`}
+                    summary={listing.summary}
+                    score={listing.score}
                     statusColor="bg-green-600"
                     status={{
                       status1: "/static/images/match-green.svg",

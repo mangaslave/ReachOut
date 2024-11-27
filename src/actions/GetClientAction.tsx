@@ -85,7 +85,7 @@ export type ClientList = {
   summaries: ClientSummaries;
 }[];
 
-type ClientSummaries = {
+export type ClientSummaries = {
   summary: string | null;
   score: number | null;
   clientId: number | null;

@@ -11,7 +11,7 @@ interface Status {
   };
 }
 
-export default function InfoPopup({status: {status1, status2, status3}}: Status) {
+export default function InfoPopup({status}: {status: string}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePopup = () => {
@@ -48,7 +48,7 @@ export default function InfoPopup({status: {status1, status2, status3}}: Status)
         <div className="absolute top-full left-0 mt-2 w-64 bg-ylnMnBlue p-4 rounded-lg shadow-lg z-10">
           {/* Header and Close Button */}
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-semibold text-white">Job Requirements</h3>
+            <h3 className="text-lg font-semibold text-white">Matching Summary</h3>
             {/* <button onClick={togglePopup} className="focus:outline-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@ export default function InfoPopup({status: {status1, status2, status3}}: Status)
           <div className="text-gray-200 space-y-2">
             {/* Status items */}
             <div className="flex items-center">
-              <Image src={status1} alt="Status Icon 1" width={20} height={20} />
+              {/* <Image src={status1} alt="Status Icon 1" width={20} height={20} />
               <span className="ml-2">Background Check</span>
             </div>
             <div className="flex items-center">
@@ -77,7 +77,8 @@ export default function InfoPopup({status: {status1, status2, status3}}: Status)
             </div>
             <div className="flex items-center">
               <Image src={status3} alt="Status Icon 3" width={20} height={20} />
-              <span className="ml-2">1 year Managing Experience</span>
+              <span className="ml-2">1 year Managing Experience</span> */}
+              <p>{status}</p>
             </div>
           </div>
         </div>
