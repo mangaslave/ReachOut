@@ -6,7 +6,13 @@ import {JobListing as JobListingComponent} from "./JobListingDescription";
 import {CreateJobListingClient} from "./CreateJobListingClient";
 import {type JobListing} from "@/components/client/JobListingMaster";
 
-export function EmployerJobListingClient({initialListings}: {initialListings: JobListing[]}) {
+
+export function EmployerJobListingClient({
+  initialListings
+}: {
+  initialListings: JobListing[]
+}) {
+  const [listings, setListings] = useState<JobListing[]>(initialListings);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedListing, setSelectedListing] = useState<JobListing | null>(null);
   const [currentListingIndex, setCurrentListingIndex] = useState<number>(0);
@@ -31,6 +37,12 @@ export function EmployerJobListingClient({initialListings}: {initialListings: Jo
     const nextIndex = (currentListingIndex + 1) % initialListings.length;
     setCurrentListingIndex(nextIndex);
     setSelectedListing(initialListings[nextIndex]);
+  };
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
   };
 
   return (
@@ -111,13 +123,32 @@ export function EmployerJobListingClient({initialListings}: {initialListings: Jo
       </div>
 
       {modalOpen && selectedListing && (
-        <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListingComponent jobDetails={selectedListing} nextModal={nextModal} closeModal={closeModal} />
+        <div
+          className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50"
+          onClick={handleBackdropClick}
+        >
+          <div className="relative bg-white rounded-lg max-w-3xl w-full mx-4">
+            <Button
+              className="absolute top-4 right-4 z-50"
+              variant="ghost"
+              onClick={closeModal}
+            >
+              ×
+            </Button>
+            <JobListingComponent
+              jobDetails={selectedListing}
+              nextModal={nextModal}
+              closeModal={closeModal}
+            />
+          </div>
         </div>
       )}
 
       {isAddListingModalOpen && (
-        <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
+        <div
+          className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto"
+          onClick={(e) => e.target === e.currentTarget && closeAddListingModal()}
+        >
           <div className="relative w-full max-w-3xl mx-auto my-8">
             <Button className="absolute top-4 right-4 z-50" variant="ghost" onClick={closeAddListingModal}>
               ×
