@@ -72,10 +72,8 @@ export function JobListingContactInfo({
 
   function validateForm() {
     setErrors([]);
-    let newErrors = [];
-    console.log(firstName, lastName, email, phoneNumber, cityName);
+    const newErrors = [];
     const phone = validPhoneNumber.safeParse(phoneNumber);
-    console.log(phone);
     if (!phone.success) {
       newErrors.push(`Invalid Phone Number`);
       setPhoneNumberError(true);
@@ -97,7 +95,6 @@ export function JobListingContactInfo({
       newErrors.push(`City must be at least 4 characters long`);
       setCityNameError(true);
     }
-    console.log(newErrors);
     if (newErrors.length === 0) {
       return true;
     } else {

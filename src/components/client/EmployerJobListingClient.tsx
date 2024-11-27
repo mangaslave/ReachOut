@@ -6,16 +6,7 @@ import {JobListing as JobListingComponent} from "./JobListingDescription";
 import {CreateJobListingClient} from "./CreateJobListingClient";
 import {type JobListing} from "@/components/client/JobListingMaster";
 
-type Status = "Active" | "Archived" | "Pending";
-
-const statusStyles = {
-  Active: "bg-green-500",
-  Archived: "bg-red-500",
-  Pending: "bg-yellow-500",
-} as const;
-
 export function EmployerJobListingClient({initialListings}: {initialListings: JobListing[]}) {
-  const [listings, setListings] = useState<JobListing[]>(initialListings);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedListing, setSelectedListing] = useState<JobListing | null>(null);
   const [currentListingIndex, setCurrentListingIndex] = useState<number>(0);
@@ -37,9 +28,9 @@ export function EmployerJobListingClient({initialListings}: {initialListings: Jo
   };
 
   const nextModal = () => {
-    const nextIndex = (currentListingIndex + 1) % listings.length;
+    const nextIndex = (currentListingIndex + 1) % initialListings.length;
     setCurrentListingIndex(nextIndex);
-    setSelectedListing(listings[nextIndex]);
+    setSelectedListing(initialListings[nextIndex]);
   };
 
   return (
@@ -57,7 +48,7 @@ export function EmployerJobListingClient({initialListings}: {initialListings: Jo
                 <SelectValue placeholder="Job Position" />
               </SelectTrigger>
               <SelectContent>
-                {Array.from(new Set(listings.map((l) => l.title))).map((title) => (
+                {Array.from(new Set(initialListings.map((l) => l.title))).map((title) => (
                   <SelectItem key={title} value={title}>
                     {title}
                   </SelectItem>
@@ -70,7 +61,7 @@ export function EmployerJobListingClient({initialListings}: {initialListings: Jo
                 <SelectValue placeholder="Job Type" />
               </SelectTrigger>
               <SelectContent>
-                {Array.from(new Set(listings.map((l) => l.jobType).filter(Boolean))).map((type) => (
+                {Array.from(new Set(initialListings.map((l) => l.jobType).filter(Boolean))).map((type) => (
                   <SelectItem key={type!} value={type!}>
                     {type}
                   </SelectItem>
@@ -98,7 +89,7 @@ export function EmployerJobListingClient({initialListings}: {initialListings: Jo
               </tr>
             </thead>
             <tbody>
-              {listings.map((listing, index) => (
+              {initialListings.map((listing, index) => (
                 <tr key={listing.jobPostingId} className="border-b">
                   <td className="p-4">{listing.title}</td>
                   <td className="p-4">{listing.jobType}</td>

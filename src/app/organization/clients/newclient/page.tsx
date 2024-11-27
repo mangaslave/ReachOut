@@ -1,10 +1,7 @@
 "use server";
 
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
-import Header from "@/components/client/Header";
-import AddNewClientForm from "@/components/client/NewClientForm";
 import NewClientsPageClient from "@/components/client/NewClientPageClient";
-import {Sidebar} from "@/components/client/SideBar";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 

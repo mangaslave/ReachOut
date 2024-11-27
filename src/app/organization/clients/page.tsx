@@ -15,7 +15,7 @@ export default async function ClientsPage() {
   const user = await getUser();
   await AddKindeUserToDb(user, 1);
 
-  let clients = await GetClientAction();
+  const clients = await GetClientAction();
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,
@@ -23,5 +23,5 @@ export default async function ClientsPage() {
     image: `${user.picture}`,
   };
 
-  return <ClientsPageClient activeUser={activeUser} clients={clients} />;
+  return <ClientsPageClient activeUser={activeUser} clients={clients.clients} />;
 }

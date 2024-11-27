@@ -20,10 +20,10 @@ export default function JobSeekers() {
             Find Jobs That Value You and Your Skills.
           </h1>
           <p className="md:py-4 text-sm text-white md:text-lg">
-            Your skills, experiences, and determination define your potential—not your past. That's why we connect you
-            with employers who see your value and are committed to giving you the opportunity to succeed. Whether you're
-            looking to start fresh, build a career, or explore new possibilities, we're here to support you at every
-            step.
+            Your skills, experiences, and determination define your potential—not your past. That&aposs why we connect
+            you with employers who see your value and are committed to giving you the opportunity to succeed. Whether
+            you&aposre looking to start fresh, build a career, or explore new possibilities, we&aposre here to support
+            you at every step.
           </p>
           <button className="font-bold text-darkCarribbeanCurrant rounded-lg my-6 w-44 h-12 pt-3 pb-3 bg-white hover:bg-transparent hover:border hover:border-white hover:text-white mb-20">
             Get Started Now!
@@ -67,7 +67,7 @@ export default function JobSeekers() {
               </li>
               <li>
                 <span className="font-semibold">Automated Applications:</span> Simply choose which job you want to apply
-                for and we'll do all the tedious work for you.
+                for and we&aposll do all the tedious work for you.
               </li>
             </ul>
             <button className="font-bold mr-60 text-white rounded-lg mb-6 mt-0 w-44 h-12 pt-3 pb-3 bg-ylnMnBlue hover:bg-spaceCadet">
@@ -139,7 +139,7 @@ export default function JobSeekers() {
       <div className="flex flex-col items-center justify-center w-full bg-ylnMnBlue">
         <h1 className="text-white text-lg md:text-4xl font-bold pt-8">Frequently Asked Questions</h1>
         <p className="text-white pt-1 pb-8">
-          Can't find what you're looking for? Contact us{" "}
+          Can&apost find what you&aposre looking for? Contact us{" "}
           <Link href="/" className="underline hover:text-spaceCadet">
             here
           </Link>

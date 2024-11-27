@@ -1,7 +1,6 @@
 "use server";
 import {db} from "@/db";
 import {users} from "@/db/schema";
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {KindeUser} from "@kinde-oss/kinde-auth-nextjs/types";
 import {eq} from "drizzle-orm";
 

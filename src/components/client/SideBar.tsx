@@ -4,7 +4,7 @@ import {cn} from "@/lib/utils";
 import {Button} from "@/components/ui/button";
 import {ChevronLeft, Settings, User} from "lucide-react";
 import Image from "next/image";
-import {Dispatch, SetStateAction, useState} from "react";
+import {Dispatch, SetStateAction} from "react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";

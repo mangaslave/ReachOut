@@ -4,7 +4,6 @@ import {Button} from "@/components/ui/button";
 import Dropzone from "./DropZone";
 import UploadResumeAction from "@/actions/UploadResumeAction";
 import {Dispatch, SetStateAction, useState} from "react";
-// import {uploadFile} from "@/actions/s3-actions";
 
 export function JobListingUploadResume({
   nextModal,

@@ -5,13 +5,14 @@ import Link from "next/link";
 import ClientListing from "./ClientListing";
 import {useState} from "react";
 import {cn} from "@/lib/utils";
+import {ClientList} from "@/actions/GetClientAction";
 
 export default function ClientsPageClient({
   activeUser,
   clients,
 }: {
   activeUser: {name: string; email: string; image: string};
-  clients: any;
+  clients: ClientList | null;
 }) {
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -35,9 +36,7 @@ export default function ClientsPageClient({
               </div>
             </div>
 
-            <div>
-              <ClientListing clients={clients.clients} />
-            </div>
+            <div>{clients ? <ClientListing clients={clients} /> : ""}</div>
           </div>
         </main>
       </div>

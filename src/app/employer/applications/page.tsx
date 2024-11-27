@@ -4,11 +4,7 @@ import React from "react";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
-
-import {EmployerSidebar} from "@/components/client/EmployerSidebar";
-import Header from "@/components/client/Header";
 import GetApplicationsAction from "@/actions/GetApplicationsAction";
-import EmployerApplicationTable from "@/components/client/EmployerApplicationTable";
 import ApplicationPageClientComponent from "@/components/client/ApplicationPageClientComponent";
 
 export default async function PotentialEmployees() {

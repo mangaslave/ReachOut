@@ -32,6 +32,7 @@ export default async function GetApplicationsAction(userId: string) {
 
     return {success: true, applications, message: ""};
   } catch (err) {
+    console.log(err);
     return {success: false, applications: [], message: "Error connecting to database"};
   }
 }

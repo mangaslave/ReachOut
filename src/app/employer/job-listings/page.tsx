@@ -4,7 +4,7 @@ import {redirect} from "next/navigation";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 import {JobListing} from "@/components/client/JobListingMaster";
 import {GetJobListingsAction} from "@/actions/GetJobListingAction";
-import EmployerJobListingClientComponent from "@/components/client/EmployerJobListinglClientComponent";
+import EmployerJobListingClientComponent from "@/components/client/EmployerJobListingClientComponent";
 
 export default async function EmployerJobListingPage() {
   const {getUser, isAuthenticated} = getKindeServerSession();
