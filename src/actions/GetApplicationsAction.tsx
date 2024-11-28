@@ -23,6 +23,7 @@ export default async function GetApplicationsAction(userId: string) {
         jobTitle: jobPostings.jobTitle,
         companyName: companies.companyName,
         resumeUrl: clientApplications.resumeUrl,
+        availability: clientApplications.interviewDate,
       })
       .from(clientApplications)
       .leftJoin(clients, eq(clientApplications.clientId, clients.clientId))
@@ -45,4 +46,5 @@ export type Application = {
   jobTitle: string | null;
   companyName: string | null;
   resumeUrl: string;
+  availability: string | null;
 };

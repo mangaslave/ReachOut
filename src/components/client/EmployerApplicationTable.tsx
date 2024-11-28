@@ -7,12 +7,15 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import {useState} from "react";
 import emailIcon from "../../../public/static/images/email-icon.svg";
 import Image from "next/image";
+import {JobListingApplicationSummary} from "./JobListingSummary";
+import {ApplicationModal} from "./EmployerApplicationModal";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
 export default function EmployerApplicationTable({applications}: {applications: Application[]}) {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
   const [resumeUrl, setResumeUrl] = useState<string>();
+  const [application, setApplication] = useState<Application>();
 
   const openResumeModal = () => {
     setResumeModalOpen(true);
@@ -24,6 +27,7 @@ export default function EmployerApplicationTable({applications}: {applications: 
     e.preventDefault();
     const index = Number(e.currentTarget.value);
     setResumeUrl(applications[index].resumeUrl);
+    setApplication(applications[index]);
     openResumeModal();
   };
   return (
@@ -36,7 +40,7 @@ export default function EmployerApplicationTable({applications}: {applications: 
             <th className="px-4 py-3 text-left font-medium text-white">Type</th>
             <th className="px-4 py-3 text-left font-medium text-white">Status</th>
             <th className="px-4 py-3 text-left font-medium text-white"></th>
-            <th className="px-4 py-3 text-left font-medium text-white"></th> //!delete
+            <th className="px-4 py-3 text-left font-medium text-white"></th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200 bg-white">
@@ -78,6 +82,7 @@ export default function EmployerApplicationTable({applications}: {applications: 
             file={resumeUrl}
           >
             <Page className="rounded-md scale-95 overflow-hidden" pageNumber={1}>
+              <h1 className="mx-8 my-2 bg-spaceCadet text-white rounded-sm px-2">Interview Availability: 2024-11-30</h1>
               <button
                 onClick={closeResumeModal}
                 className="bg-caribbeanCurrant w-20 rounded-md mx-8 my-2 float-right text-white"
