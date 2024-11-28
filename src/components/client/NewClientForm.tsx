@@ -49,6 +49,14 @@ export default function AddNewClientForm() {
       setStatus("Success");
       setModalMessage(response.message);
       setModalOpen(true);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        city: "",
+        postalCode: "",
+        email: "",
+        phoneNumber: "",
+      });
       setTimeout(() => {
         redirect("/organization/clients");
       }, 4000);
