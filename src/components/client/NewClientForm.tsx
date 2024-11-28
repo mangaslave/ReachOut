@@ -155,11 +155,11 @@ export default function AddNewClientForm() {
               });
               redirect("/organization/clients");
             }}
-            className="mr-4 bg-gray-300 text-black py-2 px-4 rounded"
+            className="mr-4 bg-gray-300 hover:bg-gray-200 text-black py-2 px-4 rounded"
           >
             Cancel
           </button>
-          <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded">
+          <button type="submit" className="bg-spaceCadet hover:bg-ylnMnBlue text-white py-2 px-4 rounded">
             {"Add Client"}
           </button>
         </div>
