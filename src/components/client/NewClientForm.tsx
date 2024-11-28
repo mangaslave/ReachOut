@@ -144,7 +144,7 @@ export default function AddNewClientForm() {
         <div className="flex justify-end mt-6">
           <button
             type="button"
-            onClick={() =>
+            onClick={() => {
               setFormData({
                 firstName: "",
                 lastName: "",
@@ -152,8 +152,9 @@ export default function AddNewClientForm() {
                 postalCode: "",
                 email: "",
                 phoneNumber: "",
-              })
-            }
+              });
+              redirect("/organization/clients");
+            }}
             className="mr-4 bg-gray-300 text-black py-2 px-4 rounded"
           >
             Cancel
