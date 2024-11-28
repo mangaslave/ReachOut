@@ -17,9 +17,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.m
 interface ModalProps {
   closeModal: () => void;
   application: Application;
+  setInterview: (applicationId: number) => void;
 }
 
-export function ApplicationModal({closeModal, application}: ModalProps) {
+export function ApplicationModal({closeModal, application, setInterview}: ModalProps) {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
   const [resumeUrl, setResumeUrl] = useState<string>(application.resumeUrl);
 
@@ -33,6 +34,10 @@ export function ApplicationModal({closeModal, application}: ModalProps) {
     }
   };
 
+  const interviewClient = () => {
+    setInterview(application.applicationId);
+    closeModal();
+  };
   const openResumeModal = () => {
     setResumeModalOpen(true);
   };
@@ -77,13 +82,23 @@ export function ApplicationModal({closeModal, application}: ModalProps) {
           </div>
 
           <div>
-            <h3 className="text-sm font-medium">Availability</h3>
+            <h3 className="text-sm font-medium">Interview Availability</h3>
             <p className="text-sm text-gray-600">{application.availability}</p>
           </div>
 
           <div className="flex gap-2 pt-4">
-            <Button className="flex-1 bg-teal-600 hover:bg-teal-700">Interview</Button>
-            <Button variant="outline" className="flex-1 bg-red-500" onClick={deleteApplication}>
+            <Button
+              variant="outline"
+              className="flex-1 text-white bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant"
+              onClick={interviewClient}
+            >
+              Interview
+            </Button>
+            <Button
+              variant="outline"
+              className="flex-1 bg-spaceCadet hover:bg-ylnMnBlue text-white"
+              onClick={deleteApplication}
+            >
               Discard
             </Button>
           </div>

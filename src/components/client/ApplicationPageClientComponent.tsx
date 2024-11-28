@@ -33,7 +33,7 @@ export default function ApplicationPageClientComponent({
             <h2 className="text-2xl font-semibold text-gray-900">Employee Matches</h2>
             <p className="text-lg">List of best candidates matched to your job openings</p>
           </div>
-          <EmployerApplicationTable applications={applications.applications} />
+          <EmployerApplicationTable applications={applications.applications} activeUser={activeUser} />
         </div>
       </div>
     </div>

@@ -1,39 +1,50 @@
 "use client";
 import {Application} from "@/actions/GetApplicationsAction";
-import {Document, Page} from "react-pdf";
-import {pdfjs} from "react-pdf";
-import "react-pdf/dist/Page/TextLayer.css";
-import "react-pdf/dist/Page/AnnotationLayer.css";
 import {useState} from "react";
 import emailIcon from "../../../public/static/images/email-icon.svg";
 import Image from "next/image";
 import {ApplicationModal} from "./EmployerApplicationModal";
+import {Button} from "../ui/button";
+import ContactApplicantModal from "./ContactApplicantModal";
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
-
-export default function EmployerApplicationTable({applications}: {applications: Application[]}) {
-  const [resumeModalOpen, setResumeModalOpen] = useState(false);
-  const [resumeUrl, setResumeUrl] = useState<string>();
+export default function EmployerApplicationTable({
+  applications,
+  activeUser,
+}: {
+  applications: Application[];
+  activeUser: {
+    name: string;
+    email: string;
+    image: string;
+  };
+}) {
   const [application, setApplication] = useState<Application>(applications[0]);
   const [applicationModalOpen, setApplicationModalOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
+  const [statuses, setStatuses] = useState<{[key: number]: string}>(
+    applications.reduce<{[key: number]: string}>((acc, app) => {
+      acc[app.applicationId] = "New";
+      return acc;
+    }, {})
+  );
 
-  const openResumeModal = () => {
-    setResumeModalOpen(true);
+  const changeApplicationStatus = (applicationId: number) => {
+    setStatuses((prevStatuses) => ({
+      ...prevStatuses,
+      [applicationId]: "Interviewing",
+    }));
   };
-  const closeResumeModal = () => {
-    setResumeModalOpen(false);
+
+  const openContact = (app: Application) => {
+    setApplication(app);
+    setContactModalOpen(true);
   };
-  const viewApplication = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    const index = Number(e.currentTarget.value);
-    setResumeUrl(applications[index].resumeUrl);
-    setApplication(applications[index]);
-    openResumeModal();
+
+  const closeContact = () => {
+    setContactModalOpen(false);
   };
 
   const displayApplication = (app: Application) => {
-    console.log("DOING SOMETINIG");
-    console.log(app);
     setApplication(app);
     setApplicationModalOpen(true);
   };
@@ -61,7 +72,13 @@ export default function EmployerApplicationTable({applications}: {applications: 
               <td className="px-4 py-4 text-gray-900">{app.jobTitle}</td>
               <td className="px-4 py-4 text-gray-900">{app.jobTitle}</td>
               <td className="px-4 py-4">
-                <select className="w-36 border rounded-lg border-black text-black" name="" id="" defaultValue="New">
+                <select
+                  className="w-36 border rounded-lg border-black text-black"
+                  name=""
+                  id=""
+                  value={statuses[app.applicationId]}
+                  onChange={(e) => changeApplicationStatus(app.applicationId)}
+                >
                   <option value="New">🔴 NEW!</option>
                   <option value="Interviewing">🟡 Interviewing</option>
                   <option value="Hired">🟢 Hired</option>
@@ -78,32 +95,23 @@ export default function EmployerApplicationTable({applications}: {applications: 
                 </button>
               </td>
               <td>
-                <a>
+                <Button variant="ghost" onClick={() => openContact(app)}>
                   <Image src={emailIcon} height={20} width={20} alt=""></Image>
-                </a>
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {applicationModalOpen && <ApplicationModal closeModal={closeApplication} application={application} />}
-      {resumeModalOpen && (
-        <div className="fixed z-50 inset-0 overflow-hidden rounded-md flex items-center justify-center bg-black bg-opacity-50">
-          <Document
-            className="max-w-2xl inset-0 overflow-hidden rounded-md flex-col h-auto items-center justify-center"
-            file={resumeUrl}
-          >
-            <Page className="rounded-md scale-95 overflow-hidden" pageNumber={1}>
-              <h1 className="mx-8 my-2 bg-spaceCadet text-white rounded-sm px-2">Interview Availability: 2024-11-30</h1>
-              <button
-                onClick={closeResumeModal}
-                className="bg-caribbeanCurrant w-20 rounded-md mx-8 my-2 float-right text-white"
-              >
-                Close
-              </button>
-            </Page>
-          </Document>
-        </div>
+      {applicationModalOpen && (
+        <ApplicationModal
+          closeModal={closeApplication}
+          application={application}
+          setInterview={changeApplicationStatus}
+        />
+      )}
+      {contactModalOpen && (
+        <ContactApplicantModal closeModal={closeContact} application={application} activeUser={activeUser} />
       )}
     </div>
   );
