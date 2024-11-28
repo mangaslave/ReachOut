@@ -16,6 +16,7 @@ export default async function GetApplicationsAction(userId: string) {
 
     const applications: Application[] = await db
       .select({
+        applicationId: clientApplications.clientApplicationId,
         applicantFirstName: clients.first_name,
         applicantLastName: clients.last_name,
         applicantEmail: clients.email,
@@ -24,6 +25,7 @@ export default async function GetApplicationsAction(userId: string) {
         companyName: companies.companyName,
         resumeUrl: clientApplications.resumeUrl,
         availability: clientApplications.interviewDate,
+        phoneNumber: clients.phoneNumber,
       })
       .from(clientApplications)
       .leftJoin(clients, eq(clientApplications.clientId, clients.clientId))
@@ -39,6 +41,7 @@ export default async function GetApplicationsAction(userId: string) {
 }
 
 export type Application = {
+  applicationId: number;
   applicantFirstName: string | null;
   applicantLastName: string | null;
   applicantEmail: string | null;
@@ -47,4 +50,5 @@ export type Application = {
   companyName: string | null;
   resumeUrl: string;
   availability: string | null;
+  phoneNumber: string | null;
 };

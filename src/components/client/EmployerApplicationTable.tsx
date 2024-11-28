@@ -7,7 +7,6 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import {useState} from "react";
 import emailIcon from "../../../public/static/images/email-icon.svg";
 import Image from "next/image";
-import {JobListingApplicationSummary} from "./JobListingSummary";
 import {ApplicationModal} from "./EmployerApplicationModal";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
@@ -15,7 +14,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.m
 export default function EmployerApplicationTable({applications}: {applications: Application[]}) {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
   const [resumeUrl, setResumeUrl] = useState<string>();
-  const [application, setApplication] = useState<Application>();
+  const [application, setApplication] = useState<Application>(applications[0]);
+  const [applicationModalOpen, setApplicationModalOpen] = useState(false);
 
   const openResumeModal = () => {
     setResumeModalOpen(true);
@@ -29,6 +29,17 @@ export default function EmployerApplicationTable({applications}: {applications: 
     setResumeUrl(applications[index].resumeUrl);
     setApplication(applications[index]);
     openResumeModal();
+  };
+
+  const displayApplication = (app: Application) => {
+    console.log("DOING SOMETINIG");
+    console.log(app);
+    setApplication(app);
+    setApplicationModalOpen(true);
+  };
+
+  const closeApplication = () => {
+    setApplicationModalOpen(false);
   };
   return (
     <div>
@@ -58,7 +69,7 @@ export default function EmployerApplicationTable({applications}: {applications: 
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button
-                  onClick={(e) => viewApplication(e)}
+                  onClick={() => displayApplication(app)}
                   key={index}
                   value={index}
                   className="hover:underline bg-none"
@@ -75,6 +86,7 @@ export default function EmployerApplicationTable({applications}: {applications: 
           ))}
         </tbody>
       </table>
+      {applicationModalOpen && <ApplicationModal closeModal={closeApplication} application={application} />}
       {resumeModalOpen && (
         <div className="fixed z-50 inset-0 overflow-hidden rounded-md flex items-center justify-center bg-black bg-opacity-50">
           <Document
