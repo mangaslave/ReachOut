@@ -201,7 +201,7 @@ export default function ContactApplicantModal({
               disabled={isLoading}
               variant="outline"
               className={twMerge(
-                "flex-1 text-white bg-ylnMnBlue hover:bg-darkCarribbeanCurrant m-3 hover:text-white",
+                "flex-1 text-white bg-ylnMnBlue hover:bg-spaceCadet m-3 hover:text-white",
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
               )}
             >
