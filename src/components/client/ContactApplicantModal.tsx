@@ -7,25 +7,23 @@ import {twMerge} from "tailwind-merge";
 import validateEmailContent from "@/lib/validations";
 import SendEmailAction from "@/actions/SendEmailAction";
 import {useSearchParams} from "next/navigation";
-import { BsTrash3 } from "react-icons/bs";
-import { BsTypeH1 } from "react-icons/bs";
-import { BsTypeH2 } from "react-icons/bs";
-import { BsTypeH3 } from "react-icons/bs";
-import { CiTextAlignCenter } from "react-icons/ci";
-import { CiTextAlignLeft } from "react-icons/ci";
-import { CiTextAlignRight } from "react-icons/ci";
-import { MdFormatBold } from "react-icons/md";
-import { GoItalic } from "react-icons/go";
-import { FiUnderline } from "react-icons/fi";
-import { RxTextNone } from "react-icons/rx";
-import { HiListBullet } from "react-icons/hi2";
-import { MdFormatListNumbered } from "react-icons/md";
-import { IoLinkOutline } from "react-icons/io5";
-import { CiImageOn } from "react-icons/ci";
-import { FaCode } from "react-icons/fa6";
-import { CiCircleCheck } from "react-icons/ci";
-
-
+import {BsTrash3} from "react-icons/bs";
+import {BsTypeH1} from "react-icons/bs";
+import {BsTypeH2} from "react-icons/bs";
+import {BsTypeH3} from "react-icons/bs";
+import {CiTextAlignCenter} from "react-icons/ci";
+import {CiTextAlignLeft} from "react-icons/ci";
+import {CiTextAlignRight} from "react-icons/ci";
+import {MdFormatBold} from "react-icons/md";
+import {GoItalic} from "react-icons/go";
+import {FiUnderline} from "react-icons/fi";
+import {RxTextNone} from "react-icons/rx";
+import {HiListBullet} from "react-icons/hi2";
+import {MdFormatListNumbered} from "react-icons/md";
+import {IoLinkOutline} from "react-icons/io5";
+import {CiImageOn} from "react-icons/ci";
+import {FaCode} from "react-icons/fa6";
+import {CiCircleCheck} from "react-icons/ci";
 
 export default function ContactApplicantModal({
   closeModal,
@@ -84,14 +82,15 @@ export default function ContactApplicantModal({
 
   return (
     <Dialog open={true} onOpenChange={closeModal}>
-      <DialogContent className="p-0 border-0 max-w-md">
-        <DialogHeader className="text-white">
-          <DialogTitle className="bg-ylnMnBlue border-ylnMnBlue rounded-t-md text-white h-[3rem] m-0 flex p-[1rem] border-0">New Message</DialogTitle>
+      <DialogContent className="p-0 border-0 max-w-3xl h-5/6">
+        <DialogHeader className="text-white my-0">
+          <DialogTitle className="bg-ylnMnBlue border-ylnMnBlue rounded-t-md text-white h-[3rem] m-0 flex p-[1rem] border-0">
+            New Message
+          </DialogTitle>
         </DialogHeader>
-
         <form action="" onSubmit={emailClient} encType="text/plain" className="flex flex-col">
           <div className="flex">
-            <p className="font-bold  ml-3" >Subject:</p>
+            <p className="font-bold  ml-3">Subject:</p>
             <input
               type="text"
               name="name"
@@ -117,16 +116,14 @@ export default function ContactApplicantModal({
           <div className="flex flex-col justify-center max-w-3xl">
             <textarea
               name="message"
-              rows={8}
+              rows={21}
               cols={200}
               value={message}
               autoCorrect="on"
               onChange={(e) => setMessage(e.target.value)}
               required
-              className="w-full px-3 focus:outline-none pt-3"
+              className="w-full px-3 focus:outline-none pt-3 resize-none"
             />
-
-          
           </div>
 
           <div className="flex">
@@ -141,7 +138,7 @@ export default function ContactApplicantModal({
                 <BsTypeH3 />
               </div>
             </div>
-            
+
             <div className="flex ml-3">
               <div className="border-gray-300 border-2 p-[0.25rem] rounded-l-md text-sm">
                 <CiTextAlignLeft />
@@ -153,7 +150,7 @@ export default function ContactApplicantModal({
                 <CiTextAlignRight />
               </div>
             </div>
-             
+
             <div className="flex ml-3">
               <div className="border-gray-300 border-2 p-[0.25rem] rounded-l-md text-sm">
                 <MdFormatBold />
@@ -169,7 +166,6 @@ export default function ContactApplicantModal({
               </div>
             </div>
 
-                        
             <div className="flex ml-3">
               <div className="border-gray-300 border-2 p-[0.25rem] rounded-l-md border-r-none text-sm">
                 <HiListBullet />
@@ -179,7 +175,6 @@ export default function ContactApplicantModal({
               </div>
             </div>
 
-            
             <div className="flex ml-3">
               <div className="border-gray-300 border-2 p-[0.25rem] rounded-l-md text-sm">
                 <IoLinkOutline />
@@ -191,9 +186,7 @@ export default function ContactApplicantModal({
                 <FaCode />
               </div>
             </div>
-            
           </div>
-          
 
           <div className="flex gap-2">
             <Button
@@ -201,7 +194,7 @@ export default function ContactApplicantModal({
               disabled={isLoading}
               variant="outline"
               className={twMerge(
-                "flex-1 text-white bg-ylnMnBlue hover:bg-darkCarribbeanCurrant m-3 hover:text-white",
+                "flex-1 text-white bg-ylnMnBlue hover:bg-spaceCadet m-3 hover:text-white",
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
               )}
             >

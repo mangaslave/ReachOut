@@ -50,40 +50,36 @@ export function ApplicationModal({closeModal, application, setInterview}: ModalP
   };
   return (
     <Dialog open={true} onOpenChange={closeModal}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-3xl h-5/6">
         <DialogHeader>
-          <DialogTitle>Applicant Details</DialogTitle>
+          <DialogTitle className="text-4xl font-bold">Applicant Details</DialogTitle>
         </DialogHeader>
 
-        <div className="p-4 space-y-4">
+        <div className="p-4 space-y-20">
           <div>
-            <h3 className="text-sm font-medium">Applicant Name</h3>
-            <p className="text-sm text-gray-600">{`${application.applicantFirstName} ${application.applicantLastName}`}</p>
+            <h1 className="text-3xl font-bold my-2">Contact</h1>
+            <p className="text-lg ">{`${application.applicantFirstName} ${application.applicantLastName}`}</p>
+            <p className="text-lg">{application.location}, BC</p>
+            <p className="text-lg">{application.applicantEmail}</p>
+            <p className="text-lg">{application.phoneNumber ? application.phoneNumber : "No Phone Number Provided"}</p>
           </div>
-
-          <div>
-            <h3 className="text-sm font-medium">Contact</h3>
-            <p className="text-sm text-gray-600">{application.applicantEmail}</p>
-            <p className="text-sm text-gray-600">
-              {application.phoneNumber ? application.phoneNumber : "No Phone Number Provided"}
-            </p>
-          </div>
-
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <FileText className="h-4 w-4" />
-              <h3 className="text-sm font-medium">Resume</h3>
+              <h1 className="text-3xl font-bold my-2">Resume</h1>
             </div>
-            <div className="border rounded p-2">
-              <Button variant="outline" className="w-full text-sm" onClick={(e) => viewApplication(e)}>
+            <div className="border rounded p-2 flex justify-evenly items-center">
+              <FileText className="h-10 w-10 mx-0" />
+              <p className="font-sm">{`${application.applicantFirstName}_${application.applicantLastName}_Resume.pdf`}</p>
+              <p className="font-sm">{application.appliedDate}</p>
+              <Button variant="outline" className="text-sm" onClick={(e) => viewApplication(e)}>
                 View Resume
               </Button>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-medium">Interview Availability</h3>
-            <p className="text-sm text-gray-600">{application.availability}</p>
+            <h1 className="text-3xl font-bold my-2">Interview Availability</h1>
+            <p className="text-lg">{application.availability}</p>
           </div>
 
           <div className="flex gap-2 pt-4">
