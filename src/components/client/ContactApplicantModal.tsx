@@ -88,7 +88,7 @@ export default function ContactApplicantModal({
             New Message
           </DialogTitle>
         </DialogHeader>
-        <form action="" onSubmit={emailClient} encType="text/plain" className="flex flex-col">
+        <form action="" encType="text/plain" className="flex flex-col">
           <div className="flex">
             <p className="font-bold  ml-3">Subject:</p>
             <input
@@ -106,7 +106,7 @@ export default function ContactApplicantModal({
             <input
               type="email"
               name="email"
-              defaultValue="aordobaeva@gmail.com"
+              defaultValue={application.applicantEmail as string}
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full pb-1pt-3 px-3 border-b pt-3  focus:outline-none"
@@ -190,7 +190,7 @@ export default function ContactApplicantModal({
 
           <div className="flex gap-2">
             <Button
-              onSubmit={emailClient}
+              onClick={emailClient}
               disabled={isLoading}
               variant="outline"
               className={twMerge(
@@ -201,7 +201,7 @@ export default function ContactApplicantModal({
               Send
             </Button>
             <Button
-              onSubmit={closeModal}
+              onClick={closeModal}
               disabled={isLoading}
               variant="outline"
               className={twMerge(

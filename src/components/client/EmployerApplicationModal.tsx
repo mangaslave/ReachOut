@@ -99,21 +99,26 @@ export function ApplicationModal({closeModal, application, setInterview}: ModalP
             </Button>
           </div>
           {resumeModalOpen && (
-            <div className="fixed z-50 inset-0 rounded-md flex items-center justify-center bg-black bg-opacity-50">
-              <Document
-                className="max-w-2xl inset-0 rounded-md flex-col h-auto items-center justify-center"
-                file={resumeUrl}
-              >
-                <Page className="rounded-md scale-95 overflow-hidden" pageNumber={1}>
-                  <button
-                    onClick={closeResumeModal}
-                    className="bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant w-20 rounded-md mx-8 my-2 float-right text-white hover:text-white hover:scale-105 transition-all ease-in-out"
+            <Dialog open={resumeModalOpen} onOpenChange={closeModal}>
+              <DialogContent>
+                <DialogTitle>{`${application.applicantFirstName} ${application.applicantLastName} Resume`}</DialogTitle>
+                <div className="fixed z-50 inset-0 rounded-md flex items-center justify-center bg-black bg-opacity-50">
+                  <Document
+                    className="max-w-2xl inset-0 rounded-md flex-col h-auto items-center justify-center"
+                    file={resumeUrl}
                   >
-                    Close
-                  </button>
-                </Page>
-              </Document>
-            </div>
+                    <Page className="rounded-md scale-95 overflow-hidden" pageNumber={1}>
+                      <button
+                        onClick={closeResumeModal}
+                        className="bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant w-20 rounded-md mx-8 my-2 float-right text-white hover:text-white hover:scale-105 transition-all ease-in-out"
+                      >
+                        Close
+                      </button>
+                    </Page>
+                  </Document>
+                </div>
+              </DialogContent>
+            </Dialog>
           )}
         </div>
       </DialogContent>
