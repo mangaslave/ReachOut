@@ -23,6 +23,7 @@ import { MdFormatListNumbered } from "react-icons/md";
 import { IoLinkOutline } from "react-icons/io5";
 import { CiImageOn } from "react-icons/ci";
 import { FaCode } from "react-icons/fa6";
+import { CiCircleCheck } from "react-icons/ci";
 
 
 
@@ -222,7 +223,10 @@ export default function ContactApplicantModal({
         {successModalOpen && (
           <div className="fixed z-50 py-4 inset-0 flex pt-56 items-start justify-center bg-black bg-opacity-50">
             <div className="bg-white shadow-md shadow-black rounded-lg text-spaceCadet w-96 flex items-center justify-center h-24">
-              <h3 className="py-8 text-lg">Email sent successfully! ✅</h3>
+              <div className="p-2 text-2xl font-bold">
+                <CiCircleCheck />
+              </div>
+              <h3 className="py-8 text-lg">Email sent successfully!</h3>
             </div>
           </div>
         )}
