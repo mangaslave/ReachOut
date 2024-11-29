@@ -89,14 +89,14 @@ export function ApplicationModal({closeModal, application, setInterview}: ModalP
           <div className="flex gap-2 pt-4">
             <Button
               variant="outline"
-              className="flex-1 text-white bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant"
+              className="flex-1 text-white bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant hover:text-white"
               onClick={interviewClient}
             >
               Interview
             </Button>
             <Button
               variant="outline"
-              className="flex-1 bg-spaceCadet hover:bg-ylnMnBlue text-white"
+              className="flex-1 bg-spaceCadet hover:bg-ylnMnBlue text-white hover:text-white"
               onClick={deleteApplication}
             >
               Discard
@@ -111,7 +111,7 @@ export function ApplicationModal({closeModal, application, setInterview}: ModalP
                 <Page className="rounded-md scale-95 overflow-hidden" pageNumber={1}>
                   <button
                     onClick={closeResumeModal}
-                    className="bg-caribbeanCurrant w-20 rounded-md mx-8 my-2 float-right text-white"
+                    className="bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant w-20 rounded-md mx-8 my-2 float-right text-white hover:text-white hover:scale-105 transition-all ease-in-out"
                   >
                     Close
                   </button>
