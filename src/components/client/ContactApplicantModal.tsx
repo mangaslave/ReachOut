@@ -119,7 +119,7 @@ export default function ContactApplicantModal({
               disabled={isLoading}
               variant="outline"
               className={twMerge(
-                "flex-1 text-white bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant",
+                "flex-1 text-white hover:text-white bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant",
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
               )}
             >
@@ -130,7 +130,7 @@ export default function ContactApplicantModal({
               disabled={isLoading}
               variant="outline"
               className={twMerge(
-                "flex-1 bg-spaceCadet hover:bg-ylnMnBlue text-white",
+                "flex-1 bg-spaceCadet hover:bg-ylnMnBlue text-white hover:text-white",
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
               )}
             >
