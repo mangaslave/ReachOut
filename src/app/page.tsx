@@ -237,10 +237,6 @@ export default async function Home() {
 					</h1>
 				</div>
 				<div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
-					{/*
-          //!Fix this Carousel
-          // ! I think It's fixed? @keeles please check
-          */}
 					<HomePageCarousel />
 				</div>
 				<div className="flex items-center justify-center w-full bg-caribbeanCurrant px-6">

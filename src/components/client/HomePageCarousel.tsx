@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import personOne from "../../../public/static/images/pexels-thgusstavo-2774292.jpg";
+import personOne from "../../../public/static/images/man-passing-food-in-truck-cropped.jpg";
 import personTwo from "../../../public/static/images/pexels-ernest-flowers-174298074-29071817.jpg";
 import personThree from "../../../public/static/images/pexels-italo-melo-881954-2379004.jpg";
 import personFour from "../../../public/static/images/person-four.jpeg";
 import personFive from "../../../public/static/images/person-five.jpeg";
 import personSix from "../../../public/static/images/person-six.jpeg";
 import logo from "../../../public/static/images/logo-new.svg";
+import { ChevronLeft, ChevronRight, ArrowLeft, ArrowRight } from "lucide-react";
+import { motion, useAnimation, PanInfo } from "framer-motion";
 
 interface CarouselImage {
 	src: StaticImageData;
@@ -78,6 +80,7 @@ const carouselImages: CarouselImage[] = [
 
 export default function HomePageCarousel() {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [isDragging, setIsDragging] = useState(false);
 
 	const handleNext = () => {
 		setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
@@ -91,6 +94,24 @@ export default function HomePageCarousel() {
 	};
 
 	const [windowWidth, setWindowWidth] = useState<number>(0);
+
+	const swipeConfidenceThreshold = 10000;
+	const swipePower = (offset: number, velocity: number) => {
+		return Math.abs(offset) * velocity;
+	};
+
+	const handleDragEnd = (
+		event: MouseEvent | TouchEvent | PointerEvent,
+		info: PanInfo
+	) => {
+		const swipe = swipePower(info.offset.x, info.velocity.x);
+
+		if (swipe > swipeConfidenceThreshold) {
+			handlePrev();
+		} else if (swipe < -swipeConfidenceThreshold) {
+			handleNext();
+		}
+	};
 
 	useEffect(() => {
 		setWindowWidth(window.innerWidth);
@@ -106,32 +127,32 @@ export default function HomePageCarousel() {
 
 		if (position === 0) {
 			return {
-				transform: "translate(0) scale(1)",
-				filter: "blur(0)",
+				x: 0,
+				scale: 1,
+				filter: "blur(0px)",
 				opacity: 1,
 				zIndex: 20,
 			};
 		} else if (position === 1) {
 			return {
-				transform: `translateX(${translateValue}%) scale(${
-					isMobile ? 0.65 : 0.75
-				})`,
+				x: `${translateValue}%`,
+				scale: isMobile ? 0.65 : 0.75,
 				filter: "blur(2px)",
 				opacity: 0.75,
 				zIndex: 10,
 			};
 		} else if (position === carouselImages.length - 1) {
 			return {
-				transform: `translateX(-${translateValue}%) scale(${
-					isMobile ? 0.65 : 0.75
-				})`,
+				x: `-${translateValue}%`,
+				scale: isMobile ? 0.65 : 0.75,
 				filter: "blur(2px)",
 				opacity: 0.75,
 				zIndex: 10,
 			};
 		} else {
 			return {
-				transform: "translate(0) scale(0.5)",
+				x: 0,
+				scale: 0.5,
 				filter: "blur(4px)",
 				opacity: 0,
 				zIndex: 0,
@@ -141,7 +162,18 @@ export default function HomePageCarousel() {
 
 	return (
 		<div className="relative w-full px-4 md:px-6 py-8 md:py-12">
-			<div className="relative flex items-center justify-center min-h-[300px] md:h-[350px]">
+			<motion.div
+				className="relative flex items-center justify-center min-h-[300px] md:h-[350px]"
+				drag="x"
+				dragConstraints={{ left: 0, right: 0 }}
+				dragElastic={0.2}
+				onDragStart={() => setIsDragging(true)}
+				onDragEnd={(event, info) => {
+					setIsDragging(false);
+					handleDragEnd(event, info);
+				}}
+				style={{ cursor: isDragging ? "grabbing" : "grab" }}
+			>
 				{carouselImages.map((image, index) => {
 					const position =
 						(index - currentIndex + carouselImages.length) %
@@ -150,29 +182,31 @@ export default function HomePageCarousel() {
 					const styles = getPositionStyles(position);
 
 					return (
-						<div
+						<motion.div
 							key={image.id}
 							className="absolute transition-all duration-500 ease-in-out"
 							style={styles}
 						>
 							<CardContent image={image} />
-						</div>
+						</motion.div>
 					);
 				})}
-			</div>
+			</motion.div>
 
 			{/* Nav buttons */}
 			<button
 				onClick={handlePrev}
 				className="absolute top-1/2 left-4 md:left-8 transform -translate-y-1/2 bg-gray-200 rounded-full p-3 hover:bg-gray-300 z-30"
 			>
-				&#8592;
+				<ChevronLeft />
+				{/* <ArrowLeft /> */}
 			</button>
 			<button
 				onClick={handleNext}
 				className="absolute top-1/2 right-4 md:right-8 transform -translate-y-1/2 bg-gray-200 rounded-full p-3 hover:bg-gray-300 z-30"
 			>
-				&#8594;
+				<ChevronRight />
+				{/* <ArrowRight /> */}
 			</button>
 		</div>
 	);
