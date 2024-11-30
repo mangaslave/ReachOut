@@ -1,13 +1,12 @@
 "use client";
 import {Application} from "@/actions/GetApplicationsAction";
-import {Dialog, DialogContent, DialogHeader, DialogTitle} from "../ui/dialog";
+import {DialogHeader, DialogTitle} from "../ui/dialog";
 import {Button} from "../ui/button";
-import {FormEvent, useState} from "react";
+import {Dispatch, FormEvent, SetStateAction, useState} from "react";
 import {twMerge} from "tailwind-merge";
 import validateEmailContent from "@/lib/validations";
 import SendEmailAction from "@/actions/SendEmailAction";
 import {useSearchParams} from "next/navigation";
-import {BsTrash3} from "react-icons/bs";
 import {BsTypeH1} from "react-icons/bs";
 import {BsTypeH2} from "react-icons/bs";
 import {BsTypeH3} from "react-icons/bs";
@@ -24,13 +23,16 @@ import {IoLinkOutline} from "react-icons/io5";
 import {CiImageOn} from "react-icons/ci";
 import {FaCode} from "react-icons/fa6";
 import {CiCircleCheck} from "react-icons/ci";
+import {EmailDialog, EmailDialogContent} from "../ui/email-dialog";
 
 export default function ContactApplicantModal({
-  closeModal,
+  isOpen,
+  toggle,
   application,
   activeUser,
 }: {
-  closeModal: () => void;
+  isOpen: boolean;
+  toggle: Dispatch<SetStateAction<boolean>>;
   application: Application;
   activeUser: {
     name: string;
@@ -47,6 +49,7 @@ export default function ContactApplicantModal({
   const [email, setEmail] = useState(currentEmail ? currentEmail : activeUser.email);
   const [message, setMessage] = useState(currentMessage ? currentMessage : "");
   const [successModalOpen, setSuccessModalOpen] = useState(false);
+  const [open, setOpen] = useState(isOpen);
 
   const emailClient = async (e: FormEvent) => {
     e.preventDefault();
@@ -76,13 +79,21 @@ export default function ContactApplicantModal({
     setSuccessModalOpen(true);
     setTimeout(() => {
       setSuccessModalOpen(false);
-      closeModal();
+      toggleClosed();
     }, 3000);
   };
 
+  const toggleClosed = () => {
+    setOpen(false);
+    //* Need this delay for transition effect, but need the toggle to re-open
+    setTimeout(() => {
+      toggle(!isOpen);
+    }, 500);
+  };
+
   return (
-    <Dialog open={true} onOpenChange={closeModal}>
-      <DialogContent className="p-0 border-0 max-w-3xl h-5/6">
+    <EmailDialog open={open} onOpenChange={toggleClosed}>
+      <EmailDialogContent className="p-0 border-0 max-w-3xl h-5/6">
         <DialogHeader className="text-white my-0">
           <DialogTitle className="bg-ylnMnBlue border-ylnMnBlue rounded-t-md text-white h-[3rem] m-0 flex p-[1rem] border-0">
             New Message
@@ -201,7 +212,7 @@ export default function ContactApplicantModal({
               Send
             </Button>
             <Button
-              onClick={closeModal}
+              onClick={toggleClosed}
               disabled={isLoading}
               variant="outline"
               className={twMerge(
@@ -223,7 +234,7 @@ export default function ContactApplicantModal({
             </div>
           </div>
         )}
-      </DialogContent>
-    </Dialog>
+      </EmailDialogContent>
+    </EmailDialog>
   );
 }
