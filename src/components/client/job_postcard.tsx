@@ -11,8 +11,6 @@ interface JobCardProps {
   companyName: string;
   jobTitle: string;
   jobType: string;
-  matchStatus: string;
-  statusColor: string;
   dateOfPosting: string;
   location: string;
   hourlyPay: string;
@@ -20,11 +18,6 @@ interface JobCardProps {
   openModal: () => void;
   summary?: string | null;
   score?: number | null;
-  status: {
-    status1: string;
-    status2: string;
-    status3: string;
-  };
 }
 
 const tooltipContent = (score: number | null | undefined) => {
@@ -36,30 +29,19 @@ const tooltipContent = (score: number | null | undefined) => {
     );
   }
   return (
-    // <div className="flex flex-col gap-1">
-    //   {matchStatus === "Excellent" && (
-    //     <p>An &quot;Excellent&quot; match indicates that the selected client meets all job requirements.</p>
-    //   )}
-    //   {matchStatus === "Okay" && (
-    //     <p>
-    //       An &quot;Okay&quot; match indicates that the selected client meets some, but not all of the job requirements.
-    //     </p>
-    //   )}
-    //   {matchStatus === "Bad" && (
-    //     <p>A &quot;Bad&quot; match indicates that the selected client does not meet any of the job requirements.</p>
-    //   )}
-    // </div>
     <div className="flex flex-col gap-1">
-      {score >= 5 && (
+      {score >= 7 && (
         <p>An &quot;Excellent&quot; match indicates that the selected client meets all job requirements.</p>
       )}
-      {score >= 2 && score < 5 && (
+      {score >= 4 && score < 7 && (
         <p>
           An &quot;Okay&quot; match indicates that the selected client meets some, but not all of the job requirements.
         </p>
       )}
-      {score < 2 && (
-        <p>A &quot;Bad&quot; match indicates that the selected client does not meet any of the job requirements.</p>
+      {score < 4 && (
+        <p>
+          A &quot;Not a good&quot; match indicates that the selected client does not meet any of the job requirements.
+        </p>
       )}
     </div>
   );
@@ -72,29 +54,26 @@ export default function JobCard({
   companyName,
   jobTitle,
   jobType,
-  matchStatus,
-  statusColor,
   dateOfPosting,
   location,
   hourlyPay,
   companyLogo,
   openModal,
-  status,
   summary,
   score,
 }: JobCardProps) {
   const calculateMatch = (score: number | null | undefined) => {
     if (!score) return "N/A";
-    if (score >= 5) return "Excellent";
-    if (score >= 2 && score < 5) return "Okay";
-    if (score < 2) return "Bad";
+    if (score >= 7) return "Excellent Match";
+    if (score >= 4 && score < 7) return "Okay Match";
+    if (score < 4) return "Not a Good Match";
   };
 
   const calculateStatusColor = (score: number | null | undefined) => {
     if (!score) return "bg-gray-400";
-    if (score < 2 && score >= 0) return "bg-red-500";
-    if (score >= 5) return "bg-green-600";
-    if (score >= 2 && score < 5) return "bg-yellow-500";
+    if (score >= 7) return "bg-green-600";
+    if (score >= 4 && score < 7) return "bg-yellow-500";
+    if (score < 4 && score >= 0) return "bg-red-500";
   };
 
   const matchRating = calculateMatch(score);

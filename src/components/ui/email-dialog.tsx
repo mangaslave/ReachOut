@@ -5,15 +5,15 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import {cn} from "@/lib/utils";
 import {Cross2Icon} from "@radix-ui/react-icons";
 
-const Dialog = DialogPrimitive.Root;
+const EmailDialog = DialogPrimitive.Root;
 
-const DialogTrigger = DialogPrimitive.Trigger;
+const EmailDialogTrigger = DialogPrimitive.Trigger;
 
-const DialogPortal = DialogPrimitive.Portal;
+const EmailDialogPortal = DialogPrimitive.Portal;
 
-const DialogClose = DialogPrimitive.Close;
+const EmailDialogClose = DialogPrimitive.Close;
 
-const DialogOverlay = React.forwardRef<
+const EmailDialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
 >(({className, ...props}, ref) => (
@@ -26,18 +26,18 @@ const DialogOverlay = React.forwardRef<
     {...props}
   />
 ));
-DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
+EmailDialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
-const DialogContent = React.forwardRef<
+const EmailDialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({className, children, ...props}, ref) => (
-  <DialogPortal>
-    <DialogOverlay />
+  <EmailDialogPortal>
+    <EmailDialogOverlay />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-slate-200 bg-white p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg dark:border-slate-800 dark:bg-slate-950",
+        "fixed bottom-0 right-0 z-50 grid w-full max-w-lg translate-x-[0%] translate-y-[0%] gap-4 border border-slate-200 bg-white p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-right-1/2 data-[state=closed]:slide-out-to-bottom-[48%] data-[state=open]:slide-in-from-right-1/2 data-[state=open]:slide-in-from-bottom-[48%] sm:rounded-lg dark:border-slate-800 dark:bg-slate-950",
         className
       )}
       {...props}
@@ -48,9 +48,9 @@ const DialogContent = React.forwardRef<
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
-  </DialogPortal>
+  </EmailDialogPortal>
 ));
-DialogContent.displayName = DialogPrimitive.Content.displayName;
+EmailDialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = ({className, ...props}: React.HTMLAttributes<HTMLDivElement>) => (
   <div className={cn("flex flex-col space-y-1.5 text-center sm:text-left", className)} {...props} />
@@ -87,12 +87,12 @@ const DialogDescription = React.forwardRef<
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
-  Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogTrigger,
-  DialogClose,
-  DialogContent,
+  EmailDialog,
+  EmailDialogPortal,
+  EmailDialogOverlay,
+  EmailDialogTrigger,
+  EmailDialogClose,
+  EmailDialogContent,
   DialogHeader,
   DialogFooter,
   DialogTitle,

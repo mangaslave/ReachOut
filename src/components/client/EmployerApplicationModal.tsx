@@ -50,40 +50,38 @@ export function ApplicationModal({closeModal, application, setInterview}: ModalP
   };
   return (
     <Dialog open={true} onOpenChange={closeModal}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-3xl h-5/6">
         <DialogHeader>
-          <DialogTitle>Applicant Details</DialogTitle>
+          <DialogTitle className="text-4xl font-bold">Applicant Details</DialogTitle>
         </DialogHeader>
 
-        <div className="p-4 space-y-4">
+        <div className="p-4 space-y-20">
           <div>
-            <h3 className="text-sm font-medium">Applicant Name</h3>
-            <p className="text-sm text-gray-600">{`${application.applicantFirstName} ${application.applicantLastName}`}</p>
+            <h1 className="text-3xl font-bold my-2">Contact</h1>
+            <p className="text-lg ">{`${application.applicantFirstName} ${application.applicantLastName}`}</p>
+            <p className="text-lg">{application.location}, BC</p>
+            <p className="text-lg">{application.applicantEmail}</p>
+            <p className="text-lg">{application.phoneNumber ? application.phoneNumber : "No Phone Number Provided"}</p>
           </div>
-
-          <div>
-            <h3 className="text-sm font-medium">Contact</h3>
-            <p className="text-sm text-gray-600">{application.applicantEmail}</p>
-            <p className="text-sm text-gray-600">
-              {application.phoneNumber ? application.phoneNumber : "No Phone Number Provided"}
-            </p>
-          </div>
-
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <FileText className="h-4 w-4 text-red" />
               <h3 className="text-sm font-medium">Resume</h3>
+              <h1 className="text-3xl font-bold my-2">Resume</h1>
             </div>
-            <div className="border rounded p-2">
-              <Button variant="outline" className="w-full text-sm" onClick={(e) => viewApplication(e)}>
+            <div className="border rounded p-2 flex justify-evenly items-center">
+              <FileText className="h-10 w-10 mx-0" />
+              <p className="font-sm">{`${application.applicantFirstName}_${application.applicantLastName}_Resume.pdf`}</p>
+              <p className="font-sm">{application.appliedDate}</p>
+              <Button variant="outline" className="text-sm" onClick={(e) => viewApplication(e)}>
                 View Resume
               </Button>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-medium">Interview Availability</h3>
-            <p className="text-sm text-gray-600">{application.availability}</p>
+            <h1 className="text-3xl font-bold my-2">Interview Availability</h1>
+            <p className="text-lg">{application.availability}</p>
           </div>
 
           <div className="flex gap-2 pt-4">
@@ -103,21 +101,26 @@ export function ApplicationModal({closeModal, application, setInterview}: ModalP
             </Button>
           </div>
           {resumeModalOpen && (
-            <div className="fixed z-50 inset-0 rounded-md flex items-center justify-center bg-black bg-opacity-50">
-              <Document
-                className="max-w-2xl inset-0 rounded-md flex-col h-auto items-center justify-center"
-                file={resumeUrl}
-              >
-                <Page className="rounded-md scale-95 overflow-hidden" pageNumber={1}>
-                  <button
-                    onClick={closeResumeModal}
-                    className="bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant w-20 rounded-md mx-8 my-2 float-right text-white hover:text-white hover:scale-105 transition-all ease-in-out"
+            <Dialog open={resumeModalOpen} onOpenChange={closeModal}>
+              <DialogContent>
+                <DialogTitle>{`${application.applicantFirstName} ${application.applicantLastName} Resume`}</DialogTitle>
+                <div className="fixed z-50 inset-0 rounded-md flex items-center justify-center bg-black bg-opacity-50">
+                  <Document
+                    className="max-w-2xl inset-0 rounded-md flex-col h-auto items-center justify-center"
+                    file={resumeUrl}
                   >
-                    Close
-                  </button>
-                </Page>
-              </Document>
-            </div>
+                    <Page className="rounded-md scale-95 overflow-hidden" pageNumber={1}>
+                      <button
+                        onClick={closeResumeModal}
+                        className="bg-caribbeanCurrant hover:bg-darkCarribbeanCurrant w-20 rounded-md mx-8 my-2 float-right text-white hover:text-white hover:scale-105 transition-all ease-in-out"
+                      >
+                        Close
+                      </button>
+                    </Page>
+                  </Document>
+                </div>
+              </DialogContent>
+            </Dialog>
           )}
         </div>
       </DialogContent>
