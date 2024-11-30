@@ -332,16 +332,11 @@ export default function JobListingMaster({
         </main>
       </div>
       {detailsModalOpen && selectedJobDetails && (
-        <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative">
-            <button
-              onClick={closeAll}
-              className="absolute -top-10 right-0 z-50 p-2 rounded-full hover:bg-gray-100 bg-white"
-            >
-              <Image src={closeIcon} alt="Close" width={24} height={24} />
-            </button>
-            <JobListing jobDetails={selectedJobDetails} closeModal={closeAll} nextModal={moveToSelectClient} />
-          </div>
+        <div
+          onClick={handleClickOutside}
+          className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50"
+        >
+          <JobListing jobDetails={selectedJobDetails} nextModal={moveToSelectClient} />
         </div>
       )}
       {selectClientModalOpen && (

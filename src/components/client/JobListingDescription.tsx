@@ -5,10 +5,10 @@ import {JobListing as Listing} from "./JobListingMaster";
 interface JobListingProps {
   jobDetails: Listing;
   nextModal?: () => void;
-  closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  // closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-export const JobListing = ({jobDetails, nextModal, closeModal}: JobListingProps) => {
+export const JobListing = ({jobDetails, nextModal}: JobListingProps) => {
   const companyName = jobDetails.companyName;
   const salary = jobDetails.salary;
   const type = jobDetails.jobType;
@@ -18,7 +18,7 @@ export const JobListing = ({jobDetails, nextModal, closeModal}: JobListingProps)
   const skills = jobDetails.skills;
 
   return (
-    <div onClick={closeModal} className="max-w-3xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+    <div className="max-w-3xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
       <div className="flex justify-between items-start mb-4">
         <div>
           <h1 className="font-bold text-2xl text-gray-900 mb-2">Job Listing</h1>
