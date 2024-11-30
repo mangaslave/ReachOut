@@ -10,25 +10,28 @@ import {ClientInfo, JobListing} from "./JobListingMaster";
 export interface FilterState {
   location: string;
   jobType: string;
-  client: string;
+  client: number;
 }
 
-type JobListingFilter = (type: keyof FilterState, value: string) => void;
+type JobListingFilter = (type: keyof FilterState, value: string | number) => void;
 
 export default function JobListingFilters({
   onFilterChange,
   clients,
   setClientId,
+  clientId,
   listings,
 }: {
   onFilterChange: JobListingFilter;
   clients: ClientInfo[];
   setClientId: Dispatch<SetStateAction<number>>;
+  clientId: number;
   listings: JobListing[];
 }) {
   const [location, setLocation] = useState("");
   const [jobType, setJobType] = useState("");
   const [client, setClient] = useState("");
+  console.log(clientId);
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setLocation(event.target.value);
@@ -50,10 +53,11 @@ export default function JobListingFilters({
     setLocation("");
     setJobType("");
     setClient("");
+    setClientId(0);
 
     onFilterChange("location", "");
     onFilterChange("jobType", "");
-    onFilterChange("client", "");
+    onFilterChange("client", 0);
   };
 
   const isAnyFilterActive = location || jobType || client;
@@ -112,18 +116,16 @@ export default function JobListingFilters({
         <div className="relative">
           <select
             onChange={handleClientSelect}
+            value={clientId}
             className="block w-full h-8 pl-10 pr-3 bg-white border border-gray-300 text-gray-700 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 appearance-none"
           >
+            <option value={0}> --- </option>
             {clients.map((client) => {
-              return (
-                <option
-                  key={client.id}
-                  value={client.id ? client.id : 0}
-                >{`${client.firstName} ${client.lastName}`}</option>
-              );
+              if (!client.id) return;
+              return <option key={client.id} value={client.id}>{`${client.firstName} ${client.lastName}`}</option>;
             })}
           </select>
-
+          <ChevronDownIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
           {/* User Icon */}
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Image src={userIcon} width={10} height={10} alt="userIcon" className="text-gray-500 h-4 w-4" />
