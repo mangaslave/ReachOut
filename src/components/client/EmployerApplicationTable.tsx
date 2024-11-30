@@ -38,10 +38,7 @@ export default function EmployerApplicationTable({
   const openContact = (app: Application) => {
     setApplication(app);
     setContactModalOpen(true);
-  };
-
-  const closeContact = () => {
-    setContactModalOpen(false);
+    console.log("contactModalOpen", contactModalOpen);
   };
 
   const displayApplication = (app: Application) => {
@@ -111,7 +108,12 @@ export default function EmployerApplicationTable({
         />
       )}
       {contactModalOpen && (
-        <ContactApplicantModal closeModal={closeContact} application={application} activeUser={activeUser} />
+        <ContactApplicantModal
+          isOpen={contactModalOpen}
+          toggle={setContactModalOpen}
+          application={application}
+          activeUser={activeUser}
+        />
       )}
     </div>
   );
