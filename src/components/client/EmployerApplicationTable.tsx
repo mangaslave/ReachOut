@@ -51,15 +51,15 @@ export default function EmployerApplicationTable({
   };
   return (
     <div>
-      <table className="min-w-full divide-y divide-gray-200 bg-white">
+      <table className="min-w-full divide-y divide-gray-200 bg-white ml-4 mt-4">
         <thead className="bg-spaceCadet">
-          <tr>
-            <th className="px-4 py-3 text-left font-medium text-white">Name</th>
-            <th className="px-4 py-3 text-left font-medium text-white">Position</th>
-            <th className="px-4 py-3 text-left font-medium text-white">Type</th>
-            <th className="px-4 py-3 text-left font-medium text-white">Status</th>
-            <th className="px-4 py-3 text-left font-medium text-white"></th>
-            <th className="px-4 py-3 text-left font-medium text-white"></th>
+          <tr className="" >
+            <th className="px-4 py-4 text-left font-medium text-white rounded-tl-md">Name</th>
+            <th className="px-4 py-4 text-left font-medium text-white">Position</th>
+            <th className="px-4 py-4 text-left font-medium text-white">Type</th>
+            <th className="px-4 py-4 text-left font-medium text-white">Status</th>
+            <th className="px-4 py-4 text-left font-medium text-white"></th>
+            <th className="px-4 py-4 text-left font-medium text-white rounded-tr-md"></th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200 bg-white">
