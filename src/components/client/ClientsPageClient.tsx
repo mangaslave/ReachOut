@@ -6,6 +6,7 @@ import ClientListing from "./ClientListing";
 import {useState} from "react";
 import {cn} from "@/lib/utils";
 import {ClientList} from "@/actions/GetClientAction";
+import {Button} from "../ui/button";
 
 export default function ClientsPageClient({
   activeUser,
@@ -29,9 +30,9 @@ export default function ClientsPageClient({
 
               <div className="ml-auto">
                 <Link href="/organization/clients/newclient" passHref>
-                  <button className="bg-spaceCadet text-white hover:bg-ylnMnBlue text-xs px-4 rounded-md h-8">
+                  <Button variant="secondary" className="w-36">
                     + Add New
-                  </button>
+                  </Button>
                 </Link>
               </div>
             </div>
