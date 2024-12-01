@@ -60,6 +60,23 @@ export function EmployerSidebar({className, user, collapsed, setCollapsed}: Side
         className
       )}
     >
+
+      <div className="flex items-center gap-3 p-4 border-b">
+        <Image
+          src="/static/images/employer-logo.png"
+          alt="Company Logo"
+          width={35}
+          height={35}
+          className="rounded-full"
+        />
+        {!collapsed && (
+          <div>
+            <p className="text-m font-semibold text-white">Accurweld Company</p>
+            <p className="text-xs text-white">Employer</p>
+          </div>
+        )}
+      </div>
+
       <div className="p-4 flex justify-end ">
         <Button variant="ghost" size="icon" onClick={() => setCollapsed(!collapsed)}>
           <ChevronLeft className={cn("h-4 w-4 transition-transform", collapsed && "rotate-180")} />
@@ -79,7 +96,7 @@ export function EmployerSidebar({className, user, collapsed, setCollapsed}: Side
           <li>
             <NavItem
               title="Applications"
-              iconSrc="/static/images/JobListings_icon.svg"
+              iconSrc="/static/images/UseManagement_icon.svg"
               href="/employer/applications"
               collapsed={collapsed}
             />
@@ -87,7 +104,7 @@ export function EmployerSidebar({className, user, collapsed, setCollapsed}: Side
           <li>
             <NavItem
               title="Your Listings"
-              iconSrc="/static/images/UseManagement_icon.svg"
+              iconSrc="/static/images/JobListings_icon.svg"
               href="/employer/job-listings"
               collapsed={collapsed}
             />
