@@ -2,14 +2,13 @@
 import HomePageNavBar from "@/components/client/HomePageNavBar";
 import Image from "next/image";
 import HomePageCarousel from "@/components/client/HomePageCarousel";
-import fbIcon from "../../public/static/images/fbIcon.svg";
-import igIcon from "../../public/static/images/igIcon.svg";
 import peopleIcon from "../../public/static/images/people-1.svg";
 import recruitmentIcon from "../../public/static/images/recruitment-1.svg";
 import interviewIcon from "../../public/static/images/interview-1.svg";
 import aiPoweredResearch from "../../public/static/images/screenshot_job_listings.png";
 import researchProgressTracking from "../../public/static/images/screenshot_dashboard.png";
 import heroImage from "../../public/static/images/Hero-Image.jpg";
+import Footer from "@/components/client/HomepageFooter";
 
 export default async function Home() {
 	return (
@@ -239,75 +238,7 @@ export default async function Home() {
 				<div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
 					<HomePageCarousel />
 				</div>
-				{/* 
-				//* Footer 
-				*/}
-				<div className="flex items-center justify-center w-full bg-caribbeanCurrant px-6">
-					<ul className="flex flex-col md:flex-row items-center md:items-start justify-between my-8 w-full max-w-7xl flex-wrap gap-8">
-						<li className="flex flex-col items-center md:items-start">
-							<h1 className="text-xl font-bold my-2 text-white text-center md:text-left">
-								Case Managers
-							</h1>
-							<ul className="space-y-2 text-center md:text-left">
-								<li className="text-white text-sm my-2">Manage Clients</li>
-								<li className="text-white text-sm my-2">Resource Directory</li>
-								<li className="text-white text-sm my-2">Training Portal</li>
-							</ul>
-						</li>
-						<li className="flex flex-col items-center md:items-start">
-							<h1 className="text-xl font-bold my-2 text-white text-center md:text-left">
-								Job Seekers
-							</h1>
-							<ul className="space-y-2 text-center md:text-left">
-								<li className="text-white text-sm my-2">Search Jobs</li>
-								<li className="text-white text-sm my-2">Career Support</li>
-								<li className="text-white text-sm my-2">Success Stories</li>
-							</ul>
-						</li>
-						<li className="flex flex-col items-center md:items-start">
-							<h1 className="text-xl font-bold my-2 text-white text-center md:text-left">
-								Employers
-							</h1>
-							<ul className="space-y-2 text-center md:text-left">
-								<li className="text-white text-sm my-2">Post Positions</li>
-								<li className="text-white text-sm my-2">Partner Programs</li>
-								<li className="text-white text-sm my-2">Hiring Guide</li>
-							</ul>
-						</li>
-						<li className="flex flex-col items-center md:items-start">
-							<h1 className="text-xl font-bold my-2 text-white text-center md:text-left">
-								About Us
-							</h1>
-							<ul className="space-y-2 text-center md:text-left">
-								<li className="text-white text-sm my-2">Our Mission</li>
-								<li className="text-white text-sm my-2">Contact Us</li>
-								<li className="text-white text-sm my-2">Impact Report</li>
-							</ul>
-						</li>
-						<li className="flex flex-col items-center md:items-start">
-							<div className="flex my-5 justify-center md:justify-start">
-								<Image
-									src={fbIcon}
-									height={25}
-									width={25}
-									alt="facebook icon"
-									className="mx-2"
-								/>
-								<Image
-									src={igIcon}
-									height={25}
-									width={25}
-									alt="instagram icon"
-									className="mx-2"
-								/>
-							</div>
-							<ul className="space-y-2 text-center md:text-left">
-								<li className="text-white text-sm my-2">Privacy Policy</li>
-								<li className="text-white text-sm my-2">Terms of Service</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+				<Footer />
 			</div>
 		</>
 	);

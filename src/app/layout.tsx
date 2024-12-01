@@ -31,7 +31,9 @@ export default function RootLayout({
 				<body
 					className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col overflow-x-hidden`}
 				>
-					<div className="flex-1 w-full">{children}</div>
+					<div className="flex flex-col flex-grow w-full min-h-screen">
+						<div className="flex-1 w-full">{children}</div>
+					</div>
 				</body>
 			</html>
 		</AuthProvider>

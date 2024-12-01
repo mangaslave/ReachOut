@@ -7,8 +7,7 @@ import CaseManagerHeroImage from "../../../public/static/images/case-manager-her
 import JobListings from "../../../public/static/images/case-manager-job-listings.png";
 import ClientManagement from "../../../public/static/images/case-manager-client-management.png";
 import ResumeBuilder from "../../../public/static/images/case-manager-resume-builder.png";
-import fbIcon from "../../../public/static/images/fbIcon.svg";
-import igIcon from "../../../public/static/images/igIcon.svg";
+import Footer from "@/components/client/HomepageFooter";
 
 export default function CaseManagers() {
 	return (
@@ -196,112 +195,37 @@ export default function CaseManagers() {
 							a list of specifically entry-level jobs.
 						</p>
 					</div>
-				</div>
-				<div className="w-full px-6 py-12 bg-white">
-					<div className="max-w-3xl mx-auto space-y-8">
-						<div className="space-y-4">
-							<h4 className="font-bold text-lg text-spaceCadet">
-								Can clients apply directly to jobs, or do I need to apply on
-								their behalf?
-							</h4>
-							<p className="text-spaceCadet">
-								Yes! Clients are able to make their own accounts at ReachOut
-								where they can apply to job listings themselves. If you&apos;d
-								like, you can link your accounts so that you can review their
-								applications and provide feedback.
-							</p>
-						</div>
-					</div>
-				</div>
 
-				<div className="w-full px-6 py-12 bg-white">
-					<div className="max-w-3xl mx-auto space-y-8">
-						<div className="space-y-4">
-							<h4 className="font-bold text-lg text-spaceCadet">
-								Does ReachOut support clients with specific needs, such as
-								disabilities or substance recovery?
-							</h4>
-							<p className="text-spaceCadet">
-								Yes! ReachOut is passionate about inclusivity and ensuring that
-								our services accommodate people with all sorts of needs. We
-								believe in transparency and encourage employers to indicate
-								whether their workspace is suitable for people of various needs,
-								including wheelchair accessibility, remote options, and
-								onboarding support.
-							</p>
-						</div>
+					<div className="space-y-4">
+						<h4 className="font-bold text-lg text-spaceCadet">
+							Can clients apply directly to jobs, or do I need to apply on their
+							behalf?
+						</h4>
+						<p className="text-spaceCadet">
+							Yes! Clients are able to make their own accounts at ReachOut where
+							they can apply to job listings themselves. If you&apos;d like, you
+							can link your accounts so that you can review their applications
+							and provide feedback.
+						</p>
+					</div>
+
+					<div className="space-y-4">
+						<h4 className="font-bold text-lg text-spaceCadet">
+							Does ReachOut support clients with specific needs, such as
+							disabilities or substance recovery?
+						</h4>
+						<p className="text-spaceCadet">
+							Yes! ReachOut is passionate about inclusivity and ensuring that
+							our services accommodate people with all sorts of needs. We
+							believe in transparency and encourage employers to indicate
+							whether their workspace is suitable for people of various needs,
+							including wheelchair accessibility, remote options, and onboarding
+							support.
+						</p>
 					</div>
 				</div>
 			</div>
-			{/* 
-// * Footer
-*/}
-			<div className="flex items-center justify-center w-full bg-caribbeanCurrant px-6">
-				<ul className="flex flex-col md:flex-row items-center md:items-start justify-between my-8 w-full max-w-7xl flex-wrap gap-8">
-					<li className="flex flex-col items-center md:items-start">
-						<h1 className="text-xl font-bold my-2 text-white text-center md:text-left">
-							Case Managers
-						</h1>
-						<ul className="space-y-2 text-center md:text-left">
-							<li className="text-white text-sm my-2">Manage Clients</li>
-							<li className="text-white text-sm my-2">Resource Directory</li>
-							<li className="text-white text-sm my-2">Training Portal</li>
-						</ul>
-					</li>
-					<li className="flex flex-col items-center md:items-start">
-						<h1 className="text-xl font-bold my-2 text-white text-center md:text-left">
-							Job Seekers
-						</h1>
-						<ul className="space-y-2 text-center md:text-left">
-							<li className="text-white text-sm my-2">Search Jobs</li>
-							<li className="text-white text-sm my-2">Career Support</li>
-							<li className="text-white text-sm my-2">Success Stories</li>
-						</ul>
-					</li>
-					<li className="flex flex-col items-center md:items-start">
-						<h1 className="text-xl font-bold my-2 text-white text-center md:text-left">
-							Employers
-						</h1>
-						<ul className="space-y-2 text-center md:text-left">
-							<li className="text-white text-sm my-2">Post Positions</li>
-							<li className="text-white text-sm my-2">Partner Programs</li>
-							<li className="text-white text-sm my-2">Hiring Guide</li>
-						</ul>
-					</li>
-					<li className="flex flex-col items-center md:items-start">
-						<h1 className="text-xl font-bold my-2 text-white text-center md:text-left">
-							About Us
-						</h1>
-						<ul className="space-y-2 text-center md:text-left">
-							<li className="text-white text-sm my-2">Our Mission</li>
-							<li className="text-white text-sm my-2">Contact Us</li>
-							<li className="text-white text-sm my-2">Impact Report</li>
-						</ul>
-					</li>
-					<li className="flex flex-col items-center md:items-start">
-						<div className="flex my-5 justify-center md:justify-start">
-							<Image
-								src={fbIcon}
-								height={25}
-								width={25}
-								alt="facebook icon"
-								className="mx-2"
-							/>
-							<Image
-								src={igIcon}
-								height={25}
-								width={25}
-								alt="instagram icon"
-								className="mx-2"
-							/>
-						</div>
-						<ul className="space-y-2 text-center md:text-left">
-							<li className="text-white text-sm my-2">Privacy Policy</li>
-							<li className="text-white text-sm my-2">Terms of Service</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+			<Footer />
 		</>
 	);
 }
