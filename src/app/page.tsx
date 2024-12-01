@@ -239,6 +239,9 @@ export default async function Home() {
 				<div className="flex flex-col items-center justify-between py-6 w-full h-max bg-caribbeanCurrant bg-opacity-10">
 					<HomePageCarousel />
 				</div>
+				{/* 
+				//* Footer 
+				*/}
 				<div className="flex items-center justify-center w-full bg-caribbeanCurrant px-6">
 					<ul className="flex flex-col md:flex-row items-center md:items-start justify-between my-8 w-full max-w-7xl flex-wrap gap-8">
 						<li className="flex flex-col items-center md:items-start">

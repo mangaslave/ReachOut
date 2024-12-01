@@ -9,8 +9,8 @@ import personFour from "../../../public/static/images/person-four.jpeg";
 import personFive from "../../../public/static/images/person-five.jpeg";
 import personSix from "../../../public/static/images/person-six.jpeg";
 import logo from "../../../public/static/images/logo-new.svg";
-import { ChevronLeft, ChevronRight, ArrowLeft, ArrowRight } from "lucide-react";
-import { motion, useAnimation, PanInfo } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, PanInfo } from "framer-motion";
 
 interface CarouselImage {
 	src: StaticImageData;
@@ -199,14 +199,12 @@ export default function HomePageCarousel() {
 				className="absolute top-1/2 left-4 md:left-8 transform -translate-y-1/2 bg-gray-200 rounded-full p-3 hover:bg-gray-300 z-30"
 			>
 				<ChevronLeft />
-				{/* <ArrowLeft /> */}
 			</button>
 			<button
 				onClick={handleNext}
 				className="absolute top-1/2 right-4 md:right-8 transform -translate-y-1/2 bg-gray-200 rounded-full p-3 hover:bg-gray-300 z-30"
 			>
 				<ChevronRight />
-				{/* <ArrowRight /> */}
 			</button>
 		</div>
 	);
