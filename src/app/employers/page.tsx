@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import EmployersHeroImage from "../../../public/static/images/employers-hero-image.jpg";
 import EmployersListings from "../../../public/static/images/employers-listings.png";
-import EmployersResources from "../../../public/static/images/employers-resources.png";
+import EmployersResources from "../../../public/static/images/employer-resources.png";
+import EmployersTracking from "../../../public/static/images/employer-tracking.png"; 
 import Footer from "@/components/client/HomepageFooter";
 
 export default function Employers() {
@@ -93,7 +94,7 @@ export default function Employers() {
 			<div className="flex flex-col items-center justify-between py-12 w-full bg-white bg-opacity-30">
 				<div className="flex flex-col md:flex-row-reverse px-6 gap-8 max-w-7xl mx-auto">
 					<Image
-						src={EmployersListings}
+						src={EmployersTracking}
 						height={500}
 						width={700}
 						alt="applicant tracking"
