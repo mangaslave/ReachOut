@@ -5,10 +5,12 @@ import HomePageCarousel from "@/components/client/HomePageCarousel";
 import peopleIcon from "../../public/static/images/people-1.svg";
 import recruitmentIcon from "../../public/static/images/recruitment-1.svg";
 import interviewIcon from "../../public/static/images/interview-1.svg";
-import aiPoweredResearch from "../../public/static/images/screenshot_job_listings.png";
-import researchProgressTracking from "../../public/static/images/screenshot_dashboard.png";
 import heroImage from "../../public/static/images/Hero-Image.jpg";
 import Footer from "@/components/client/HomepageFooter";
+import JobSearch from "../../public/static/images/landing-search.png"; 
+import Tracking from "../../public/static/images/landing-tracking.png"; 
+import Resources from "../../public/static/images/employer-resources.png"; 
+
 
 export default async function Home() {
 	return (
@@ -26,7 +28,7 @@ export default async function Home() {
 						we&apos;re here to help people build a new future, one connection at
 						a time.
 					</p>
-					<button className="font-bold text-white rounded-lg my-6 w-44 h-10 bg-spaceCadet hover:bg-ylnMnBlue">
+					<button className="font-bold text-spaceCadet rounded-lg my-6 w-44 h-12 bg-white hover:bg-ylnMnBlue hover:text-white">
 						Get Started Now!
 					</button>
 				</div>
@@ -42,7 +44,7 @@ export default async function Home() {
 					/>
 				</div>
 			</div>
-			<div className="flex items-center justify-evenly py-6 flex-col w-full px-6 md:px-0 min-h-[12rem] bg-caribbeanCurrant bg-opacity-60">
+			<div className="flex items-center justify-evenly py-6 flex-col w-full px-6 md:px-0 min-h-[12rem] bg-caribbeanCurrant bg-opacity-90">
 				<h1 className="text-2xl md:text-4xl text-white font-bold py-2 text-center">
 					Who We Are
 				</h1>
@@ -113,7 +115,7 @@ export default async function Home() {
 					<div className="flex flex-col items-center justify-between py-12 w-full">
 						<div className="flex flex-col md:flex-row px-6 gap-8 max-w-7xl mx-auto">
 							<Image
-								src={aiPoweredResearch}
+								src={JobSearch}
 								height={500}
 								width={500}
 								alt="ai powered research"
@@ -159,7 +161,7 @@ export default async function Home() {
 					<div className="flex flex-col items-center justify-between py-12 w-full bg-white bg-opacity-30">
 						<div className="flex flex-col md:flex-row-reverse px-6 gap-8 max-w-7xl mx-auto">
 							<Image
-								src={researchProgressTracking}
+								src={Tracking}
 								height={500}
 								width={500}
 								alt="research progress tracking"
@@ -196,10 +198,10 @@ export default async function Home() {
 					{/*/
         //* RESOURCE DATABASE
         */}
-					{/* <div className="flex flex-col items-center justify-between py-12 w-full">
+					<div className="flex flex-col items-center justify-between py-12 w-full">
     <div className="flex flex-col md:flex-row px-6 gap-8 max-w-7xl mx-auto">
       <Image
-        src={resourceDatabase}
+        src={Resources}
         height={500}
         width={500}
         alt="resource database"
@@ -209,26 +211,34 @@ export default async function Home() {
         <h2 className="text-2xl md:text-4xl text-spaceCadet font-bold text-center md:text-left mb-6">
           Resource Database
         </h2>
-        <ul className="space-y-4 px-8 list-disc">
-          <li>
-            <span className="font-semibold">Over 100,000 Potential Offers: </span>
-            View a list of jobs featuring more than 1,200 companies open to hiring people with criminal records.
-          </li>
-          <li>
-            <span className="font-semibold">Compatibility: </span>
-            View which jobs are most suited for your skill set, preferences, and criminal background.
-          </li>
-          <li>
-            <span className="font-semibold">Skill Development Insights: </span>
-            View and access a list of gaps in your skills needed for different jobs.
-          </li>
-        </ul>
+        	<ul className="space-y-4 px-8 list-disc">
+							<li>
+								<span className="font-semibold">
+									Second-Chance Hiring Guides:{" "}
+								</span>
+								Access comprehensive guides on implementing second-chance hiring
+								practices.
+							</li>
+							<li>
+								<span className="font-semibold">
+									Legal Compliance Support:{" "}
+								</span>
+								Stay informed about local and federal hiring laws.
+							</li>
+							<li>
+								<span className="font-semibold">
+									Tax Incentive Information:{" "}
+								</span>
+								Learn how to access wage subsidies, the Federal Bonding Program,
+								and provincial hiring incentives for marginalized groups.
+							</li>
+						</ul>
         <button className="font-bold text-white rounded-lg mt-6 w-44 h-10 bg-spaceCadet hover:bg-ylnMnBlue">
           View Resources
         </button>
       </div>
     </div>
-  </div> */}
+  </div>
 				</div>
 				<div className="flex items-center justify-center w-full bg-caribbeanCurrant">
 					<h1 className="text-white text-lg md:text-4xl font-bold py-12">

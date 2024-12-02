@@ -14,6 +14,9 @@ export default function LandingPageContent() {
         <Link href="/employer/dashboard">
           <Button className="hover:text-white w-60 p-2 mt-6 bg-white rounded-md text-black font-bold">I'm an Employer.</Button>
         </Link>
+        <Link href="/">
+          <Button className="hover:text-white w-60 p-2 mt-6 bg-white rounded-md text-black font-bold">I'm a Job-Seeker.</Button>
+        </Link>
       </div>
     </div>
     
