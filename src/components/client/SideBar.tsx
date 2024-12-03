@@ -1,16 +1,16 @@
 "use client";
 
-import {cn} from "@/lib/utils";
-import {Button} from "@/components/ui/button";
-import {ChevronLeft, Settings, User} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, Settings, User } from "lucide-react";
 import Image from "next/image";
-import {Dispatch, SetStateAction} from "react";
+import { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
-import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs";
-import {LogOut} from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
+import { LogOut } from "lucide-react";
 
 export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   user?: {
@@ -64,7 +64,7 @@ const NavItem = ({
   );
 };
 
-export function Sidebar({className, user, setCollapsed, collapsed}: SidebarProps) {
+export function Sidebar({ className, user, setCollapsed, collapsed }: SidebarProps) {
   return (
     <div
       className={cn(
@@ -73,6 +73,22 @@ export function Sidebar({className, user, setCollapsed, collapsed}: SidebarProps
         className
       )}
     >
+      <div className="flex items-center gap-3 p-4 border-b">
+        <Image
+          src="/static/images/organization-logo.jpeg"
+          alt="Company Logo"
+          width={35}
+          height={35}
+          className="rounded-full"
+        />
+        {!collapsed && (
+          <div>
+            <p className="text-m font-semibold text-white">John Howard Society</p>
+            <p className="text-xs text-white">Non-Profit Worker</p>
+          </div>
+        )}
+      </div>
+
       <div className="p-4 flex justify-end">
         <Button variant="ghost" size="icon" onClick={() => setCollapsed(!collapsed)}>
           <ChevronLeft className={cn("h-4 w-4 transition-transform", collapsed && "rotate-180")} />

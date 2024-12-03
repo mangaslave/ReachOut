@@ -1,14 +1,14 @@
 "use client";
-import {Button} from "../ui/button";
-import {JobListing as Listing} from "./JobListingMaster";
+import { Button } from "../ui/button";
+import { JobListing as Listing } from "./JobListingMaster";
+import { FcCheckmark } from "react-icons/fc";
 
 interface JobListingProps {
   jobDetails: Listing;
   nextModal?: () => void;
-  // closeModal: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-export const JobListing = ({jobDetails, nextModal}: JobListingProps) => {
+export const JobListing = ({ jobDetails, nextModal }: JobListingProps) => {
   const companyName = jobDetails.companyName;
   const salary = jobDetails.salary;
   const type = jobDetails.jobType;
@@ -38,6 +38,15 @@ export const JobListing = ({jobDetails, nextModal}: JobListingProps) => {
       ) : (
         ""
       )}
+      <h2 className="font-bold text-xl mt-5 text-spaceCadet">Requirements</h2>
+      <ul className="pl-5 space-y-2 mt-3">
+        {skills.map((skill) => (
+          <li key={skills.indexOf(skill)} className="flex items-center space-x-2">
+            <FcCheckmark />
+            <span>{skill}</span>
+          </li>
+        ))}
+      </ul>
       <div className="flex justify-between items-start mb-4 ">
         <h2 className="font-bold text-xl mt-6 text-spaceCadet">Job Description</h2>
       </div>
@@ -46,12 +55,6 @@ export const JobListing = ({jobDetails, nextModal}: JobListingProps) => {
       <ul className="list-disc pl-5 space-y-1">
         {benefits.map((benefit) => {
           return <li key={benefits.indexOf(benefit)}>{benefit}</li>;
-        })}
-      </ul>
-      <h2 className="font-bold text-xl mt-4 text-spaceCadet">Skills Required</h2>
-      <ul className="list-disc pl-5 space-y-1">
-        {skills.map((skill) => {
-          return <li key={skills.indexOf(skill)}>{skill}</li>;
         })}
       </ul>
     </div>
