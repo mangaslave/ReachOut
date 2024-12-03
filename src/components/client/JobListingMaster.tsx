@@ -254,8 +254,6 @@ export default function JobListingMaster({
       setErrorModalOpen(false);
     }, 2500);
   };
-  const bgColors = ["bg-spaceCadet", "bg-spaceCadet", "bg-spaceCadet"];
-  const borderTextColors = ["white", "white", "white"];
   let i = -1;
 
   const activeUser = {
@@ -312,9 +310,6 @@ export default function JobListingMaster({
                       )
                     }
                     key={listing.jobPostingId}
-                    baseColor={bgColors[i]}
-                    textcolor={`text-${borderTextColors[i]}`}
-                    bordercolor={`border-${borderTextColors[i]}`}
                     companyName={`${listing.companyName}`}
                     companyLogo={`${listing.logoUrl}`}
                     location={`${listing.location}`}

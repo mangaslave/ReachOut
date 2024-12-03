@@ -1,13 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "../ui/tooltip";
+import InfoPopup from "./MatchStatusPopup";
 
 interface JobCardProps {
   companyName: string;
   jobTitle: string;
   jobType: string;
-  accessibility: string;
+  // accessibility: string;
+  summary: string | null;
   dateOfPosting: string;
   location: string;
   hourlyPay: string;
@@ -47,11 +49,12 @@ export default function JobCard({
   companyName,
   jobTitle,
   jobType,
-  accessibility,
+  // accessibility,
   dateOfPosting,
   location,
   hourlyPay,
   companyLogo,
+  summary,
   openModal,
   score,
 }: JobCardProps) {
@@ -70,6 +73,10 @@ export default function JobCard({
               >
                 <span className={`w-3 h-3 rounded-full ${matchStatusColor}`} />
                 {matchRating}
+                <InfoPopup
+                  color={matchStatusColor}
+                  status={summary ? summary : "This client has not been matched with this job listing yet."}
+                />
               </span>
             </TooltipTrigger>
             <TooltipContent className="max-w-xs bg-white text-black border border-gray-300 p-2 rounded-md shadow">
@@ -102,13 +109,13 @@ export default function JobCard({
           {jobType}
         </span>
         <span className="flex items-center gap-2 px-3 py-1 rounded-sm text-xs border border-white text-white">
-          {accessibility} Wheelchair Accessible
+          {/* {accessibility} */} Wheelchair Accessible
         </span>
       </div>
 
       {/* Date of Posting */}
       <div className="flex items-center justify-between px-4 mt-3 mb-2 text-xs text-white">
-        <Image src="/static/images/calendar.svg" alt="Date Icon" width={16} height={16} className="ml-52"/>
+        <Image src="/static/images/calendar.svg" alt="Date Icon" width={16} height={16} className="ml-52" />
         <span>{dateOfPosting}</span>
       </div>
 
