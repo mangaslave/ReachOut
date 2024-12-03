@@ -108,7 +108,7 @@ export default function ClientProfile({
       </div>
       <hr className="border-t-1 w-full border-caribbeanCurrant mb-8 mt-2"></hr>
       <div className="text-center w-full">
-        <Progress value={clientProgress} className="[&>div]:bg-caribbeanCurrant w-full" />
+        <Progress value={clientProgress} className="[&>div]:bg-correctGreen w-full" />
         <p>{clientProgress}% completed</p>
       </div>
 

@@ -7,6 +7,7 @@ import {useState} from "react";
 import {cn} from "@/lib/utils";
 import {ClientList} from "@/actions/GetClientAction";
 import {Button} from "../ui/button";
+import Header from "./Header";
 
 export default function ClientsPageClient({
   activeUser,
@@ -21,6 +22,15 @@ export default function ClientsPageClient({
       <Sidebar user={activeUser} setCollapsed={setCollapsed} collapsed={collapsed} />
 
       <div className={cn("flex-1 flex flex-col ml-16 transition-all duration-300", collapsed ? "ml-16" : "ml-64")}>
+        <div className="w-full -mb-10">
+          <Header headerMsg="Client Management" subHeadingMsg="View and edit your client's information."/>
+        </div>
+        <div className="flex space-x-4 mt-16 ml-7 -mb-12">
+          <button className="font-semibold text-black border-b-2 border-black">
+            Active
+          </button>
+          <button className="font-semibold text-gray-500">Archived</button>
+        </div>
         <main className="flex-1 overflow-y-auto pt-20 px-2 sm:px-2 lg:px-4 ">
           <div className="max-w-7xl mx-1">
             <div className="flex justify-between items-center mb-4">
@@ -30,7 +40,7 @@ export default function ClientsPageClient({
 
               <div className="ml-auto">
                 <Link href="/organization/clients/newclient" passHref>
-                  <Button variant="secondary" className="w-36">
+                  <Button variant="secondary" className="w-36 mb-10">
                     + Add New
                   </Button>
                 </Link>
