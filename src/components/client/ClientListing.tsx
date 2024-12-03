@@ -38,7 +38,7 @@ export default function ClientListing({
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto -my-10 ml-2">
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-caribbeanCurrant text-white">
           <tr>

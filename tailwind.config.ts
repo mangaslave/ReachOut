@@ -17,6 +17,7 @@ const config: Config = {
         ylnMnBlue: "#374769",
         orchidPink: "#E9B6C4",
         darkCarribbeanCurrant: "#13302E",
+        correctGreen: "#489E1A", 
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
