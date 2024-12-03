@@ -14,7 +14,7 @@ export default function SettingsClient({employer}: {employer: boolean}) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto flex flex-col gap-8">
+    <div className="w-auto mx-auto flex flex-col gap-8">
       {/* Tabs Section */}
       <div className="flex justify-between border-b border-gray-300 mb-6">
         <ul className="flex space-x-8">
