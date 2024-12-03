@@ -23,7 +23,7 @@ export default function SettingsPageClient({
       <div className={cn("flex-1 flex flex-col ml-16 transition-all duration-300", collapsed ? "ml-16" : "ml-64")}>
         <header className="px-4 py-6 border-b border-gray-300 bg-white">
           <h1 className="text-2xl font-semibold">Settings</h1>
-          <p className="text-sm text-gray-600">Customize Your Preferences and Account Settings</p>
+          <p className="text-sm text-gray-600">Customize your preferences and account settings.</p>
         </header>
         <main className="flex-1 overflow-y-auto px-8 py-6">
           <SettingsClient employer={employer} />
