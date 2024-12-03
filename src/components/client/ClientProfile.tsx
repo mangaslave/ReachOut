@@ -1,17 +1,12 @@
 "use client";
 import Image from "next/image";
-import editIcon from "../../../public/static/images/editIcon.svg";
-import locationIcon from "../../../public/static/images/locationIcon.svg";
-import emailIcon from "../../../public/static/images/email.svg";
-import phoneIcon from "../../../public/static/images/phoneIcon.svg";
-import downloadIcon from "../../../public/static/images/downloadIcon.svg";
 import {Document, Page} from "react-pdf";
 import {useState} from "react";
 import {pdfjs} from "react-pdf";
 import {Progress} from "../ui/progress";
 import checkmark from "../../../public/static/images/complete-checkmark-icon.svg";
 import exclamation from "../../../public/static/images/incomplete-exclamation-icon.svg";
-import { IoIosAddCircleOutline } from "react-icons/io";
+import {IoIosAddCircleOutline} from "react-icons/io";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 
@@ -100,7 +95,10 @@ export default function ClientProfile({
           <p>{`${client.firstName} ${client.lastName}`}</p>
         </div>
         <div>
-          <button onClick={closeModal} className= "border border-caribbeanCurrant bg-white text-caribbeanCurrant w-20 rounded-md mx-2 self-end">
+          <button
+            onClick={closeModal}
+            className="border border-caribbeanCurrant bg-white text-caribbeanCurrant w-20 rounded-md mx-2 self-end"
+          >
             Cancel
           </button>
           <button onClick={closeModal} className="bg-caribbeanCurrant w-20 rounded-md self-end text-white">
@@ -110,10 +108,9 @@ export default function ClientProfile({
       </div>
       <hr className="border-t-1 w-full border-caribbeanCurrant mb-8 mt-2"></hr>
       <div className="text-center w-full">
-        <Progress value={clientProgress} className="w-11/12 [&>div]:bg-caribbeanCurrant w-full" />
+        <Progress value={clientProgress} className="[&>div]:bg-caribbeanCurrant w-full" />
         <p>{clientProgress}% completed</p>
       </div>
-      
 
       <form className="w-full">
         <div className="flex text-left mt-8">
@@ -129,7 +126,7 @@ export default function ClientProfile({
               id="firstName"
               name="firstName"
               type="text"
-              defaultValue={client.firstName}
+              defaultValue={client.firstName!}
               className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
             />
           </div>
@@ -141,7 +138,7 @@ export default function ClientProfile({
               id="lastName"
               name="lastName"
               type="text"
-              defaultValue={client.lastName}
+              defaultValue={client.lastName!}
               className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
             />
           </div>
@@ -155,7 +152,7 @@ export default function ClientProfile({
             id="city"
             name="city"
             type="text"
-            defaultValue={client.city}
+            defaultValue={client.city!}
             className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
           />
         </div>
@@ -168,7 +165,7 @@ export default function ClientProfile({
             id="email"
             name="email"
             type="email"
-            defaultValue={client.email}
+            defaultValue={client.email!}
             className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
           />
         </div>
@@ -181,7 +178,7 @@ export default function ClientProfile({
             id="phoneNumber"
             name="phoneNumber"
             type="tel"
-            defaultValue={client.phoneNumber}
+            defaultValue={client.phoneNumber!}
             className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
           />
         </div>
@@ -237,14 +234,11 @@ export default function ClientProfile({
               className="border border-gray-500 rounded-md shadow-sm px-3 py-1 text-gray-700 focus:outline-none focus:ring-caribbeanCurrant focus:border-caribbeanCurrant"
             />
           </div>
-
-          
-          
         </div>
 
         <div className=" border-gray-500 border w-full text-center mt-8 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
-            <IoIosAddCircleOutline className="m-auto" />
-            <p className="w-full mt-1">Add another Degree/Certification</p>
+          <IoIosAddCircleOutline className="m-auto" />
+          <p className="w-full mt-1">Add another Degree/Certification</p>
         </div>
       </form>
 
@@ -285,52 +279,47 @@ export default function ClientProfile({
               defaultValue="2023-05-24"
               className="border border-gray-500 rounded-md shadow-sm px-3 py-1 text-gray-700 focus:outline-none focus:ring-caribbeanCurrant focus:border-caribbeanCurrant"
             />
-          </div>          
+          </div>
         </div>
 
         <div className="border-gray-500 border w-full text-center mt-8 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
-            <IoIosAddCircleOutline className="m-auto" />
-            <p className="w-full mt-1">Add more Work Experience</p>
+          <IoIosAddCircleOutline className="m-auto" />
+          <p className="w-full mt-1">Add more Work Experience</p>
         </div>
-
       </form>
 
       <div className="flex text-left mt-10">
         <h2 className="font-bold text-l mr-1">Resume</h2>
         <SectionStatus isComplete={sections.resume} />
       </div>
-              
 
-              <button onClick={openResumeModal} className="bg-white text-spaceCadet rounded-md font-thin">
-                {noClientResume ?
-                <p className="text-red-600 w-full">No resume available</p>
-                 : <p>View Resume</p>}
-              </button>
-              <div className="border-gray-500 border w-full text-center mt-2 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
-                  <IoIosAddCircleOutline className="m-auto" />
-                  <p className="w-full mt-1">Add a Resume</p>
-              </div>
+      <button onClick={openResumeModal} className="bg-white text-spaceCadet rounded-md font-thin">
+        {noClientResume ? <p className="text-red-600 w-full">No resume available</p> : <p>View Resume</p>}
+      </button>
+      <div className="border-gray-500 border w-full text-center mt-2 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
+        <IoIosAddCircleOutline className="m-auto" />
+        <p className="w-full mt-1">Add a Resume</p>
+      </div>
 
-              <div className="flex text-left mt-10">
-                <h2 className="font-bold text-l mr-1">Skills and Qualifications</h2>
-                <SectionStatus isComplete={sections.skills} />
-              </div>
+      <div className="flex text-left mt-10">
+        <h2 className="font-bold text-l mr-1">Skills and Qualifications</h2>
+        <SectionStatus isComplete={sections.skills} />
+      </div>
 
-              <p className="text-red-600 w-full">No skills yet</p>
+      <p className="text-red-600 w-full">No skills yet</p>
 
-              <div className="border-gray-500 border w-full text-center mt-2 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
-                  <IoIosAddCircleOutline className="m-auto" />
-                  <p className="w-full mt-1">Add Skills</p>
-              </div>
+      <div className="border-gray-500 border w-full text-center mt-2 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
+        <IoIosAddCircleOutline className="m-auto" />
+        <p className="w-full mt-1">Add Skills</p>
+      </div>
 
-                {client.skills?.map((skill) => {
-                  return (
-                    <li className="font-thin p-1 mx-2" key={skill}>
-                      {skill}
-                    </li>
-                  );
-                })}
-
+      {client.skills?.map((skill) => {
+        return (
+          <li className="font-thin p-1 mx-2" key={skill}>
+            {skill}
+          </li>
+        );
+      })}
 
       {resumeModalOpen && (
         <div className="fixed inset-0 rounded-md flex items-center justify-center bg-black bg-opacity-50">
