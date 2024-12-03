@@ -11,6 +11,7 @@ import {pdfjs} from "react-pdf";
 import {Progress} from "../ui/progress";
 import checkmark from "../../../public/static/images/complete-checkmark-icon.svg";
 import exclamation from "../../../public/static/images/incomplete-exclamation-icon.svg";
+import { IoIosAddCircleOutline } from "react-icons/io";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 
@@ -92,81 +93,236 @@ export default function ClientProfile({
   };
 
   return (
-    <div className="m-2 bg-white p-4 flex flex-col items-center justify-center max-w-2xl drop-shadow-sm border border-black rounded-lg">
-      <div className="flex items-center justify-between w-full mb-4 px-8 py-2">
-        <h1 className="font-semibold text-2xl">Profile Details</h1>
-        <button className="flex items-center">
-          <Image src={editIcon} width={15} height={15} alt="" />
-          <p className="mx-2">Edit</p>
-        </button>
+    <div className="bg-white flex flex-col items-start justify-start drop-shadow-sm rounded-lg w-[35rem] h-[40rem] overflow-y-auto p-4">
+      <div className="flex justify-between w-full">
+        <div>
+          <h1 className="font-semibold text-2xl">Profile Details</h1>
+          <p>{`${client.firstName} ${client.lastName}`}</p>
+        </div>
+        <div>
+          <button onClick={closeModal} className= "border border-caribbeanCurrant bg-white text-caribbeanCurrant w-20 rounded-md mx-2 self-end">
+            Cancel
+          </button>
+          <button onClick={closeModal} className="bg-caribbeanCurrant w-20 rounded-md self-end text-white">
+            Save
+          </button>
+        </div>
       </div>
-      <Progress value={clientProgress} className="w-11/12  [&>div]:bg-caribbeanCurrant" />
-      <p className="">{clientProgress}% completed</p>
-      <div className="flex justify-between">
-        <div className="flex flex-col items-center justify-center w-1/2">
-          <div className="bg-spaceCadet text-white w-full my-2 mx-4 rounded-sm p-4">
-            <ul>
-              <li className="flex items-center justify-between">
-                <h1 className="text-xl">{`${client.firstName} ${client.lastName}`}</h1>
-                <SectionStatus isComplete={sections.personalInfo} />
-              </li>
-              <li className="flex items-center">
-                <Image src={locationIcon} width={15} height={15} alt="" />
-                <p className="font-thin p-1 mx-2">{client.city}</p>
-              </li>
-              <li className="flex items-center">
-                <Image src={emailIcon} width={15} height={15} alt="" />
-                <p className="font-thin p-1 mx-2">{client.email}</p>
-              </li>
-              <li className="flex items-center">
-                <Image src={phoneIcon} width={15} height={15} alt="" />
-                <p className="font-thin p-1 mx-2">{client.phoneNumber}</p>
-              </li>
-            </ul>
+      <hr className="border-t-1 w-full border-caribbeanCurrant mb-8 mt-2"></hr>
+      <div className="text-center w-full">
+        <Progress value={clientProgress} className="w-11/12 [&>div]:bg-caribbeanCurrant w-full" />
+        <p>{clientProgress}% completed</p>
+      </div>
+      
+
+      <form className="w-full">
+        <div className="flex text-left mt-8">
+          <h2 className="mr-1 font-bold text-l">Contact Information</h2>
+          <SectionStatus isComplete={sections.personalInfo} />
+        </div>
+        <div className="flex gap-4">
+          <div className="flex-1">
+            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mt-3">
+              First Name
+            </label>
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              defaultValue={client.firstName}
+              className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
+            />
           </div>
-          <div className="bg-spaceCadet text-white w-full my-2 mx-4 rounded-sm p-4">
-            <div className="flex items-center justify-between">
-              <h1 className="text-xl mx-2">Application History</h1>
-              <Image src={downloadIcon} width={15} height={15} alt="" />
-            </div>
-            <div className="rounded-sm border m-2 my-4 p-2">
-              <h3 className="text-sm">Machine Operator</h3>
-              <p className="my-1 text-xs">Aecon Group - Vancouver, BC</p>
-              <p className="mt-4 text-xs italic">Date Applied: 10/01/2024</p>
-            </div>
-            <div className="rounded-sm border m-2 my-4 p-2">
-              <h3 className="text-sm">Construction Part-Time</h3>
-              <p className="my-1 text-xs">Goldcorn Construction - Langley, BC</p>
-              <p className="mt-4 text-xs italic">Date Applied: 10/01/2024</p>
-            </div>
-            <div className="rounded-sm border m-2 my-4 p-2">
-              <h3 className="text-sm">Welder Full-Time</h3>
-              <p className="my-1 text-xs">Gary&#39;s Welding - Kelowna, BC</p>
-              <p className="mt-4 text-xs italic">Date Applied: 10/01/2024</p>
-            </div>
+          <div className="flex-1">
+            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mt-3">
+              Last Name
+            </label>
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              defaultValue={client.lastName}
+              className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
+            />
           </div>
         </div>
-        <ul className="flex flex-col w-1/2 h-auto">
-          <li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
-            <div className="flex items-center justify-between">
-              <h1 className="text-xl">Resume</h1>
-              <SectionStatus isComplete={sections.resume} />
-            </div>
 
-            <div className="flex items-center py-4">
-              <button onClick={openResumeModal} className="bg-white text-spaceCadet px-4 rounded-md font-thin">
-                {noClientResume ? <p className="text-red-600">No resume available</p> : <p>View Resume</p>}
+        <div>
+          <label htmlFor="city" className="block text-sm font-medium text-gray-700 mt-3">
+            City
+          </label>
+          <input
+            id="city"
+            name="city"
+            type="text"
+            defaultValue={client.city}
+            className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mt-3">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            defaultValue={client.email}
+            className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mt-3">
+            Phone Number
+          </label>
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            type="tel"
+            defaultValue={client.phoneNumber}
+            className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
+          />
+        </div>
+      </form>
+
+      <form className="w-full">
+        <div className="flex text-left mt-10">
+          <h2 className="mr-1  font-bold text-l">Education/Certifications</h2>
+          <SectionStatus isComplete={sections.personalInfo} />
+        </div>
+        <div>
+          <label htmlFor="city" className="block text-sm font-medium text-gray-700 mt-3">
+            Educational Institution
+          </label>
+          <input
+            id="city"
+            name="city"
+            type="text"
+            defaultValue="Vancouver Community College"
+            className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mt-3">
+            Degree/Certification
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            defaultValue="Associates Degree in Business Mangagement"
+            className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
+          />
+        </div>
+        <div className="flex flex-col w-[10rem]">
+          <label htmlFor="datePicker" className="block text-sm font-medium text-gray-700 mt-3 mb-1">
+            Start & End Date
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="date"
+              id="datePicker"
+              name="datePicker"
+              defaultValue="2024-12-02"
+              className="border border-gray-500 rounded-md shadow-sm px-3 py-1 text-gray-700 focus:outline-none focus:ring-caribbeanCurrant focus:border-caribbeanCurrant"
+            />
+            <input
+              type="date"
+              id="datePicker"
+              name="datePicker"
+              defaultValue="2023-05-24"
+              className="border border-gray-500 rounded-md shadow-sm px-3 py-1 text-gray-700 focus:outline-none focus:ring-caribbeanCurrant focus:border-caribbeanCurrant"
+            />
+          </div>
+
+          
+          
+        </div>
+
+        <div className=" border-gray-500 border w-full text-center mt-8 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
+            <IoIosAddCircleOutline className="m-auto" />
+            <p className="w-full mt-1">Add another Degree/Certification</p>
+        </div>
+      </form>
+
+      <form className="w-full">
+        <div className="flex text-left mt-10">
+          <h2 className="mr-1  font-bold text-l">Work Experience</h2>
+          <SectionStatus isComplete={sections.personalInfo} />
+        </div>
+        <div>
+          <label htmlFor="city" className="block text-sm font-medium text-gray-700 mt-3">
+            Company
+          </label>
+          <input
+            id="city"
+            name="city"
+            type="text"
+            defaultValue="Gary's Welding Ltd"
+            className="mt-1 w-full border-gray-500 border rounded-sm shadow-sm py-1 px-3 focus:border-caribbeanCurrant focus:ring-caribbeanCurrant sm:text-sm"
+          />
+        </div>
+
+        <div className="flex flex-col w-[10rem]">
+          <label htmlFor="datePicker" className="block text-sm font-medium text-gray-700 mt-3 mb-1">
+            Start & End Date
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="date"
+              id="datePicker"
+              name="datePicker"
+              defaultValue="2024-12-02"
+              className="border border-gray-500 rounded-md shadow-sm px-3 py-1 text-gray-700 focus:outline-none focus:ring-caribbeanCurrant focus:border-caribbeanCurrant"
+            />
+            <input
+              type="date"
+              id="datePicker"
+              name="datePicker"
+              defaultValue="2023-05-24"
+              className="border border-gray-500 rounded-md shadow-sm px-3 py-1 text-gray-700 focus:outline-none focus:ring-caribbeanCurrant focus:border-caribbeanCurrant"
+            />
+          </div>          
+        </div>
+
+        <div className="border-gray-500 border w-full text-center mt-8 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
+            <IoIosAddCircleOutline className="m-auto" />
+            <p className="w-full mt-1">Add more Work Experience</p>
+        </div>
+
+      </form>
+
+      <div className="flex text-left mt-10">
+        <h2 className="font-bold text-l mr-1">Resume</h2>
+        <SectionStatus isComplete={sections.resume} />
+      </div>
+              
+
+              <button onClick={openResumeModal} className="bg-white text-spaceCadet rounded-md font-thin">
+                {noClientResume ?
+                <p className="text-red-600 w-full">No resume available</p>
+                 : <p>View Resume</p>}
               </button>
-              <Image src={downloadIcon} width={15} height={15} alt="" className="ml-4" />
-            </div>
-          </li>
-          <li className="bg-spaceCadet text-white h-auto my-2 ml-4 rounded-sm p-4">
-            <div className="flex items-center justify-between">
-              <h1 className="text-xl">Skills & Qualifications</h1>
-              <SectionStatus isComplete={sections.skills} />
-            </div>
-            <div className="rounded-sm border m-2 my-4 p-2">
-              <ul className="">
+              <div className="border-gray-500 border w-full text-center mt-2 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
+                  <IoIosAddCircleOutline className="m-auto" />
+                  <p className="w-full mt-1">Add a Resume</p>
+              </div>
+
+              <div className="flex text-left mt-10">
+                <h2 className="font-bold text-l mr-1">Skills and Qualifications</h2>
+                <SectionStatus isComplete={sections.skills} />
+              </div>
+
+              <p className="text-red-600 w-full">No skills yet</p>
+
+              <div className="border-gray-500 border w-full text-center mt-2 rounded-md hover:bg-gray-200 transition-colors duration-200 p-2">
+                  <IoIosAddCircleOutline className="m-auto" />
+                  <p className="w-full mt-1">Add Skills</p>
+              </div>
+
                 {client.skills?.map((skill) => {
                   return (
                     <li className="font-thin p-1 mx-2" key={skill}>
@@ -174,14 +330,8 @@ export default function ClientProfile({
                     </li>
                   );
                 })}
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <button onClick={closeModal} className="bg-caribbeanCurrant w-20 rounded-md mx-8 my-2 self-end text-white">
-        Close
-      </button>
+
+
       {resumeModalOpen && (
         <div className="fixed inset-0 rounded-md flex items-center justify-center bg-black bg-opacity-50">
           <Document
