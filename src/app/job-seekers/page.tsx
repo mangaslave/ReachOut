@@ -26,7 +26,7 @@ export default function JobSeekers() {
 						build a career, or explore new possibilities, we&apos;re here to
 						support you at every step.
 					</p>
-					<button className="font-bold text-darkCarribbeanCurrant rounded-lg my-6 w-44 h-12 pt-3 pb-3 bg-white hover:bg-ylnMnBlue hover:bg-opacity-40 hover:text-white mb-20">
+					<button className="font-bold text-darkCarribbeanCurrant rounded-lg my-6 w-44 h-12 pt-3 pb-3 bg-white hover:bg-spaceCadet hover:bg-opacity-40 hover:text-white mb-20">
 						Get Started Now!
 					</button>
 				</div>
