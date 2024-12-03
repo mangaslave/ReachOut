@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
   },
 
   crossOrigin: "use-credentials",
+
+  images: {
+    domains: [
+      "encrypted-tbn0.gstatic.com",
+      "www.randstad.ca",
+      "media.licdn.com",
+    ],
+  },
 };
 
 export default nextConfig;
