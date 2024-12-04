@@ -41,8 +41,8 @@ export default function ClientsPageClient({
               </div>
 
               <div className="ml-auto flex items-center">
-                <GoTrash className="text-2xl mx-4 text-gray-400 cursor-pointer" />
-                <GoArchive className="text-2xl mr-8 ml-4 text-gray-400 cursor-pointer"/>
+                <GoTrash className="text-2xl mx-4 mb-6 text-gray-400 cursor-pointer" />
+                <GoArchive className="text-2xl mr-8 ml-4 mb-6 text-gray-400 cursor-pointer"/>
                 <Link href="/organization/clients/newclient" passHref>
                   <Button variant="secondary" className="w-36 mb-10">
                     + Add New

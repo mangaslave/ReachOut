@@ -19,13 +19,13 @@ const Reminders = () => {
         <div>
           <ReminderItem
             title="Meeting w/ Andrew Norman"
-            date="Nov 29"
+            date="Dec 10"
             time="10:30am"
             statusColor="bg-red-500"
           />
           <ReminderItem
             title="Meeting w/ Jack Brown"
-            date="Nov 30"
+            date="Dec 12"
             time="12:30pm"
             statusColor="bg-red-500"
           />
