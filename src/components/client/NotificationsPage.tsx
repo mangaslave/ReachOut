@@ -1,11 +1,19 @@
 "use client";
 
-import { Sidebar } from "./SideBar";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
+import {Sidebar} from "./SideBar";
+import {useState} from "react";
+import {cn} from "@/lib/utils";
 import Header from "./Header";
+import {EmployerSidebar} from "./EmployerSidebar";
+import {twMerge} from "tailwind-merge";
 
-export default function Inbox({ activeUser }: { activeUser: { name: string; email: string; image: string } }) {
+export default function Inbox({
+  activeUser,
+  employer,
+}: {
+  activeUser: {name: string; email: string; image: string};
+  employer: boolean;
+}) {
   const [notifications, setNotifications] = useState([
     {
       id: 1,
@@ -20,7 +28,8 @@ export default function Inbox({ activeUser }: { activeUser: { name: string; emai
       name: "Victor Banks | Cambell Construc...",
       time: "4h",
       message: "Hello! I'm reaching out to let you know...",
-      imgSrc: "https://th.bing.com/th/id/R.36da1d5d8a3ddcc2cd86faf1ff7fd9e5?rik=yBaJPa0CYz53RQ&riu=http%3a%2f%2fgetdrawings.com%2ffree-icon%2ffunny-avatars-icons-69.jpg&ehk=nvoft58qAsT3lXOro7N9naT81HQLMv8ogJm5AVQoTWQ%3d&risl=&pid=ImgRaw&r=0",
+      imgSrc:
+        "https://th.bing.com/th/id/R.36da1d5d8a3ddcc2cd86faf1ff7fd9e5?rik=yBaJPa0CYz53RQ&riu=http%3a%2f%2fgetdrawings.com%2ffree-icon%2ffunny-avatars-icons-69.jpg&ehk=nvoft58qAsT3lXOro7N9naT81HQLMv8ogJm5AVQoTWQ%3d&risl=&pid=ImgRaw&r=0",
       isUnread: true,
     },
     {
@@ -28,7 +37,8 @@ export default function Inbox({ activeUser }: { activeUser: { name: string; emai
       name: "James Harper | Tech Solutions",
       time: "1d",
       message: "Your recent invoice has been processed...",
-      imgSrc: "https://media.istockphoto.com/id/1372744282/photo/head-shot-portrait-smiling-bearded-man-talking-at-camera.jpg?s=612x612&w=0&k=20&c=K1uPpr7UfA0ivMeeVhagG5DIQhhwNSbUH4-L0qwJqvw=",
+      imgSrc:
+        "https://media.istockphoto.com/id/1372744282/photo/head-shot-portrait-smiling-bearded-man-talking-at-camera.jpg?s=612x612&w=0&k=20&c=K1uPpr7UfA0ivMeeVhagG5DIQhhwNSbUH4-L0qwJqvw=",
       isUnread: false,
     },
     {
@@ -36,7 +46,8 @@ export default function Inbox({ activeUser }: { activeUser: { name: string; emai
       name: "Laura Chen | Design Studio",
       time: "2d",
       message: "The new designs are ready for review...",
-      imgSrc: "https://media.istockphoto.com/id/1386479313/photo/happy-millennial-afro-american-business-woman-posing-isolated-on-white.jpg?s=612x612&w=0&k=20&c=8ssXDNTp1XAPan8Bg6mJRwG7EXHshFO5o0v9SIj96nY=",
+      imgSrc:
+        "https://media.istockphoto.com/id/1386479313/photo/happy-millennial-afro-american-business-woman-posing-isolated-on-white.jpg?s=612x612&w=0&k=20&c=8ssXDNTp1XAPan8Bg6mJRwG7EXHshFO5o0v9SIj96nY=",
       isUnread: false,
     },
   ]);
@@ -48,29 +59,27 @@ export default function Inbox({ activeUser }: { activeUser: { name: string; emai
   const toggleReadStatus = (id: number) => {
     setNotifications((prev) =>
       prev.map((notification) =>
-        notification.id === id
-          ? { ...notification, isUnread: !notification.isUnread }
-          : notification
+        notification.id === id ? {...notification, isUnread: !notification.isUnread} : notification
       )
     );
   };
 
   const markAllAsRead = () => {
     setNotifications((prev) =>
-      prev.map((notification) =>
-        notification.isUnread ? { ...notification, isUnread: false } : notification
-      )
+      prev.map((notification) => (notification.isUnread ? {...notification, isUnread: false} : notification))
     );
   };
 
   const displayedNotifications =
-    view === "all"
-      ? notifications
-      : notifications.filter((notification) => notification.isUnread);
+    view === "all" ? notifications : notifications.filter((notification) => notification.isUnread);
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar user={activeUser} setCollapsed={setCollapsed} collapsed={collapsed} />
+      {employer ? (
+        <EmployerSidebar user={activeUser} setCollapsed={setCollapsed} collapsed={collapsed} />
+      ) : (
+        <Sidebar user={activeUser} setCollapsed={setCollapsed} collapsed={collapsed} />
+      )}
 
       <div className={cn("flex-1 flex flex-col ml-16 transition-all duration-300", collapsed ? "ml-16" : "ml-64")}>
         <Header headerMsg="Notifications" subHeadingMsg="View your recent notifications" />
@@ -95,7 +104,10 @@ export default function Inbox({ activeUser }: { activeUser: { name: string; emai
                   </button>
                 </div>
                 <button
-                  className="bg-caribbeanCurrant text-white px-4 py-2 rounded"
+                  className={twMerge(
+                    "text-white px-4 py-2 rounded",
+                    employer ? "bg-spaceCadet" : "bg-caribbeanCurrant"
+                  )}
                   onClick={markAllAsRead}
                 >
                   Mark all as read
@@ -109,6 +121,7 @@ export default function Inbox({ activeUser }: { activeUser: { name: string; emai
                     key={notification.id}
                     notification={notification}
                     toggleReadStatus={toggleReadStatus}
+                    employer={employer}
                   />
                 ))}
               </div>
@@ -123,9 +136,11 @@ export default function Inbox({ activeUser }: { activeUser: { name: string; emai
 function NotificationCard({
   notification,
   toggleReadStatus,
+  employer,
 }: {
-  notification: { id: number; name: string; time: string; message: string; imgSrc: string; isUnread: boolean };
+  notification: {id: number; name: string; time: string; message: string; imgSrc: string; isUnread: boolean};
   toggleReadStatus: (id: number) => void;
+  employer: boolean;
 }) {
   return (
     <div
@@ -142,7 +157,10 @@ function NotificationCard({
         </div>
         <p className="text-lg text-black mt-1">{notification.message}</p>
         <button
-          className="text-sm text-caribbeanCurrant underline mt-1 cursor-pointer"
+          className={twMerge(
+            "text-sm underline mt-1 cursor-pointer",
+            employer ? "text-spaceCadet" : "text-caribbeanCurrant"
+          )}
           onClick={() => toggleReadStatus(notification.id)}
         >
           {notification.isUnread ? "Mark as read" : "Mark as unread"}

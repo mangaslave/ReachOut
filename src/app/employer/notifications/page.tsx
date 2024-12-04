@@ -11,7 +11,11 @@ export default async function InboxPage() {
     redirect("/");
   }
   const user = await getUser();
-  await AddKindeUserToDb(user, 1);
+  const isEmployer = await AddKindeUserToDb(user, 2);
+
+  if (!isEmployer?.companyId) {
+    redirect("/");
+  }
 
   const activeUser = {
     name: `${user.given_name} ${user.family_name}`,
@@ -19,5 +23,5 @@ export default async function InboxPage() {
     image: `${user.picture}`,
   };
 
-  return <Notifications activeUser={activeUser} employer={false} />;
+  return <Notifications activeUser={activeUser} employer={true} />;
 }
