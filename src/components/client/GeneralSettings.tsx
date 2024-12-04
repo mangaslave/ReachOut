@@ -1,8 +1,29 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "../ui/button";
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 export default function GeneralSettings() {
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
+
+  const handleConnectEmail = () => {
+    setIsEmailModalOpen(true);
+  };
+
+  const handleSyncCalendar = () => {
+    setIsCalendarModalOpen(true);
+  };
+
+  const closeEmailModal = () => {
+    setIsEmailModalOpen(false);
+  };
+
+  const closeCalendarModal = () => {
+    setIsCalendarModalOpen(false);
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Change Password Section */}
@@ -105,11 +126,21 @@ export default function GeneralSettings() {
             id="email-provider"
             className="block w-full max-w-[200px] h-10 p-2 rounded-md border-black border shadow-sm"
           >
-            <option className="text-sm" value="">Select Provider</option>
-            <option className="text-sm" value="gmail">Gmail</option>
-            <option className="text-sm" value="outlook">Outlook</option>
-            <option className="text-sm" value="yahoo">Yahoo</option>
-            <option className="text-sm" value="other">Other</option>
+            <option className="text-sm" value="">
+              Select Provider
+            </option>
+            <option className="text-sm" value="gmail">
+              Gmail
+            </option>
+            <option className="text-sm" value="outlook">
+              Outlook
+            </option>
+            <option className="text-sm" value="yahoo">
+              Yahoo
+            </option>
+            <option className="text-sm" value="other">
+              Other
+            </option>
           </select>
 
           <div>
@@ -126,28 +157,95 @@ export default function GeneralSettings() {
             />
           </div>
 
-          <Button className="self-start">Connect Email</Button>
+          <Button onClick={handleConnectEmail} className="self-start bg-spaceCadet">
+            Connect Email
+          </Button>
         </div>
       </section>
 
-      {/* Two-Factor Authentication Section */}
+      {/* Sync Calendar Section */}
       <section className="flex flex-col gap-4 p-6 rounded bg-white shadow">
-        <h2 className="text-lg font-medium text-gray-900">Two-Factor Authentication</h2>
+        <h2 className="text-lg font-medium text-gray-900">Sync Calendar</h2>
+        <p className="text-sm text-gray-600">
+          Sync your calendar with an external calendar like Google Calendar or your phone's calendar.
+        </p>
         <div className="flex flex-col gap-4">
-          {[
-            { label: "Cellphone Number", status: "Enable" },
-            { label: "Secondary Email", status: "N/A" },
-            { label: "Authenticator App", status: "Not Set" },
-          ].map((item, index) => (
-            <div key={index} className="flex justify-between items-center">
-              <p className="text-sm font-medium text-gray-700">{item.label}</p>
-              <Button variant="ghost" className="border border-black w-32">
-                {item.status}
-              </Button>
-            </div>
-          ))}
+          <label
+            htmlFor="calendar-provider"
+            className="block text-sm font-medium text-black"
+          >
+            Select Calendar Provider
+          </label>
+          <select
+            id="calendar-provider"
+            className="block w-full max-w-[200px] h-10 p-2 rounded-md border-black border shadow-sm"
+          >
+            <option className="text-sm" value="">
+              Select Provider
+            </option>
+            <option className="text-sm" value="google">
+              Google Calendar
+            </option>
+            <option className="text-sm" value="apple">
+              Apple Calendar
+            </option>
+            <option className="text-sm" value="outlook">
+              Outlook Calendar
+            </option>
+          </select>
+          <label
+              htmlFor="email-address"
+              className="block text-sm font-medium text-gray-700"
+          >Email Adress</label>
+          <input
+              type="email"
+              id="email-address"
+              className="-mt-3 block w-full h-10 rounded-md border-black border shadow-sm"
+          />
+
+          <Button onClick={handleSyncCalendar} className="self-start bg-spaceCadet">
+            Sync Calendar
+          </Button>
         </div>
       </section>
+
+      {/* Email Sync Modal */}
+      {isEmailModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
+            <h3 className="text-lg font-medium text-gray-900 flex flex-row gap-2">
+              Email Connected <FaRegCircleCheck className="text-correctGreen text-2xl mt-[3px]" />
+            </h3>
+            <p className="text-sm text-gray-600 mt-2">
+              Your email has been connected successfully!
+            </p>
+            <div className="mt-4 flex justify-end">
+              <Button onClick={closeEmailModal} className="bg-caribbeanCurrant text-white px-4 py-2 rounded">
+                Close
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Calendar Sync Modal */}
+      {isCalendarModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
+            <h3 className="text-lg font-medium text-gray-900 flex flex-row gap-2">
+              Calendar Synced <FaRegCircleCheck className="text-correctGreen text-2xl mt-[3px]" />
+            </h3>
+            <p className="text-sm text-gray-600 mt-2">
+              Your calendar has been synced successfully!
+            </p>
+            <div className="mt-4 flex justify-end">
+              <Button onClick={closeCalendarModal} className="bg-caribbeanCurrant text-white px-4 py-2 rounded">
+                Close
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

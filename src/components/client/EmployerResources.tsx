@@ -1,10 +1,10 @@
 "use client";
 
-import {useState} from "react";
-import {FaSearch} from "react-icons/fa";
-import {EmployerSidebar} from "./EmployerSidebar";
+import { useState } from "react";
+import { FaSearch, FaMicrophone } from "react-icons/fa";
+import { EmployerSidebar } from "./EmployerSidebar";
 import Header from "./Header";
-import {cn} from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 const resources = [
   {
@@ -61,7 +61,7 @@ export function EmployerResources({
         <Header headerMsg="Resource Library" subHeadingMsg="View or search for second-chance hiring resources." />
         <div className="border-t border-gray-200 my-4"></div>
         <div className="flex h-screen bg-gray-100 p-6 -mt-3">
-          <main className="w-full max-w-4xl mx-auto">
+          <main className="w-full mx-auto">
             <div className="mb-6 flex items-center bg-white shadow-sm rounded-lg">
               <span className="px-3 text-gray-500">
                 <FaSearch />
@@ -73,19 +73,22 @@ export function EmployerResources({
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
+              <button className="px-3 text-gray-500 hover:text-caribbeanCurrant transition-colors">
+                <FaMicrophone />
+              </button>
             </div>
 
             {filteredResources.length > 0 ? (
               <div className="grid gap-6 md:grid-cols-2">
                 {filteredResources.map((resource, index) => (
-                  <div key={index} className="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                  <div key={index} className="p-4 bg-white rounded-lg shadow-md shadow-ylnMnBlue/50 hover:shadow-lg transition-shadow cursor-pointer">
                     <h2 className="text-xl font-semibold text-gray-800 mb-2">{resource.title}</h2>
                     <p className="text-gray-600 mb-4">{resource.description}</p>
                     <a
                       href={resource.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-caribbeanCurrant font-medium hover:underline"
+                      className="text-caribbeanCurrant font-semibold hover:underline"
                     >
                       Learn More →
                     </a>

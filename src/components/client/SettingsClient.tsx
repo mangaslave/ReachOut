@@ -44,7 +44,7 @@ export default function SettingsClient({employer}: {employer: boolean}) {
             href={employer ? "/employer/dashboard" : "/organization/dashboard"}
             className="pb-2 font-medium transition-all duration-200"
           >
-            <Button>Save & Continue</Button>
+            <Button className="bg-spaceCadet">Save & Continue</Button>
           </Link>
           <Link
             href={employer ? "/employer/dashboard" : "/organization/dashboard"}
