@@ -8,6 +8,9 @@ import {cn} from "@/lib/utils";
 import {ClientList} from "@/actions/GetClientAction";
 import {Button} from "../ui/button";
 import Header from "./Header";
+import { FaTrashAlt } from "react-icons/fa";
+import { FaBoxArchive } from "react-icons/fa6";
+
 
 export default function ClientsPageClient({
   activeUser,
@@ -26,10 +29,12 @@ export default function ClientsPageClient({
           <Header headerMsg="Client Management" subHeadingMsg="View and edit your client's information."/>
         </div>
         <div className="flex space-x-4 mt-16 ml-7 -mb-12">
-          <button className="font-semibold text-black border-b-2 border-black">
-            Active
-          </button>
-          <button className="font-semibold text-gray-500">Archived</button>
+        <button className="font-semibold text-black border-b-2 border-black cursor-pointer hover:bg-gray-200">
+          Active Clients
+        </button>
+        <button className="font-semibold text-gray-500 border-b-2 border-transparent hover:border-gray-500 hover:bg-gray-200 cursor-pointer">
+          Archived Clients
+        </button>
         </div>
         <main className="flex-1 overflow-y-auto pt-20 px-2 sm:px-2 lg:px-4 ">
           <div className="max-w-7xl mx-1">
@@ -38,7 +43,9 @@ export default function ClientsPageClient({
                 <ClientsFilters />
               </div>
 
-              <div className="ml-auto">
+              <div className="ml-auto flex flex-row">
+                <FaBoxArchive className="mt-2 mr-1 w-6 h-9 text-gray-400"/>
+                <FaTrashAlt className="mt-3 mr-4 w-10 h-6 text-gray-400"/>
                 <Link href="/organization/clients/newclient" passHref>
                   <Button variant="secondary" className="w-36 mb-10">
                     + Add New
