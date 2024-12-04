@@ -55,7 +55,7 @@ export default function EmployerDashboardClientComponent({
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <Reminders />
-              <Calendar />
+              <Calendar employer={true} />
             </div>
           </div>
         </main>
