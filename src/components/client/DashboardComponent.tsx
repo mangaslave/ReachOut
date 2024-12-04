@@ -3,6 +3,7 @@
 import {Sidebar} from "@/components/client/SideBar";
 import Header from "@/components/client/Header";
 import Reminders from "@/components/client/Reminders";
+import Calendar from "@/components/client/Calendar";
 import {NewMessagesBox} from "@/components/client/NewMessagesBox";
 import {NewJobListingsBox} from "@/components/client/NewJobListingsBox";
 import {useEffect, useState} from "react";
@@ -51,8 +52,9 @@ export default function DashboardClient({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <Reminders />
+              <Calendar />
             </div>
           </div>
         </main>
