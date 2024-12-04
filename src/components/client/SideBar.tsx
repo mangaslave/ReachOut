@@ -85,7 +85,7 @@ export function Sidebar({ className, user, setCollapsed, collapsed }: SidebarPro
         {!collapsed && (
           <div>
             <p className="text-m font-semibold text-white">John Howard Society</p>
-            <p className="text-xs text-white">Non-Profit Worker</p>
+            <p className="text-xs text-white pb-2">Non-Profit Worker</p>
           </div>
         )}
       </div>
