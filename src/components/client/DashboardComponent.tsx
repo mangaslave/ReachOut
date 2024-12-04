@@ -54,7 +54,7 @@ export default function DashboardClient({
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <Reminders />
-              <Calendar />
+              <Calendar employer={false}/>
             </div>
           </div>
         </main>
