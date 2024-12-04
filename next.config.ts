@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
       "encrypted-tbn0.gstatic.com",
       "www.randstad.ca",
       "media.licdn.com",
+      "truemechanical.com", 
     ],
   },
 };
