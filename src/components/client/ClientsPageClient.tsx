@@ -7,6 +7,8 @@ import {useState} from "react";
 import {cn} from "@/lib/utils";
 import {ClientList} from "@/actions/GetClientAction";
 import {Button} from "../ui/button";
+import { GoArchive } from "react-icons/go";
+import { GoTrash } from "react-icons/go";
 
 export default function ClientsPageClient({
   activeUser,
@@ -28,7 +30,9 @@ export default function ClientsPageClient({
                 <ClientsFilters />
               </div>
 
-              <div className="ml-auto">
+              <div className="ml-auto flex items-center">
+                <GoTrash className="text-2xl mx-4 text-gray-400 cursor-pointer" />
+                <GoArchive className="text-2xl mr-8 ml-4 text-gray-400 cursor-pointer"/>
                 <Link href="/organization/clients/newclient" passHref>
                   <Button variant="secondary" className="w-36">
                     + Add New
