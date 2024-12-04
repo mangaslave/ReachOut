@@ -7,6 +7,8 @@ import {useState} from "react";
 import {cn} from "@/lib/utils";
 import {ClientList} from "@/actions/GetClientAction";
 import {Button} from "../ui/button";
+import { GoArchive } from "react-icons/go";
+import { GoTrash } from "react-icons/go";
 import Header from "./Header";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaBoxArchive } from "react-icons/fa6";
@@ -43,9 +45,10 @@ export default function ClientsPageClient({
                 <ClientsFilters />
               </div>
 
-              <div className="ml-auto flex flex-row">
-                <FaBoxArchive className="mt-2 mr-1 w-6 h-9 text-gray-400"/>
-                <FaTrashAlt className="mt-3 mr-4 w-10 h-6 text-gray-400"/>
+              <div className="ml-auto flex items-center">
+                <GoTrash className="text-2xl mx-4 text-gray-400 cursor-pointer" />
+                <GoArchive className="text-2xl mr-8 ml-4 text-gray-400 cursor-pointer"/>
+
                 <Link href="/organization/clients/newclient" passHref>
                   <Button variant="secondary" className="w-36 mb-10">
                     + Add New

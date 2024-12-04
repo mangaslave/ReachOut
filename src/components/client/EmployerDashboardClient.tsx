@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {EmployerNewJobListingBox} from "./EmployerNewJobListingsBox";
 import {EmployerSidebar} from "./EmployerSidebar";
 import Header from "./Header";
+import Calendar from "@/components/client/Calendar";
 import {NewMessagesBox} from "./NewMessagesBox";
 import Reminders from "./Reminders";
 import {Application} from "@/actions/GetApplicationsAction";
@@ -52,8 +53,9 @@ export default function EmployerDashboardClientComponent({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <Reminders />
+              <Calendar employer={true} />
             </div>
           </div>
         </main>
