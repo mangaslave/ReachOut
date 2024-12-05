@@ -91,7 +91,7 @@ export default function JobCard({
         </div>
         <div className="flex-shrink-0">
           <Image
-            src={companyLogo || "/static/images/fallback-logo.png"}
+            src={companyLogo}
             alt="Company Logo"
             width={20}
             height={20}
