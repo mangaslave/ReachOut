@@ -21,6 +21,9 @@ export async function AddClientAction({
   try {
     const {getUser} = getKindeServerSession();
     const user = await getUser();
+    if (!user) {
+      return {success: false, message: "No user detected, client not added to database."};
+    }
 
     const insertedClient = await db.insert(clientTable).values({
       userId: user.id as string,
@@ -37,6 +40,6 @@ export async function AddClientAction({
     return {success: true, message: "New client added successfully"};
   } catch (error) {
     console.error("Error adding new client to database:", error);
-    return {success: false, error: "Error adding new client to database"};
+    return {success: false, message: "Error adding new client to database"};
   }
 }

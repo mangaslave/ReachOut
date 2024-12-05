@@ -87,7 +87,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({showModal, setShowModal}) => {
 
         <div className="mt-6 flex justify-center">
           <button className="font-bold w-40 py-2 rounded-md  bg-spaceCadet text-white hover:bg-ylnMnBlue">
-            <Link href="/dashboard">Sign Up</Link>
+            <Link href="/landing">Sign Up</Link>
           </button>
         </div>
       </div>

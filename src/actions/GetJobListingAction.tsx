@@ -1,4 +1,5 @@
 "use server";
+import {JobListing} from "@/components/client/JobListingMaster";
 import {db} from "@/db";
 import {
   jobPostings as jobPostingsTable,
@@ -11,16 +12,15 @@ import {
 } from "@/db/schema";
 import {eq, inArray} from "drizzle-orm";
 
-export async function GetJobListingsAction() {
+export async function GetJobListingsAction(companyId?: number) {
   try {
-    const listings = await db
+    const listingsQuery = db
       .select({
         title: jobPostingsTable.jobTitle,
         companyName: companies.companyName,
         logoUrl: companies.logoUrl,
-        datePosted: jobPostingsTable.datePosted,
         salary: jobPostingsTable.salary,
-        date: jobPostingsTable.datePosted,
+        datePosted: jobPostingsTable.datePosted,
         location: jobPostingsTable.location,
         description: jobPostingsTable.description,
         jobPostingId: jobPostingsTable.jobPostingId,
@@ -29,6 +29,12 @@ export async function GetJobListingsAction() {
       .from(jobPostingsTable)
       .leftJoin(companies, eq(companies.companyId, jobPostingsTable.companyId))
       .leftJoin(jobTypes, eq(jobTypes.jobTypeId, jobPostingsTable.jobTypeId));
+
+    if (companyId) {
+      listingsQuery.where(eq(companies.companyId, companyId));
+    }
+
+    const listings = await listingsQuery;
 
     const jobPostingIds = listings.map((posting) => posting.jobPostingId);
 
@@ -63,7 +69,7 @@ export async function GetJobListingsAction() {
         title: posting.title,
         companyName: posting.companyName,
         logoUrl: posting.logoUrl,
-        datePosted: posting.datePosted,
+        date: posting.datePosted,
         jobType: posting.jobType,
         salary: posting.salary,
         location: posting.location,
@@ -73,7 +79,7 @@ export async function GetJobListingsAction() {
         benefit: postingBenefits,
       };
     });
-    return {success: true, listings: jobPosts};
+    return {success: true, listings: jobPosts as JobListing[]};
   } catch (err) {
     console.log(err);
     return {success: false, listings: null};

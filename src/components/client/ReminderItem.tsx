@@ -18,10 +18,10 @@ const ReminderItem: FC<ReminderItemProps> = ({
 		<div className="flex items-center justify-between p-3 rounded-lg border border-black mb-2 text-black">
 			<div className="flex items-center">
 				<span className={`w-2 h-2 rounded-full ${statusColor} mr-2`}></span>
-				<p className="text-sm font-bold">{title}</p>
+				<p className="text-sm font-bold w-[15rem]">{title}</p>
 			</div>
 
-			<div className="flex items-center space-x-2 text-black">
+			<div className="flex items- justify-end space-x-2 text-black">
 				<Image
 					src="/static/images/clock-icon.svg"
 					alt="clock"

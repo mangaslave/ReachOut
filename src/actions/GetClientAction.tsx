@@ -1,8 +1,8 @@
 "use server";
 import {db} from "@/db";
-import {clients} from "@/db/schema";
+import {clients, skillClient, skills as skillsTable, summaries} from "@/db/schema";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-import {eq} from "drizzle-orm";
+import {eq, inArray} from "drizzle-orm";
 
 export default async function GetClientAction() {
   const {getUser} = getKindeServerSession();
@@ -25,8 +25,69 @@ export default async function GetClientAction() {
       })
       .from(clients)
       .where(eq(clients.userId, user.id));
-    return {success: true, clients: allClients};
+
+    const clientIds = allClients.map((client) => client.id);
+
+    const skills = await db
+      .select({
+        clientId: skillClient.clientId,
+        skill: skillsTable.skill,
+      })
+      .from(skillClient)
+      .leftJoin(skillsTable, eq(skillsTable.skillId, skillClient.skillId))
+      .where(inArray(skillClient.clientId, clientIds));
+
+    const allClientSummaries = await db
+      .select({
+        summary: summaries.summary,
+        score: summaries.score,
+        clientId: summaries.clientId,
+        jobPostingId: summaries.jobPostingsId,
+      })
+      .from(summaries)
+      .where(inArray(summaries.clientId, clientIds));
+
+    const clientList = allClients.map((client) => {
+      const clientSkills = skills.filter((skill) => skill.clientId === client.id).map((skill) => skill.skill);
+      const clientSummaries = allClientSummaries.filter((summary) => summary.clientId === client.id);
+      return {
+        id: client.id,
+        firstName: client.firstName,
+        lastName: client.lastName,
+        lastOnline: client.lastOnline,
+        email: client.email,
+        phoneNumber: client.phoneNumber,
+        city: client.city,
+        postalCode: client.postalCode,
+        resumeUrl: client.resumeUrl,
+        skills: clientSkills,
+        summaries: clientSummaries,
+      };
+    });
+    return {success: true, clients: clientList as ClientList};
   } catch (err) {
+    console.log(err);
     return {success: false, clients: null, error: err};
   }
 }
+
+export type ClientList = {
+  id: number;
+  firstName: string | null;
+  lastName: string | null;
+  lastOnline: string;
+  email: string | null;
+  phoneNumber: string | null;
+  city: string | null;
+  postalCode: string | null;
+  resumeUrl: string | null;
+  skills: string[];
+  summaries: ClientSummaries;
+}[];
+
+export type ClientSummaries = {
+  summary: string | null;
+  score: number | null;
+  clientId: number | null;
+  jobPostingId: number | null;
+}[];

@@ -19,6 +19,7 @@ export const users = sqliteTable("users", {
   lastName: text("last_name").notNull(),
   email: text("email").notNull().unique(),
   accountTypeId: integer("account_type_id").references(() => accountTypes.accountTypeId),
+  companyId: integer("company_id").references(() => companies.companyId),
 });
 
 export const status = sqliteTable("status", {
@@ -63,7 +64,7 @@ export const clientProfiles = sqliteTable("client_profiles", {
 export const skillClient = sqliteTable("skill_client", {
   skillClientId: integer("skill_client_id").primaryKey(),
   skillId: integer("skill_id").references(() => skills.skillId),
-  clientProfileId: integer("client_profile_id").references(() => clientProfiles.clientProfileId),
+  clientId: integer("client_id").references(() => clients.clientId),
 });
 
 export const skillJob = sqliteTable("skill_job", {
@@ -109,4 +110,12 @@ export const clients = sqliteTable("clients", {
   last_name: text("last_name"),
   userId: text("user_id").references(() => users.userId),
   clientProfileId: integer("client_profile_id").references(() => clientProfiles.clientProfileId),
+});
+
+export const summaries = sqliteTable("summaries", {
+  summaryId: integer("summary_id").primaryKey(),
+  clientId: integer("client_id").references(() => clients.clientId),
+  jobPostingsId: integer("job_posting_id").references(() => jobPostings.jobPostingId),
+  summary: text("summary"),
+  score: real("score"),
 });
