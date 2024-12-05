@@ -70,9 +70,9 @@ export function JobListingUploadResume({
     }
   };
 
-  const dateTimeAndName = resumeUrl.split("/")[5];
-  const date = dateTimeAndName.split("T")[0];
-  const name = dateTimeAndName.split("Z-")[1].replaceAll("_", " ");
+  const dateTimeAndName = resumeUrl ? resumeUrl.split("/")[5] : "";
+  const date = resumeUrl ? dateTimeAndName.split("T")[0] : "";
+  const name = resumeUrl ? dateTimeAndName.split("Z-")[1].replaceAll("_", " ") : "";
 
   return (
     <div
