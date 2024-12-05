@@ -26,7 +26,7 @@ export default function SettingsPageClient({
           <p className="text-sm text-gray-600">Customize Your Preferences and Account Settings</p>
         </header>
         <main className="flex-1 overflow-y-auto px-8 py-6">
-          <SettingsClient />
+          <SettingsClient employer={employer} />
         </main>
       </div>
     </div>

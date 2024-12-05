@@ -96,15 +96,15 @@ export default function JobListingMaster({
   const [resumeName, setResumeName] = useState("");
   const [availability, setAvailability] = useState(new Date(Date.now()));
   const [companyId, setCompanyId] = useState(0);
-  const [clientId, setClientId] = useState(clients[0]?.id ? clients[0]?.id : 0);
+  const [clientId, setClientId] = useState(0);
   const [activeFilters, setActiveFilters] = useState<FilterState>({
     location: "",
     jobType: "",
-    client: "",
+    client: 0,
   });
   const [collapsed, setCollapsed] = useState(false);
 
-  const handleFilterChange = (type: keyof FilterState, value: string) => {
+  const handleFilterChange = (type: keyof FilterState, value: string | number) => {
     setActiveFilters((prev) => ({
       ...prev,
       [type]: value,
@@ -279,6 +279,7 @@ export default function JobListingMaster({
                   listings={listings}
                   setClientId={setClientId}
                   onFilterChange={handleFilterChange}
+                  clientId={clientId}
                 />
               </div>
             </div>
@@ -319,17 +320,10 @@ export default function JobListingMaster({
                     location={`${listing.location}`}
                     hourlyPay={`${listing.salary}`}
                     jobTitle={`${listing.title}`}
-                    matchStatus="Excellent"
                     jobType={`${listing.jobType}`}
                     dateOfPosting={`${listing.date}`}
                     summary={listing.summary}
                     score={listing.score}
-                    statusColor="bg-green-600"
-                    status={{
-                      status1: "/static/images/match-green.svg",
-                      status2: "/static/images/match-green.svg",
-                      status3: "/static/images/match-green.svg",
-                    }}
                   />
                 );
               })}
@@ -339,7 +333,15 @@ export default function JobListingMaster({
       </div>
       {detailsModalOpen && selectedJobDetails && (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListing jobDetails={selectedJobDetails} closeModal={handleClickOutside} nextModal={moveToSelectClient} />
+          <div className="relative">
+            <button
+              onClick={closeAll}
+              className="absolute -top-10 right-0 z-50 p-2 rounded-full hover:bg-gray-100 bg-white"
+            >
+              <Image src={closeIcon} alt="Close" width={24} height={24} />
+            </button>
+            <JobListing jobDetails={selectedJobDetails} closeModal={closeAll} nextModal={moveToSelectClient} />
+          </div>
         </div>
       )}
       {selectClientModalOpen && (

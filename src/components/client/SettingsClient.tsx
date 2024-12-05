@@ -7,7 +7,7 @@ import AccessibilitySettings from "./AccessibilitySettings";
 import GeneralSettings from "./GeneralSettings";
 import {twMerge} from "tailwind-merge";
 
-export default function SettingsClient() {
+export default function SettingsClient({employer}: {employer: boolean}) {
   const [accessibility, setAccessibility] = useState(false);
   const switchSettings = () => {
     setAccessibility(!accessibility);
@@ -40,10 +40,16 @@ export default function SettingsClient() {
           </button>
         </ul>
         <div className="flex gap-3 justify-end">
-          <Link href="/organization/dashboard" className="pb-2 font-medium transition-all duration-200">
+          <Link
+            href={employer ? "/employer/dashboard" : "/organization/dashboard"}
+            className="pb-2 font-medium transition-all duration-200"
+          >
             <Button>Save & Continue</Button>
           </Link>
-          <Link href="/organization/dashboard" className="pb-2 font-medium transition-all duration-200">
+          <Link
+            href={employer ? "/employer/dashboard" : "/organization/dashboard"}
+            className="pb-2 font-medium transition-all duration-200"
+          >
             <Button variant="ghost" className="border border-spaceCadet mx-2">
               Go Back
             </Button>
