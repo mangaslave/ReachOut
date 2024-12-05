@@ -22,7 +22,7 @@ interface ModalProps {
 
 export function ApplicationModal({closeModal, application, setInterview}: ModalProps) {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
-  const [resumeUrl, setResumeUrl] = useState<string>(application.resumeUrl);
+  const [resumeUrl] = useState<string>(application.resumeUrl);
 
   const deleteApplication = async () => {
     const deleted = await deleteApplicationAction(application.applicationId);

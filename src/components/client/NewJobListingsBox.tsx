@@ -17,10 +17,6 @@ export function NewJobListingsBox({jobListings}: {jobListings: listing[] | null}
     setModalOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
   if (!jobListings) {
     return (
       <div className="p-6 rounded-xl bg-white shadow-md max-w-xl">
@@ -68,7 +64,7 @@ export function NewJobListingsBox({jobListings}: {jobListings: listing[] | null}
       ))}
       {modalOpen && (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <JobListing jobDetails={selectedListing as listing} closeModal={closeModal} />
+          <JobListing jobDetails={selectedListing as listing} />
         </div>
       )}
     </div>

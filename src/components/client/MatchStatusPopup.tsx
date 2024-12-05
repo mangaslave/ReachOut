@@ -2,7 +2,7 @@
 import {useState} from "react";
 import {Tooltip, TooltipContent, TooltipTrigger} from "../ui/tooltip";
 
-export default function InfoPopup({status, color}: {status: string; color: string | undefined}) {
+export default function InfoPopup({status}: {status: string}) {
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
     setIsOpen(!isOpen);

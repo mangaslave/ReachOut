@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import {useState} from "react";
 import ClientProfile from "./ClientProfile";
 import ApplicationTrackingModal from "./ApplicationTracking";
 import ArchivedClientsModal from "./ApplicantTrackingArchived";
-import Image from "next/image";
 
 export default function ClientListing({
   clients,
@@ -34,8 +33,6 @@ export default function ClientListing({
 
   const setTrackingModalOpenHandler = () => setTrackingModalOpen(true);
   const setTrackingModalCloseHandler = () => setTrackingModalOpen(false);
-
-  const setArchivedModalOpenHandler = () => setArchivedModalOpen(true);
   const setArchivedModalCloseHandler = () => setArchivedModalOpen(false);
 
   const activeApplications = [
@@ -81,30 +78,30 @@ export default function ClientListing({
     },
   ];
 
-  const archivedApplications = [
-    {
-      title: "Electrician",
-      company: "Status Electrical",
-      location: "Burnaby, BC",
-      logo: "https://media.licdn.com/dms/image/v2/C560BAQHOWhD_GMvnrA/company-logo_200_200/company-logo_200_200/0/1630664579660/status_electrical_corporation_logo?e=2147483647&v=beta&t=PHjufLQ_dCdPwEbiFFTcUaoDSDXCd6E1F1sgm5IM0Pk",
-      progress: ["Submitted", "In Review", "Interview", "Offer"],
-      currentStage: 1,
-      dates: ["10/01/2024", "10/02/2024", "10/04/2024", ""],
-      archiveDate: "10/04/2024",
-      archiveReason: "Position Fulfilled",
-    },
-    {
-      title: "Mill Worker",
-      company: "Westkey Graphics Ltd.",
-      location: "Burnaby, BC",
-      logo: "https://media.licdn.com/dms/image/v2/D560BAQF3ZTsTzbDUjQ/company-logo_200_200/company-logo_200_200/0/1680820572754/westkey_graphics_logo?e=2147483647&v=beta&t=nEgb-ANczum2d_C59_sPF2Dq4jx33hCFIfSO08yBAa0",
-      progress: ["Submitted", "In Review", "Interview", "Offer"],
-      currentStage: 1,
-      dates: ["10/01/2024", "10/02/2024", "10/04/2024", "10/07/2024"],
-      archiveDate: "10/15/2024",
-      archiveReason: "Candidate Declined Offer",
-    },
-  ];
+  // const archivedApplications = [
+  //   {
+  //     title: "Electrician",
+  //     company: "Status Electrical",
+  //     location: "Burnaby, BC",
+  //     logo: "https://media.licdn.com/dms/image/v2/C560BAQHOWhD_GMvnrA/company-logo_200_200/company-logo_200_200/0/1630664579660/status_electrical_corporation_logo?e=2147483647&v=beta&t=PHjufLQ_dCdPwEbiFFTcUaoDSDXCd6E1F1sgm5IM0Pk",
+  //     progress: ["Submitted", "In Review", "Interview", "Offer"],
+  //     currentStage: 1,
+  //     dates: ["10/01/2024", "10/02/2024", "10/04/2024", ""],
+  //     archiveDate: "10/04/2024",
+  //     archiveReason: "Position Fulfilled",
+  //   },
+  //   {
+  //     title: "Mill Worker",
+  //     company: "Westkey Graphics Ltd.",
+  //     location: "Burnaby, BC",
+  //     logo: "https://media.licdn.com/dms/image/v2/D560BAQF3ZTsTzbDUjQ/company-logo_200_200/company-logo_200_200/0/1680820572754/westkey_graphics_logo?e=2147483647&v=beta&t=nEgb-ANczum2d_C59_sPF2Dq4jx33hCFIfSO08yBAa0",
+  //     progress: ["Submitted", "In Review", "Interview", "Offer"],
+  //     currentStage: 1,
+  //     dates: ["10/01/2024", "10/02/2024", "10/04/2024", "10/07/2024"],
+  //     archiveDate: "10/15/2024",
+  //     archiveReason: "Candidate Declined Offer",
+  //   },
+  // ];
 
   if (!clients) {
     return null;
@@ -116,18 +113,10 @@ export default function ClientListing({
         <thead className="bg-caribbeanCurrant text-white">
           <tr>
             <th className="px-6 py-3"></th>
-            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">
-              Name
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">
-              Status
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">
-              Company
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">
-              Last Online
-            </th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">Name</th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">Status</th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">Company</th>
+            <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider">Last Online</th>
             <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider"></th>
             <th className="px-6 py-3 text-left text-xs font-large text-white uppercase tracking-wider"></th>
           </tr>

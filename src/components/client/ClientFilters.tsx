@@ -15,8 +15,6 @@ export default function ClientsFilters() {
     setSelectedColumn(event.target.value);
   };
 
-  const [collapsed, setCollapsed] = useState(false);
-
   return (
     <>
       <div className="flex space-x-4 mb-10 ml-2">

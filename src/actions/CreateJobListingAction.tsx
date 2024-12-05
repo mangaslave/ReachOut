@@ -1,6 +1,6 @@
 "use server";
-import {db} from "@/db";
-import {jobPostings as jobPostingsTable, jobBenefit, skillJob} from "@/db/schema";
+// import {db} from "@/db";
+// import {jobPostings as jobPostingsTable, jobBenefit, skillJob} from "@/db/schema";
 
 export async function createJobPosting({
   title,

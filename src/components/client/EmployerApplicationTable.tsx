@@ -53,7 +53,7 @@ export default function EmployerApplicationTable({
     <div>
       <table className="min-w-full divide-y divide-gray-200 bg-white ml-4 mt-4">
         <thead className="bg-spaceCadet">
-          <tr className="" >
+          <tr className="">
             <th className="px-4 py-4 text-left font-medium text-white rounded-tl-md">Name</th>
             <th className="px-4 py-4 text-left font-medium text-white">Position</th>
             <th className="px-4 py-4 text-left font-medium text-white">Type</th>
@@ -74,7 +74,7 @@ export default function EmployerApplicationTable({
                   name=""
                   id=""
                   value={statuses[app.applicationId]}
-                  onChange={(e) => changeApplicationStatus(app.applicationId)}
+                  onChange={() => changeApplicationStatus(app.applicationId)}
                 >
                   <option value="New">🔴 NEW!</option>
                   <option value="Interviewing">🟡 Interviewing</option>

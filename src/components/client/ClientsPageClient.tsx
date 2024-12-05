@@ -10,8 +10,6 @@ import {Button} from "../ui/button";
 import {GoArchive} from "react-icons/go";
 import {GoTrash} from "react-icons/go";
 import Header from "./Header";
-import {FaTrashAlt} from "react-icons/fa";
-import {FaBoxArchive} from "react-icons/fa6";
 
 export default function ClientsPageClient({
   activeUser,

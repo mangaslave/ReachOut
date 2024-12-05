@@ -18,7 +18,7 @@ import {KindeUser} from "@kinde-oss/kinde-auth-nextjs/types";
 import Image from "next/image";
 import {Button} from "../ui/button";
 import {cn} from "@/lib/utils";
-import {ClientList, ClientSummaries} from "@/actions/GetClientAction";
+import {ClientList} from "@/actions/GetClientAction";
 
 export interface JobDetails {
   companyName: string;

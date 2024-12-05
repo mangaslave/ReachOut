@@ -1,8 +1,8 @@
 "use client";
 import {Button} from "../ui/button";
 import {JobListing as Listing} from "./JobListingMaster";
-import { FiEdit } from "react-icons/fi";
-import { IoCloseOutline } from "react-icons/io5";
+import {FiEdit} from "react-icons/fi";
+import {IoCloseOutline} from "react-icons/io5";
 
 interface JobListingProps {
   jobDetails: Listing;
@@ -22,7 +22,7 @@ export const EmployerViewJobListing = ({jobDetails, closeModal}: JobListingProps
   return (
     <div onClick={closeModal} className="max-w-3xl mx-auto p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
       <div className="text-2xl flex justify-end mb-2">
-        <IoCloseOutline onClick={closeModal} className="cursor-pointer" />
+        <IoCloseOutline className="cursor-pointer" />
       </div>
       <div className="flex justify-between items-start mb-4">
         <div>

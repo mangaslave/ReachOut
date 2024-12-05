@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "../ui/button";
-import { FaRegCircleCheck } from "react-icons/fa6";
+import {useState} from "react";
+import {Button} from "../ui/button";
+import {FaRegCircleCheck} from "react-icons/fa6";
 
 export default function GeneralSettings() {
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
@@ -32,10 +32,7 @@ export default function GeneralSettings() {
         <p className="text-sm text-gray-600 py-3">Create a new secured password.</p>
         <div className="flex flex-col gap-4">
           <div>
-            <label
-              htmlFor="old-password"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="old-password" className="block text-sm font-medium text-gray-700">
               Old Password
             </label>
             <input
@@ -45,10 +42,7 @@ export default function GeneralSettings() {
             />
           </div>
           <div>
-            <label
-              htmlFor="new-password"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="new-password" className="block text-sm font-medium text-gray-700">
               New Password
             </label>
             <input
@@ -58,10 +52,7 @@ export default function GeneralSettings() {
             />
           </div>
           <div>
-            <label
-              htmlFor="confirm-password"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700">
               Confirm New Password
             </label>
             <input
@@ -112,14 +103,9 @@ export default function GeneralSettings() {
       {/* Syncing Email Section */}
       <section className="flex flex-col gap-4 p-6 rounded bg-white shadow">
         <h2 className="text-lg font-medium text-gray-900">Sync Email</h2>
-        <p className="text-sm text-gray-600">
-          Sync your ReachOut messages with your existing email account.
-        </p>
+        <p className="text-sm text-gray-600">Sync your ReachOut messages with your existing email account.</p>
         <div className="flex flex-col gap-4">
-          <label
-            htmlFor="email-provider"
-            className="block text-sm font-medium text-black"
-          >
+          <label htmlFor="email-provider" className="block text-sm font-medium text-black">
             Select Email Provider
           </label>
           <select
@@ -144,10 +130,7 @@ export default function GeneralSettings() {
           </select>
 
           <div>
-            <label
-              htmlFor="email-address"
-              className="block text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
               Email Address
             </label>
             <input
@@ -167,13 +150,10 @@ export default function GeneralSettings() {
       <section className="flex flex-col gap-4 p-6 rounded bg-white shadow">
         <h2 className="text-lg font-medium text-gray-900">Sync Calendar</h2>
         <p className="text-sm text-gray-600">
-          Sync your calendar with an external calendar like Google Calendar or your phone's calendar.
+          Sync your calendar with an external calendar like Google Calendar or your phone&apos;s calendar.
         </p>
         <div className="flex flex-col gap-4">
-          <label
-            htmlFor="calendar-provider"
-            className="block text-sm font-medium text-black"
-          >
+          <label htmlFor="calendar-provider" className="block text-sm font-medium text-black">
             Select Calendar Provider
           </label>
           <select
@@ -193,14 +173,13 @@ export default function GeneralSettings() {
               Outlook Calendar
             </option>
           </select>
-          <label
-              htmlFor="email-address"
-              className="block text-sm font-medium text-gray-700"
-          >Email Adress</label>
+          <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+            Email Adress
+          </label>
           <input
-              type="email"
-              id="email-address"
-              className="-mt-3 block w-full h-10 rounded-md border-black border shadow-sm"
+            type="email"
+            id="email-address"
+            className="-mt-3 block w-full h-10 rounded-md border-black border shadow-sm"
           />
 
           <Button onClick={handleSyncCalendar} className="self-start bg-spaceCadet">
@@ -216,9 +195,7 @@ export default function GeneralSettings() {
             <h3 className="text-lg font-medium text-gray-900 flex flex-row gap-2">
               Email Connected <FaRegCircleCheck className="text-correctGreen text-2xl mt-[3px]" />
             </h3>
-            <p className="text-sm text-gray-600 mt-2">
-              Your email has been connected successfully!
-            </p>
+            <p className="text-sm text-gray-600 mt-2">Your email has been connected successfully!</p>
             <div className="mt-4 flex justify-end">
               <Button onClick={closeEmailModal} className="bg-caribbeanCurrant text-white px-4 py-2 rounded">
                 Close
@@ -235,9 +212,7 @@ export default function GeneralSettings() {
             <h3 className="text-lg font-medium text-gray-900 flex flex-row gap-2">
               Calendar Synced <FaRegCircleCheck className="text-correctGreen text-2xl mt-[3px]" />
             </h3>
-            <p className="text-sm text-gray-600 mt-2">
-              Your calendar has been synced successfully!
-            </p>
+            <p className="text-sm text-gray-600 mt-2">Your calendar has been synced successfully!</p>
             <div className="mt-4 flex justify-end">
               <Button onClick={closeCalendarModal} className="bg-caribbeanCurrant text-white px-4 py-2 rounded">
                 Close

@@ -1,12 +1,12 @@
 "use client";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { MdWorkOutline } from "react-icons/md";
+import {FaMapMarkerAlt} from "react-icons/fa";
+import {MdWorkOutline} from "react-icons/md";
 import userIcon from "../../../public/static/images/userIcon.svg";
 import Image from "next/image";
-import { ChevronDownIcon } from "lucide-react";
-import { Dispatch, SetStateAction, useState } from "react";
-import { ClientInfo, JobListing } from "./JobListingMaster";
-import { IoMdClose } from "react-icons/io";
+import {ChevronDownIcon} from "lucide-react";
+import {Dispatch, SetStateAction, useState} from "react";
+import {ClientInfo, JobListing} from "./JobListingMaster";
+import {IoMdClose} from "react-icons/io";
 
 export interface FilterState {
   location: string;
@@ -84,11 +84,7 @@ export default function JobListingFilters({
     }
   });
 
-  const activeFilters = [
-    ...(location ? [location] : []),
-    ...(jobType ? [jobType] : []),
-    ...(client ? [client] : []),
-  ];
+  const activeFilters = [...(location ? [location] : []), ...(jobType ? [jobType] : []), ...(client ? [client] : [])];
 
   return (
     <div className="space-y-4 mt-4">
@@ -143,20 +139,14 @@ export default function JobListingFilters({
             >
               <option value={0}>Select Client</option>
               {clients.map((client) => (
-                <option key={client.id} value={client.id}>
+                <option key={client.id} value={client.id!}>
                   {`${client.firstName} ${client.lastName}`}
                 </option>
               ))}
             </select>
             <ChevronDownIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Image
-                src={userIcon}
-                width={10}
-                height={10}
-                alt="userIcon"
-                className="text-gray-500 h-4 w-4"
-              />
+              <Image src={userIcon} width={10} height={10} alt="userIcon" className="text-gray-500 h-4 w-4" />
             </div>
           </div>
         </div>
@@ -182,10 +172,7 @@ export default function JobListingFilters({
               className="flex items-center px-3 py-1 border-orchidPink border-2 bg-orchidPink bg-opacity-30 text-sm text-spaceCadet rounded-full shadow"
             >
               {filter}
-              <IoMdClose
-                className="ml-2 cursor-pointer"
-                onClick={() => removeFilter(filter)}
-              />
+              <IoMdClose className="ml-2 cursor-pointer" onClick={() => removeFilter(filter)} />
             </div>
           ))}
         </div>

@@ -37,12 +37,12 @@ const tooltipContent = (score: number | null | undefined) => {
     return <p>Match has not been calculated yet.</p>;
   }
   if (score >= 7) {
-    return <p>An "Excellent" match indicates that the client meets all job requirements.</p>;
+    return <p>An &quot;Excellent&quot; match indicates that the client meets all job requirements.</p>;
   }
   if (score >= 4) {
-    return <p>An "Okay" match indicates that the client meets some, but not all, job requirements.</p>;
+    return <p>An &quot;Okay&quot; match indicates that the client meets some, but not all, job requirements.</p>;
   }
-  return <p>A "Not a Good" match indicates that the client does not meet the job requirements.</p>;
+  return <p>A &quot;Not a Good&quot; match indicates that the client does not meet the job requirements.</p>;
 };
 
 export default function JobCard({
@@ -73,10 +73,7 @@ export default function JobCard({
               >
                 <span className={`w-3 h-3 rounded-full ${matchStatusColor}`} />
                 {matchRating}
-                <InfoPopup
-                  color={matchStatusColor}
-                  status={summary ? summary : "This client has not been matched with this job listing yet."}
-                />
+                <InfoPopup status={summary ? summary : "This client has not been matched with this job listing yet."} />
               </span>
             </TooltipTrigger>
             <TooltipContent className="max-w-xs bg-white text-black border border-gray-300 p-2 rounded-md shadow">

@@ -3,8 +3,6 @@
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {redirect} from "next/navigation";
 import {EmployerResources} from "@/components/client/EmployerResources";
-import {EmployerSidebar} from "@/components/client/EmployerSidebar";
-import Header from "@/components/client/Header";
 import AddKindeUserToDb from "@/actions/AddKindeUserToDb";
 
 export default async function ResourcesPage() {

@@ -1,3 +1,4 @@
+"use client";
 interface HeaderProps {
   headerMsg: string;
   subHeadingMsg?: string;

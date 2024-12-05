@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { FaSearch, FaMicrophone } from "react-icons/fa";
-import { EmployerSidebar } from "./EmployerSidebar";
+import {useState} from "react";
+import {FaSearch, FaMicrophone} from "react-icons/fa";
+import {EmployerSidebar} from "./EmployerSidebar";
 import Header from "./Header";
-import { cn } from "@/lib/utils";
+import {cn} from "@/lib/utils";
 
 const resources = [
   {
@@ -81,7 +81,10 @@ export function EmployerResources({
             {filteredResources.length > 0 ? (
               <div className="grid gap-6 md:grid-cols-2">
                 {filteredResources.map((resource, index) => (
-                  <div key={index} className="p-4 bg-white rounded-lg shadow-md shadow-ylnMnBlue/50 hover:shadow-lg transition-shadow cursor-pointer">
+                  <div
+                    key={index}
+                    className="p-4 bg-white rounded-lg shadow-md shadow-ylnMnBlue/50 hover:shadow-lg transition-shadow cursor-pointer"
+                  >
                     <h2 className="text-xl font-semibold text-gray-800 mb-2">{resource.title}</h2>
                     <p className="text-gray-600 mb-4">{resource.description}</p>
                     <a
@@ -106,7 +109,7 @@ export function EmployerResources({
                   rel="noopener noreferrer"
                   className="text-caribbeanCurrant font-medium hover:underline"
                 >
-                  Search "{searchTerm}" on Google →
+                  Search &quot;{searchTerm}&quot; on Google →
                 </a>
               </div>
             )}

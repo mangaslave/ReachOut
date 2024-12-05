@@ -9,12 +9,10 @@ import {EmployerViewJobListing} from "./EmployerViewJobListingComponent";
 export function EmployerJobListingClient({initialListings}: {initialListings: JobListing[]}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedListing, setSelectedListing] = useState<JobListing | null>(null);
-  const [currentListingIndex, setCurrentListingIndex] = useState<number>(0);
   const [isAddListingModalOpen, setIsAddListingModalOpen] = useState(false);
 
-  const handleViewDetails = (listing: JobListing, index: number) => {
+  const handleViewDetails = (listing: JobListing) => {
     setSelectedListing(listing);
-    setCurrentListingIndex(index);
     setModalOpen(true);
   };
 
@@ -25,12 +23,6 @@ export function EmployerJobListingClient({initialListings}: {initialListings: Jo
 
   const closeAddListingModal = () => {
     setIsAddListingModalOpen(false);
-  };
-
-  const nextModal = () => {
-    const nextIndex = (currentListingIndex + 1) % initialListings.length;
-    setCurrentListingIndex(nextIndex);
-    setSelectedListing(initialListings[nextIndex]);
   };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -95,7 +87,7 @@ export function EmployerJobListingClient({initialListings}: {initialListings: Jo
               </tr>
             </thead>
             <tbody>
-              {initialListings.map((listing, index) => (
+              {initialListings.map((listing) => (
                 <tr key={listing.jobPostingId} className="border-b">
                   <td className="p-4">{listing.title}</td>
                   <td className="p-4">{listing.jobType}</td>
@@ -104,7 +96,7 @@ export function EmployerJobListingClient({initialListings}: {initialListings: Jo
                     <Button
                       variant="link"
                       className="text-gray-600 hover:text-gray-900"
-                      onClick={() => handleViewDetails(listing, index)}
+                      onClick={() => handleViewDetails(listing)}
                     >
                       View Details
                     </Button>
