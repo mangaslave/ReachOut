@@ -9,7 +9,7 @@ import exclamation from "../../../public/static/images/incomplete-exclamation-ic
 import {IoIosAddCircleOutline} from "react-icons/io";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
-import { IoCloudUploadOutline } from "react-icons/io5";
+import {IoCloudUploadOutline} from "react-icons/io5";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
@@ -102,7 +102,10 @@ export default function ClientProfile({
           >
             Cancel
           </button>
-          <button onClick={closeModal} className="font-semibold bg-caribbeanCurrant w-20 h-[27px] rounded-md py-0.25 self-end text-white hover:bg-spaceCadet">
+          <button
+            onClick={closeModal}
+            className="font-semibold bg-caribbeanCurrant w-20 h-[27px] rounded-md py-0.25 self-end text-white hover:bg-spaceCadet"
+          >
             Save
           </button>
         </div>

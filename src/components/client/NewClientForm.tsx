@@ -42,8 +42,6 @@ export default function AddNewClientForm() {
       phoneNumber: formData.phoneNumber,
     };
 
-    console.log("data", data);
-
     try {
       const response = await AddClientAction(data);
       setStatus("Success");

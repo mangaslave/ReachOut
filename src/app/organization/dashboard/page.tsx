@@ -15,9 +15,9 @@ export default async function DashboardPage() {
   await AddKindeUserToDb(user, 1);
 
   const activeUser = {
-    name: `${user.given_name} ${user.family_name}`,
-    email: `${user.email}`,
-    image: `${user.picture}`,
+    name: `${user?.given_name} ${user?.family_name}`,
+    email: `${user?.email}`,
+    image: `${user?.picture}`,
   };
 
   const jobs = await GetJobListingsAction();

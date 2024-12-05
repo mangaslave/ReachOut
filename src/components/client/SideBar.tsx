@@ -1,17 +1,17 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, Settings, User } from "lucide-react";
+import {cn} from "@/lib/utils";
+import {Button} from "@/components/ui/button";
+import {ChevronLeft, Settings, User} from "lucide-react";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import {Dispatch, SetStateAction} from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import {usePathname} from "next/navigation";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
-import { LogOut } from "lucide-react";
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs";
+import {LogOut} from "lucide-react";
 
 export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   user?: {
@@ -65,7 +65,7 @@ const NavItem = ({
   );
 };
 
-export function Sidebar({ className, user, setCollapsed, collapsed }: SidebarProps) {
+export function Sidebar({className, user, setCollapsed, collapsed}: SidebarProps) {
   return (
     <div
       className={cn(

@@ -1,8 +1,8 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import {useState, useRef, useEffect} from "react";
+import {Tooltip, TooltipContent, TooltipTrigger} from "../ui/tooltip";
 
-export default function InfoPopup({ status }: { status: string }) {
+export default function InfoPopup({status}: {status: string}) {
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +30,6 @@ export default function InfoPopup({ status }: { status: string }) {
 
   return (
     <div className="relative inline-block mt-1">
-      {/* Info Button */}
       <Tooltip>
         <TooltipTrigger asChild>
           <button onClick={togglePopup} className="focus:outline-none">
@@ -54,19 +53,13 @@ export default function InfoPopup({ status }: { status: string }) {
         </TooltipContent>
       </Tooltip>
 
-      {/* Popup */}
       {isOpen && (
-        <div
-          ref={popupRef}
-          className="absolute top-full left-0 mt-2 w-64 bg-ylnMnBlue p-4 rounded-lg shadow-lg z-10"
-        >
-          {/* Header and Close Button */}
+        <div ref={popupRef} className="absolute top-full left-0 mt-2 w-64 bg-ylnMnBlue p-4 rounded-lg shadow-lg z-10">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-white">Matching Summary</h3>
           </div>
 
           <div className="text-gray-200 space-y-2">
-            {/* Status items */}
             {status.split(/(?<!\w\.\w.)(?<=\.|\?|!|:)\s+/).map((sentence, index) => {
               if (sentence.trim().toLowerCase().startsWith("matched skills")) {
                 return (

@@ -1,3 +1,4 @@
+"use server";
 import {actionClient} from "@/lib/safe-action";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {s3Service} from "@/utils/s3";
@@ -91,7 +92,6 @@ export const getPresignedUrl = actionClient
         url: null,
         error: "Unauthorized: Please log in",
       };
-      // throw new Error("Unauthorized: Please log in");
     }
 
     try {
@@ -111,6 +111,5 @@ export const getPresignedUrl = actionClient
         url: null,
         error: "Unauthorized: Please log in",
       };
-      // throw new Error("Failed to generate presigned URL");
     }
   });
