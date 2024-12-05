@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../../public/static/images/logo-new.svg";
 import {
-	RegisterLink,
+	// RegisterLink,
 	LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import {
@@ -62,9 +62,9 @@ export default function NavBar() {
 						<button className="font-bold rounded-lg px-4 py-2 bg-spaceCadet text-white hover:bg-ylnMnBlue">
 							<LoginLink>Sign In</LoginLink>
 						</button>
-						<button className="font-bold text-spaceCadet hover:text-caribbeanCurrant">
+						{/* <button className="font-bold text-spaceCadet hover:text-caribbeanCurrant">
 							<RegisterLink>Register</RegisterLink>
-						</button>
+						</button> */}
 					</nav>
 					{/* 
           // * Mobile Navigation!
@@ -111,9 +111,9 @@ export default function NavBar() {
 										<button className="font-bold rounded-lg py-2 bg-spaceCadet text-white hover:bg-ylnMnBlue">
 											<LoginLink>Sign In</LoginLink>
 										</button>
-										<button className="font-bold text-spaceCadet hover:text-caribbeanCurrant">
+										{/* <button className="font-bold text-spaceCadet hover:text-caribbeanCurrant">
 											<RegisterLink>Register</RegisterLink>
-										</button>
+										</button> */}
 									</div>
 								</nav>
 							</SheetContent>
