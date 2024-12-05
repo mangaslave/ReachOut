@@ -25,15 +25,6 @@ export async function AddClientAction({
       return {success: false, message: "No user detected, client not added to database."};
     }
 
-    console.log("Inserting client:", {
-      firstName,
-      lastName,
-      phoneNumber,
-      email,
-      postalCode,
-      city,
-    });
-
     const insertedClient = await db.insert(clientTable).values({
       userId: user.id as string,
       first_name: firstName,
