@@ -1,12 +1,32 @@
 "use client";
-import {useState} from "react";
-import {Tooltip, TooltipContent, TooltipTrigger} from "../ui/tooltip";
+import { useState, useRef, useEffect } from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-export default function InfoPopup({status}: {status: string}) {
+export default function InfoPopup({ status }: { status: string }) {
   const [isOpen, setIsOpen] = useState(false);
+  const popupRef = useRef<HTMLDivElement>(null);
+
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
     <div className="relative inline-block mt-1">
@@ -22,7 +42,6 @@ export default function InfoPopup({status}: {status: string}) {
             >
               <path
                 fillRule="evenodd"
-                //? Maybe change
                 className={`text-spaceCadet`}
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm-.75-8.25a.75.75 0 101.5 0v-3.5a.75.75 0 00-1.5 0v3.5zM9.75 12a.75.75 0 100 1.5h.5a.75.75 0 100-1.5h-.5z"
                 clipRule="evenodd"
@@ -37,7 +56,10 @@ export default function InfoPopup({status}: {status: string}) {
 
       {/* Popup */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-64 bg-ylnMnBlue p-4 rounded-lg shadow-lg z-10">
+        <div
+          ref={popupRef}
+          className="absolute top-full left-0 mt-2 w-64 bg-ylnMnBlue p-4 rounded-lg shadow-lg z-10"
+        >
           {/* Header and Close Button */}
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-white">Matching Summary</h3>
@@ -45,9 +67,27 @@ export default function InfoPopup({status}: {status: string}) {
 
           <div className="text-gray-200 space-y-2">
             {/* Status items */}
-            <div className="flex items-center">
-              <p className="text-sm">{status}</p>
-            </div>
+            {status.split(/(?<!\w\.\w.)(?<=\.|\?|!|:)\s+/).map((sentence, index) => {
+              if (sentence.trim().toLowerCase().startsWith("matched skills")) {
+                return (
+                  <div key={index} className="mt-4">
+                    <strong>• {sentence.trim()}</strong>
+                  </div>
+                );
+              }
+              if (sentence.trim().toLowerCase().startsWith("missing skills")) {
+                return (
+                  <div key={index} className="mt-4">
+                    <strong>• {sentence.trim()}</strong>
+                  </div>
+                );
+              }
+              return (
+                <p key={index} className="mt-2">
+                  {sentence.trim()}
+                </p>
+              );
+            })}
           </div>
         </div>
       )}
