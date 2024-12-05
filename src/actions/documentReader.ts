@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {db} from "@/db";
 import {AzureKeyCredential, DocumentAnalysisClient} from "@azure/ai-form-recognizer";
 import {TextAnalyticsClient} from "@azure/ai-text-analytics";
@@ -79,24 +80,29 @@ export default async function analyzeResume(resumeS3Url: string, clientId: numbe
       console.log("Start inserting summaries");
       for (const listing of Object.values(jobListings)) {
         const jobDescription = listing.description + " " + listing.skills.join(" ");
-
+      
         const resumeKeyPhrases = await extractKeyPhrases(resumeText);
         const jobKeyPhrases = await extractKeyPhrases(jobDescription);
-
-        const {matchScore} = matchKeyPhrasesWithScore(resumeKeyPhrases, jobKeyPhrases);
-        const {matched, missing} = matchKeyPhrases(resumeKeyPhrases, jobKeyPhrases);
-        const summary = generateFitSummaryFromKeyPhrases(matched, missing, fullname, matchScore);
-
-        const existingSummary = await db.select().from(summaries);
-        and(eq(summaries.jobPostingsId, listing.jobPostingId), eq(summaries.clientId, clientId));
-
+      
+        const filteredResumeKeyPhrases = filterIrrelevantPhrases(resumeKeyPhrases);
+        const filteredJobKeyPhrases = filterIrrelevantPhrases(jobKeyPhrases);
+      
+        const { matchScore } = matchKeyPhrasesWithScore(filteredResumeKeyPhrases, filteredJobKeyPhrases);
+        const { matched, missing } = matchKeyPhrases(filteredResumeKeyPhrases, filteredJobKeyPhrases);
+      
+        const relevantMissing = filterBySemanticRelevance(missing, jobDescription);
+      
+        const summary = generateFitSummaryFromKeyPhrases(matched, relevantMissing, fullname, matchScore);
+      
+        const existingSummary = await db
+          .select()
+          .from(summaries)
+          .where(and(eq(summaries.jobPostingsId, listing.jobPostingId), eq(summaries.clientId, clientId)));
+      
         if (existingSummary.length > 0) {
           await db
             .update(summaries)
-            .set({
-              summary: summary,
-              score: matchScore,
-            })
+            .set({ summary: summary, score: matchScore })
             .where(and(eq(summaries.jobPostingsId, listing.jobPostingId), eq(summaries.clientId, clientId)));
         } else {
           await db.insert(summaries).values({
@@ -107,6 +113,8 @@ export default async function analyzeResume(resumeS3Url: string, clientId: numbe
           });
         }
       }
+      
+      
       console.log("Finished inserting summaries");
     } else {
       console.log("No text content found.");
@@ -136,26 +144,33 @@ function matchKeyPhrases(resumeKeyPhrases: string[], jobKeyPhrases: string[]): {
 }
 
 function generateFitSummaryFromKeyPhrases(
-  matched: string[],
-  missing: string[],
-  fullname: string,
-  score: number
-): string {
-  let summary = "";
-
-  if (score > 7.0) {
-    summary += `${fullname} matches well with the following important aspects of this job: ${matched.join(", ")}. `;
-    summary += `Overall, ${fullname} is a strong fit for this role.`;
-  } else if (score > 4.0) {
-    summary += `${fullname} is an okay fit for this role, but some important aspects are missing.`;
-    summary += `${fullname}'s resume is missing some key aspects like ${missing.join(", ")}. `;
-  } else {
-    summary += `${fullname} is not a great fit for this role due to the missing aspects.`;
-    summary += `${fullname}'s resume is missing some key aspects like ${missing.join(", ")}. `;
+    matched: string[],
+    missing: string[],
+    fullname: string,
+    score: number
+  ): string {
+    let summary = "";
+  
+    if (score > 70) {
+      summary += `${fullname} is a strong fit for this role, with excellent alignment in the following areas:\n`;
+    } else if (score > 40) {
+      summary += `${fullname} is an okay fit for this role but could improve in some areas:\n`;
+    } else {
+      summary += `${fullname} is not a great fit for this role due to missing key aspects:\n`;
+    }
+  
+    if (matched.length > 0) {
+      summary += `Matched Skills: ${matched.join(", ")}.\n`;
+    }
+  
+    if (missing.length > 0) {
+      summary += `Missing Skills: ${missing.join(", ")}.\n`;
+    }
+  
+    return summary.trim();
   }
+  
 
-  return summary;
-}
 
 function matchKeyPhrasesWithScore(
   resumeKeyPhrases: string[],
@@ -171,4 +186,49 @@ function matchKeyPhrasesWithScore(
   }
 
   return {matched, missing, matchScore: parseFloat(matchScore.toFixed(2))};
+}
+
+function filterIrrelevantPhrases(phrases: string[]): string[] {
+  const stopPhrases = new Set([
+      "lot",
+      "job",
+      "previous experience",
+      "person",
+      "teamwork",
+      "conditions",
+      "reliable", 
+      "responsibility",
+      "role",
+      "position",
+      "tasks",
+      "functionality",
+      "repairs",
+      "tools",
+      "attention",
+      "organization",
+      "guest",
+      "detail",
+      "other",
+      "skilled",
+      "team",
+      "upkeep",
+      "functionality",
+      "detail",
+      "tools",
+  ]);
+
+  return phrases.filter((phrase) => !stopPhrases.has(phrase.toLowerCase()));
+}
+
+function calculateSemanticSimilarity(phrase: string, referencePhrases: string[]): boolean {
+  const commonTerms = ["plumbing", "maintenance", "organization"];
+  return referencePhrases.some((ref) => phrase.includes(ref) || commonTerms.includes(phrase));
+}
+
+function filterBySemanticRelevance(
+  phrases: string[],
+  jobDescription: string
+): string[] {
+  const jobKeywords = jobDescription.toLowerCase().split(/\s+/);
+  return phrases.filter((phrase) => calculateSemanticSimilarity(phrase.toLowerCase(), jobKeywords));
 }
