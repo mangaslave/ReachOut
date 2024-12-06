@@ -120,7 +120,7 @@ export function EmployerSidebar({className, user, collapsed, setCollapsed}: Side
           <li>
             <NavItem
               title="Resources"
-              iconSrc="/static/images/Resume_icon.svg"
+              iconSrc="/static/images/Resume_Icon.svg"
               href="/employer/resources"
               collapsed={collapsed}
             />
