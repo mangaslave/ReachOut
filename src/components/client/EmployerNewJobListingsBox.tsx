@@ -2,6 +2,7 @@
 import {Application} from "@/actions/GetApplicationsAction";
 import {Avatar, AvatarFallback, AvatarImage} from "../ui/avatar";
 import {Button} from "../ui/button";
+import Link from "next/link";
 
 export function EmployerNewJobListingBox({applications}: {applications: Application[]}) {
   return (
@@ -25,9 +26,12 @@ export function EmployerNewJobListingBox({applications}: {applications: Applicat
               <p className="text-gray-600">Position: {application.jobTitle}</p>
             </div>
           </div>
-          <Button className="bg-[#2F334D] hover:bg-[#373b5c] text-white px-6 py-3 rounded-lg text-lg">
-            View Application
-          </Button>
+          <Link href="/employer/applications">
+            <Button className="bg-[#2F334D] hover:bg-[#373b5c] text-white px-6 py-3 rounded-lg text-lg">
+              View Application
+            </Button>
+          </Link>
+          
         </div>
       ))}
     </div>
