@@ -20,16 +20,16 @@ interface JobCardProps {
 
 const calculateMatch = (score: number | null | undefined) => {
   if (!score) return "Not Calculated";
-  if (score >= 7) return "Excellent Match";
-  if (score >= 4) return "Okay Match";
-  if (score < 4) return "Not a Good Match";
+  if (score >= 70) return "Excellent Match";
+  if (score >= 40) return "Okay Match";
+  if (score < 40) return "Not a Good Match";
 };
 
 const calculateStatusColor = (score: number | null | undefined) => {
   if (!score) return "bg-black";
-  if (score >= 7) return "bg-green-500";
-  if (score >= 4) return "bg-yellow-500";
-  if (score < 4) return "bg-red-500";
+  if (score >= 70) return "bg-green-500";
+  if (score >= 40) return "bg-yellow-500";
+  if (score < 40) return "bg-red-500";
 };
 
 const tooltipContent = (score: number | null | undefined) => {

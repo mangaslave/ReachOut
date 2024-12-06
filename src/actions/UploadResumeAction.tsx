@@ -23,7 +23,7 @@ export default async function UploadResumeAction({file, clientId}: {file: File |
         .where(eq(clientsTable.clientId, clientId))
         .returning({resumeUrl: clientsTable.resumeUrl});
 
-        if (resumeLinkToDB[0].resumeUrl) {
+        if (resumeLinkToDB[0]?.resumeUrl) {
           analyzeResume(resumeLinkToDB[0].resumeUrl, clientId).catch((error) => {
           console.error("An error occurred:", error);
           process.exit(1);
@@ -34,7 +34,7 @@ export default async function UploadResumeAction({file, clientId}: {file: File |
       return {
         success: true,
         message: `Resume for client was updated.`,
-        url: resumeLinkToDB[0].resumeUrl ? resumeLinkToDB[0].resumeUrl : "",
+        url: resumeLinkToDB[0]?.resumeUrl ? resumeLinkToDB[0]?.resumeUrl : "",
         name: resume.data.filename ? resume.data.filename : "",
       };
     } else {
